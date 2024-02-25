@@ -12,8 +12,7 @@
   outputs = inputs@{ self, home-manager, nix-darwin, nixpkgs }:
   let
     configuration = { pkgs, ... }: {
-      # List packages installed in system profile. To search by name, run:
-      # $ nix-env -qaP | grep wget
+
       environment.systemPackages =
         [ 
           # shells
@@ -369,7 +368,16 @@
     # Build darwin flake using:
     # $ darwin-rebuild build --flake .#halibut
     darwinConfigurations."halibut" = nix-darwin.lib.darwinSystem {
-      modules = [ configuration ];
+      #modules = [ configuration ];
+      modules = [
+        configuration
+        home-manager.darwinModules.home-manager
+        {
+          home-manager.useGlobalPkgs = true;
+          home-manager.useUserPackages = true;
+          home-manager.users.desanso = import ./home.nix;
+        }
+      ];
     };
 
     # Expose the package set, including overlays, for convenience.
