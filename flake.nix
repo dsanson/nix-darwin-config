@@ -13,6 +13,16 @@
   let
     configuration = { pkgs, ... }: {
 
+      nix.settings = {
+        experimental-features = "nix-command flakes";
+        trusted-users = ["@admin"];
+      };
+
+      users.users.desanso = {
+        name = "desanso";
+        home = "/Users/desanso";
+      };
+
       environment.systemPackages =
         [ 
           # shells
@@ -182,10 +192,6 @@
       services.nix-daemon.enable = true;
       # nix.package = pkgs.nix;
 
-      nix.settings = {
-        experimental-features = "nix-command flakes";
-        trusted-users = ["root" "desanso"];
-      };
 
       # Create /etc/zshrc that loads the nix-darwin environment.
       programs.zsh.enable = true;  # default shell on catalina
@@ -375,7 +381,41 @@
         {
           home-manager.useGlobalPkgs = true;
           home-manager.useUserPackages = true;
-          home-manager.users.desanso = import ./home.nix;
+          home-manager.users.desanso = {
+            home.username = "desanso";
+            home.stateVersion = "23.11";
+            home.homeDirectory = "/Users/desanso";
+            # Let Home Manager install and manage itself.
+            programs.home-manager.enable = true;
+           
+            home.sessionVariables = {
+              LC_ALL = "en_US.UTF-8";
+              LC_CTYPE = "en_US.UTF-8";
+            };
+            
+            programs = {
+              neovim = {
+                enable = true;
+                defaultEditor = true;
+                vimAlias = true;
+                vimdiffAlias = true;
+              };
+              starship = {
+                enable = true;
+                enableFishIntegration = true;
+                settings = {
+                  add_newline = false;
+                  git_branch = {
+                    symbol = "";
+                    truncation_length = 4;
+                    truncation_symbol = "";
+                    ignore_branches = ["master" "main"];
+                  };
+                  nodejs.disabled = true;
+                };
+              };
+            };
+          };
         }
       ];
     };
