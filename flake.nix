@@ -33,7 +33,7 @@
           # basic system stuff
           pkgs.curl
           pkgs.ack
-          pkgs.eza
+          pkgs.eza #improved version of ls
           pkgs.fd
           pkgs.fdupes
           pkgs.fzf
@@ -43,11 +43,12 @@
           pkgs.mosh
           pkgs.pup
           pkgs.ripgrep
-          pkgs.tealdeer
+          pkgs.tealdeer #fast tldr client
           pkgs.tmux
           pkgs.wget
           pkgs.zoxide
           pkgs.zip
+          pkgs.unar #cli version of theunarchiver
 
           # git
           pkgs.git
@@ -62,6 +63,7 @@
           # data
           pkgs.R
           pkgs.visidata
+          pkgs.xsv
  
           # web dev
           pkgs.dart-sass
@@ -79,7 +81,12 @@
           pkgs.qpdf
           pkgs.scantailor
           pkgs.tesseract
-         
+        
+          # media
+          pkgs.ffmpeg
+          pkgs.mpv
+          pkgs.yt-dlp
+
           # document generation
           pkgs.biber
           pkgs.bibtool
@@ -91,13 +98,15 @@
           pkgs.nsnake
 
           # fonts
-          pkgs.fira-code
           pkgs.fira-code-nerdfont
           pkgs.font-awesome
           pkgs.monoid
           pkgs.mononoki
           pkgs.open-dyslexic
           pkgs.source-code-pro
+
+          # unicode lookup
+          pkgs.uni
 
           # calendar and contacts
           pkgs.khal
@@ -106,6 +115,9 @@
           # email
           pkgs.aerc
           pkgs.mu
+          
+          # mac specific
+          pkgs.mas
 
           # trying out
           pkgs.lazygit
@@ -123,7 +135,6 @@
           pkgs.dockutil
           pkgs.dos2unix
           pkgs.exiftool
-          pkgs.ffmpeg
           pkgs.fftw
           pkgs.go
           pkgs.gradle
@@ -135,7 +146,6 @@
           pkgs.intltool
           pkgs.ispell
           pkgs.jasper
-          pkgs.lame
           pkgs.libheif
           pkgs.librist
           pkgs.lynx
@@ -287,11 +297,11 @@
           "hammerspoon" # just for the caps lock key
           "haptickey"
           "itsycal"
-          "kitty"
           "marta" # trying
           "monitorcontrol"
           "obsidian" # am I still using this?
           "quicksilver"
+          "rar"
           "satori"
           "syncthing"
           "the-unarchiver"
@@ -299,35 +309,32 @@
           "zerotier-one"
           "zoom"
           "zotero"
-          
-          # occasional use
+         
+          # occasional use (but good to always have on hand)
+          "djview"
+          "grandperspective"
+          "iina"
+          "vlc"
+
+          # occasional use (consider not keeping installed)
           "adobe-digital-editions"
-          "aegisub"
+          "aegisub" 
+          "keycastr"
           "android-file-transfer"
           "android-platform-tools"
           "audacity"
           "discord"
-          "djview"
           "dupeguru"
           "fontforge"
           "google-chrome"
-          "grandperspective"
-          "iina"
-          "keycastr"
-          "localsend"
           "logic-2010"
           "logitech-camera-settings"
-          "mpv"
           "musescore"
-          "obs"
           "oracle-jdk"
-          "rar"
           "raspberry-pi-imager"
           "sf-symbols"
-          "syntax-highlight"
           "tor-browser"
           "transmission"
-          "vlc"
           "xquartz"
 
           # quicklook plugins
@@ -336,12 +343,11 @@
           "qlstephen"
           "qlvideo"
           "quicklook-csv"
+          "syntax-highlight"
           
           # fonts
           "font-awesome-terminal-fonts"
           "font-dejavu-sans"
-          "font-fira-code"
-          "font-fira-code-nerd-font"
           "font-hack-nerd-font"
           "font-kawkab-mono"
           "font-monofur-nerd-font"
@@ -381,41 +387,7 @@
         {
           home-manager.useGlobalPkgs = true;
           home-manager.useUserPackages = true;
-          home-manager.users.desanso = {
-            home.username = "desanso";
-            home.stateVersion = "23.11";
-            home.homeDirectory = "/Users/desanso";
-            # Let Home Manager install and manage itself.
-            programs.home-manager.enable = true;
-           
-            home.sessionVariables = {
-              LC_ALL = "en_US.UTF-8";
-              LC_CTYPE = "en_US.UTF-8";
-            };
-            
-            programs = {
-              neovim = {
-                enable = true;
-                defaultEditor = true;
-                vimAlias = true;
-                vimdiffAlias = true;
-              };
-              starship = {
-                enable = true;
-                enableFishIntegration = true;
-                settings = {
-                  add_newline = false;
-                  git_branch = {
-                    symbol = "";
-                    truncation_length = 4;
-                    truncation_symbol = "";
-                    ignore_branches = ["master" "main"];
-                  };
-                  nodejs.disabled = true;
-                };
-              };
-            };
-          };
+          home-manager.users.desanso = import ./home.nix; 
         }
       ];
     };
