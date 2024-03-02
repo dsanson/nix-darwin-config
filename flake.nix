@@ -122,7 +122,7 @@
           # trying out
           pkgs.lazygit
           pkgs.btop
-
+   
           # do I even use these?
           pkgs.a2ps
           pkgs.ant
@@ -284,7 +284,7 @@
           "trash" #consider finding crossplatform option
           {
             name = "vdirsyncer"; # figure out how to set this up via nix
-            restart_service = true;
+            restart_service = "changed";
           }
         ];
 
@@ -374,6 +374,100 @@
           "TomatoFlex"             =  1500965952;
         };
       };
+      services = {
+        sketchybar = {
+          enable = true;
+          package = pkgs.sketchybar;
+        };
+        
+        skhd = {
+          enable = true;
+          package = pkgs.skhd;
+        };
+
+        yabai = {
+          enable = true;
+          package = pkgs.yabai;
+          enableScriptingAddition = true;
+          config = {
+            external_bar = "all:0:27";
+            mouse_follows_focus = "on";
+            focus_follows_mouse = "off";
+            window_placement = "second_child";
+            window_topmost = "off";
+            window_shadow = "float";
+            window_opacity = "off ";
+            window_opacity_duration = "0";
+            active_window_opacity = "1.0";
+            normal_window_opacity = "0.80";
+            window_border = "off";
+            window_border_width = "2";
+            window_border_radius = "0";
+            active_window_border_color = "0xff775759 ";
+            normal_window_border_color = "0xff505050";
+            split_ratio = "0.50";
+            auto_balance = "off";
+            mouse_modifier = "fn";
+            mouse_action1 = "move";
+            mouse_action2 = "resize";
+            mouse_drop_action = "stack";
+            layout = "bsp";
+            top_padding = "0";
+            bottom_padding = "0";
+            left_padding = "5";
+            right_padding = "5";
+            window_gap = "5";
+          };
+          extraConfig = ''
+            yabai -m window_origin_display               focus
+
+            function setup_space {
+              local idx="$1"
+              local name="$2"
+              local space=
+              echo "setup space $idx : $name"
+
+              space=$(yabai -m query --spaces --space "$idx")
+              if [ -z "$space" ]; then
+                yabai -m space --create
+              fi
+
+              yabai -m space "$idx" --label "$name"
+            }
+
+            setup_space 1 
+            setup_space 2 
+            setup_space 3 
+            setup_space 4 
+
+            yabai -m rule --add app="^Zotero$" space=2
+            yabai -m rule --add app="^Zotero$" title="^Zotero$" manage=on
+            yabai -m rule --add app="^Music$" space=4
+            yabai -m rule --add app="^iTunes$" title="^MiniPlayer$" manage=off
+            yabai -m rule --add app="^TV$" space=4
+            yabai -m rule --add app="^Finder$" title="^Trash$" manage=off
+            yabai -m rule --add app="^Finder$" title="^Copy$" manage=off
+            yabai -m rule --add app="^System Preferences$" manage=off
+            yabai -m rule --add app="^Brother MFC-J875DW$" manage=off
+            yabai -m rule --add app="^stv412-phil-copier$" manage=off
+            yabai -m rule --add app="^Tor Browser$" manage=off
+            yabai -m rule --add app="^App Store$" manage=off
+            yabai -m rule --add app="^LogicProgram$" title="^Logic 2010: Menu$" manage=off
+            yabai -m rule --add app="^LogicProgram$" title="^Not.*$" manage=off
+            yabai -m rule --add app="^LogicProgram$" title="^Submit Problems$" manage=off
+            yabai -m rule --add app="^LogicProgram$" title="^Problems$" manage=off
+            yabai -m rule --add app='^zoom\.us$' manage=off
+            yabai -m rule --add app='^choose$' manage=off
+            yabai -m rule --add app='^kitty$' title='^visor$' grid=1:1:1:1:1:1 opacity=0.9 layer=above manage=off 
+            yabai -m rule --add app='^.kitty-wrapped$' title='^visor$' grid=1:1:1:1:1:1 opacity=0.9 layer=above manage=off 
+            yabai -m rule --add app="^Visualizer$" manage=on
+            yabai -m rule --add app="^TomatoFlex$" manage=off
+            yabai -m rule --add app="^Firefox$" manage=on
+
+          '';
+        };
+      };
+
     };
   in
   {
