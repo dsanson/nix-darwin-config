@@ -5,14 +5,177 @@
   home.homeDirectory = "/Users/desanso";
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
- 
+
+  home.shellAliases = {
+    "..." = "cd ../..";
+    "addprinter" = "lpadmin -E -p stv412-phil-copier -E -v lpd://cas-papercut.ad.ilstu.edu/stv412-phil-copier -m '/Library/Printers/PPDs/Contents/Resources/Xerox WorkCentre 5325.gz'";
+    "rmprinter" = "lpadmin -x stv412-phil-copier";
+  };
+
   home.sessionVariables = {
     LC_ALL = "en_US.UTF-8";
     LC_CTYPE = "en_US.UTF-8";
   };
-  
+ 
+  accounts.calendar = {
+    basePath = ".calendars";
+    accounts.home = {
+
+      local.fileExt = ".ics";
+      local.type = "filesystem";
+
+      # remote.passwordCommand = [ "security" "find-generic-password" "-l" "caldav" "-w" ];
+      # remote.type = "caldav";
+      # remote.url = "https://caldav.icloud.com/";
+      # remote.username = "dsanson@gmail.com";
+
+      vdirsyncer.enable = false;
+      vdirsyncer.itemTypes = ["VEVENT"];
+
+      khal.enable = true;
+      khal.color = "dark cyan";
+      khal.type = "calendar";
+    }; 
+    accounts.work = {
+
+      local.fileExt = ".ics";
+      local.type = "filesystem";
+
+      # remote.passwordCommand = [ "security" "find-generic-password" "-l" "caldav" "-w" ];
+      # remote.type = "caldav";
+      # remote.url = "https://caldav.icloud.com/";
+      # remote.username = "dsanson@gmail.com";
+
+      vdirsyncer.enable = false;
+      vdirsyncer.itemTypes = ["VEVENT"];
+
+      khal.enable = true;
+      khal.color = "dark green";
+      khal.type = "calendar";
+    }; 
+  };
+
+  accounts.contact = {
+    basePath = ".contacts";
+    accounts.card = {
+
+      local.fileExt = ".vcf";
+      local.type = "filesystem";
+
+      # remote.passwordCommand = [ "security" "find-generic-password" "-l" "caldav" "-w" ];
+      # remote.type = "carddav";
+      # remote.url = "https://contacts.icloud.com/";
+      # remote.userName = "dsanson@gmail.com";
+      
+      vdirsyncer.enable = false;
+      khard.enable = true;
+    };
+  };
+
   programs = {
+    aerc.enable = true;
+    btop.enable = true;
+    jq.enable = true;
+    lazygit.enable = true;
+    mpv.enable = true;
+    mu.enable = false;
     pywal.enable = true;
+    ripgrep.enable = true;
+    sioyek.enable = false;
+    tealdeer.enable = true;
+    yt-dlp.enable = true;
+    pandoc = {
+      enable = false;
+    };
+    texlive = {
+      enable = false;
+      #packageSet = basic;
+    };
+    zoxide = {
+      enable = true;
+      enableFishIntegration = true;
+    };
+    newsboat = {
+      enable = true;
+      urls = [
+        { url = "https://www.logicmatters.net/feed/"; }
+        { url = "https://diaryofdoctorlogic.wordpress.com/feed/"; }
+        { url = "https://richardzach.org/feed/"; }
+        { url = "https://robertpaulwolff.blogspot.com/feeds/posts/default?alt=rss"; }
+        { url = "https://objectionable.net/feed/"; }
+        { url = "https://aestheticsforbirds.com/feed/"; }
+      ];
+    };
+    tmux = {
+      enable = true;
+      prefix = "C-a";
+      aggressiveResize = true;
+      clock24 = true;
+      keyMode = "vi";
+      mouse = true;
+      newSession = true;
+    };
+    # vdirsyncer.enable = true;
+    khal = {
+      enable = true;
+      settings = {
+        default = {
+          default_calendar = "work";
+          highlight_event_days = true;
+        };
+        locale = {
+          timeformat = "%I:%M %p";
+          dateformat = "%Y-%m-%d";
+          longdateformat = "%Y-%m-%d";
+          datetimeformat = "%Y-%m-%d %I:%M %p";
+          longdatetimeformat = "%Y-%m-%d %I:%M %p";
+          firstweekday = 6;
+        };
+        view = {
+          frame = "color";
+        };
+      };
+    };
+    khard.enable = true;
+    eza = { # ls replacement
+      enable = true; 
+      enableAliases = true;
+    };
+    fzf = {
+      enable = true;
+      changeDirWidgetCommand = "fd -t d . $HOME";
+      defaultOptions = [
+        "--cycle" 
+        "--layout=reverse" 
+        "--border" 
+        "--height=90%" 
+        "--preview-window=wrap" 
+        "--marker='*'" 
+        "--ansi"
+      ];
+      enableFishIntegration = true;
+      fileWidgetCommand = "fd . $HOME";
+    };
+    git = {
+      enable = true;
+      userEmail = "dsanson@gmail.com";
+      userName = "David Sanson";
+      ignores = [
+        "**/.DS_Store"
+        "tags"
+      ];
+    };
+    gh = {
+      enable = true;
+      settings = {
+        git_protocol = "ssh";
+        prompt = "enabled";
+        aliases = {
+          co = "pr checkout";
+          pv = "pr view";
+        };
+      };
+    };
     kitty = {
       enable = true;
       package = pkgs.kitty;
@@ -74,6 +237,10 @@
     };
     
 
+  };
+  
+  services = {
+    vdirsyncer.enable = true;
   };
 
 

@@ -28,31 +28,22 @@
           # shells
           pkgs.fish
           pkgs.zsh
-          pkgs.starship
 
           # basic system stuff
           pkgs.curl
           pkgs.ack
-          pkgs.eza #improved version of ls
           pkgs.fd
           pkgs.fdupes
-          pkgs.fzf
           pkgs.gawk
           pkgs.gnupg
-          pkgs.jq
+          pkgs.less
           pkgs.mosh
           pkgs.pup
-          pkgs.ripgrep
-          pkgs.tealdeer #fast tldr client
-          pkgs.tmux
           pkgs.wget
-          pkgs.zoxide
           pkgs.zip
           pkgs.unar #cli version of theunarchiver
 
           # git
-          pkgs.git
-          pkgs.gh
           pkgs.hub
 
           # editing
@@ -84,8 +75,6 @@
         
           # media
           pkgs.ffmpeg
-          pkgs.mpv
-          pkgs.yt-dlp
 
           # document generation
           pkgs.biber
@@ -107,13 +96,11 @@
 
           # unicode lookup
           pkgs.uni
-
-          # calendar and contacts
-          pkgs.khal
-          pkgs.khard
+          
+          # pkgs.khal # figure out how to set these up with home manager
+          # pkgs.khard
 
           # email
-          pkgs.aerc
           pkgs.mu
           
           # mac specific
@@ -121,7 +108,6 @@
 
           # trying out
           pkgs.lazygit
-          pkgs.btop
    
           # do I even use these?
           pkgs.a2ps
@@ -268,8 +254,8 @@
       };
 
       homebrew = {
-        enable = true;
-        onActivation.autoUpdate = true;
+        enable = false;
+        onActivation.autoUpdate = false;
         
         taps = [
           "dsanson/tap"
