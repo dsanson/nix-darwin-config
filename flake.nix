@@ -23,164 +23,216 @@
         home = "/Users/desanso";
       };
 
-      environment.systemPackages =
+      environment.systemPackages = with pkgs;
         [ 
           # shells
-          pkgs.fish
-          pkgs.zsh
+          fish
+          zsh
 
           # basic system stuff
-          pkgs.curl
-          pkgs.ack
-          pkgs.fd
-          pkgs.fdupes
-          pkgs.gawk
-          pkgs.gnupg
-          pkgs.less
-          pkgs.mosh
-          pkgs.pup
-          pkgs.wget
-          pkgs.zip
-          pkgs.unar #cli version of theunarchiver
+          curl
+          ack
+          fd
+          fdupes
+          gawk
+          gnupg
+          less
+          mosh
+          pup
+          wget
+          zip
+          unar #cli version of theunarchiver
 
           # git
-          pkgs.hub
+          hub
 
           # editing
-          pkgs.neovim
-          pkgs.tree-sitter
-          pkgs.universal-ctags
+          neovim
+          tree-sitter
+          universal-ctags
 
           # data
-          pkgs.R
-          pkgs.visidata
-          pkgs.xsv
+          R
+          visidata
+          xsv
  
           # web dev
-          pkgs.dart-sass
+          dart-sass
 
           # pdf and images
-          pkgs.imagemagick
-          pkgs.ghostscript
-          pkgs.psutils
-          pkgs.cairo
-          pkgs.djvu2pdf
-          pkgs.djvulibre
-          pkgs.ocrmypdf
-          pkgs.pdfcpu
-          pkgs.pdfgrep
-          pkgs.qpdf
-          pkgs.scantailor
-          pkgs.tesseract
+          imagemagick
+          ghostscript
+          psutils
+          cairo
+          djvu2pdf
+          djvulibre
+          ocrmypdf
+          pdfcpu
+          pdfgrep
+          qpdf
+          scantailor
+          tesseract
         
           # media
-          pkgs.ffmpeg
+          ffmpeg
 
           # document generation
-          pkgs.biber
-          pkgs.bibtool
-          pkgs.typst
+          biber
+          bibtool
+          typst
 
           # games
-          pkgs.angband
-          pkgs.figlet
-          pkgs.nsnake
+          angband
+          figlet
+          nsnake
 
           # fonts
-          pkgs.fira-code-nerdfont
-          pkgs.font-awesome
-          pkgs.monoid
-          pkgs.mononoki
-          pkgs.open-dyslexic
-          pkgs.source-code-pro
+          dejavu_fonts
+          fira-code
+          fira-code-nerdfont
+          font-awesome
+          kawkab-mono-font
+          monoid
+          mononoki
+          open-dyslexic
+          source-code-pro
+          xits-math
 
           # unicode lookup
-          pkgs.uni
+          uni
           
-          # pkgs.khal # figure out how to set these up with home manager
-          # pkgs.khard
+          # khal # figure out how to set these up with home manager
+          # khard
 
           # email
-          pkgs.mu
+          mu
           
           # mac specific
-          pkgs.mas
+          mas
 
           # trying out
-          pkgs.lazygit
+          lazygit
+
+          # python
+          python311Packages.keyring
    
           # do I even use these?
-          pkgs.a2ps
-          pkgs.ant
-          pkgs.asciidoc
-          pkgs.c-ares
-          pkgs.cachix
-          pkgs.cargo
-          pkgs.cjson
-          pkgs.docbook5
-          pkgs.dockutil
-          pkgs.dos2unix
-          pkgs.exiftool
-          pkgs.fftw
-          pkgs.go
-          pkgs.gradle
-          pkgs.groff
-          pkgs.httpie
-          pkgs.hugo
-          pkgs.hunspell
-          pkgs.hwloc
-          pkgs.intltool
-          pkgs.ispell
-          pkgs.jasper
-          pkgs.libheif
-          pkgs.librist
-          pkgs.lynx
-          pkgs.mbedtls
-          pkgs.mercurial
-          pkgs.miller
-          pkgs.mpg123
-          pkgs.msgpack
-          pkgs.mujs
-          pkgs.nasm
-          pkgs.ncdu_1
-          pkgs.neofetch
-          pkgs.netcat
-          pkgs.netpbm
-          pkgs.nmap
-          pkgs.opencv
-          pkgs.openmpi
-          pkgs.openssh
-          pkgs.optipng
-          pkgs.pango
-          pkgs.parallel
-          pkgs.pdf2svg
-          pkgs.pngcrush
-          pkgs.pngquant
-          pkgs.pv
-          pkgs.qrencode
-          pkgs.rclone
-          pkgs.ripmime
-          pkgs.rmlint
-          pkgs.rnix-lsp
-          pkgs.rustc
-          pkgs.samba
-          pkgs.scons
-          pkgs.shared-mime-info
-          pkgs.shellcheck
-          pkgs.socat
-          pkgs.sphinx
-          pkgs.subversion
-          #pkgs.texinfo
-          pkgs.tidy-viewer
-          pkgs.tig
-          pkgs.todo-txt-cli
-          pkgs.unpaper
-          pkgs.vala
-          pkgs.vale
-          pkgs.w3m
-          pkgs.wcalc
-          pkgs.xmlto
-          pkgs.zk
+          a2ps
+          ant
+          apr
+          aria
+          asciidoc
+          asdf-vm
+          aspell
+          atool
+          bison
+          #buf
+          c-ares
+          cachix
+          #cadaver
+          cargo
+          catimg
+          #ceres-solver
+          cjson
+          cmake
+          cmocka
+          #dante
+          #dav1d
+          delta
+          #desktop-file-utils
+          devd
+          docbook5
+          docbook-xsl-ns
+          dockutil
+          dos2unix
+          doxygen
+          duktape
+          duti
+          efm-langserver
+          exiftool
+          #faac
+          #faad
+          ffsend
+          fftw
+          findutils
+          gdrive3
+          git-lfs
+          glyr
+          go
+          gradle
+          groff
+          #handbrake
+          highlight
+          html-tidy
+          html-xml-utils
+          httpie
+          hugo
+          hunspell
+          hwloc
+          intltool
+          ispell
+          jasper
+          lftp
+          libheif
+          librist
+          ltex-ls
+          lynx
+          mbedtls
+          mercurial
+          miller
+          mpg123
+          msgpack
+          msmtp
+          mujs
+          mupdf
+          nasm
+          ncdu_1
+          ncurses
+          neofetch
+          netcat
+          netpbm
+          nmap
+          opencv
+          openmpi
+          openssh
+          optipng
+          pango
+          parallel
+          pdf2svg
+          pngcrush
+          pngquant
+          poppler
+          pv
+          pyenv
+          qrencode
+          rclone
+          ripmime
+          rlwrap
+          rmlint
+          rnix-lsp
+          rustc
+          samba
+          scons
+          shared-mime-info
+          shellcheck
+          socat
+          sourceHighlight
+          sphinx
+          subversion
+          tectonic
+          terminal-notifier
+          #texinfo
+          tidy-viewer
+          tig
+          todo-txt-cli
+          darwin.trash
+          unpaper
+          vala
+          vale
+          w3m
+          wcalc
+          xmlto
+          zk
 
         ];
 
@@ -283,7 +335,6 @@
           "rename" #consider alternatives
           "switchaudio-osx"
           "tag" #macos file tagging
-          "trash" #consider finding crossplatform option
           {
             name = "vdirsyncer"; # figure out how to set this up via nix
             restart_service = "changed";
@@ -349,12 +400,9 @@
           
           # fonts
           "font-awesome-terminal-fonts"
-          "font-dejavu-sans"
           "font-hack-nerd-font"
-          "font-kawkab-mono"
           "font-monofur-nerd-font"
           "font-monofur-nerd-font-mono"
-          "font-xits"
 
         ];
 
