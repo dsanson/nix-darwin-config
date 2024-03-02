@@ -217,12 +217,17 @@
           AppleInterfaceStyleSwitchesAutomatically = true;
           AppleScrollerPagingBehavior = true; #jump to position clicked on scrollbar
           AppleShowScrollBars = "WhenScrolling";
+          AppleMeasurementUnits = "Inches";
           NSAutomaticCapitalizationEnabled = false;
           NSAutomaticDashSubstitutionEnabled = false;
           NSAutomaticPeriodSubstitutionEnabled = false;
           NSAutomaticQuoteSubstitutionEnabled = false;
           NSAutomaticSpellingCorrectionEnabled = false;
+          NSNavPanelExpandedStateForSaveMode = true;
+          NSNavPanelExpandedStateForSaveMode2 = true;
+          NSTableViewDefaultSizeMode = 1; #1 = small; 2 = medium; 3 = large
           _HIHideMenuBar = true;
+          "com.apple.sound.beep.volume" = 0.4;
         };
 
         dock = {
@@ -235,6 +240,7 @@
 
         finder = {
           CreateDesktop = false; # don't show items on desktop
+          #DisableAllAnimations = true;
           FXPreferredViewStyle = "Nlsv"; # default to list view
           QuitMenuItem = true;
           ShowPathbar = true;
@@ -242,6 +248,16 @@
         
         loginwindow = {
           GuestEnabled = true;
+        };
+
+        screensaver = {
+          askForPassword = true;
+        };
+
+        trackpad = {
+          Clicking = true;
+          Dragging = true;
+          TrackpadRightClick = true;
         };
 
 
@@ -254,8 +270,8 @@
       };
 
       homebrew = {
-        enable = false;
-        onActivation.autoUpdate = false;
+        enable = true; 
+        onActivation.autoUpdate = true;
         
         taps = [
           "dsanson/tap"

@@ -16,6 +16,20 @@
     LC_ALL = "en_US.UTF-8";
     LC_CTYPE = "en_US.UTF-8";
   };
+
+  # home.packages = with pkgs; [
+  #   curl
+  #   ack
+  #   fd
+  #   fdupes
+  #   gawk
+  #   gnupg
+  #   less
+  #   mosh
+  #   pup
+  #   wget
+  #   zip
+  # ];
  
   accounts.calendar = {
     basePath = ".calendars";
@@ -239,10 +253,17 @@
 
   };
   
-  services = {
-    vdirsyncer.enable = true;
+  # services = {
+  #   vdirsyncer.enable = true;
+  # };
+  
+  targets.darwin.defaults = {
+    NSGlobalDomain.AppleLanguages = [
+      "en-US"
+      "ar-US"
+    ];
+    NSGlobalDomain.AppleLocale = "en-US";
   };
-
 
 }
 
