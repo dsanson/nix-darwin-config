@@ -28,7 +28,8 @@
           # shells
           fish
           zsh
-
+          
+          skhd
           # basic system stuff
           curl
           ack
@@ -42,6 +43,7 @@
           wget
           zip
           unar #cli version of theunarchiver
+          unrar-wrapper
 
           # git
           hub
@@ -58,6 +60,8 @@
  
           # web dev
           dart-sass
+
+          epr
 
           # pdf and images
           imagemagick
@@ -115,14 +119,14 @@
 
           # python
           python311Packages.keyring
-   
+
           # do I even use these?
           a2ps
           ant
           apr
           aria
           asciidoc
-          asdf-vm
+          #asdf-vm
           aspell
           atool
           bison
@@ -243,7 +247,9 @@
 
       # Create /etc/zshrc that loads the nix-darwin environment.
       programs.zsh.enable = true;  # default shell on catalina
-      programs.fish.enable = true;
+      programs.fish = {
+        enable = true;
+      };
 
       # Set Git commit hash for darwin-version.
       system.configurationRevision = self.rev or self.dirtyRev or null;
@@ -330,6 +336,7 @@
         ];
 
         brews = [
+          "asdf"
           "launch" #macos launcher that is better than open
           "reminders-cli"
           "rename" #consider alternatives
@@ -354,7 +361,6 @@
           "monitorcontrol"
           "obsidian" # am I still using this?
           "quicksilver"
-          "rar"
           "satori"
           "syncthing"
           "the-unarchiver"
@@ -363,7 +369,7 @@
           "zoom"
           "zotero"
          
-          # occasional use (but good to always have on hand)
+          # occasional use (but good to have on hand)
           "djview"
           "grandperspective"
           "iina"

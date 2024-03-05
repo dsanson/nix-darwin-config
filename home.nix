@@ -17,19 +17,9 @@
     LC_CTYPE = "en_US.UTF-8";
   };
 
-  # home.packages = with pkgs; [
-  #   curl
-  #   ack
-  #   fd
-  #   fdupes
-  #   gawk
-  #   gnupg
-  #   less
-  #   mosh
-  #   pup
-  #   wget
-  #   zip
-  # ];
+  home.packages = with pkgs; [
+    yq
+  ];
  
   accounts.calendar = {
     basePath = ".calendars";
@@ -97,6 +87,11 @@
     ripgrep.enable = true;
     sioyek.enable = false;
     tealdeer.enable = true;
+    translate-shell.enable = true;
+    watson = {
+      enable = true;
+      enableFishIntegration = true;
+    };
     yt-dlp.enable = true;
     pandoc = {
       enable = false;
@@ -178,6 +173,7 @@
         "**/.DS_Store"
         "tags"
       ];
+      delta.enable = true;
     };
     gh = {
       enable = true;
@@ -231,6 +227,7 @@
     neovim = {
       enable = true;
       defaultEditor = true;
+      viAlias = true;
       vimAlias = true;
       vimdiffAlias = true;
     };
@@ -248,6 +245,7 @@
         };
         nodejs.disabled = true;
       };
+
     };
     
 
