@@ -8,17 +8,77 @@
 
   home.shellAliases = {
     "..." = "cd ../..";
+    "l" = "ls -lA";
+    "rm" = "echo 'rm disabled; use trash or /bin/rm instead'"; 
     "addprinter" = "lpadmin -E -p stv412-phil-copier -E -v lpd://cas-papercut.ad.ilstu.edu/stv412-phil-copier -m '/Library/Printers/PPDs/Contents/Resources/Xerox WorkCentre 5325.gz'";
     "rmprinter" = "lpadmin -x stv412-phil-copier";
+    "wanip" = "dig +short myip.opendns.com @resolver1.opendns.com";
+    "latest_download" = "ls -tU $HOME/Downloads | head -n 1";
+    "preview" = "open -a Preview";
+    "reveal" = "open -R";
+    "firefox" = "firefox-wrapper";
+    "wttr" = "curl -s \"wttr.in/{$(dig +short myip.opendns.com @resolver1.opendns.com),Carmel%20CA,Paso%20Robles,Tenakee%20AK,Rimrock%20AZ,Libby%20MT}?format=4&u\" | sed 's/, Illinois, United States//'";
+    "serve" = "devd -l";
+    "mc" = "masterychecks";
   };
 
   home.sessionVariables = {
     LC_ALL = "en_US.UTF-8";
     LC_CTYPE = "en_US.UTF-8";
+    PAGER = "less -r";
+    BROWSER = "open";
+    #FFSEND_HOST = "https://send.ephemeral.land";
+    FFSEND_HOST = "https://send.zcyph.cc";
+    FFSEND_COPY = "";
+    FFSEND_EXPIRY_TIME = "7d";
+    FFSEND_DOWNLOAD_LIMIT = "20";
   };
 
   home.packages = with pkgs; [
+    # dev
+    lazygit
+    hub
+    # webdev
+    dart-sass
+    # document readers
+    epr
+    # editor
+    tree-sitter
+    universal-ctags
+    # data
+    R
+    visidata
+    xsv
     yq
+    pup
+    # pdf and images
+    imagemagick
+    ghostscript
+    psutils
+    cairo
+    djvu2pdf
+    djvulibre
+    ocrmypdf
+    pdfcpu
+    pdfgrep
+    qpdf
+    scantailor
+    tesseract
+    unpaper
+    # media
+    ffmpeg
+    # document generation
+    biber
+    bibtool
+    typst
+    # games
+    angband
+    figlet
+    nsnake
+    # unicode lookup
+    uni
+    ffsend
+    #wallust #pywall replacement
   ];
  
   accounts.calendar = {
@@ -77,6 +137,117 @@
   };
 
   programs = {
+    bash = {
+      enable = true;
+      enableCompletion = true;
+      bashrcExtra = ''
+        export PATH="$HOME/bin:$HOME/.local/bin:/etc/profiles/per-user/desanso/bin:/run/current-system/sw/bin:$PATH"
+      '';
+      initExtra = ''
+        set -o vi
+      '';
+    };
+
+    zsh = {
+      enable = true;
+      enableAutosuggestions = true;
+      enableCompletion = true;
+      initExtra = ''
+        export PATH="$HOME/bin:$HOME/.local/bin:/etc/profiles/per-user/desanso/bin:/run/current-system/sw/bin:$PATH"
+        bindkey -v
+      '';
+    };
+    fish = {
+      enable = true;
+      functions = {
+        retakes = "carnap hiddens $argv | sort";
+      };
+      interactiveShellInit = ''
+        set -g fish_key_bindings fish_vi_key_bindings
+        set -g fish_greeting ""
+        if type -q brew
+          set -x HOMEBREW_CASK_OPTS "--appdir=$HOME/Applications"
+          set -x ASDF_DIR (brew --prefix asdf)/libexec
+          source $ASDF_DIR/asdf.fish
+        end
+        fish_add_path /run/current-system/sw/bin
+        fish_add_path /etc/profiles/per-user/desanso/bin
+        fish_add_path $HOME/.cargo/bin
+        fish_add_path $HOME/.go/bin
+        fish_add_path $HOME/.pub-cache/bin
+        fish_add_path $HOME/.luarocks/bin 
+        fish_add_path $HOME/.local/bin
+        fish_add_path $HOME/bin 
+        defaultbrowser firefox >/dev/null
+      '';
+      plugins = [
+        {
+          name = "pure";
+          src = pkgs.fetchFromGitHub {
+            owner = "pure-fish";
+            repo = "pure";
+            rev = "28447d2e7a4edf3c954003eda929cde31d3621d2";
+            hash = "sha256-8zxqPU9N5XGbKc0b3bZYkQ3yH64qcbakMsHIpHZSne4=";
+          };
+        }
+        {
+          name = "bass";
+          src = pkgs.fetchFromGitHub {
+            owner = "edc";
+            repo = "bass";
+            rev = "79b62958ecf4e87334f24d6743e5766475bcf4d0";
+            hash = "sha256-3d/qL+hovNA4VMWZ0n1L+dSM1lcz7P5CQJyy+/8exTc=";
+          };
+        }
+        {
+          name = "fishopts";
+          src = pkgs.fetchFromGitHub {
+            owner = "jorgebucaran";
+            repo = "fishopts";
+            rev = "4b74206725c3e11d739675dc2bb84c77d893e901";
+            hash = "sha256-9hRFBmjrCgIUNHuOJZvOufyLsfreJfkeS6XDcCPesvw=";
+          };
+        }
+        {
+          name = "reljump";
+          src = pkgs.fetchFromGitHub {
+            owner = "anordal";
+            repo = "reljump.fish";
+            rev = "a91fbaf84f1c5c7c00561bdad818c06b5e820436";
+            hash = "sha256-/krwAOuaiZ7HsXdmVxqjg4G2NbtX3TVwOj/xAq/HDHA=";
+          };
+        }
+        {
+          name = "fish-completion-pandoc";
+          src = pkgs.fetchFromGitHub {
+            owner = "dsanson";
+            repo = "fish-completion-pandoc";
+            rev = "7195da6fc4bcbdd49ea63d47c27e4bfec2135660";
+            hash = "sha256-pVobe3JsJWCaVyn+c3Y6+ibxlGTCCD1fj2u9LjEmAPg=";
+          };
+        }
+        {
+          name = "foreign-env";
+          src = pkgs.fetchFromGitHub {
+            owner = "oh-my-fish";
+            repo = "plugin-foreign-env";
+            rev = "7f0cf099ae1e1e4ab38f46350ed6757d54471de7";
+            hash = "sha256-4+k5rSoxkTtYFh/lEjhRkVYa2S4KEzJ/IJbyJl+rJjQ=";
+          };
+        }
+        {
+          name = "fzf";
+          src = pkgs.fetchFromGitHub {
+            owner = "PatrickF1";
+            repo = "fzf.fish";
+            rev = "dfdf69369bd3a3c83654261f90363da2aa1db8c9";
+            hash = "sha256-x/q7tlMlyxZ1ow2saqjuYn05Z1lPOVc13DZ9exFDWoU=";
+          };
+        }
+
+      ];
+    };
+
     aerc.enable = true;
     btop.enable = true;
     jq.enable = true;
@@ -91,6 +262,7 @@
     watson = {
       enable = true;
       enableFishIntegration = true;
+      enableBashIntegration = true;
     };
     yt-dlp.enable = true;
     pandoc = {
@@ -103,6 +275,7 @@
     zoxide = {
       enable = true;
       enableFishIntegration = true;
+      enableBashIntegration = true;
     };
     newsboat = {
       enable = true;
@@ -153,6 +326,8 @@
     fzf = {
       enable = true;
       changeDirWidgetCommand = "fd -t d . $HOME";
+      defaultCommand = "fd . $HOME";
+      fileWidgetCommand = "fd . $HOME";
       defaultOptions = [
         "--cycle" 
         "--layout=reverse" 
@@ -163,7 +338,7 @@
         "--ansi"
       ];
       enableFishIntegration = true;
-      fileWidgetCommand = "fd . $HOME";
+      enableBashIntegration = true;
     };
     git = {
       enable = true;
@@ -235,6 +410,7 @@
     starship = {
       enable = true;
       enableFishIntegration = true;
+      enableBashIntegration = true;
       settings = {
         add_newline = false;
         git_branch = {
@@ -263,5 +439,8 @@
     NSGlobalDomain.AppleLocale = "en-US";
   };
 
+  targets.darwin.search = "DuckDuckGo";
+
+  nix.gc.automatic = true;
 }
 

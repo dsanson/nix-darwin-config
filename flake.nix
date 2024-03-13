@@ -39,56 +39,13 @@
           gnupg
           less
           mosh
-          pup
           wget
           zip
           unar #cli version of theunarchiver
           unrar-wrapper
 
-          # git
-          hub
-
           # editing
           neovim
-          tree-sitter
-          universal-ctags
-
-          # data
-          R
-          visidata
-          xsv
- 
-          # web dev
-          dart-sass
-
-          epr
-
-          # pdf and images
-          imagemagick
-          ghostscript
-          psutils
-          cairo
-          djvu2pdf
-          djvulibre
-          ocrmypdf
-          pdfcpu
-          pdfgrep
-          qpdf
-          scantailor
-          tesseract
-        
-          # media
-          ffmpeg
-
-          # document generation
-          biber
-          bibtool
-          typst
-
-          # games
-          angband
-          figlet
-          nsnake
 
           # fonts
           dejavu_fonts
@@ -102,9 +59,8 @@
           source-code-pro
           xits-math
 
-          # unicode lookup
-          uni
-          
+          # tool to set the default browser from cli in macos
+          defaultbrowser
           # khal # figure out how to set these up with home manager
           # khard
 
@@ -113,9 +69,7 @@
           
           # mac specific
           mas
-
-          # trying out
-          lazygit
+          darwin.trash
 
           # python
           python311Packages.keyring
@@ -156,7 +110,6 @@
           exiftool
           #faac
           #faad
-          ffsend
           fftw
           findutils
           gdrive3
@@ -229,12 +182,10 @@
           tidy-viewer
           tig
           todo-txt-cli
-          darwin.trash
-          unpaper
           vala
           vale
           w3m
-          wcalc
+          wcalc #used by bin/q-preview
           xmlto
           zk
 
@@ -351,7 +302,7 @@
         casks = [
           "anki" # have not been using
           "anylist"
-          "caffeine"
+          "keepingyouawake"
           "calibre"
           "firefox"
           "hammerspoon" # just for the caps lock key

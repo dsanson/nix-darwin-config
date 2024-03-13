@@ -26,6 +26,6 @@ TODO:
 - [ ] syncthing
 - [ ] ssh keys
 - [ ] nixos/nix-darwin agnostic
-- [ ] migrate away from asdf?
+- [ ] migrate away from asdf---use nix for dependency management for carnap.py, the logic book, and my webpage
 
 
