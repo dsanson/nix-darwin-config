@@ -1,0 +1,18 @@
+{
+  "comment": "david sanson's preferred rules",
+  "default": true,
+  "MD003": {
+    "style": "atx"
+  },
+  "MD004": {
+    "style": "dash"
+  },
+  "MD007": {
+    "indent": 4
+  },
+  "MD030": {
+    "ul_multi": 3,
+    "ol_multi": 2
+  },
+  "MD033": false
+}

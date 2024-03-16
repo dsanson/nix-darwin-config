@@ -148,8 +148,20 @@
       source = ./config/mdnotes;
       recursive = true;
     };
+    markdownlint = {
+      source = ./config/markdownlint;
+      recursive = true;
+    };
+    sioyek = {
+      source = ./config/sioyek;
+      recursive = true;
+    };
     tridactyl = {
       source = ./config/tridactyl;
+      recursive = true;
+    };
+    visidata = {
+      source = ./config/visidata;
       recursive = true;
     };
     "fd/ignore".text = "**/*.app/**";
@@ -332,7 +344,6 @@
     lazygit.enable = true;
     mpv.enable = true;
     mu.enable = false;
-    pywal.enable = true;
     ripgrep.enable = true;
     sioyek.enable = false;
     tealdeer.enable = true;
