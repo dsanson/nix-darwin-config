@@ -27,7 +27,6 @@
     LC_CTYPE = "en_US.UTF-8";
     PAGER = "less -r";
     BROWSER = "open";
-    #FFSEND_HOST = "https://send.ephemeral.land";
     FFSEND_HOST = "https://send.zcyph.cc";
     FFSEND_COPY = "";
     FFSEND_EXPIRY_TIME = "7d";
@@ -72,15 +71,79 @@
     bibtool
     typst
     # games
+    nil
     angband
     figlet
     nsnake
     # unicode lookup
     uni
     ffsend
-    #wallust #pywall replacement
+    wallust #pywall replacement
+
+    # gui apps
+    
+    #adobe-digital-editions		
+    #aegisub	        			
+    android-file-transfer		
+    #android-platform-tools		
+    #anki                        
+    #anylist                     
+    audacity                    
+    #calibre                     
+    #discord                     
+    #djview                      
+    #dupeguru                    
+    #firefox                     
+    #font-awesome-terminal-fonts	
+    #font-hack-nerd-font		    
+    #font-monofur-nerd-font		
+    #font-monofur-nerd-font-mono	
+    #fontforge                   
+    #google-chrome               
+    grandperspective # mac only           
+    #hammerspoon                 
+    #haptickey                   
+    iina  # mac only                      
+    #itsycal                     
+    #keepingyouawake             
+    #keycastr                    
+    #logic-2010                  
+    #logitech-camera-settings
+    #marta
+    #monitorcontrol #mac only
+    #musescore
+    #obsidian
+    #oracle-jdk
+    #qlcolorcode
+    #qlmarkdown
+    #qlstephen
+    #qlvideo
+    #quicklook-csv
+    #quicksilver
+    #rar
+    #raspberry-pi-imager
+    #satori
+    #sf-symbols
+    #syncthing
+    #syntax-highlight
+    #the-unarchiver
+    #tor-browser
+    #transmission
+    #vlc
+    xquartz #mac only
+    #yacreader
+    #zerotier-one
+    #zoom
+    #zotero
+
   ];
- 
+
+  xdg.enable = true;
+  xdg.configFile."tridactyl" = {
+    source = ./config/tridactyl;
+    recursive = true;
+  };
+
   accounts.calendar = {
     basePath = ".calendars";
     accounts.home = {
@@ -170,6 +233,7 @@
           set -x ASDF_DIR (brew --prefix asdf)/libexec
           source $ASDF_DIR/asdf.fish
         end
+        eval (luarocks path)
         fish_add_path /run/current-system/sw/bin
         fish_add_path /etc/profiles/per-user/desanso/bin
         fish_add_path $HOME/.cargo/bin
@@ -179,6 +243,9 @@
         fish_add_path $HOME/.local/bin
         fish_add_path $HOME/bin 
         defaultbrowser firefox >/dev/null
+        if type -q kitty
+          kitty @ set-colors -c ~/.cache/wal/colors-kitty.conf
+        end
       '';
       plugins = [
         {
@@ -321,7 +388,6 @@
     khard.enable = true;
     eza = { # ls replacement
       enable = true; 
-      enableAliases = true;
     };
     fzf = {
       enable = true;
@@ -384,7 +450,7 @@
         window_border_width = "1.0";
         window_padding_width = "5.0";
         inactive_text_alpha = "0.9";
-        hide_window_decorations = "yes";
+        hide_window_decorations = "titlebar-only";
         tab_title_template = "{title}";
         dim_opacity = "0.75";
         env = "TERM_PROGRAM=kitty";

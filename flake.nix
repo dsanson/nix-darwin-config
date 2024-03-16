@@ -17,6 +17,8 @@
         experimental-features = "nix-command flakes";
         trusted-users = ["@admin"];
       };
+      
+      nixpkgs.config.allowUnfree = true;
 
       users.users.desanso = {
         name = "desanso";
@@ -58,6 +60,11 @@
           open-dyslexic
           source-code-pro
           xits-math
+          
+          # mac cli tool
+          m-cli
+
+          shortcat
 
           # tool to set the default browser from cli in macos
           defaultbrowser
@@ -166,7 +173,7 @@
           ripmime
           rlwrap
           rmlint
-          rnix-lsp
+          #rnix-lsp unmaintained
           rustc
           samba
           scons
@@ -322,17 +329,13 @@
          
           # occasional use (but good to have on hand)
           "djview"
-          "grandperspective"
-          "iina"
           "vlc"
 
           # occasional use (consider not keeping installed)
           "adobe-digital-editions"
           "aegisub" 
           "keycastr"
-          "android-file-transfer"
           "android-platform-tools"
-          "audacity"
           "discord"
           "dupeguru"
           "fontforge"
@@ -345,7 +348,6 @@
           "sf-symbols"
           "tor-browser"
           "transmission"
-          "xquartz"
 
           # quicklook plugins
           "qlcolorcode"
@@ -405,7 +407,7 @@
             window_shadow = "float";
             window_opacity = "off ";
             window_opacity_duration = "0";
-            active_window_opacity = "1.0";
+            active_window_opacity = "0.95";
             normal_window_opacity = "0.80";
             window_border = "off";
             window_border_width = "2";
@@ -470,7 +472,7 @@
             yabai -m rule --add app="^Visualizer$" manage=on
             yabai -m rule --add app="^TomatoFlex$" manage=off
             yabai -m rule --add app="^Firefox$" manage=on
-
+            yabai -m signal --add event=space_changed action='/Users/desanso/bin/set_theme wallpaper' active=yes
           '';
         };
       };
