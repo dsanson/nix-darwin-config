@@ -198,6 +198,15 @@
 
         ];
 
+      environment.launchAgents = {
+        vdirsyncer = {
+          enable = true;
+          source = ./launchagents/com.davidsanson.vdirsyncer.plist;
+          target = "com.davidsanson.vdirsyncer.plist";
+        };
+      };
+
+
       # Auto upgrade nix package and the daemon service.
       services.nix-daemon.enable = true;
       # nix.package = pkgs.nix;
@@ -300,10 +309,10 @@
           "rename" #consider alternatives
           "switchaudio-osx"
           "tag" #macos file tagging
-          {
-            name = "vdirsyncer"; # figure out how to set this up via nix
-            restart_service = "changed";
-          }
+          # {
+          #   name = "vdirsyncer"; # figure out how to set this up via nix
+          #   restart_service = "changed";
+          # }
         ];
 
         casks = [

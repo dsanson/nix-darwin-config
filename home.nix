@@ -169,56 +169,48 @@
 
   accounts.calendar = {
     basePath = ".calendars";
-    accounts.home = {
-
+    accounts.icloud = {
+      
+      primaryCollection = "home";
       local.fileExt = ".ics";
       local.type = "filesystem";
 
-      # remote.passwordCommand = [ "security" "find-generic-password" "-l" "caldav" "-w" ];
-      # remote.type = "caldav";
-      # remote.url = "https://caldav.icloud.com/";
-      # remote.username = "dsanson@gmail.com";
+      remote.passwordCommand = [ "security" "find-generic-password" "-l" "caldav" "-w" ];
+      remote.type = "caldav";
+      remote.url = "https://caldav.icloud.com/";
+      remote.userName = "dsanson@gmail.com";
 
-      vdirsyncer.enable = false;
+      vdirsyncer.enable = true;
+      vdirsyncer.collections = [["home" "home" "home"] ["work" "work" "work"]];
       vdirsyncer.itemTypes = ["VEVENT"];
+      vdirsyncer.metadata = ["displayname" "color"];
 
       khal.enable = true;
       khal.color = "dark cyan";
-      khal.type = "calendar";
-    }; 
-    accounts.work = {
-
-      local.fileExt = ".ics";
-      local.type = "filesystem";
-
-      # remote.passwordCommand = [ "security" "find-generic-password" "-l" "caldav" "-w" ];
-      # remote.type = "caldav";
-      # remote.url = "https://caldav.icloud.com/";
-      # remote.username = "dsanson@gmail.com";
-
-      vdirsyncer.enable = false;
-      vdirsyncer.itemTypes = ["VEVENT"];
-
-      khal.enable = true;
-      khal.color = "dark green";
-      khal.type = "calendar";
+      khal.type = "discover";
     }; 
   };
 
   accounts.contact = {
     basePath = ".contacts";
-    accounts.card = {
+    accounts.icloud = {
 
       local.fileExt = ".vcf";
       local.type = "filesystem";
 
-      # remote.passwordCommand = [ "security" "find-generic-password" "-l" "caldav" "-w" ];
-      # remote.type = "carddav";
-      # remote.url = "https://contacts.icloud.com/";
-      # remote.userName = "dsanson@gmail.com";
+      remote.passwordCommand = [ "security" "find-generic-password" "-l" "caldav" "-w" ];
+      remote.type = "carddav";
+      remote.url = "https://contacts.icloud.com/";
+      remote.userName = "dsanson@gmail.com";
       
-      vdirsyncer.enable = false;
+      vdirsyncer.enable = true;
+      vdirsyncer.metadata = ["displayname"];
+      # vdirsyncer.collections = ["from a" "from b"];
+    };
+    accounts."icloud/card" = {
       khard.enable = true;
+      local.fileExt = ".vcf";
+      local.type = "filesystem";
     };
   };
 
@@ -386,7 +378,7 @@
       mouse = true;
       newSession = true;
     };
-    # vdirsyncer.enable = true;
+    vdirsyncer.enable = true;
     khal = {
       enable = true;
       settings = {
@@ -515,10 +507,7 @@
 
   };
   
-  # services = {
-  #   vdirsyncer.enable = true;
-  # };
-  
+ 
   targets.darwin.defaults = {
     NSGlobalDomain.AppleLanguages = [
       "en-US"
