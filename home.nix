@@ -139,9 +139,20 @@
   ];
 
   xdg.enable = true;
-  xdg.configFile."tridactyl" = {
-    source = ./config/tridactyl;
-    recursive = true;
+  xdg.configFile = {
+    nvim = {
+      source = ./config/nvim;
+      recursive = true;
+    };
+    mdnotes = {
+      source = ./config/mdnotes;
+      recursive = true;
+    };
+    tridactyl = {
+      source = ./config/tridactyl;
+      recursive = true;
+    };
+    "fd/ignore".text = "**/*.app/**";
   };
 
   accounts.calendar = {

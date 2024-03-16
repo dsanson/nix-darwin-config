@@ -1,0 +1,30 @@
+[
+  [
+    "→",
+    "-> ifthen conditional"
+  ],
+  [
+    "∧",
+    "/\\ and conjunction"
+  ],
+  [
+    "∨",
+    "\\/ or disjunction"
+  ],
+  [
+    "¬",
+    "~ not negation"
+  ],
+  [
+    "↔",
+    "<-> biconditional" 
+  ],
+  [
+    "∀",
+    "forall" 
+  ],
+  [
+    "∃",
+    "thereis" 
+  ]
+]
