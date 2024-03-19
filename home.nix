@@ -167,6 +167,12 @@
     "fd/ignore".text = "**/*.app/**";
   };
 
+  home.file.hammerspoon = {
+    source = ./config/hammerspoon;
+    recursive = true;
+    target = ".hammerspoon";
+  };
+
   accounts.calendar = {
     basePath = ".calendars";
     accounts.icloud = {
