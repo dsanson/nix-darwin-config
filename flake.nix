@@ -198,7 +198,7 @@
 
         ];
 
-      environment.launchAgents = {
+      environment.userLaunchAgents = {
         vdirsyncer = {
           enable = true;
           source = ./launchagents/com.davidsanson.vdirsyncer.plist;
