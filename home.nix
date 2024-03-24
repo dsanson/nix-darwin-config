@@ -1,10 +1,69 @@
-{pkgs, ...}: 
+{pkgs, config, ...}:
+let
+  tex = (pkgs.texlive.combine {
+    inherit (pkgs.texlive) scheme-medium
+      amsmath
+      babel-english
+      bidi
+      cbfonts-fd
+      changepage
+      cm-super
+      ctex
+      doublestroke
+      dvisvgm
+      enumitem
+      everysel
+      fontspec
+      frcursive
+      fundus-calligra
+      gitinfo
+      gnu-freefont
+      graphbox
+      jknapltx
+      latex-bin
+      latexmk
+      lineno
+      mathastext
+      microtype
+      ms
+      newunicodechar
+      parskip
+      physics
+      preview
+      ragged2e
+      relsize
+      rsfs
+      selnolig
+      setspace
+      sidenotes
+      soul
+      standalone
+      tipa
+      titlesec
+      transparent
+      wasy
+      wasysym
+      xcolor
+      xetex
+      xkeyval
+      xpatch
+      zref
+      ;
+  });
+in
 {
   home.username = "desanso";
-  home.stateVersion = "23.11";
+  home.stateVersion = "24.05";
   home.homeDirectory = "/Users/desanso";
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
+
+  # home.activation = {
+  #   setDefaultBrowser = config.lib.hm.dag.entryAfter ["installPackages"] ''
+  #     $DRY_RUN_CMD defaultbrowser firefox
+  # '';
+  # };
+
 
   home.shellAliases = {
     "..." = "cd ../..";
@@ -20,6 +79,7 @@
     "wttr" = "curl -s \"wttr.in/{$(dig +short myip.opendns.com @resolver1.opendns.com),Carmel%20CA,Paso%20Robles,Tenakee%20AK,Rimrock%20AZ,Libby%20MT}?format=4&u\" | sed 's/, Illinois, United States//'";
     "serve" = "devd -l";
     "mc" = "masterychecks";
+    "lynx" = "lynx --vikeys";
   };
 
   home.sessionVariables = {
@@ -34,11 +94,12 @@
   };
 
   home.packages = with pkgs; [
+    tex
     # dev
     lazygit
     hub
     # webdev
-    dart-sass
+    dart-sass # move to dev specific flake
     # document readers
     epr
     # editor
@@ -50,10 +111,12 @@
     xsv
     yq
     pup
+    # web browsing
+    lynx
+    w3m
     # pdf and images
     imagemagick
     ghostscript
-    psutils
     cairo
     djvu2pdf
     djvulibre
@@ -87,7 +150,7 @@
     android-file-transfer		
     #android-platform-tools		
     #anki                        
-    #anylist                     
+    #anylist #mac only            
     audacity                    
     #calibre                     
     #discord                     
@@ -100,37 +163,28 @@
     #font-monofur-nerd-font-mono	
     #fontforge                   
     #google-chrome               
-    grandperspective # mac only           
-    #hammerspoon                 
-    #haptickey                   
-    iina  # mac only                      
-    #itsycal                     
-    #keepingyouawake             
-    #keycastr                    
+    #hammerspoon #mac only            
+    #haptickey #mac only                  
+    #itsycal #mac only            
+    #keepingyouawake #mac only          
+    #keycastr #mac only                    
     #logic-2010                  
     #logitech-camera-settings
-    #marta
-    #monitorcontrol #mac only
+    #marta # mac only
     #musescore
     #obsidian
     #oracle-jdk
-    #qlcolorcode
-    #qlmarkdown
-    #qlstephen
-    #qlvideo
-    #quicklook-csv
-    #quicksilver
+    #quicksilver # mac only
     #rar
     #raspberry-pi-imager
-    #satori
-    #sf-symbols
+    #satori # mac only
+    #sf-symbols 
     #syncthing
-    #syntax-highlight
-    #the-unarchiver
+    #syntax-highlight #mac only
+    #the-unarchiver #mac only
     #tor-browser
-    #transmission
+    #transmission #mac only
     #vlc
-    xquartz #mac only
     #yacreader
     #zerotier-one
     #zoom
@@ -224,6 +278,9 @@
     bash = {
       enable = true;
       enableCompletion = true;
+      enableVteIntegration = true;
+      historyControl = [ "erasedups" ];
+      historyIgnore = [ "ls" "cd" "exit" "z" ];
       bashrcExtra = ''
         export PATH="$HOME/bin:$HOME/.local/bin:/etc/profiles/per-user/desanso/bin:/run/current-system/sw/bin:$PATH"
       '';
@@ -234,8 +291,12 @@
 
     zsh = {
       enable = true;
-      enableAutosuggestions = true;
+      autocd = true;
       enableCompletion = true;
+      enableVteIntegration = true;
+      autosuggestion.enable = true;
+      history.ignoreAllDups = true;
+      syntaxHighlighting.enable = true;
       initExtra = ''
         export PATH="$HOME/bin:$HOME/.local/bin:/etc/profiles/per-user/desanso/bin:/run/current-system/sw/bin:$PATH"
         bindkey -v
@@ -336,6 +397,30 @@
       ];
     };
 
+    # firefox = {
+    #   enable = true;
+    #   package = null;
+    #   policies = {
+    #     DefaultDownloadDirectory = "\${home}/Downloads";
+    #     DisableBuiltinPDFViewer = true;
+    #     EnableTrackingProtection = true;
+    #   };
+    #   profiles.default = {
+    #     id = 0;
+    #     isDefault = true;
+    #     extensions = with config.nur.repos.rycee.firefox-addons; [
+    #       privacy-badger
+    #       tridactyl
+    #       facebook-container
+    #       #bypass-pwalls-clean
+    #       multi-account-containers
+    #       ublock-origin
+    #       darkreader
+    #       ipfs-companion
+    #     ];
+    #   };
+    # };
+
     aerc.enable = true;
     btop.enable = true;
     jq.enable = true;
@@ -357,7 +442,6 @@
     };
     texlive = {
       enable = false;
-      #packageSet = basic;
     };
     zoxide = {
       enable = true;
@@ -493,6 +577,8 @@
       vimdiffAlias = true;
     };
 
+
+
     starship = {
       enable = true;
       enableFishIntegration = true;
@@ -507,10 +593,8 @@
         };
         nodejs.disabled = true;
       };
-
     };
     
-
   };
   
  

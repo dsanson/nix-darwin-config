@@ -3,13 +3,21 @@
 
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
-    nix-darwin.url = "github:LnL7/nix-darwin";
-    nix-darwin.inputs.nixpkgs.follows = "nixpkgs";
-    home-manager.url = "github:nix-community/home-manager";
-    home-manager.inputs.nixpkgs.follows = "nixpkgs";
+    nix-darwin = {
+      url = "github:LnL7/nix-darwin";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    home-manager = {
+      url = "github:nix-community/home-manager";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    nur = {
+      url = "github:nix-community/NUR";
+      #inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
-  outputs = inputs@{ self, home-manager, nix-darwin, nixpkgs }:
+  outputs = inputs@{ self, home-manager, nix-darwin, nixpkgs, nur }:
   let
     configuration = { pkgs, ... }: {
 
@@ -61,23 +69,20 @@
           source-code-pro
           xits-math
           
-          # mac cli tool
+          # mac specific stuff
           m-cli
-
           shortcat
-
-          # tool to set the default browser from cli in macos
           defaultbrowser
-          # khal # figure out how to set these up with home manager
-          # khard
+          mas
+          darwin.trash
+          iina
+          grandperspective
+          monitorcontrol 
+          xquartz 
 
           # email
           mu
           
-          # mac specific
-          mas
-          darwin.trash
-
           # python
           python311Packages.keyring
 
@@ -140,7 +145,6 @@
           libheif
           librist
           ltex-ls
-          lynx
           mbedtls
           mercurial
           miller
@@ -191,12 +195,16 @@
           todo-txt-cli
           vala
           vale
-          w3m
           wcalc #used by bin/q-preview
           xmlto
           zk
 
         ];
+      
+      environment.pathsToLink = [ 
+        "/share/bash-completion" 
+        "/share/zsh" 
+      ];
 
       environment.userLaunchAgents = {
         vdirsyncer = {
@@ -309,13 +317,10 @@
           "rename" #consider alternatives
           "switchaudio-osx"
           "tag" #macos file tagging
-          # {
-          #   name = "vdirsyncer"; # figure out how to set this up via nix
-          #   restart_service = "changed";
-          # }
         ];
 
         casks = [
+          "microsoft-office"
           "anki" # have not been using
           "anylist"
           "keepingyouawake"
@@ -325,7 +330,6 @@
           "haptickey"
           "itsycal"
           "marta" # trying
-          "monitorcontrol"
           "obsidian" # am I still using this?
           "quicksilver"
           "satori"
@@ -482,6 +486,13 @@
             yabai -m rule --add app="^TomatoFlex$" manage=off
             yabai -m rule --add app="^Firefox$" manage=on
             yabai -m signal --add event=space_changed action='/Users/desanso/bin/set_theme wallpaper' active=yes
+
+            yabai -m signal --add event=space_created action='sketchybar --reload'
+            yabai -m signal --add event=space_destroyed action='sketchybar --reload'
+            yabai -m signal --add event=display_removed action='sketchybar --reload'
+            yabai -m signal --add event=front_app_switched="sketchybar 
+
+            sketchybar --reload
           '';
         };
       };
@@ -496,10 +507,13 @@
       modules = [
         configuration
         home-manager.darwinModules.home-manager
+        nur.nixosModules.nur
         {
           home-manager.useGlobalPkgs = true;
           home-manager.useUserPackages = true;
-          home-manager.users.desanso = import ./home.nix; 
+          home-manager.users.desanso.imports = [
+            nur.hmModules.nur ./home.nix 
+          ];
         }
       ];
     };
