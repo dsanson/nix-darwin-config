@@ -3,7 +3,7 @@ sanitise tridactyllocal tridactylsync
 
 set storageloc sync
 
-set editorcmd kitty --single-instance --instance-group=1 --wait-for-single-instance-window-close nvim -c "set ft=pandoc"
+set editorcmd /etc/profiles/per-user/desanso/bin/kitty --single-instance --instance-group=1 --wait-for-single-instance-window-close nvim -c "set ft=pandoc"
 set hintnames numeric
 set hintfiltermode vimperator-reflow
 set incsearch true
@@ -13,6 +13,10 @@ set newtab file:///Users/desanso/.config/tridactyl/blank.html
 " save to Zotero
 command zotero exclaim_quiet skhd -k 'ctrl + cmd - z'
 bind ,z zotero
+
+" anylist recipe saver
+" command anylist_save_recipe composite get_current_url | composite echo 'https://www.anylist.com/web/recipes/import?url=' | fillcmdline
+" bind ,r anylist_save_recipe
 
 " open in mpv
 command mpv composite get_current_url | !s $PATH mpv  
