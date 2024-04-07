@@ -68,6 +68,7 @@ in
   home.shellAliases = {
     "..." = "cd ../..";
     "l" = "ls -lA";
+    "z" = "cd";
     "rm" = "echo 'rm disabled; use trash or /bin/rm instead'"; 
     "addprinter" = "lpadmin -E -p stv412-phil-copier -E -v lpd://cas-papercut.ad.ilstu.edu/stv412-phil-copier -m '/Library/Printers/PPDs/Contents/Resources/Xerox WorkCentre 5325.gz'";
     "rmprinter" = "lpadmin -x stv412-phil-copier";
@@ -105,12 +106,14 @@ in
     # editor
     tree-sitter
     universal-ctags
+    nil
     # data
     R
     visidata
     xsv
     yq
     pup
+    #sc-im #build is broken
     # web browsing
     lynx
     w3m
@@ -134,12 +137,10 @@ in
     bibtool
     typst
     # games
-    nil
     angband
     figlet
     nsnake
-    # unicode lookup
-    uni
+    uni # unicode lookup
     ffsend
     wallust #pywall replacement
 
@@ -397,6 +398,20 @@ in
       ];
     };
 
+    direnv = {
+      enable = true;
+      nix-direnv.enable = true;
+      enableBashIntegration = true;
+      #enableFishIntegration = true; appears to be already set
+      enableZshIntegration = true;
+    };
+    
+    # see https://github.com/bandithedoge/nixpkgs-firefox-darwin
+    # firefox = {
+    #   enable = true;
+    #   package = pkgs.firefox-bin; # Or pkgs.librewolf if you're using librewolf
+    # };
+
     # firefox = {
     #   enable = true;
     #   package = null;
@@ -447,6 +462,9 @@ in
       enable = true;
       enableFishIntegration = true;
       enableBashIntegration = true;
+      options = [
+        "--cmd cd" #replace cd
+      ];
     };
     newsboat = {
       enable = true;
