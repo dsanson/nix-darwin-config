@@ -15,9 +15,10 @@
       url = "github:nix-community/NUR";
       #inputs.nixpkgs.follows = "nixpkgs";
     };
+    nixpkgs-firefox-darwin.url = "github:bandithedoge/nixpkgs-firefox-darwin";
   };
 
-  outputs = inputs@{ self, home-manager, nix-darwin, nixpkgs, nur }:
+  outputs = inputs@{ self, home-manager, nix-darwin, nixpkgs, nur, nixpkgs-firefox-darwin }:
   let
     configuration = { pkgs, ... }: {
 
@@ -79,6 +80,13 @@
           grandperspective
           monitorcontrol 
           xquartz 
+          #dark-mode-notify #broken; need to create launchagent service
+          nowplaying-cli
+
+          # mac apps to check out
+          # swiftbar (add scripts to menubar)
+          # maccy (clipboard history)
+
 
           # email
           mu
@@ -327,7 +335,7 @@
           "calibre"
           "firefox"
           "hammerspoon" # just for the caps lock key
-          "haptickey"
+          "haptickey" # only for macbook with annoying touchbar
           "itsycal"
           "marta" # trying
           "obsidian" # am I still using this?
@@ -361,6 +369,7 @@
           "sf-symbols"
           "tor-browser"
           "transmission"
+          #"devcleaner" to clean out xcode caches and save disk space
 
           # quicklook plugins
           "qlcolorcode"
@@ -379,13 +388,13 @@
         ];
 
         masApps = {
-          "OneDrive"               =  823766827;
+          #"OneDrive"               =  823766827;
           "Kindle Classic"         =  405399194;
           "AdGuard for Safari"     =  1440147259;
           "Keynote"                =  409183694;
           "iMovie"                 =  408981434;
-          "DevCleaner"             =  1388020431;
-          "Paprika Recipe Manager" =  451907568;
+          #"DevCleaner"             =  1388020431;
+          #"Paprika Recipe Manager" =  451907568;
           "CamControl"             =  1503271162;
           "Pages"                  =  409201541;
           "Mpix"                   =  1282488470;
@@ -485,6 +494,7 @@
             yabai -m rule --add app="^Visualizer$" manage=on
             yabai -m rule --add app="^TomatoFlex$" manage=off
             yabai -m rule --add app="^Firefox$" manage=on
+            yabai -m rule --add app="sioyek" role="AXWindow" subrole="AXDialog" manage=on
             yabai -m signal --add event=space_changed action='/Users/desanso/bin/set_theme wallpaper' active=yes
 
             yabai -m signal --add event=space_created action='sketchybar --reload'
@@ -509,6 +519,9 @@
         home-manager.darwinModules.home-manager
         nur.nixosModules.nur
         {
+          # nixpkgs.overlays = [
+          # #   nixpkgs-firefox-darwin.overlay
+          # ];
           home-manager.useGlobalPkgs = true;
           home-manager.useUserPackages = true;
           home-manager.users.desanso.imports = [
