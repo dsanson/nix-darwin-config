@@ -28,6 +28,7 @@ let
       ms
       newunicodechar
       parskip
+      pgf
       physics
       preview
       ragged2e
@@ -140,6 +141,27 @@ in
     angband
     figlet
     nsnake
+    
+    # fonts
+    dejavu_fonts
+    fira-code
+    fira-code-nerdfont
+    font-awesome
+    kawkab-mono-font
+    monoid
+    mononoki
+    open-dyslexic
+    source-code-pro
+    xits-math
+    gentium # good for diacritics
+    andika # for for beginning readers
+    charis-sil #another multilingual font
+    doulos-sil #another multilingual font
+    amiri #arabic font
+    fira-go #fira sans with multilingual support
+
+
+
     uni # unicode lookup
     ffsend
     wallust #pywall replacement
@@ -566,7 +588,7 @@ in
       settings = {
         bold_font = "auto";
         italic_font = "auto"; #"Source Code Pro Italic"
-        font_features = "FiraCode-Retina +zero";
+        font_features = "FiraCode +zero +ss03 +cv30";
         force_ltr = "yes";
         visual_bell_duration = "0.01";
         window_border_width = "1.0";

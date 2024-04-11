@@ -58,17 +58,6 @@
           # editing
           neovim
 
-          # fonts
-          dejavu_fonts
-          fira-code
-          fira-code-nerdfont
-          font-awesome
-          kawkab-mono-font
-          monoid
-          mononoki
-          open-dyslexic
-          source-code-pro
-          xits-math
           
           # mac specific stuff
           m-cli
