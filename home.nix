@@ -55,7 +55,7 @@ in
 {
   home.username = "desanso";
   home.stateVersion = "24.05";
-  home.homeDirectory = "/Users/desanso";
+  home.homeDirectory = "/Users/desanso"; #mac specific
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
 
@@ -70,25 +70,29 @@ in
     "..." = "cd ../..";
     "l" = "ls -lA";
     "z" = "cd";
-    "rm" = "echo 'rm disabled; use trash or /bin/rm instead'"; 
+    "rm" = "echo 'rm disabled; use trash or /bin/rm instead'";  #mac specific for now
     "addprinter" = "lpadmin -E -p stv412-phil-copier -E -v lpd://cas-papercut.ad.ilstu.edu/stv412-phil-copier -m '/Library/Printers/PPDs/Contents/Resources/Xerox WorkCentre 5325.gz'";
     "rmprinter" = "lpadmin -x stv412-phil-copier";
     "wanip" = "dig +short myip.opendns.com @resolver1.opendns.com";
     "latest_download" = "ls -tU $HOME/Downloads | head -n 1";
-    "preview" = "open -a Preview";
-    "reveal" = "open -R";
+    "preview" = "open -a Preview"; #mac specific
+    "reveal" = "open -R"; #mac specific
     "firefox" = "firefox-wrapper";
     "wttr" = "curl -s \"wttr.in/{$(dig +short myip.opendns.com @resolver1.opendns.com),Carmel%20CA,Paso%20Robles,Tenakee%20AK,Rimrock%20AZ,Libby%20MT}?format=4&u\" | sed 's/, Illinois, United States//'";
     "serve" = "devd -l";
     "mc" = "masterychecks";
     "lynx" = "lynx --vikeys";
+    "play" = "nowplaying-cli play"; #mac specific
+    "pause" = "nowplaying-cli pause"; #mac specific
+    "next" = "nowplaying-cli next"; #mac specific
+    "volume" = "m volume"; #mac specific
   };
 
   home.sessionVariables = {
     LC_ALL = "en_US.UTF-8";
     LC_CTYPE = "en_US.UTF-8";
     PAGER = "less -r";
-    BROWSER = "open";
+    BROWSER = "open"; #mac specific
     FFSEND_HOST = "https://send.zcyph.cc";
     FFSEND_COPY = "";
     FFSEND_EXPIRY_TIME = "7d";
@@ -144,10 +148,12 @@ in
     
     # fonts
     dejavu_fonts
-    fira-code
+    victor-mono # has all arabic transliteration diacritics
+    fira-code # fira-mono with coding ligatures
     fira-code-nerdfont
+    fira-go #fira sans with multilingual support
     font-awesome
-    kawkab-mono-font
+    kawkab-mono-font # arabic monospace font
     monoid
     mononoki
     open-dyslexic
@@ -158,9 +164,6 @@ in
     charis-sil #another multilingual font
     doulos-sil #another multilingual font
     amiri #arabic font
-    fira-go #fira sans with multilingual support
-
-
 
     uni # unicode lookup
     ffsend
@@ -581,14 +584,15 @@ in
       ];
       #theme = "Gruvbox Material Light Hard";
       font = {
-        name = "Fira Code";
+        #name = "Victor Mono";
+        name = "Fira Mono";
         size = 18.0;
-        package = pkgs.fira-code;
+        package = pkgs.fira-mono;
       };
       settings = {
         bold_font = "auto";
         italic_font = "auto"; #"Source Code Pro Italic"
-        font_features = "FiraCode +zero +ss03 +cv30";
+        #font_features = "FiraCode +zero +ss03 +cv30";
         force_ltr = "yes";
         visual_bell_duration = "0.01";
         window_border_width = "1.0";
