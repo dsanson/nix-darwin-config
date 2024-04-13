@@ -60,9 +60,9 @@
 
           
           # mac specific stuff
-          m-cli
-          shortcat
-          defaultbrowser
+          m-cli # this is so out of date, not sure it is useful
+          #shortcat #keyboard selection of macos elements
+          defaultbrowser #should move this to a dependency of the system setup
           mas
           darwin.trash
           iina
