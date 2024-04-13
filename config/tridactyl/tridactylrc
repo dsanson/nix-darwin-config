@@ -18,6 +18,9 @@ bind ,z zotero
 " command anylist_save_recipe composite get_current_url | composite echo 'https://www.anylist.com/web/recipes/import?url=' | fillcmdline
 " bind ,r anylist_save_recipe
 
+# reader mode
+bind ,r reader
+
 " open in mpv
 command mpv composite get_current_url | !s $PATH mpv  
 bind x mpv
