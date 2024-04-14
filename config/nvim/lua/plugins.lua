@@ -36,11 +36,16 @@ require("lazy").setup({
   'tpope/vim-speeddating', -- increment and decrement dates
   'vim-scripts/utl.vim', -- generalized link/file/document opener
   'sainnhe/gruvbox-material', --color scheme
-  'justinmk/vim-gtfo', -- open directory for current file in finder (gof) or terminal (got)
   'tomtom/tcomment_vim', -- toggle comments (gcc, vgc...)
   'tpope/vim-repeat', -- extend repeat '.' to include stuff in mappings
   'rhysd/conflict-marker.vim',
   'airblade/vim-gitgutter',
+  { 
+    'justinmk/vim-gtfo', -- open directory for current file in finder (gof) or terminal (got)
+    config = function()
+      g["gtfo#terminals"] = { mac = "/Users/desanso/Applications/Kitty.app"}
+    end,
+  },
   {
     "kylechui/nvim-surround",
     version = "*", -- Use for stability; omit to use `main` branch for the latest features
@@ -93,12 +98,7 @@ require("lazy").setup({
       },
     }
   },
-  {
-    'rrethy/vim-hexokinase', 
-    build = 'make hexokinase' 
-  },
   'chrisbra/csv.vim', -- csv syntax and filetype plugin
-
   { 
     'dsanson/vim-ris', -- RIS bibliography files
     ft = "ris"
@@ -306,10 +306,10 @@ require("lazy").setup({
   },
   {
     "nvim-treesitter/nvim-treesitter",
-    -- build = ":TSUpdate",
     config = function () 
       local configs = require("nvim-treesitter.configs")
       configs.setup({
+        auto_install = false, 
         highlight = {
           enable = true,
           disable = function(lang, buf)
@@ -461,18 +461,8 @@ cmp.setup({
   },
   sources = cmp.config.sources({
     { name = 'nvim_lsp' },
-    -- { name = 'vsnip' }, -- For vsnip users.
-    -- { name = 'luasnip' }, -- For luasnip users.
-    -- { name = 'ultisnips' }, -- For ultisnips users.
-    -- { name = 'snippy' }, -- For snippy users.
-    -- { name = 'buffer' },
-    -- { name = 'calc' },
     { name = 'cmp_pandoc' },
     { name = 'marksman' },
-    -- { name = 'pandoc_references' },
-    -- { name = "papis" },
-    --{ name = 'vCard' },
-    -- { name = 'digraphs' },
   })
 })
 
@@ -537,6 +527,7 @@ lsp.vimls.setup {
 lsp.yamlls.setup {
   capabilities = capabilities
 }
+lsp.lua_ls.setup {}
 
 lsp.ltex.setup{
   on_attach = on_attach,
@@ -556,77 +547,10 @@ lsp.lemminx.setup{}
 
 lsp.marksman.setup{}
 
--- lsp.efm.setup {
---    capabilities = capabilities,
---    init_options = {documentFormatting = true},
---    settings = {
---      rootMarkers = {".git/"},
---      languages = {
---        lua = {
---          {formatCommand = "lua-format -i", formatStdin = true}
---        },
---        pandoc = {
---          {formatCommand = "pandoc --columns 78 --markdown-headings=atx --id-prefix (random) --reference-location block -f markdown+raw_html-raw_attribute -t markdown+raw_html-raw_attribute"}
---        }
---      }
---   }
--- }
-
-require("zen-mode").setup {
-  -- your configuration comes here
-  -- or leave it empty to use the default settings
-  -- refer to the configuration section below
-  window = {
-    backdrop = 0.80, -- shade the backdrop of the Zen window. Set to 1 to keep the same as Normal
-    -- height and width can be:
-    -- * an absolute number of cells when > 1
-    -- * a percentage of the width / height of the editor when <= 1
-    width = 80, -- width of the Zen window
-    height = 1, -- height of the Zen window
-    -- by default, no options are changed for the Zen window
-    -- uncomment any of the options below, or add other vim.wo options you want to apply
-    options = {
-      -- signcolumn = "no", -- disable signcolumn
-      -- number = false, -- disable number column
-      -- relativenumber = false, -- disable relative numbers
-      -- cursorline = false, -- disable cursorline
-      -- cursorcolumn = false, -- disable cursor column
-      -- foldcolumn = "0", -- disable fold column
-      -- list = false, -- disable whitespace characters
-    },
-  },
-  plugins = {
-    -- disable some global vim options (vim.o...)
-    -- comment the lines to not apply the options
-    options = {
-      enabled = true,
-      ruler = false, -- disables the ruler text in the cmd line area
-      showcmd = false, -- disables the command in the last line of the screen
-    },
-    gitsigns = { enabled = false }, -- disables git signs
-    tmux = { enabled = false }, -- disables the tmux statusline
-    -- this will change the font size on kitty when in zen mode
-    -- to make this work, you need to set the following kitty options:
-    -- - allow_remote_control socket-only
-    -- - listen_on unix:/tmp/kitty
-    kitty = {
-      enabled = false,
-      font = "+4", -- font size increment
-    },
-  },
-}
-
 -- colorscheme
 vim.opt.termguicolors = true
 -- vim.cmd('source ~/.vimrc_background')
 vim.cmd('colorscheme wal')
-
--- -- vimtex
--- g.tex_flavor  = 'latex'
--- g.tex_conceal = 'abdmgs'
-
--- gtfo
-g["gtfo#terminals"] = { mac = "/Users/desanso/Applications/Kitty.app"}
 
 -- litecorrect
 g.user_dict    = {
@@ -710,20 +634,6 @@ vim.cmd([[
   augroup END
 ]])
 
--- vim-hexokinase
-g.Hexokinase_optOutPatterns = { "colour_names" }
-g.Hexokinase_ftOptInPatterns = { 
-  css = 'colour_names', 
-  html = 'colour_names', 
-  sass = 'colour_names',
-  javascript = 'colour_names', 
-}
-
--- vim-bookmarks
-g.bookmark_auto_save = 1
-g.bookmark_no_default_key_mappings = 1
-g.bookmark_display_annotation = 1
-
 require('telescope').setup {
   extensions = {
     fzf = {
@@ -741,4 +651,3 @@ require('telescope').setup {
   }
 }
 
-require'lspconfig'.marksman.setup{}

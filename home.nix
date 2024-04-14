@@ -113,6 +113,7 @@ in
     universal-ctags
     nil
     marksman #zettlekasten style lsp 
+    lua-language-server
     # data
     R
     visidata
@@ -623,6 +624,7 @@ in
       vimAlias = true;
       vimdiffAlias = true;
       plugins = [ pkgs.vimPlugins.nvim-treesitter.withAllGrammars ];
+      withPython3 = true;
     };
 
 
