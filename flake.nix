@@ -304,7 +304,8 @@
         onActivation.autoUpdate = true;
         
         taps = [
-          "dsanson/tap"
+          "dsanson/tap" #for logic2010
+          "homebrew/cask-versions" #for zotero-beta
         ];
 
         brews = [
@@ -318,14 +319,13 @@
 
         casks = [
           "microsoft-office"
-          "anki" # have not been using
           "anylist"
           "keepingyouawake"
           "calibre"
           "firefox"
           "hammerspoon" # just for the caps lock key
           "haptickey" # only for macbook with annoying touchbar
-          "itsycal"
+          "itsycal" # nixpkg doesn't work complains needs to be installed in /Applications
           "marta" # trying
           "obsidian" # am I still using this?
           "quicksilver"
@@ -335,7 +335,7 @@
           "yacreader"
           "zerotier-one"
           "zoom"
-          "zotero"
+          "zotero-beta"
          
           # occasional use (but good to have on hand)
           "djview"

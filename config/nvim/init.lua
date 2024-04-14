@@ -1,21 +1,17 @@
--- load some utility functions
-local utils = require('utils')
+-- load settings that don't depend on plugins
+require('settings')
+
+-- load mappings that don't depend on plugins
+require('mappings')
 
 -- load and configure plugins
 require('plugins')
 
--- basic settings
-require('settings')
-
--- remappings
-require('mappings')
-
--- whichkey mappings
--- require('which-key-mappings')
-
--- filetype tweaks
--- require('filetypes')
-
--- digraphs
--- require('digraphs')
-
+-- -- load additional settings
+-- require('settings_add')
+--
+-- -- load additional mappings
+require('mappings_add')
+--
+-- -- load digraphs
+require('digraphs')

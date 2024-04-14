@@ -1,62 +1,24 @@
--- --""""""""""""""""""
--- -- Custom digraphs
--- --"""""""""""""""""""
--- -- Digraphs for logic
--- digraph ts 8866
--- digraph bx 9634
--- digraph ci 9711 
--- digraph tr 9651 
---
--- -- Digraphs for arabic
--- --  letter | digraph | result
--- --  hamzah | ''      | ʼ
--- --  alif   | a-      | ā
--- --  bāʼ    |         | b
--- --  tāʼ    |         | t
--- --  thāʼ   | t_      | ṯ 
--- --  jīm    |         | j
--- --  ḥāʼ    | .h      | ḥ       
--- --  khāʼ   |         | kh
--- --  dāl    |         | d
--- --  dhāl   |         | dh
--- --  rāʼ    |         | r
--- --  zayn   |         | z
--- --  sīn    |         | s
--- --  shīn   |         | sh
--- --  ṣād    | .s      | ṣ
--- --  ḍād    | .d      | ḍ
--- --  ṭāʼ    | .t      | ṭ
--- --  ẓāʼ    | .z      | ẓ
--- --  ʻayn   | ``      | ʻ
--- --  ghayn  |         | gh
--- --  fāʼ    |         | f
--- --  qāf    |         | q
--- --  kāf    |         | k
--- --  lām    |         | l
--- --  mīm    |         | m
--- --  nūn    |         | n
--- --  hāʼ    |         | h
--- --  wāw    |         | w
--- --  wāw    | u-      | ū
--- --  yāʼ    |         | y
--- --  yāʼ    | i-      | ī
---
--- -- Custom digraphs
--- digraph '' 0702 " hamzah (as half-circle)
--- digraph `` 0703 " ayn (half-cirlce)
--- -- digraph '' 0700 " hamzah (apostrophe)
--- -- digraph `` 0699 "ayn (apostrophe)
--- digraph .H 7716
--- digraph .h 7717
--- digraph .D 7692
--- digraph .d 7693
--- digraph .S 7778
--- digraph .s 7779
--- digraph .T 7788
--- digraph .t 7789
--- digraph .Z 7826
--- digraph .z 7827
---
+vim.fn.digraph_setlist({
+  -- arabic transliteration
+  {"''", "ʾ"}, -- hamzah
+  {"``", "ʿ"}, --ʿayn
+  {".H", "Ḥ"}, -- hāʾ
+  {".h", "ḥ"}, 
+  {".D", "Ḍ"}, -- ḍād
+  {".d", "ḍ"},
+  {".S", "Ṣ"}, -- ṣād
+  {".s", "ṣ"},
+  {".T", "Ṭ"}, -- ṭāʾ
+  {".t", "ṭ"}, 
+  {".Z", "Ẓ"}, -- ẓāʾ
+  {".z", "ẓ"},
+  -- logic symbols
+  {"ts", "⊢"}, -- single turnstyle
+  {"bx", "▢"}, -- box 
+  {"ci", "◯"}, -- circle
+  {"tr", "△"}, -- triangle
+})
+
 -- -- Digraphs for entering bubble forms
 -- digraph c1 9312
 -- digraph c2 9313

@@ -1,39 +1,3 @@
--- Aliases
-vim.cmd('command! W w') -- :W is the same as :w
-vim.cmd('command! Wq wq') -- :W is the same as :w
-
--- Maps
-local utils = require('utils')
-
-vim.g.mapleader      = ' '
-vim.g.maplocalleader = ','
-
--- visual shifting without exiting visual mode
-utils.map('v', '<', '<gv')
-utils.map('v', '>', '>gv')
-
--- Treat long lines as break lines (useful when moving around in them)
-utils.map('n', 'j', 'gj')
-utils.map('n', 'k', 'gk')
-utils.map('v', 'j', 'gj')
-utils.map('v', 'k', 'gk')
-
--- Up and Down arrows by screen lines rather than file lines)
-utils.map('n', '<Down>', 'gj')
-utils.map('n', '<Up>',   'gk')
-
--- Remap Y to yank to end of line (so consistent with C and D)
-utils.map('n', 'Y', 'y$')
-utils.map('v', '<Enter>', ':EasyAlign<CR>') -- easyalign map for visual mode
-
--- Mappings for leap
--- vim.keymap.set('n', 's', '<Plug>(leap-forward-to)', {})
--- --vim.keymap.set({'x','o','v'}, 's', '<Plug>(leap-forward-to)', {offset = +1, inclusive_op = true})
--- vim.keymap.set({'x','o','v'}, 's', '<Plug>(leap-forward-to)')
--- vim.keymap.set({'n','x','o','v'}, 'S', '<Plug>(leap-backward-to)', {})
--- --vim.keymap.set('n', 'gs', '<Plug>(leap-cross-window)', { target_windows=require('leap.util').get_enterable_windows() })
--- vim.keymap.set('n', 'gs', '<Plug>(leap-cross-window)')
-
 -- Which-key maps
 local wk = require('which-key')
 
@@ -52,7 +16,7 @@ wk.register({
   -- Quitting
   q = {
     name = "quitting",
-    q = { '<cmd>wq<cr>' , "Save and quit" }, -- create a binding with label
+    q = { "<cmd>qw<cr>", "Save and quit" }, -- create a binding with label
     x = { "<cmd>q!<cr>", "Quit without saving" }, -- create a binding with label
   },
 
@@ -288,21 +252,3 @@ wk.register({
     filetypes = { "TelescopePrompt" },
   },
 })
-
--- telekasten
--- Launch panel if nothing is typed after <leader>z
-vim.keymap.set("n", "<leader>z", "<cmd>Telekasten panel<CR>")
--- -- Most used functions
-vim.keymap.set("n", "<leader>zf", "<cmd>Telekasten find_notes<CR>")
-vim.keymap.set("n", "<leader>z/", "<cmd>Telekasten search_notes<CR>")
--- -- vim.keymap.set("n", "<leader>zd", "<cmd>Telekasten goto_today<CR>")
--- vim.keymap.set("n", "<leader>zz", "<cmd>Telekasten follow_link<CR>")
-vim.keymap.set("n", "<leader>zn", "<cmd>Telekasten new_note<CR>")
--- vim.keymap.set("n", "<leader>zy", "Telekasten yank_notelink<CR>")
--- -- vim.keymap.set("n", "<leader>zc", "<cmd>Telekasten show_calendar<CR>")
-vim.keymap.set("n", "<leader>zb", "<cmd>Telekasten show_backlinks<CR>")
--- vim.keymap.set("n", "<leader>zI", "<cmd>Telekasten insert_img_link<CR>")
-vim.keymap.set("n", "<leader>zr", "<cmd>Telekasten rename_note<CR>")
---
--- -- Call insert link automatically when we start typing a link
--- vim.keymap.set("i", "[[", "<cmd>Telekasten insert_link<CR>")

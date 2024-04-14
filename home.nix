@@ -112,6 +112,7 @@ in
     tree-sitter
     universal-ctags
     nil
+    marksman #zettlekasten style lsp 
     # data
     R
     visidata
@@ -145,7 +146,8 @@ in
     angband
     figlet
     nsnake
-    
+    # flashcards
+    anki-bin 
     # fonts
     dejavu_fonts
     victor-mono # has all arabic transliteration diacritics
@@ -332,6 +334,7 @@ in
       enable = true;
       functions = {
         retakes = "carnap hiddens $argv | sort";
+        playlist = "osascript -e 'tell app \"Music\" to play the playlist named \"'$argv'\"'";
       };
       interactiveShellInit = ''
         set -g fish_key_bindings fish_vi_key_bindings
@@ -619,6 +622,7 @@ in
       viAlias = true;
       vimAlias = true;
       vimdiffAlias = true;
+      plugins = [ pkgs.vimPlugins.nvim-treesitter.withAllGrammars ];
     };
 
 
