@@ -623,11 +623,24 @@ in
       viAlias = true;
       vimAlias = true;
       vimdiffAlias = true;
-      plugins = [ pkgs.vimPlugins.nvim-treesitter.withAllGrammars ];
+      plugins = [ 
+        pkgs.vimPlugins.nvim-treesitter.withAllGrammars
+        #pkgs.vimPlugins.which-key-nvim
+        #pkgs.vimPlugins.nvim-lspconfig
+        #pkgs.vimPlugins.nvim-lastplace
+        #pkgs.vimPlugins.twilight-nvim
+        #pkgs.vimPlugins.tcomment_vim
+        #pkgs.vimPlugins.vim-gutentags
+        #pkgs.vimPlugins.vim-easy-align
+        #pkgs.vimPlugins.vim-speeddating
+        #pkgs.vimPlugins.utl-vim
+        #pkgs.vimPlugins.vim-gitgutter
+        #pkgs.vimPlugins.conflict-marker-vim
+        #pkgs.vimPlugins.csv-vim
+      ];
       withPython3 = true;
+      extraPython3Packages = ps: with ps; [ pynvim ];
     };
-
-
 
     starship = {
       enable = true;

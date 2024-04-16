@@ -1,12 +1,6 @@
-local g  = vim.g
-local o  = vim.o
-local wo = vim.wo
-local bo = vim.bo
-local fn = vim.fn
-
-local lazypath = fn.stdpath("data") .. "/lazy/lazy.nvim"
+local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not (vim.uv or vim.loop).fs_stat(lazypath) then
-  fn.system({
+  vim.fn.system({
     "git",
     "clone",
     "--filter=blob:none",
@@ -19,17 +13,11 @@ vim.opt.rtp:prepend(lazypath)
 
 require("lazy").setup({
   "folke/which-key.nvim",
-  "ludovicchabant/vim-gutentags",
   "neovim/nvim-lspconfig",
-  "hrsh7th/cmp-nvim-lsp",
-  "hrsh7th/cmp-buffer",
-  "hrsh7th/cmp-path",
-  "hrsh7th/cmp-cmdline",
-  "hrsh7th/cmp-calc",
-  "hrsh7th/nvim-cmp",
   "sprockmonty/wal.vim", -- colorschemes
-  "folke/twilight.nvim", -- dim inactive paragraph
   'reedes/vim-litecorrect', -- autocorrect as you type
+  "ludovicchabant/vim-gutentags",
+  "folke/twilight.nvim", -- dim inactive paragraph
   'farmergreg/vim-lastplace', -- restore cursor position
   'junegunn/vim-easy-align', -- align by character: 'v<enter>|'
   'jszakmeister/vim-togglecursor', -- toggle cursor in insert mode in terminals
@@ -37,13 +25,24 @@ require("lazy").setup({
   'vim-scripts/utl.vim', -- generalized link/file/document opener
   'sainnhe/gruvbox-material', --color scheme
   'tomtom/tcomment_vim', -- toggle comments (gcc, vgc...)
-  'tpope/vim-repeat', -- extend repeat '.' to include stuff in mappings
+  --'tpope/vim-repeat', -- extend repeat '.' to include stuff in mappings
   'rhysd/conflict-marker.vim',
   'airblade/vim-gitgutter',
+  'chrisbra/csv.vim', -- replaced by treesitter? csv syntax and filetype plugin
+  { 
+    "hrsh7th/nvim-cmp",
+    dependencies = {
+      "hrsh7th/cmp-nvim-lsp",
+      "hrsh7th/cmp-buffer",
+      "hrsh7th/cmp-path",
+      "hrsh7th/cmp-cmdline",
+      "hrsh7th/cmp-calc",
+    },
+  },  
   { 
     'justinmk/vim-gtfo', -- open directory for current file in finder (gof) or terminal (got)
     config = function()
-      g["gtfo#terminals"] = { mac = "/Users/desanso/Applications/Kitty.app"}
+      vim.g["gtfo#terminals"] = { mac = "/Users/desanso/Applications/Kitty.app"}
     end,
   },
   {
@@ -98,7 +97,6 @@ require("lazy").setup({
       },
     }
   },
-  'chrisbra/csv.vim', -- csv syntax and filetype plugin
   { 
     'dsanson/vim-ris', -- RIS bibliography files
     ft = "ris"
@@ -110,8 +108,8 @@ require("lazy").setup({
   {
     "lervag/vimtex",
     init = function()
-      g.tex_flavor  = 'latex'
-      g.tex_conceal = 'abdmgs'
+      vim.g.tex_flavor  = 'latex'
+      vim.g.tex_conceal = 'abdmgs'
     end,
     ft = 'tex',
   },
@@ -304,27 +302,23 @@ require("lazy").setup({
     }
     end
   },
-  {
-    "nvim-treesitter/nvim-treesitter",
-    config = function () 
-      local configs = require("nvim-treesitter.configs")
-      configs.setup({
-        auto_install = false, 
-        highlight = {
-          enable = true,
-          disable = function(lang, buf)
-            local max_filesize = 300 * 1024 -- 300 KB
-            local ok, stats = pcall(vim.loop.fs_stat, vim.api.nvim_buf_get_name(buf))
-            if ok and stats and stats.size > max_filesize then
-              return true
-            end
-          end,
-        },
-        indent = { enable = true, disable = {"markdown"} },  
-      })
-    end,
-  },
 })
+
+-- require("nvim-treesitter.configs").setup({
+--   highlight = {
+--     enable = true,
+--     disable = function(lang, buf)
+--       local max_filesize = 300 * 1024 -- 300 KB
+--       local ok, stats = pcall(vim.loop.fs_stat, vim.api.nvim_buf_get_name(buf))
+--       if ok and stats and stats.size > max_filesize then
+--         return true
+--       end
+--     end,
+--   },
+--   indent = { enable = true, disable = {"markdown"} },
+-- })
+--
+
 
 --
 --   use {
@@ -553,7 +547,7 @@ vim.opt.termguicolors = true
 vim.cmd('colorscheme wal')
 
 -- litecorrect
-g.user_dict    = {
+vim.g.user_dict    = {
   maybe        = {'mabye'},
   ['then']     = {'hten'},
   homogeneous  = {'homogenous'},
