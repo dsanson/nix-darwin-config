@@ -1,4 +1,4 @@
-PATH="/etc/profiles/per-user/desanso/bin/:$PATH"
+#PATH="/etc/profiles/per-user/desanso/bin/:$PATH"
 PLUGIN_DIR="$HOME/.config/sketchybar/plugins"
 
 source "$HOME/.cache/wal/colors.sketchybar"
