@@ -1,0 +1,58 @@
+#!/usr/bin/env bash
+PATH="/etc/profiles/per-user/desanso/bin/:$PATH"
+
+if [ "$SENDER" = "mouse.exited.global" ]; then
+  sketchybar --set $NAME popup.drawing=off
+  exit
+fi
+
+
+STATUS=$(sketchybar --query ${NAME} | jq -r '.popup.drawing')
+
+if [ "$SENDER" = "mouse.entered" ] && [ "$STATUS" = "off" ]; then
+  sketchybar \
+    --remove "/${NAME}-event.*/" \
+
+  n=0
+
+  # khal list -f '{start-time:<10} {title:<20}' -df '' -o now 1d | \
+  #   while read -r EVENT; do
+  #     sketchybar \
+  #       --add item "${NAME}-event-${n}" popup.${NAME} \
+  #       --set "${NAME}-event-${n}" \
+  #         label="$EVENT" \
+  #         click_script="osascript -e 'tell application \"Calendar\" to activate' -e 'tell application \"System Events\"'  -e 'keystroke \"0\" using (command down)' -e 'end tell'" \
+  #         script="${0%/*}/mouse_over.sh" \
+  #       --subscribe "$NAME-event-${n}" mouse.entered mouse.exited
+  #     ((n+=1))
+  #   done
+
+  khal calendar -o | sed 's/ / /g' | \
+    while read -r EVENT; do
+      sketchybar \
+        --add item "${NAME}-event-${n}" popup.${NAME} \
+        --set "${NAME}-event-${n}" \
+          label="$EVENT" \
+          label.font="Fira Code:Bold:14.0" \
+          click_script="open -a Calendar" 
+      ((n+=1))
+    done
+
+  sketchybar \
+    --set $NAME \
+      popup.drawing=on
+fi
+
+circled_numbers=( 0 ① ② ③ ④ ⑤ ⑥ ⑦ ⑧ ⑨ ⑩ ⑪ ⑫ ⑬ ⑭ ⑮ ⑯ ⑰ ⑱ ⑲ ⑳ ㉑ ㉒ ㉓ ㉔ ㉕ ㉖ ㉗ ㉘ ㉙ ㉚ ㉛ )
+day=$(date '+%d')
+circled_day=${circled_numbers[$day]}
+
+sketchybar \
+  --set "$NAME" \
+    label="$(date '+%H:%M')" \
+    icon="$circled_day" \
+  --set "${NAME}-info" \
+    label="$(date)"
+
+
+

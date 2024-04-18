@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+
+LOVED=$(osascript -e 'tell application "Music"' -e 'set loved of current track to not loved of current track' -e 'get loved of current track' -e 'end tell')
+
+if [[ "$LOVED" == true ]]; then
+  sketchybar --set media-info-love icon=󰥱 label='click to unlove'
+else
+  sketchybar --set media-info-love icon= label='click to love'
+fi
+

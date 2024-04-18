@@ -247,6 +247,10 @@ in
       source = ./config/visidata;
       recursive = true;
     };
+    sketchybar = {
+      source = ./config/sketchybar;
+      recursive = true;
+    };
     "fd/ignore".text = "**/*.app/**";
   };
 
@@ -254,6 +258,11 @@ in
     source = ./config/hammerspoon;
     recursive = true;
     target = ".hammerspoon";
+  };
+
+  home.file.wallust = {
+    source = ./config/wallust;
+    target = "Library/Application Support/wallust";
   };
 
   accounts.calendar = {

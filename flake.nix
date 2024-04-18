@@ -399,6 +399,7 @@
         sketchybar = {
           enable = true;
           package = pkgs.sketchybar;
+          extraPackages = [ pkgs.jq pkgs.yabai ];
         };
         
         skhd = {

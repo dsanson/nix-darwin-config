@@ -1,0 +1,85 @@
+#!/usr/bin/env bash
+
+NAME="${NAME-music}"
+case "$SENDER" in
+  "mouse.entered"|"mouse.exited"|mouse.exited.global)
+    DIR=$(dirname "$0")
+    "$DIR"/mouse_over.sh 
+    exit 0
+    ;;
+esac
+
+# FIXME: Running an osascript on an application target opens that app
+# This sleep is needed to try and ensure that theres enough time to
+# quit the app before the next osascript command is called. I assume 
+# com.apple.iTunes.playerInfo fires off an event when the player quits
+# so it imediately runs before the process is killed
+sleep 1
+
+app_state=$(pgrep -x Music)
+if [[ ! $app_state ]]; then 
+    sketchybar -m --set music drawing=off
+    exit 0
+fi
+
+player_state=$(osascript -e "tell application \"Music\" to set playerState to (get player state) as text")
+if [[ $player_state == "stopped" ]]; then
+    sketchybar --set music drawing=off
+    exit 0
+fi
+
+title=$(osascript -e 'tell application "Music" to get name of current track')
+artist=$(osascript -e 'tell application "Music" to get artist of current track')
+genre=$(osascript -e 'tell application "Music" to get genre of current track')
+album=$(osascript -e 'tell application "Music" to get album of current track')
+loved=$(osascript -l JavaScript -e "Application('Music').currentTrack().loved()")
+
+if [[ "$genre" =~ [Cc]lassical ]]; then
+  composer=$(osascript -e 'tell application "Music" to get composer of current track')
+fi
+
+if [[ $loved ]]; then
+    icon="􀊸"
+fi
+
+if [[ $PLAYER_STATE == "paused" ]]; then
+    icon="􀊘"
+fi
+
+if [[ $PLAYER_STATE == "playing" ]]; then
+    icon="􀊖"
+fi
+
+TITLE="$title"
+if [[ ${#title} -gt 30 ]]; then
+  TITLE="${title:0:30}…"
+fi
+
+ARTIST="$artist"
+if [[ "$composer" != "" ]]; then
+  COMPOSER="$composer"
+  if [[ ${#composer} -gt 20 ]]; then
+    COMPOSER="${composer:0:20}…"
+  fi
+  ARTIST="${COMPOSER} | $ARTIST"
+fi
+
+if [[ ${#ARTIST} -gt 20 ]]; then
+  ARTIST="${ARTIST:0:20}…"
+fi
+
+sketchybar -m \
+  --set "${NAME}" icon="$icon"          \
+  --set "${NAME}" label="${TITLE} (${ARTIST})"    \
+  --set "${NAME}" drawing=on \
+  --remove "/${NAME}-info-*/" \
+  --add item "${NAME}-info-title" popup.${NAME} \
+  --set "${NAME}-info-title" label="track: $title" \
+  --add item "${NAME}-info-artist" popup.${NAME} \
+  --add item "${NAME}-info-album" popup.${NAME} \
+  --set "${NAME}-info-album" label="album: $album" \
+  --set "${NAME}-info-artist" label="artist: $artist" \
+  --add item "${NAME}-info-composer" popup.${NAME} \
+  --set "${NAME}-info-composer" label="composer: $composer" \
+
+
