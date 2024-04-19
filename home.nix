@@ -365,7 +365,8 @@ in
         fish_add_path $HOME/bin 
         defaultbrowser firefox >/dev/null
         if type -q kitty
-          kitty @ set-colors -c ~/.cache/wal/colors-kitty.conf
+          #kitty @ set-colors -c ~/.cache/wal/colors-kitty.conf
+          visor init
         end
       '';
       plugins = [
@@ -595,7 +596,6 @@ in
         "--instance-group=1"
         "--listen-on=unix:/tmp/mykitty"
       ];
-      #theme = "Gruvbox Material Light Hard";
       font = {
         #name = "Victor Mono";
         name = "Fira Mono";
@@ -621,9 +621,9 @@ in
         kitty_mod = "super";
         allow_remote_control = "socket-only";
       };
-      # extraConfig = ''
-      #   include ~/Library/Preferences/kitty/current-theme.conf";
-      # '';
+      extraConfig = ''
+        include ~/.cache/wal/colors-kitty.conf
+      '';
     };
 
     neovim = {

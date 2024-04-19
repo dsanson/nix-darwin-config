@@ -405,6 +405,108 @@
         skhd = {
           enable = true;
           package = pkgs.skhd;
+          skhdConfig = ''
+             # depends on
+             #  bar_colors visor layouts opacity kitty-wrapper
+             #  yabai
+             #  firefox-wrapper fb-rotate 
+             #  screenrecording webcam 
+             # modes
+              :: default : /Users/desanso/bin/bar_colors background
+              :: m1 @ : /Users/desanso/bin/bar_colors 1 
+              :: m2 @ : /Users/desanso/bin/bar_colors 2
+             # toggle between modes
+             ctrl - s             ; m1 
+             m1 < ctrl - s        ; m2
+             m2 < ctrl - s        ; default
+             m1, m2 < escape ; default
+             m1, m2 < i      ; default
+             # tiling mode
+             m1 < a            :  yabai -m space --layout bsp
+             m1 < s            :  yabai -m space --layout stack
+             m1 < d            :  yabai -m space --layout float
+             # rotate window tree
+             m1 < space		:   yabai -m space --rotate 90  
+             # equalize window sizes
+             m1 < 0x18   : yabai -m space --balance
+             # fullscreen window
+             #m1 < z     : skhd -k 'escape'; yabai -m window --toggle zoom-fullscreen
+             # zoom-parent toggle
+             m1 < p    : yabai -m window --toggle zoom-parent
+             # float window
+             m1 < f    : yabai -m window --toggle float 
+             # pip window
+             m2 < p : yabai -m window --toggle pip; yabai -m window --toggle sticky; yabai -m window --toggle topmost
+             # cycle layouts
+             m2 < c : layouts cycle
+             # adjust opacity
+             m2 < o : opacity toggle
+             # window focus
+             m1 < h   : yabai -m window --focus west  
+             m1 < l   : yabai -m window --focus east   
+             m1 < j   : yabai -m window --focus south   
+             m1 < k   : yabai -m window --focus north   
+             m1 < n   : yabai -m window --focus next 
+             # window swap
+             m2 < h   : yabai -m window --swap west   
+             m2 < l   : yabai -m window --swap east   
+             m2 < j   : yabai -m window --swap south   
+             m2 < k   : yabai -m window --swap north   
+             # change spaces 
+             m1 < left  : yabai -m space --focus prev || yabai -m space --focus last
+             m1 < right : yabai -m space --focus next || yabai -m space --focus first
+             m1 < 1 : yabai -m space --focus 1
+             m1 < 2 : yabai -m space --focus 2
+             m1 < 3 : yabai -m space --focus 3
+             m1 < 4 : yabai -m space --focus 4
+             m1 < 5 : yabai -m space --focus 5
+             m1 < 6 : yabai -m space --focus 6
+             m1 < 7 : yabai -m space --focus 7
+             m1 < 8 : yabai -m space --focus 8
+             m1 < 9 : yabai -m space --focus 9
+             # send window to space and follow focus
+             m2 < left : yabai -m window --space prev; yabai -m space --focus prev
+             m2 < right : yabai -m window --space next; yabai -m space --focus next
+             m2 < 1 : yabai -m window --space 1; yabai -m space --focus 1
+             m2 < 2 : yabai -m window --space 2; yabai -m space --focus 2
+             m2 < 3 : yabai -m window --space 3; yabai -m space --focus 3
+             m2 < 4 : yabai -m window --space 4; yabai -m space --focus 4
+             m2 < 5 : yabai -m window --space 5; yabai -m space --focus 5
+             m2 < 6 : yabai -m window --space 6; yabai -m space --focus 6
+             m2 < 7 : yabai -m window --space 7; yabai -m space --focus 7
+             m2 < 8 : yabai -m window --space 8; yabai -m space --focus 8
+             m2 < 9 : yabai -m window --space 9; yabai -m space --focus 9
+             # move space to recent display
+             m2 < space :  yabai -m space --display next || yabai -m space --display first
+             # move focus to other monitor 
+             m1 < up    : yabai -m display --focus prev || yabai -m display --focus last
+             m1 < down    : yabai -m display --focus next || yabai -m display --focus first
+             # # move window to other monitor 
+             m2 < up : yabai -m window --display prev; yabai -m display --focus prev
+             m2 < down : yabai -m window --display next; yabai -m display --focus next 
+             # open kitty
+             default, m1, m2 < cmd - return : skhd -k 'escape'; exec kitty-wrapper
+             # open quicksilver and spotlight
+             m1, m2 < cmd - space : skhd -k 'escape'; skhd -k 'cmd - space'
+             m1, m2 < cmd + alt - space : skhd -k 'escape'; skhd -k 'cmd + alt - space'
+             # open firefox windows
+             m1 < b   :  skhd -k "escape"; firefox-wrapper &
+             m2 < b   :  skhd -k "escape"; firefox-wrapper --private-window &
+             # screen capture
+             m1 < c      :  skhd -k "escape"; /usr/sbin/screencapture -iUgc -J "window"
+             # screenrecording
+             #m1 < f5 : skhd -k 'escape'; $HOME/bin/screenrecording -d $HOME/Movies/screen -o capture
+             #m1 < f6 : skhd -k 'escape'; $HOME/bin/webcam corner
+             #m1 < f7 : skhd -k 'escape'; $HOME/bin/webcam doc
+             # lock screen
+             # rotate external monitor
+             m1 < r    :  skhd -k "escape"; fb-rotate -d 1 -r 1
+             # reload yabai
+             m2 < r            : skhd -k 'escape'; launchctl stop org.nixos.yabai
+             # q script to replace quicksilver
+             default < ctrl -space : visor
+             m1, m2 < ctrl -space : skhd -k "escape"; visor
+          '';
         };
 
         yabai = {
@@ -480,8 +582,7 @@
             yabai -m rule --add app="^LogicProgram$" title="^Problems$" manage=off
             yabai -m rule --add app='^zoom\.us$' manage=off
             yabai -m rule --add app='^choose$' manage=off
-            yabai -m rule --add app='^kitty$' title='^visor$' grid=1:1:1:1:1:1 opacity=0.9 layer=above manage=off 
-            yabai -m rule --add app='^.kitty-wrapped$' title='^visor$' grid=1:1:1:1:1:1 opacity=0.9 layer=above manage=off 
+            yabai -m rule --add app='^kitty$' title='^visor$' grid="1:20:2:1:16:1" opacity=0.9 scratchpad="visor"
             yabai -m rule --add app="^Visualizer$" manage=on
             yabai -m rule --add app="^TomatoFlex$" manage=off
             yabai -m rule --add app="^Firefox$" manage=on
