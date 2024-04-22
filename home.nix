@@ -86,6 +86,7 @@ in
     "pause" = "nowplaying-cli pause"; #mac specific
     "next" = "nowplaying-cli next"; #mac specific
     "volume" = "m volume"; #mac specific
+    "liar" = "z liar; nvim -c 'Telescope find_files'";
   };
 
   home.sessionVariables = {
@@ -218,7 +219,6 @@ in
     #zerotier-one
     #zoom
     #zotero
-
   ];
 
   xdg.enable = true;
@@ -263,6 +263,12 @@ in
   home.file.wallust = {
     source = ./config/wallust;
     target = "Library/Application Support/wallust";
+  };
+
+  home.file.pandoc = {
+    source = ./config/pandoc;
+    recursive = true;
+    target = ".pandoc";
   };
 
   accounts.calendar = {

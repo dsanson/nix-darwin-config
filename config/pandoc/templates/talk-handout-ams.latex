@@ -1,0 +1,281 @@
+\documentclass[$if(fontsize)$$fontsize$,$endif$$if(lang)$$babel-lang$,$endif$$if(papersize)$$papersize$paper,$endif$$for(classoption)$$classoption$$sep$,$endfor$]{$documentclass$}
+
+\usepackage{amssymb,amsmath}
+\usepackage{ifxetex,ifluatex}
+\ifnum 0\ifxetex 1\fi\ifluatex 1\fi=0 % if pdftex
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+$if(euro)$
+  \usepackage{eurosym}
+$endif$
+\else % if luatex or xelatex
+  \ifxetex
+    \usepackage{mathspec}
+    \usepackage{xltxtra,xunicode}
+  \else
+    \usepackage{fontspec}
+  \fi
+  \usepackage{unicode-math}
+  \defaultfontfeatures{Mapping=tex-text,Scale=MatchLowercase}
+  \newcommand{\euro}{€}
+$if(mainfont)$
+    \setmainfont{$mainfont$}
+$else$
+    \setmainfont[Mapping=tex-text]{Minion Pro}
+$endif$
+$if(sansfont)$
+    \setsansfont{$sansfont$}
+$else$
+    \setsansfont[Mapping=tex-text]{Myriad Pro}
+$endif$
+$if(monofont)$
+    \setmonofont[Mapping=tex-ansi]{$monofont$}
+$else$
+    \setmonofont[Mapping=tex-text]{Inconsolata}
+$endif$
+$if(mathfont)$
+    \setmathfont(Digits,Latin,Greek){$mathfont$}
+$else$
+\setmathfont{Asana Math}
+$endif$
+\fi
+
+$if(natbib)$
+\usepackage{natbib}
+\bibliographystyle{plainnat}
+$endif$
+$if(biblatex)$
+\usepackage{biblatex}
+$if(biblio-files)$
+\bibliography{$biblio-files$}
+$endif$
+$endif$
+$if(listings)$
+\usepackage{listings}
+$endif$
+$if(lhs)$
+\lstnewenvironment{code}{\lstset{language=Haskell,basicstyle=\small\ttfamily}}{}
+$endif$
+$if(highlighting-macros)$
+$highlighting-macros$
+$endif$
+$if(verbatim-in-note)$
+\usepackage{fancyvrb}
+$endif$
+$if(fancy-enums)$
+% Redefine labelwidth for lists; otherwise, the enumerate package will cause
+% markers to extend beyond the left margin.
+\makeatletter\AtBeginDocument{%
+  \renewcommand{\@listi}
+    {\setlength{\labelwidth}{4em}}
+}\makeatother
+\usepackage{enumerate}
+$endif$
+\usepackage{xcolor}
+\usepackage{tikz}
+\usetikzlibrary{shapes}
+\usepackage{ctable}
+\usepackage{longtable}
+\usepackage{float} % provides the H option for float placement
+$if(url)$
+\usepackage{url}
+$endif$
+$if(graphics)$
+\usepackage{graphicx}
+% We will generate all images so they have a width \maxwidth. This means
+% that they will get their normal width if they fit onto the page, but
+% are scaled down if they would overflow the margins.
+\makeatletter
+\def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth
+\else\Gin@nat@width\fi}
+\makeatother
+\let\Oldincludegraphics\includegraphics
+\renewcommand{\includegraphics}[1]{\Oldincludegraphics[width=\maxwidth]{#1}}
+$endif$
+\ifxetex
+  \usepackage[setpagesize=false, % page size defined by xetex
+              unicode=false, % unicode breaks when used with xetex
+              xetex,
+              colorlinks=true,
+              linkcolor=blue]{hyperref}
+\else
+  \usepackage[unicode=true,
+              colorlinks=true,
+              linkcolor=blue]{hyperref}
+\fi
+\hypersetup{breaklinks=true, pdfborder={0 0 0}}
+$if(strikeout)$
+\usepackage[normalem]{ulem}
+% avoid problems with \sout in headers with hyperref:
+\pdfstringdefDisableCommands{\renewcommand{\sout}{}}
+$endif$
+$if(subscript)$
+\newcommand{\textsubscr}[1]{\ensuremath{_{\scriptsize\textrm{#1}}}}
+$endif$
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{6pt plus 2pt minus 1pt}
+\setlength{\emergencystretch}{3em}  % prevent overfull lines
+$if(numbersections)$
+$else$
+\setcounter{secnumdepth}{0}
+$endif$
+$if(verbatim-in-note)$
+\VerbatimFootnotes % allows verbatim text in footnotes
+$endif$
+$if(lang)$
+\ifxetex
+  \usepackage{polyglossia}
+  \setmainlanguage{$mainlang$}
+\else
+  \usepackage[$lang$]{babel}
+\fi
+$endif$
+$for(header-includes)$
+$header-includes$
+$endfor$
+
+$if(author)$
+\author{$author.name$}
+$endif$
+$if(title)$
+\title{$title$ \\ \normalsize $for(authors)$$authors.name$ --- $authors.affiliation$ --- $authors.email$$endfor$ \\ $date$}
+$endif$
+
+\date{}
+
+% Remove the author and date fields and the space associated with them
+% from the definition of maketitle!
+\makeatletter
+\renewcommand{\@maketitle}{
+\newpage
+ \begin{center}%
+  {\Large \@title \par}%
+ \end{center}%
+ \par} \makeatother
+
+
+
+\pgfdeclarelayer{edgelayer}
+\pgfdeclarelayer{nodelayer}
+\pgfsetlayers{edgelayer,nodelayer,main}
+
+\tikzstyle{none}=[inner sep=0pt]
+\tikzstyle{dot}=[circle,fill=black,draw=black]
+\usepackage[margin=1in]{geometry}
+\usepackage[small,compact]{titlesec}
+
+% indent definition lists
+
+\renewenvironment{description}
+  {\list{}{\labelwidth=0pt \leftmargin=.5in
+   \let\makelabel\descriptionlabel}}
+  {\endlist}
+% Set quotes in italics
+
+% \renewenvironment{quote}{%
+%  \it
+%  \list{}{%
+%    \setlength{\parskip}{0pt}
+%    \rightmargin\leftmargin
+%  }
+%  \item\relax
+% }
+% {\endlist}
+
+% Logic Symbols
+
+% Sentence letters
+  \renewcommand{\sl}[1]{\ensuremath{\mathrm{#1}}}
+% Ampersand as a binary relation
+\newcommand{\lamp}{\ensuremath{\mathbin{\&}}}
+% Tilda as a unary operator
+\newcommand{\ntt}{\ensuremath{\mathord{\sim}}}
+\newcommand{\then}{\ensuremath{\rightarrow}}
+\renewcommand{\iff}{\ensuremath{\leftrightarrow}}
+
+% The following commands are good as is:
+% \neg
+% \lor
+% \exists
+% \forall
+
+
+\newcommand{\CI}{%
+    \begin{tikzpicture}[baseline]%
+      \draw (0,.25em) circle (.4em);%
+   \end{tikzpicture}%
+}
+
+\newcommand{\BX}{%
+    \begin{tikzpicture}[baseline]%
+      \draw (0,-.05em) rectangle (.7em,.65em);%
+   \end{tikzpicture}%
+}
+
+\newcommand{\ERGO}{\mathbin{\therefore}}
+\newcommand{\PERG}{\phantom{\ERGO}}
+\newcommand{\Erg}{\ERGO}
+\newcommand{\Erp}{\PERG}
+\newcommand{\Land}{\mathbin{\wedge}}
+\newcommand{\Lor}{\mathbin{\vee}}
+\newcommand{\Liff}{\mathbin{\leftrightarrow}}
+\newcommand{\Lneg}{\mathord{\sim}}
+\newcommand{\Lif}{\mathbin{\rightarrow}}
+\newcommand{\Lall}{\forall}
+\newcommand{\Lsome}{\exists}
+
+\usepackage{framed}
+\usepackage{multicol}
+\usepackage{natded}
+\usepackage{fancybox}
+\usepackage{ifthen}
+$if(latex-package)$
+\usepackage{$latex-package$}
+$endif$
+
+\providecommand{\tightlist}{\setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+
+\begin{document}
+
+% \setromanfont[Mapping=tex-text]{Minion Pro} 
+% \setsansfont[Mapping=tex-text]{Myriad Pro} 
+% \setmonofont[Mapping=tex-text]{Inconsolata} 
+
+
+
+$if(title)$
+\maketitle
+$endif$
+
+$for(include-before)$
+$include-before$
+
+$endfor$
+$if(toc)$
+\tableofcontents
+
+$endif$
+$body$
+
+$if(natbib)$
+$if(biblio-files)$
+$if(biblio-title)$
+$if(book-class)$
+\renewcommand\bibname{$biblio-title$}
+$else$
+\renewcommand\refname{$biblio-title$}
+$endif$
+$endif$
+\bibliography{$biblio-files$}
+
+$endif$
+$endif$
+$if(biblatex)$
+\printbibliography$if(biblio-title)$[title=$biblio-title$]$endif$
+
+$endif$
+$for(include-after)$
+$include-after$
+
+$endfor$
+\end{document}

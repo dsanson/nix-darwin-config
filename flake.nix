@@ -254,11 +254,16 @@
           NSAutomaticPeriodSubstitutionEnabled = false;
           NSAutomaticQuoteSubstitutionEnabled = false;
           NSAutomaticSpellingCorrectionEnabled = false;
+          NSAutomaticWindowAnimationsEnabled = false;
           NSNavPanelExpandedStateForSaveMode = true;
           NSNavPanelExpandedStateForSaveMode2 = true;
           NSTableViewDefaultSizeMode = 1; #1 = small; 2 = medium; 3 = large
           _HIHideMenuBar = true;
           "com.apple.sound.beep.volume" = 0.4;
+        };
+        
+        universalaccess = {
+          reduceMotion = true;
         };
 
         dock = {
@@ -271,7 +276,6 @@
 
         finder = {
           CreateDesktop = false; # don't show items on desktop
-          #DisableAllAnimations = true;
           FXPreferredViewStyle = "Nlsv"; # default to list view
           QuitMenuItem = true;
           ShowPathbar = true;
