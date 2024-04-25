@@ -372,7 +372,6 @@ in
         defaultbrowser firefox >/dev/null
         if type -q kitty
           #kitty @ set-colors -c ~/.cache/wal/colors-kitty.conf
-          visor init
         end
       '';
       plugins = [

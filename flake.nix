@@ -399,7 +399,15 @@
           "TomatoFlex"             =  1500965952;
         };
       };
+
       services = {
+        ipfs = {
+          enable = true;
+          ipfsPath = "/Users/desanso/ipfs";
+        };
+        karabiner-elements = {
+          enable = false;
+        };
         sketchybar = {
           enable = true;
           package = pkgs.sketchybar;
@@ -508,7 +516,7 @@
              # reload yabai
              m2 < r            : skhd -k 'escape'; launchctl stop org.nixos.yabai
              # q script to replace quicksilver
-             default < ctrl -space : visor
+             default < ctrl -space : yabai -m window --toggle visor || open -a kitty.app -n --args --title "visor" /etc/profiles/per-user/desanso/bin/fish -C 'q -w'
              m1, m2 < ctrl -space : skhd -k "escape"; visor
           '';
         };
