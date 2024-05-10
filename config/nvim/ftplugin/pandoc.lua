@@ -1,8 +1,3 @@
-local g  = vim.g
-local o  = vim.o
-local wo = vim.wo
-local bo = vim.bo
-local opt = vim.opt
 local opt_local = vim.opt_local
 
 opt_local.equalprg = 'pandoc -f markdown+wikilinks_title_after_pipe -t markdown+wikilinks_title_after_pipe  --columns 78 --markdown-headings=atx --id-prefix (random) --reference-location block --standalone'
@@ -17,23 +12,20 @@ opt_local.wrap = true
 --vim.opt_local.formatlistpat = [[^\s*\([*+-]\|\((*\d\+[.)]\+\)\|\((*\l[.)]\+\)\)\s\+]]
 
 -- vim-pandoc
-g["pandoc#biblio#bibs"] = { "/Users/desanso/Documents/d/research/zotero.bib" }
+vim.g["pandoc#biblio#bibs"] = { "/Users/desanso/Documents/d/research/zotero.bib" }
 
--- mappings
-local wk = require('which-key')
-
-
-function add_ms_comment() 
+function add_ms_comment()
   math.randomseed(os.time())
   local _, line_v, col_v = unpack(vim.fn.getpos('v'))
   local _, line_cur, col_cur = unpack(vim.fn.getpos('.'))
   line_v = line_v - 1
   col_v = col_v - 1
   line_cur = line_cur - 1
-  col_cur = col_cur 
+  col_cur = col_cur
   if col_cur > vim.fn.strwidth(vim.fn.getline('.')) then
     col_cur = col_cur - 1
   end
+  local line_start, col_start, line_end, col_end
   if line_v > line_cur or (line_v == line_cur and col_cur < col_v) then
      line_start = line_cur
      col_start = col_cur
