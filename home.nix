@@ -86,7 +86,7 @@ in
     "pause" = "nowplaying-cli pause"; #mac specific
     "next" = "nowplaying-cli next"; #mac specific
     "volume" = "m volume"; #mac specific
-    "liar" = "z liar; nvim -c 'Telescope find_files'";
+    "liar" = "cd ~/d/research/projects/Papers/with_ahmed/liar-book; nvim -c 'Telescope find_files'";
   };
 
   home.sessionVariables = {
@@ -654,6 +654,9 @@ in
       ];
       withPython3 = true;
       extraPython3Packages = ps: with ps; [ pynvim ];
+      withRuby = true;
+      extraLuaPackages = ps: [ ps.magick ];
+      extraPackages = [ pkgs.imagemagick ];
     };
 
     starship = {
