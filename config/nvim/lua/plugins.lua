@@ -12,12 +12,12 @@ end
 vim.opt.rtp:prepend(lazypath)
 
 require("lazy").setup({
-  "folke/which-key.nvim",
-  "neovim/nvim-lspconfig",
-  "sprockmonty/wal.vim", -- colorschemes
+  'folke/which-key.nvim',
+  'neovim/nvim-lspconfig',
+  'sprockmonty/wal.vim', -- colorschemes
   'reedes/vim-litecorrect', -- autocorrect as you type
-  "ludovicchabant/vim-gutentags",
-  "folke/twilight.nvim", -- dim inactive paragraph
+  'ludovicchabant/vim-gutentags',
+  'folke/twilight.nvim', -- dim inactive paragraph
   'farmergreg/vim-lastplace', -- restore cursor position
   'junegunn/vim-easy-align', -- align by character: 'v<enter>|'
   'jszakmeister/vim-togglecursor', -- toggle cursor in insert mode in terminals
@@ -29,14 +29,23 @@ require("lazy").setup({
   'rhysd/conflict-marker.vim',
   'airblade/vim-gitgutter',
   'chrisbra/csv.vim', -- replaced by treesitter? csv syntax and filetype plugin
+  {
+    '3rd/image.nvim',
+    config = function()
+      require('image').setup({
+        enabled = true,
+        filetypes = { 'markdown', 'vimwiki', 'pandoc' },
+      })
+    end,
+  },
   { 
-    "hrsh7th/nvim-cmp",
+    'hrsh7th/nvim-cmp',
     dependencies = {
-      "hrsh7th/cmp-nvim-lsp",
-      "hrsh7th/cmp-buffer",
-      "hrsh7th/cmp-path",
-      "hrsh7th/cmp-cmdline",
-      "hrsh7th/cmp-calc",
+      'hrsh7th/cmp-nvim-lsp',
+      'hrsh7th/cmp-buffer',
+      'hrsh7th/cmp-path',
+      'hrsh7th/cmp-cmdline',
+      'hrsh7th/cmp-calc',
     },
   },  
   { 
@@ -262,7 +271,7 @@ require("lazy").setup({
       "nvim-lua/plenary.nvim",
       "nvim-tree/nvim-web-devicons", -- not strictly required, but recommended
       "MunifTanjim/nui.nvim",
-      -- "3rd/image.nvim", -- Optional image support in preview window: See `# Preview Mode` for more information
+      "3rd/image.nvim", -- Optional image support in preview window: See `# Preview Mode` for more information
     },
     config = function() 
     require("neo-tree").setup {

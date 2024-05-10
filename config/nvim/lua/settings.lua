@@ -48,18 +48,18 @@ opt.updatecount   = 100 -- Write to swap every 10 characters (default is 200)
 opt.undofile      = true -- Write undofiles
 
 -- status
-opt.ruler         = false      -- Hide the ruler
+opt.ruler         = true      -- Hide the ruler
 opt.statusline    = '%m%r%t %y [%c,%l,%P]' --Status line
 opt.laststatus    = 0 --Hide status line
-opt.shortmess     = 'atOI'      -- avoid being spammed by messages
+opt.shortmess     = 'atOI'    -- avoid being spammed by messages
 opt.showcmd       = true      -- Show partial commands in status line and Selected characters/lines in visual mode
 opt.showmode      = true      -- Show current mode in command-line
-opt.matchtime     = 5    -- Show matching time
-opt.report        = 0       -- Always report changed lines
+opt.matchtime     = 5         -- Show matching time
+opt.report        = 0         -- Always report changed lines
 
 -- window options
 opt.number       = false       -- no line numbers
-opt.wrap         = false         -- no wrap
+opt.wrap         = false       -- no wrap
 opt.linespace     = 0    -- No extra spaces between rows
 opt.pumheight     = 20   -- Avoid the pop up menu occupying the whole screen
 opt.wildmode      = 'longest,list,full' --More bash-like filename tab completions
@@ -76,10 +76,6 @@ opt.clipboard     = 'unnamed' --Use system clipboard
 
 -- neovim terminal 
 cmd('autocmd TermOpen * startinsert') -- Enter "terminal mode" automatically
-
--- python
-vim.g['python_host_prog'] = '~/.asdf/installs/python/2.7.18/bin/python'
-vim.g['python3_host_prog'] = '~/.asdf/installs/python/3.10.5/bin/python'
 
 -- wal doesn't work with termguicolors
 opt.termguicolors = false
