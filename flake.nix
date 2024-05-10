@@ -31,7 +31,7 @@
       nixpkgs.config.allowUnfree = true;
 
       users.users.desanso = {
-        name = "desanso";
+        description = "David Sanson";
         home = "/Users/desanso";
       };
 
@@ -571,10 +571,11 @@
               yabai -m space "$idx" --label "$name"
             }
 
-            setup_space 1 
+            setup_space 1 BOOK
             setup_space 2 
             setup_space 3 
             setup_space 4 
+            setup_space 5
 
             yabai -m rule --add app="^Zotero$" space=2
             yabai -m rule --add app="^Zotero$" title="^Zotero$" manage=on
@@ -606,7 +607,7 @@
             yabai -m signal --add event=display_removed action='sketchybar --reload'
             yabai -m signal --add event=front_app_switched="sketchybar 
 
-            sketchybar --reload
+            ${pkgs.sketchybar}/bin/sketchybar --reload
           '';
         };
       };
