@@ -27,8 +27,8 @@ require("lazy").setup({
   'tomtom/tcomment_vim', -- toggle comments (gcc, vgc...)
   --'tpope/vim-repeat', -- extend repeat '.' to include stuff in mappings
   'rhysd/conflict-marker.vim',
-  'airblade/vim-gitgutter',
   'chrisbra/csv.vim', -- replaced by treesitter? csv syntax and filetype plugin
+  'lewis6991/gitsigns.nvim',
   {
     '3rd/image.nvim',
     config = function()
