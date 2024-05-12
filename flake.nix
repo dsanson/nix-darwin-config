@@ -569,13 +569,13 @@
               fi
 
               yabai -m space "$idx" --label "$name"
+              /Users/desanso/bin/layouts -s "$idx" current
             }
 
             setup_space 1 BOOK
-            setup_space 2 
-            setup_space 3 
-            setup_space 4 
-            setup_space 5
+            for s in 2 3 4 5; do
+              setup_space $s
+            done 
 
             yabai -m rule --add app="^Zotero$" space=2
             yabai -m rule --add app="^Zotero$" title="^Zotero$" manage=on
