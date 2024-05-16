@@ -12,10 +12,11 @@ bar=(
   topmost=window 
   blur_radius=50   
   position=top
-  padding_left=10  
-  padding_right=10 
-  color="$COLOR"
+  padding_left=0  
+  padding_right=0 
+  color="0x00ffffff"
   notch_width=200
+  y_offset=-1
 )
 
 ############# DEFAULTS #########
@@ -59,6 +60,7 @@ yabai -m query --spaces | \
       icon="$ICON" 
       icon.color="$COLOR"
       icon.font="$LABEL_FONT" 
+      background.padding_left=8
       icon.background.drawing=on 
       icon.background.height=15 
       icon.background.corner_radius=4 
@@ -81,19 +83,37 @@ yabai -m query --spaces | \
     )
 
     sketchybar  \
-      --add space s$SPACE e \
+      --add space s$SPACE left \
       --set s$SPACE "${SPACE_OPTS[@]}" \
       --subscribe s$SPACE "${EVENTS[@]}"
 
   done
 
+sketchybar \
+  --add bracket spaces '/s[1-9].*/' \
+  --set spaces \
+    background.height=33 \
+    background.color="$COLOR"
+
 
 ############## RIGHT ITEMS ############## 
+
 CLOCK_OPTS=(
   update_freq=10
   script="$PLUGIN_DIR/clock.sh"
   click_script="open -a Calendar"
   popup.align=right
+  label.color="$COLOR"
+  label.font="$LABEL_FONT" 
+  background.padding_right=8
+  label.background.drawing=on 
+  label.background.height=15 
+  label.background.corner_radius=4 
+  label.background.color="$UNSELECTED_COLOR"
+  label.highlight_color="$SELECTED_COLOR"
+  label.padding_left=8
+  label.padding_right=8 
+  label.y_offset=1
 )
 
 CLOCK_EVENTS=(
@@ -102,43 +122,63 @@ CLOCK_EVENTS=(
   #mouse.exited.global
 )
 
-BATTERY_OPTS=(
-  script="COLOR=$COLOR $PLUGIN_DIR/battery.sh" 
-  click_script="open /System/Library/PreferencePanes/Battery.prefPane"
-  update_freq=120 
+
+DATE_OPTS=(
+  update_freq=10
+  script="$PLUGIN_DIR/date.sh"
+  click_script="open -a Calendar"
+  popup.align=right
+  label.color="$COLOR"
+  label.font="$LABEL_FONT" 
+  label.background.drawing=on 
+  label.background.height=20
+  label.background.border_color=0xff${RAW_COLOR[8]}
+  label.background.border_width=2
+  label.background.corner_radius=4 
+  label.background.color="$UNSELECTED_COLOR"
+  label.highlight_color="$SELECTED_COLOR"
+  label.padding_left=6
+  label.padding_right=6 
+  label.y_offset=1
 )
 
-BATTERY_EVENTS=(
-  system_woke 
-  power_source_change
-  #mouse.entered
-  #mouse.exited
-  #mouse.exited.global
-)
-
-WIFI_OPTS=(
-  script="$PLUGIN_DIR/wifi.sh"
-  click_script="open /System/Library/PreferencePanes/Network.prefPane"
-)
-
-WIFI_EVENTS=(
-  wifi_change
-  #mouse.entered
-  #mouse.exited
-  #mouse.exited.global
-)
-
-VOLUME_OPTS=(
-  script="$PLUGIN_DIR/volume.sh"
-  click_script="open /System/Library/PreferencePanes/Sound.prefPane"
-)
-
-VOLUME_EVENTS=(
-  volume_change
-  #mouse.entered
-  #mouse.exited
-  #mouse.exited.global
-)
+# BATTERY_OPTS=(
+#   script="COLOR=$COLOR $PLUGIN_DIR/battery.sh" 
+#   click_script="open /System/Library/PreferencePanes/Battery.prefPane"
+#   update_freq=120 
+# )
+#
+# BATTERY_EVENTS=(
+#   system_woke 
+#   power_source_change
+#   #mouse.entered
+#   #mouse.exited
+#   #mouse.exited.global
+# )
+#
+# WIFI_OPTS=(
+#   script="$PLUGIN_DIR/wifi.sh"
+#   click_script="open /System/Library/PreferencePanes/Network.prefPane"
+# )
+#
+# WIFI_EVENTS=(
+#   wifi_change
+#   #mouse.entered
+#   #mouse.exited
+#   #mouse.exited.global
+# )
+#
+# VOLUME_OPTS=(
+#   script="$PLUGIN_DIR/volume.sh"
+#   click_script="open /System/Library/PreferencePanes/Sound.prefPane"
+# )
+#
+# VOLUME_EVENTS=(
+#   volume_change
+#   #mouse.entered
+#   #mouse.exited
+#   #mouse.exited.global
+# )
 
 # MEDIA_OPTS=(
 #   script="$PLUGIN_DIR/media.sh"
@@ -152,22 +192,22 @@ VOLUME_EVENTS=(
 #   mouse.exited.global
 # )
 
-CAFFEINE_OPTS=(
-  script="$PLUGIN_DIR/caffeine.sh"
-)
-
-CAFFEINE_EVENTS=(
-  mouse.clicked
-)
-
-NOISE_OPTS=(
-  icon=""
-  click_script="$HOME/bin/noise"
-)
-
-NOISE_EVENTS=(
-  mouse.clicked
-)
+# CAFFEINE_OPTS=(
+#   script="$PLUGIN_DIR/caffeine.sh"
+# )
+#
+# CAFFEINE_EVENTS=(
+#   mouse.clicked
+# )
+#
+# NOISE_OPTS=(
+#   icon=""
+#   click_script="$HOME/bin/noise"
+# )
+#
+# NOISE_EVENTS=(
+#   mouse.clicked
+# )
 
 # DONOTDISTURB_OPTS=(
 #   script="$PLUGIN_DIR/do_not_disturb.sh"
@@ -182,52 +222,57 @@ NOISE_EVENTS=(
 sketchybar \
   --add item clock right \
   --set clock "${CLOCK_OPTS[@]}" \
-  --add item clock-info popup.clock \
-  --subscribe clock "${CLOCK_EVENTS[@]}" \
-  \
-  --add item battery right \
-  --set battery "${BATTERY_OPTS[@]}" \
-  --add item battery-info popup.battery \
-  --subscribe battery "${BATTERY_EVENTS[@]}" \
-  \
-  --add item wifi right \
-  --set wifi "${WIFI_OPTS[@]}" \
-  --add item wifi-info popup.wifi \
-  --subscribe wifi "${WIFI_EVENTS[@]}" \
-  \
-  --add item volume right \
-  --set volume "${VOLUME_OPTS[@]}" \
-  --add item volume-info popup.volume \
-  --subscribe volume "${VOLUME_EVENTS[@]}" \
-  \
-  --add item caffeine right          \
-  --set caffeine "${CAFFEINE_OPTS[@]}" \
-  --subscribe caffeine "${CAFFEINE_EVENTS[@]}"  \
-  \
-  --add item noise right          \
-  --set noise "${NOISE_OPTS[@]}" \
-  --subscribe noise "${NOISE_EVENTS[@]}" 
+  --add item date right \
+  --set date "${DATE_OPTS[@]}" \
   
-  # --add item media right          \
-  # --set media "${MEDIA_OPTS[@]}" \
-  # --add item media-info popup.media \
-  # --subscribe media "${MEDIA_EVENTS[@]}" \
-  
- 
-  # --add item do-not-disturb right \
-  # --set do-not-disturb \
-  #   label="󱃓" \
-  # --subscribe do-not-disturb "${DONOTDISTURB_EVENTS[@]}"
+  # --add item battery right \
+  # --set battery "${BATTERY_OPTS[@]}" \
+  # --add item battery-info popup.battery \
+  # --subscribe battery "${BATTERY_EVENTS[@]}" \
+  # \
+  # --add item wifi right \
+  # --set wifi "${WIFI_OPTS[@]}" \
+  # --add item wifi-info popup.wifi \
+  # --subscribe wifi "${WIFI_EVENTS[@]}" \
+  # \
+  # --add item volume right \
+  # --set volume "${VOLUME_OPTS[@]}" \
+  # --add item volume-info popup.volume \
+  # --subscribe volume "${VOLUME_EVENTS[@]}" \
+  # \
+  # --add item caffeine right          \
+  # --set caffeine "${CAFFEINE_OPTS[@]}" \
+  # --subscribe caffeine "${CAFFEINE_EVENTS[@]}"  \
+  # \
+  # --add item noise right          \
+  # --set noise "${NOISE_OPTS[@]}" \
+  # --subscribe noise "${NOISE_EVENTS[@]}" 
+  #
+  # # --add item media right          \
+  # # --set media "${MEDIA_OPTS[@]}" \
+  # # --add item media-info popup.media \
+  # # --subscribe media "${MEDIA_EVENTS[@]}" \
+  #
+  #
+  # # --add item do-not-disturb right \
+  # # --set do-not-disturb \
+  # #   label="󱃓" \
+  # # --subscribe do-not-disturb "${DONOTDISTURB_EVENTS[@]}"
 
+sketchybar \
+  --add bracket right clock date \
+  --set right \
+    background.height=33 \
+    background.color="$COLOR"
 
 ###################### CENTER ITEMS ###################
 
-# Display current app in the center
-sketchybar \
-  --add item system.label left \
-  --set system.label \
-    script="sketchybar --set \$NAME label=\"\$INFO\"" \
-  --subscribe system.label front_app_switched
+# # Display current app in the center
+# sketchybar \
+#   --add item system.label q \
+#   --set system.label \
+#     script="sketchybar --set \$NAME label=\"\$INFO\"" \
+#   --subscribe system.label front_app_switched
 
 ############## FINALIZING THE SETUP ##############
 sketchybar --update

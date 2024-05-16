@@ -535,7 +535,7 @@
           package = pkgs.yabai;
           enableScriptingAddition = true;
           config = {
-            external_bar = "all:0:0";
+            external_bar = "all:38:0";
             mouse_follows_focus = "on";
             focus_follows_mouse = "off";
             window_placement = "second_child";

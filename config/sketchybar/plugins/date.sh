@@ -2,5 +2,5 @@
 
 sketchybar \
   --set "$NAME" \
-    label="$(date '+%H:%M')" \
+    label="$(date '+%d')" \
 
