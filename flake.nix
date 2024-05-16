@@ -33,8 +33,15 @@
       users.users.desanso = {
         description = "David Sanson";
         home = "/Users/desanso";
+        shell = pkgs.fish;
       };
 
+      environment.shells = [
+        pkgs.fish
+        pkgs.bashInteractive
+        pkgs.zsh
+      ];
+      
       environment.systemPackages = with pkgs;
         [ 
           # shells
@@ -90,7 +97,7 @@
           apr
           aria
           asciidoc
-          #asdf-vm
+          asdf-vm
           aspell
           atool
           bison
@@ -232,7 +239,8 @@
       system.stateVersion = 4;
 
       # The platform the configuration will be used on.
-      nixpkgs.hostPlatform = "x86_64-darwin";
+      #nixpkgs.hostPlatform = "x86_64-darwin";
+      nixpkgs.hostPlatform = "aarch64-darwin";
  
       networking = {
         computerName = "halibut";
@@ -263,7 +271,7 @@
         };
         
         universalaccess = {
-          reduceMotion = true;
+         reduceMotion = true;
         };
 
         dock = {
@@ -310,16 +318,18 @@
         
         taps = [
           "dsanson/tap" #for logic2010
-          "homebrew/cask-versions" #for zotero-beta
+          #"homebrew/cask-versions" #for zotero-beta
         ];
 
         brews = [
-          "asdf"
+          #"asdf"
           "launch" #macos launcher that is better than open
-          "reminders-cli"
+          #"reminders-cli"
           "rename" #consider alternatives
           "switchaudio-osx"
           "tag" #macos file tagging
+          "lua"
+          "luarocks"
         ];
 
         casks = [
@@ -329,18 +339,17 @@
           "calibre"
           "firefox"
           "hammerspoon" # just for the caps lock key
-          "haptickey" # only for macbook with annoying touchbar
           "itsycal" # nixpkg doesn't work complains needs to be installed in /Applications
           "marta" # trying
           "obsidian" # am I still using this?
           "quicksilver"
-          "satori"
+          #"satori"
           "syncthing"
           "the-unarchiver"
           "yacreader"
           "zerotier-one"
-          "zoom"
-          "zotero-beta"
+          #"zoom" "being managed by IT"
+          "zotero@beta"
          
           # occasional use (but good to have on hand)
           "djview"
@@ -375,9 +384,8 @@
           
           # fonts
           "font-awesome-terminal-fonts"
-          "font-hack-nerd-font"
-          "font-monofur-nerd-font"
-          "font-monofur-nerd-font-mono"
+          #"font-hack-nerd-font"
+          #"font-monofur-nerd-font"
 
         ];
 
@@ -497,13 +505,14 @@
              m2 < up : yabai -m window --display prev; yabai -m display --focus prev
              m2 < down : yabai -m window --display next; yabai -m display --focus next 
              # open kitty
-             default, m1, m2 < cmd - return : skhd -k 'escape'; exec kitty-wrapper
+             default < cmd - return : kitty-wrapper
+             m1, m2 < cmd - return : skhd -k 'escape'; kitty-wrapper
              # open quicksilver and spotlight
              m1, m2 < cmd - space : skhd -k 'escape'; skhd -k 'cmd - space'
              m1, m2 < cmd + alt - space : skhd -k 'escape'; skhd -k 'cmd + alt - space'
              # open firefox windows
-             m1 < b   :  skhd -k "escape"; firefox-wrapper &
-             m2 < b   :  skhd -k "escape"; firefox-wrapper --private-window &
+             m1 < b   :  skhd -k "escape"; $HOME/.local/bin/firefox-wrapper &
+             m2 < b   :  skhd -k "escape"; $HOME/.local/bin/firefox-wrapper --private-window &
              # screen capture
              m1 < c      :  skhd -k "escape"; /usr/sbin/screencapture -iUgc -J "window"
              # screenrecording
@@ -526,7 +535,7 @@
           package = pkgs.yabai;
           enableScriptingAddition = true;
           config = {
-            external_bar = "all:0:27";
+            external_bar = "all:0:0";
             mouse_follows_focus = "on";
             focus_follows_mouse = "off";
             window_placement = "second_child";

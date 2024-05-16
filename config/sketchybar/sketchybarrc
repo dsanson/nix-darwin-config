@@ -8,13 +8,14 @@ LABEL_FONT="Helvetica Neue:Bold:14.0"
 
 ############## BAR ############## 
 bar=(
-  height=22       
+  height=33      
   topmost=window 
   blur_radius=50   
-  position=bottom 
+  position=top
   padding_left=10  
   padding_right=10 
   color="$COLOR"
+  notch_width=200
 )
 
 ############# DEFAULTS #########
@@ -40,10 +41,6 @@ sketchybar \
   --hotload true \
   --bar "${bar[@]}" \
   --default "${defaults[@]}" \
-  --add event do_not_disturb_on _NSDoNotDisturbEnabledNotification \
-  --add event do_not_disturb_off _NSDoNotDisturbDisabledNotification \
-  --add event song_update com.apple.iTunes.playerInfo
-
 
 ############## SPACES #####################
 
@@ -84,7 +81,7 @@ yabai -m query --spaces | \
     )
 
     sketchybar  \
-      --add space s$SPACE center \
+      --add space s$SPACE e \
       --set s$SPACE "${SPACE_OPTS[@]}" \
       --subscribe s$SPACE "${EVENTS[@]}"
 
@@ -100,9 +97,9 @@ CLOCK_OPTS=(
 )
 
 CLOCK_EVENTS=(
-  mouse.entered
-  mouse.exited
-  mouse.exited.global
+  #mouse.entered
+  #mouse.exited
+  #mouse.exited.global
 )
 
 BATTERY_OPTS=(
@@ -114,9 +111,9 @@ BATTERY_OPTS=(
 BATTERY_EVENTS=(
   system_woke 
   power_source_change
-  mouse.entered
-  mouse.exited
-  mouse.exited.global
+  #mouse.entered
+  #mouse.exited
+  #mouse.exited.global
 )
 
 WIFI_OPTS=(
@@ -126,9 +123,9 @@ WIFI_OPTS=(
 
 WIFI_EVENTS=(
   wifi_change
-  mouse.entered
-  mouse.exited
-  mouse.exited.global
+  #mouse.entered
+  #mouse.exited
+  #mouse.exited.global
 )
 
 VOLUME_OPTS=(
@@ -138,9 +135,9 @@ VOLUME_OPTS=(
 
 VOLUME_EVENTS=(
   volume_change
-  mouse.entered
-  mouse.exited
-  mouse.exited.global
+  #mouse.entered
+  #mouse.exited
+  #mouse.exited.global
 )
 
 # MEDIA_OPTS=(

@@ -115,6 +115,8 @@ in
     nil
     marksman #zettlekasten style lsp 
     lua-language-server
+    #lua
+    #luarocks
     # data
     R
     visidata
@@ -254,6 +256,13 @@ in
     "fd/ignore".text = "**/*.app/**";
   };
 
+  xdg.dataFile = {
+    pandoc = {
+      source = ./share/pandoc;
+      recursive = true;
+    };
+  };
+
   home.file.hammerspoon = {
     source = ./config/hammerspoon;
     recursive = true;
@@ -265,11 +274,6 @@ in
     target = "Library/Application Support/wallust";
   };
 
-  home.file.pandoc = {
-    source = ./config/pandoc;
-    recursive = true;
-    target = ".pandoc";
-  };
 
   accounts.calendar = {
     basePath = ".calendars";
@@ -360,7 +364,9 @@ in
           set -x ASDF_DIR (brew --prefix asdf)/libexec
           source $ASDF_DIR/asdf.fish
         end
-        eval (luarocks path)
+        if type -q luarocks
+          eval (luarocks path)
+        end
         fish_add_path /run/current-system/sw/bin
         fish_add_path /etc/profiles/per-user/desanso/bin
         fish_add_path $HOME/.cargo/bin
@@ -369,6 +375,7 @@ in
         fish_add_path $HOME/.luarocks/bin 
         fish_add_path $HOME/.local/bin
         fish_add_path $HOME/bin 
+        fish_add_path /opt/homebrew/bin
         defaultbrowser firefox >/dev/null
         if type -q kitty
           #kitty @ set-colors -c ~/.cache/wal/colors-kitty.conf
@@ -497,7 +504,11 @@ in
     };
     yt-dlp.enable = true;
     pandoc = {
-      enable = false;
+      enable = true;
+      citationStyles = [
+        ./share/csl/oxford-university-press-humsoc.csl
+        ./share/csl/oxford-university-press-note.csl
+      ];
     };
     texlive = {
       enable = false;
@@ -639,6 +650,7 @@ in
       vimdiffAlias = true;
       plugins = [ 
         pkgs.vimPlugins.nvim-treesitter.withAllGrammars
+        #pkgs.vimPlugins.telescope-fzf-native-nvim
         #pkgs.vimPlugins.which-key-nvim
         #pkgs.vimPlugins.nvim-lspconfig
         #pkgs.vimPlugins.nvim-lastplace
@@ -648,7 +660,6 @@ in
         #pkgs.vimPlugins.vim-easy-align
         #pkgs.vimPlugins.vim-speeddating
         #pkgs.vimPlugins.utl-vim
-        #pkgs.vimPlugins.vim-gitgutter
         #pkgs.vimPlugins.conflict-marker-vim
         #pkgs.vimPlugins.csv-vim
       ];
