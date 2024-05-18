@@ -92,6 +92,7 @@
           python311Packages.keyring
 
           # do I even use these?
+          vlc-bin
           a2ps
           ant
           apr
@@ -203,6 +204,7 @@
           wcalc #used by bin/q-preview
           xmlto
           zk
+          musescore
 
         ];
       
@@ -318,18 +320,16 @@
         
         taps = [
           "dsanson/tap" #for logic2010
-          #"homebrew/cask-versions" #for zotero-beta
         ];
 
         brews = [
-          #"asdf"
           "launch" #macos launcher that is better than open
-          #"reminders-cli"
           "rename" #consider alternatives
           "switchaudio-osx"
           "tag" #macos file tagging
           "lua"
           "luarocks"
+          "syncthing" # nix version installs fine, but need to write a launchctl service for it
         ];
 
         casks = [
@@ -344,7 +344,6 @@
           "obsidian" # am I still using this?
           "quicksilver"
           #"satori"
-          "syncthing"
           "the-unarchiver"
           "yacreader"
           "zerotier-one"
@@ -352,24 +351,23 @@
           "zotero@beta"
          
           # occasional use (but good to have on hand)
-          "djview"
-          "vlc"
+          "djview" #nixpkg is marked as broken
 
           # occasional use (consider not keeping installed)
           "adobe-digital-editions"
-          "aegisub" 
+          "aegisub" # build fails
           "keycastr"
           "android-platform-tools"
           "discord"
-          "dupeguru"
+          "dupeguru" # marked as broken
           "fontforge"
           "google-chrome"
           "logic-2010"
           "logitech-camera-settings"
-          "musescore"
           "oracle-jdk"
-          "raspberry-pi-imager"
+          "raspberry-pi-imager" # nixpkgs#rpi-imager marked as broken
           "sf-symbols"
+          "steam"
           "tor-browser"
           "transmission"
           #"devcleaner" to clean out xcode caches and save disk space
@@ -381,11 +379,6 @@
           "qlvideo"
           "quicklook-csv"
           "syntax-highlight"
-          
-          # fonts
-          "font-awesome-terminal-fonts"
-          #"font-hack-nerd-font"
-          #"font-monofur-nerd-font"
 
         ];
 

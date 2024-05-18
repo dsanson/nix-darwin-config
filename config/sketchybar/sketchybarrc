@@ -14,7 +14,8 @@ bar=(
   position=top
   padding_left=0  
   padding_right=0 
-  color="0x00ffffff"
+  color="0"
+  drawing=off
   notch_width=200
   y_offset=-1
 )
@@ -94,6 +95,7 @@ sketchybar \
   --set spaces \
     background.height=33 \
     background.color="$COLOR"
+    #background.color="0xdd${RAW_COLOR[8]}"
 
 
 ############## RIGHT ITEMS ############## 
@@ -264,6 +266,7 @@ sketchybar \
   --set right \
     background.height=33 \
     background.color="$COLOR"
+    #background.color="0xdd${RAW_COLOR[8]}"
 
 ###################### CENTER ITEMS ###################
 

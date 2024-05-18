@@ -51,6 +51,18 @@ let
       zref
       ;
   });
+  # didn't fetchPypi because the nixOS patched version (2.8.0) is only on PyPI-testing
+  pywalfox = pkgs.python3.pkgs.buildPythonPackage {
+    pname = "pywalfox";
+    version = "2.8.0rc1";
+
+    src = pkgs.fetchFromGitHub {
+      owner = "Frewacom";
+      repo = "pywalfox-native";
+      rev = "7ecbbb193e6a7dab424bf3128adfa7e2d0fa6ff9";
+      hash = "sha256-i1DgdYmNVvG+mZiFiBmVHsQnFvfDFOFTGf0GEy81lpE=";
+    };
+  };
 in
 {
   home.username = "desanso";
@@ -102,6 +114,7 @@ in
 
   home.packages = with pkgs; [
     tex
+    pywalfox
     # dev
     lazygit
     hub
@@ -113,8 +126,16 @@ in
     tree-sitter
     universal-ctags
     nil
+    # language servers
     marksman #zettlekasten style lsp 
     lua-language-server
+    nodePackages.bash-language-server
+    vscode-langservers-extracted
+    pyright
+    yaml-language-server
+    cmake-language-server
+    gopls
+    dot-language-server
     #lua
     #luarocks
     # data
@@ -170,6 +191,8 @@ in
     charis-sil #another multilingual font
     doulos-sil #another multilingual font
     amiri #arabic font
+    nerdfonts
+    font-awesome
 
     uni # unicode lookup
     ffsend
@@ -359,11 +382,6 @@ in
       interactiveShellInit = ''
         set -g fish_key_bindings fish_vi_key_bindings
         set -g fish_greeting ""
-        if type -q brew
-          set -x HOMEBREW_CASK_OPTS "--appdir=$HOME/Applications"
-          set -x ASDF_DIR (brew --prefix asdf)/libexec
-          source $ASDF_DIR/asdf.fish
-        end
         if type -q luarocks
           eval (luarocks path)
         end

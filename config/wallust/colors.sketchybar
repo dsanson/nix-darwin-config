@@ -1,4 +1,4 @@
-COLOR=0x88{{background.strip}}
+COLOR=0xdd{{background.strip}}
 POPUP_COLOR=0xff{{background.strip}}
 LABEL_COLOR=0xff{{foreground.strip}}
 ICON_COLOR=0xff{{foreground.strip}}
