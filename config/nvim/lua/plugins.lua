@@ -24,7 +24,7 @@ require("lazy").setup({
   'tpope/vim-speeddating', -- increment and decrement dates
   'vim-scripts/utl.vim', -- generalized link/file/document opener
   'sainnhe/gruvbox-material', --color scheme
-  'tomtom/tcomment_vim', -- toggle comments (gcc, vgc...)
+  -- 'tomtom/tcomment_vim', -- toggle comments (gcc, vgc...)
   --'tpope/vim-repeat', -- extend repeat '.' to include stuff in mappings
   'rhysd/conflict-marker.vim',
   'chrisbra/csv.vim', -- replaced by treesitter? csv syntax and filetype plugin
