@@ -57,7 +57,7 @@
           gawk
           gnupg
           less
-          mosh
+          #mosh
           wget
           zip
           unar #cli version of theunarchiver
@@ -76,7 +76,7 @@
           iina
           grandperspective
           monitorcontrol 
-          xquartz 
+          #xquartz 
           #dark-mode-notify #broken; need to create launchagent service
           nowplaying-cli
 
@@ -86,7 +86,7 @@
 
 
           # email
-          mu
+          # mu
           
           # python
           python311Packages.keyring
@@ -94,7 +94,7 @@
           # do I even use these?
           vlc-bin
           a2ps
-          ant
+          # ant
           apr
           aria
           asciidoc
@@ -305,7 +305,6 @@
           TrackpadRightClick = true;
         };
 
-
       };
 
       system.keyboard = {
@@ -329,47 +328,46 @@
           "tag" #macos file tagging
           "lua"
           "luarocks"
-          "syncthing" # nix version installs fine, but need to write a launchctl service for it
         ];
-
+        
+        caskArgs.no_quarantine = true;
         casks = [
           "microsoft-office"
-          "anylist"
-          "keepingyouawake"
-          "calibre"
           "firefox"
-          "hammerspoon" # just for the caps lock key
+          "zotero@beta"
+          "calibre"
+          "karabiner-elements" # nix pkg has permissions problems
+          "quicksilver"
+          "keepingyouawake"
+          "anylist"
           "itsycal" # nixpkg doesn't work complains needs to be installed in /Applications
           "marta" # trying
           "obsidian" # am I still using this?
-          "quicksilver"
-          #"satori"
+          "satori"
           "the-unarchiver"
           "yacreader"
           "zerotier-one"
-          #"zoom" "being managed by IT"
-          "zotero@beta"
-         
-          # occasional use (but good to have on hand)
+          "google-chrome"
           "djview" #nixpkg is marked as broken
 
           # occasional use (consider not keeping installed)
           "adobe-digital-editions"
-          "aegisub" # build fails
+          "aegisub" # nix build broken
           "keycastr"
-          "android-platform-tools"
           "discord"
-          "dupeguru" # marked as broken
-          "fontforge"
-          "google-chrome"
-          "logic-2010"
-          "logitech-camera-settings"
-          "oracle-jdk"
+          "dupeguru" # marked as broken in nix
           "raspberry-pi-imager" # nixpkgs#rpi-imager marked as broken
           "sf-symbols"
           "steam"
-          "tor-browser"
-          "transmission"
+          
+          # install if needed
+          # "android-platform-tools" install if needed
+          #"fontforge" # install if needed
+          # "logic-2010" # install if needed
+          # "logitech-camera-settings" # install if needed
+          # "oracle-jdk" # install if needed
+          # "tor-browser" # install if needed
+          # "transmission" # install if needed
           #"devcleaner" to clean out xcode caches and save disk space
 
           # quicklook plugins
