@@ -22,22 +22,18 @@ vim.api.nvim_set_keymap('v', '>', '>gv', { desc = "shift right" })
 
 -- Remap Y to yank to end of line (so consistent with C and D)
 vim.api.nvim_set_keymap('n', 'Y', 'y$', {noremap = true} )
-vim.api.nvim_set_keymap('v', '<Enter>', ':EasyAlign<CR>', {noremap = true} ) -- easyalign map for visual mode
+vim.api.nvim_set_keymap('v', '<Enter>', ':EasyAlign<CR>', {noremap = true, desc = "Easy align"} ) 
 
--- telekasten
--- Launch panel if nothing is typed after <leader>z
-vim.keymap.set("n", "<leader>z", "<cmd>Telekasten panel<CR>")
--- -- Most used functions
-vim.keymap.set("n", "<leader>zf", "<cmd>Telekasten find_notes<CR>")
-vim.keymap.set("n", "<leader>z/", "<cmd>Telekasten search_notes<CR>")
--- -- vim.keymap.set("n", "<leader>zd", "<cmd>Telekasten goto_today<CR>")
--- vim.keymap.set("n", "<leader>zz", "<cmd>Telekasten follow_link<CR>")
-vim.keymap.set("n", "<leader>zn", "<cmd>Telekasten new_note<CR>")
--- vim.keymap.set("n", "<leader>zy", "Telekasten yank_notelink<CR>")
--- -- vim.keymap.set("n", "<leader>zc", "<cmd>Telekasten show_calendar<CR>")
-vim.keymap.set("n", "<leader>zb", "<cmd>Telekasten show_backlinks<CR>")
--- vim.keymap.set("n", "<leader>zI", "<cmd>Telekasten insert_img_link<CR>")
-vim.keymap.set("n", "<leader>zr", "<cmd>Telekasten rename_note<CR>")
---
--- -- Call insert link automatically when we start typing a link
--- vim.keymap.set("i", "[[", "<cmd>Telekasten insert_link<CR>")
+-- Open main notes file
+vim.keymap.set('n', 'gn', '<cmd>edit ~/d/zettel/Home.md<cr>', { desc = "open notes" } )
+
+
+-- LSP mappings 
+vim.api.nvim_create_autocmd('LspAttach', {
+  group = vim.api.nvim_create_augroup('UserLspConfig', {}),
+  callback = function(args)
+    vim.keymap.set('n', 'gd', vim.lsp.buf.definition, { buffer = args.buf, desc = "goto definition" })
+    vim.keymap.set('n', 'gr', '<cmd>Telescope lsp_references<cr>', { buffer = args.buf, desc = "goto references" })
+    vim.keymap.set('n', 'cd', vim.lsp.buf.code_action, { buffer = args.buf, desc = "code actions" })
+  end
+})

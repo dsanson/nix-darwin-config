@@ -48,6 +48,8 @@ wk.register({
     h = { '<cmd>Telescope heading<cr>', 'Jump to heading' },
     b = { '<cmd>Telescope bookmarks<cr>', 'Open browser bookmark'},
     o = { '<cmd>!open \"obsidian://open?vault=Everything&file=%:t:r\"<cr>', 'Open in Obsidian'},
+    d = { '<cmd>Telescope lsp_definitions<cr>', 'Jump to lsp definition'},
+    r = { '<cmd>Telescope lsp_references<cr>', 'Jump to lsp reference'},
   },
 
   -- marks

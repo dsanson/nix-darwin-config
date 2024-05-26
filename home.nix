@@ -77,6 +77,18 @@ in
   # '';
   # };
 
+  # this adds to the END of PATH, which is not useful
+  # home.sessionPath = [
+  #   "$HOME/bin "
+  #   "$HOME/.local/bin"
+  #   "$HOME/.cargo/bin"
+  #   "$HOME/.go/bin"
+  #   "$HOME/.pub-cache/bin"
+  #   "$HOME/.luarocks/bin "
+  #   "/opt/homebrew/bin"
+  #   "/etc/profiles/per-user/desanso/bin"
+  #   "/run/current-system/sw/bin"
+  # ];
 
   home.shellAliases = {
     "..." = "cd ../..";
@@ -140,11 +152,11 @@ in
     #luarocks
     # data
     R
-    visidata
+    visidata 
     xsv
     yq
     pup
-    #sc-im #build is broken
+    #sc-im # build is broken
     # web browsing
     lynx
     w3m
@@ -154,7 +166,7 @@ in
     cairo
     djvu2pdf
     djvulibre
-    ocrmypdf
+    #ocrmypdf # build is broken
     pdfcpu
     pdfgrep
     qpdf
@@ -199,42 +211,29 @@ in
     wallust #pywall replacement
 
     # gui apps
-    
-    #adobe-digital-editions		
-    #aegisub	        			
+    #aegisub # nix build broken
     android-file-transfer		
-    #android-platform-tools		
-    #anki                        
-    #anylist #mac only            
     audacity                    
-    #calibre                     
-    #discord                     
-    #djview                      
+    #rpi-imager # marked as broken
+    #calibre # marked as broken
+    #discord                   
+    #djview # marked as broken
     #dupeguru                    
-    #firefox                     
-    #font-awesome-terminal-fonts	
-    #font-hack-nerd-font		    
-    #font-monofur-nerd-font		
-    #font-monofur-nerd-font-mono	
-    #fontforge                   
+    #firefox # no darwin pkgs                    
+    #fontforge # no gui pkg for darwin
     #google-chrome               
-    #hammerspoon #mac only            
-    #haptickey #mac only                  
     #itsycal #mac only            
     #keepingyouawake #mac only          
     #keycastr #mac only                    
     #logic-2010                  
     #logitech-camera-settings
     #marta # mac only
-    #musescore
     #obsidian
     #oracle-jdk
     #quicksilver # mac only
     #rar
-    #raspberry-pi-imager
     #satori # mac only
     #sf-symbols 
-    #syncthing
     #syntax-highlight #mac only
     #the-unarchiver #mac only
     #tor-browser
@@ -276,6 +275,10 @@ in
       source = ./config/sketchybar;
       recursive = true;
     };
+    # karabiner = {
+    #   source = ./config/karabiner;
+    #   recursive = true;
+    # };
     "fd/ignore".text = "**/*.app/**";
   };
 
@@ -286,11 +289,11 @@ in
     };
   };
 
-  home.file.hammerspoon = {
-    source = ./config/hammerspoon;
-    recursive = true;
-    target = ".hammerspoon";
-  };
+  # home.file.hammerspoon = {
+  #   source = ./config/hammerspoon;
+  #   recursive = true;
+  #   target = ".hammerspoon";
+  # };
 
   home.file.wallust = {
     source = ./config/wallust;
@@ -685,7 +688,10 @@ in
       extraPython3Packages = ps: with ps; [ pynvim ];
       withRuby = true;
       extraLuaPackages = ps: [ ps.magick ];
-      extraPackages = [ pkgs.imagemagick ];
+      extraPackages = [ 
+        pkgs.imagemagick
+        pkgs.markdown-oxide
+      ];
     };
 
     starship = {
@@ -706,6 +712,9 @@ in
     
   };
   
+  services = {
+    syncthing.enable = true;
+  };
  
   targets.darwin.defaults = {
     NSGlobalDomain.AppleLanguages = [

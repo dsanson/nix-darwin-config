@@ -15,7 +15,6 @@ require("lazy").setup({
   'folke/which-key.nvim',
   'neovim/nvim-lspconfig',
   'sprockmonty/wal.vim', -- colorschemes
-  'reedes/vim-litecorrect', -- autocorrect as you type
   'ludovicchabant/vim-gutentags',
   'folke/twilight.nvim', -- dim inactive paragraph
   'farmergreg/vim-lastplace', -- restore cursor position
@@ -29,6 +28,14 @@ require("lazy").setup({
   'rhysd/conflict-marker.vim',
   'chrisbra/csv.vim', -- replaced by treesitter? csv syntax and filetype plugin
   'lewis6991/gitsigns.nvim',
+  {
+    'reedes/vim-litecorrect', -- autocorrect as you type
+    ft = {
+      'markdown',
+      'pandoc',
+      'markdown.pandoc',
+    },
+  },
   {
     '3rd/image.nvim',
     config = function()
@@ -46,6 +53,8 @@ require("lazy").setup({
       'hrsh7th/cmp-path',
       'hrsh7th/cmp-cmdline',
       'hrsh7th/cmp-calc',
+      'L3MON4D3/LuaSnip',
+      'saadparwaiz1/cmp_luasnip',
     },
   },  
   { 
@@ -444,28 +453,29 @@ cmp.setup({
     -- REQUIRED - you must specify a snippet engine
     expand = function(args)
       -- vim.fn["vsnip#anonymous"](args.body) -- For `vsnip` users.
-      ---require('luasnip').lsp_expand(args.body) -- For `luasnip` users.
+      require('luasnip').lsp_expand(args.body) -- For `luasnip` users.
       -- require('snippy').expand_snippet(args.body) -- For `snippy` users.
       -- vim.fn["UltiSnips#Anon"](args.body) -- For `ultisnips` users.
     end,
   },
-  mapping = {
-    ['<Up>'] = cmp.mapping(cmp.mapping.select_prev_item(), { 'i', 'c' }),
-    ['<Down>'] = cmp.mapping(cmp.mapping.select_next_item(), { 'i', 'c'}),
-    ['<C-b>'] = cmp.mapping(cmp.mapping.scroll_docs(-4), { 'i', 'c' }),
-    ['<C-f>'] = cmp.mapping(cmp.mapping.scroll_docs(4), { 'i', 'c' }),
-    ['<tab>'] = cmp.mapping(cmp.mapping.complete(), { 'i', 'c' }),
-    ['<C-y>'] = cmp.config.disable, -- Specify `cmp.config.disable` if you want to remove the default `<C-y>` mapping.
-    ['<C-e>'] = cmp.mapping({
-      i = cmp.mapping.abort(),
-      c = cmp.mapping.close(),
-    }),
-    ['<CR>'] = cmp.mapping.confirm({ select = true }), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
-  },
+  mapping = cmp.mapping.preset.insert({
+    ['<C-b>'] = cmp.mapping.scroll_docs(-4),
+    ['<C-f>'] = cmp.mapping.scroll_docs(4),
+    ['<Tab>'] = cmp.mapping.complete(),
+    ['<C-e>'] = cmp.mapping.abort(),
+    ['<CR>'] = cmp.mapping.confirm({ select = false }),
+  }),
   sources = cmp.config.sources({
-    { name = 'nvim_lsp' },
+    {
+      name = 'nvim_lsp',
+      option = {
+        markdown_oxide = {
+          keyword_pattern = [[\(\k\| \|\/\|#\)\+]]
+        }
+      }
+    },
     { name = 'cmp_pandoc' },
-    { name = 'marksman' },
+    -- { name = 'marksman' },
   })
 })
 
@@ -485,12 +495,35 @@ cmp.setup.cmdline(':', {
   })
 })
 
+-- refresh codelens on TextChanged and InsertLeave as well
+vim.api.nvim_create_autocmd({ 'TextChanged', 'InsertLeave', 'CursorHold', 'LspAttach' }, {
+    buffer = bufnr,
+    callback = vim.lsp.codelens.refresh,
+})
+
+-- trigger codelens refresh
+vim.api.nvim_exec_autocmds('User', { pattern = 'LspAttached' })
+
+
 -- Setup lspconfig.
-local capabilities = require('cmp_nvim_lsp').default_capabilities()
--- Replace <YOUR_LSP_SERVER> with each lsp server you've enabled.
+-- local capabilities = require('cmp_nvim_lsp').default_capabilities()
+local capabilities = require("cmp_nvim_lsp").default_capabilities(vim.lsp.protocol.make_client_capabilities())
+
+capabilities.workspace = {
+    didChangeWatchedFiles = {
+      dynamicRegistration = true,
+    },
+}
+
 
 -- lspconfig
 local lsp = require "lspconfig"
+
+lsp.markdown_oxide.setup({
+    capabilities = capabilities, 
+    on_attach = on_attach 
+})
+
 lsp.bashls.setup {
   capabilities = capabilities
 }
@@ -548,7 +581,7 @@ lsp.ltex.setup{
 
 lsp.lemminx.setup{}
 
-lsp.marksman.setup{}
+--lsp.marksman.setup{}
 
 -- colorscheme
 vim.opt.termguicolors = true
@@ -558,7 +591,6 @@ vim.cmd('colorscheme wal')
 -- litecorrect
 vim.g.user_dict    = {
   maybe        = {'mabye'},
-  ['then']     = {'hten'},
   homogeneous  = {'homogenous'},
   possibility  = {'possiblity'},
   qaḍḍiya      = {'qaddiya'},
@@ -605,9 +637,8 @@ vim.g.user_dict    = {
   Baṣrī        = {'Basri'},
   Ashʿarī      = {'Ashari'},
   Muʿtazila    = {'Mutazila'},
-  Muʿtazilī    = {'Mutazili'},
-  Muʿtazilī    = {'Mutazali'},
-  Mutakallimūn = {'Mutakallimun'},
+  Muʿtazilī    = {'Mutazili', 'Mutazali'},
+  Mutakallimūn = {'Mutakallimun','Mutakalimun'},
   Bāqillānī    = {'Baqillani'},
   Muḥammad     = {'Muhammad', 'Muhammed'},
   Shīʿite      = {'Shiite'},
@@ -623,7 +654,6 @@ vim.g.user_dict    = {
   Sīnā         = {'Sina'},
   Naẓẓām       = {'Nazzam'},
   taṣdīq       = {'tasdiq'},
-  taṣawwur     = {'tasawwur'},
   taṣawwur     = {'tasawwur'},
   Qusṭās       = {'Qustas'},
   Sharḥ        = {'Sharh'},
