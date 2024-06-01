@@ -66,7 +66,7 @@ let
 in
 {
   home.username = "desanso";
-  home.stateVersion = "24.05";
+  home.stateVersion = "24.11";
   home.homeDirectory = "/Users/desanso"; #mac specific
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
