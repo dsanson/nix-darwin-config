@@ -328,6 +328,7 @@
           "tag" #macos file tagging
           "lua"
           "luarocks"
+          "brightness" #used by upliftdesk to check if monitor is off
         ];
         
         caskArgs.no_quarantine = true;
@@ -349,6 +350,8 @@
           "zerotier-one"
           "google-chrome"
           "djview" #nixpkg is marked as broken
+          "obs" #nixkpg only builds for linux
+          "aerial@beta" #video screen savers
 
           # occasional use (consider not keeping installed)
           "adobe-digital-editions"
@@ -402,7 +405,7 @@
       services = {
         ipfs = {
           enable = true;
-          ipfsPath = "/Users/desanso/ipfs";
+          # ipfsPath = "/Users/desanso/ipfs";
         };
         karabiner-elements = {
           enable = false;
