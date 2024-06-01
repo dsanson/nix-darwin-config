@@ -80,7 +80,8 @@ wk.register({
     t = { "<cmd>Neotree document_symbols toggle<cr>", "Show table of contents"},
     f = { "<cmd>Neotree filesystem toggle<cr>", "Show filesystem"},
     b = { "<cmd>Neotree buffers toggle<cr>", "Show buffers"},
-    c = { "<cmd>source ~/.vimrc_background<cr>", "Apply system colorscheme"},
+    -- c = { "<cmd>source ~/.vimrc_background<cr>", "Apply system colorscheme"},
+    c = { function () vim.o.cursorline = not vim.o.cursorline end, "Toggle cursorline" },
   },
 
   -- inserts
@@ -211,7 +212,8 @@ wk.register({
   -- toggles
   t = {
     name = "toggle",
-    c = { "<cmd>source ~/.vimrc_background<cr>", "Apply system colorscheme"},
+    -- c = { "<cmd>source ~/.vimrc_background<cr>", "Apply system colorscheme"},
+    c = { function () vim.o.cursorline = not vim.o.cursorline end, "Toggle cursorline" },
   },
 
   -- inserts
@@ -231,12 +233,6 @@ wk.register({
   --   o = {"<Cmd>ZkNotes { sort = { 'modified' } }<CR>","Open note"},
   --   t = {"<Cmd>ZkTags<CR>","Search by tags"},
   -- },
- 
-  -- clipboard
-  c = {
-    name = 'clipboard',
-    s = {'<cmd>Telescope neoclip<cr>', 'Search old clippings'},
-  },
 
   -- help
   h = {

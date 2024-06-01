@@ -28,6 +28,12 @@ require("lazy").setup({
   'rhysd/conflict-marker.vim',
   'chrisbra/csv.vim', -- replaced by treesitter? csv syntax and filetype plugin
   'lewis6991/gitsigns.nvim',
+  'opdavies/toggle-checkbox.nvim',
+  {
+    "zeioth/garbage-day.nvim",
+    dependencies = "neovim/nvim-lspconfig",
+    event = "VeryLazy",
+  },
   {
     'reedes/vim-litecorrect', -- autocorrect as you type
     ft = {
@@ -242,6 +248,50 @@ require("lazy").setup({
     end,
   },
   {
+    "folke/todo-comments.nvim",
+    dependencies = { "nvim-lua/plenary.nvim" },
+    config = function()
+      require'todo-comments'.setup()
+    end
+  },
+  {
+    "folke/trouble.nvim",
+    branch = "dev", -- IMPORTANT!
+    keys = {
+      {
+        "<leader>xx",
+        "<cmd>Trouble diagnostics toggle<cr>",
+        desc = "Diagnostics (Trouble)",
+      },
+      {
+        "<leader>xX",
+        "<cmd>Trouble diagnostics toggle filter.buf=0<cr>",
+        desc = "Buffer Diagnostics (Trouble)",
+      },
+      {
+        "<leader>cs",
+        "<cmd>Trouble symbols toggle focus=false<cr>",
+        desc = "Symbols (Trouble)",
+      },
+      {
+        "<leader>cl",
+        "<cmd>Trouble lsp toggle focus=false win.position=right<cr>",
+        desc = "LSP Definitions / references / ... (Trouble)",
+      },
+      {
+        "<leader>xL",
+        "<cmd>Trouble loclist toggle<cr>",
+        desc = "Location List (Trouble)",
+      },
+      {
+        "<leader>xQ",
+        "<cmd>Trouble qflist toggle<cr>",
+        desc = "Quickfix List (Trouble)",
+      },
+    },
+    opts = {}, -- for default options, refer to the configuration section for custom setup.
+  },
+  {
     "camspiers/luarocks",
     dependencies = {
       "rcarriga/nvim-notify", -- Optional dependency
@@ -322,140 +372,14 @@ require("lazy").setup({
   },
 })
 
--- require("nvim-treesitter.configs").setup({
---   highlight = {
---     enable = true,
---     disable = function(lang, buf)
---       local max_filesize = 300 * 1024 -- 300 KB
---       local ok, stats = pcall(vim.loop.fs_stat, vim.api.nvim_buf_get_name(buf))
---       if ok and stats and stats.size > max_filesize then
---         return true
---       end
---     end,
---   },
---   indent = { enable = true, disable = {"markdown"} },
--- })
---
-
-
---
---   use {
---     "jakewvincent/mkdnflow.nvim",
---     config = function()
---       require('mkdnflow').setup({
---           modules = {
---               bib = false,
---               buffers = false, 
---               conceal = false,
---               cursor = true,
---               folds = false,
---               links = true,
---               lists = true,
---               maps = true,
---               paths = true,
---               tables = true,
---               yaml = false,
---           },
---           filetypes = {md = true, rmd = true, markdown = true, pandoc = true},
---           create_dirs = true,             
---           perspective = {
---               priority = 'root',
---               fallback = 'first',
---               root_tell = '.root',
---               nvim_wd_heel = false,
---               update = false
---           },    
---           wrap = false,
---           silent = false,
---           links = {
---               style = 'markdown',
---               name_is_source = false,
---               conceal = false,
---               context = 0,
---               implicit_extension = 'md',
---               transform_implicit = false,
---               transform_explicit = false, 
---           },
---           new_file_template = {
---               use_template = false,
---               placeholders = {
---                   before = {
---                       title = "link_title",
---                       date = "os_date"
---                   },
---                   after = {}
---               },
---               template = "# {{ title }}"
---           },
---           to_do = {
---               symbols = {' ', '-', 'X'},
---               update_parents = true,
---               not_started = ' ',
---               in_progress = '-',
---               complete = 'X'
---           },
---           tables = {
---               trim_whitespace = true,
---               format_on_move = true,
---               auto_extend_rows = false,
---               auto_extend_cols = false
---           },
---           yaml = {
---               bib = { override = false }
---           },
---           mappings = {
---               MkdnEnter = {{'n', 'v'}, '<CR>'},
---               MkdnTab = false,
---               MkdnSTab = false,
---               MkdnNextLink = {'n', '<Tab>'},
---               MkdnPrevLink = {'n', '<S-Tab>'},
---               MkdnNextHeading = {'n', ']]'},
---               MkdnPrevHeading = {'n', '[['},
---               MkdnGoBack = false,
---               MkdnGoForward = false,
---               MkdnCreateLink = false, -- see MkdnEnter
---               MkdnCreateLinkFromClipboard = {{'n', 'v'}, '<leader>p'}, -- see MkdnEnter
---               MkdnFollowLink = false, -- see MkdnEnter
---               MkdnDestroyLink = {'n', '<M-CR>'},
---               MkdnTagSpan = {'v', '<M-CR>'},
---               MkdnMoveSource = {'n', '<F2>'},
---               MkdnYankAnchorLink = {'n', 'yaa'},
---               MkdnYankFileAnchorLink = {'n', 'yfa'},
---               MkdnIncreaseHeading = {'n', '+'},
---               MkdnDecreaseHeading = {'n', '-'},
---               MkdnToggleToDo = {{'n', 'v'}, '<C-Space>'},
---               MkdnNewListItem = false,
---               MkdnNewListItemBelowInsert = {'n', 'o'},
---               MkdnNewListItemAboveInsert = {'n', 'O'},
---               MkdnExtendList = false,
---               MkdnUpdateNumbering = {'n', '<leader>nn'},
---               MkdnTableNextCell = {'i', '<Tab>'},
---               MkdnTablePrevCell = {'i', '<S-Tab>'},
---               MkdnTableNextRow = false,
---               MkdnTablePrevRow = {'i', '<M-CR>'},
---               MkdnTableNewRowBelow = {'n', '<leader>ir'},
---               MkdnTableNewRowAbove = {'n', '<leader>iR'},
---               MkdnTableNewColAfter = {'n', '<leader>ic'},
---               MkdnTableNewColBefore = {'n', '<leader>iC'},
---               MkdnFoldSection = {'n', '<leader>f'},
---               MkdnUnfoldSection = {'n', '<leader>F'}
---           }
---       })
---     end
---   }
--- }
 
 -- Setup nvim-cmp.
 local cmp = require'cmp'
 
 cmp.setup({
   snippet = {
-    -- REQUIRED - you must specify a snippet engine
     expand = function(args)
-      -- vim.fn["vsnip#anonymous"](args.body) -- For `vsnip` users.
-      require('luasnip').lsp_expand(args.body) -- For `luasnip` users.
-      -- require('snippy').expand_snippet(args.body) -- For `snippy` users.
-      -- vim.fn["UltiSnips#Anon"](args.body) -- For `ultisnips` users.
+      require('luasnip').lsp_expand(args.body)
     end,
   },
   mapping = cmp.mapping.preset.insert({
@@ -495,14 +419,15 @@ cmp.setup.cmdline(':', {
   })
 })
 
--- refresh codelens on TextChanged and InsertLeave as well
-vim.api.nvim_create_autocmd({ 'TextChanged', 'InsertLeave', 'CursorHold', 'LspAttach' }, {
-    buffer = bufnr,
-    callback = vim.lsp.codelens.refresh,
-})
-
--- trigger codelens refresh
-vim.api.nvim_exec_autocmds('User', { pattern = 'LspAttached' })
+-- -- refresh codelens on TextChanged and InsertLeave as well
+-- vim.api.nvim_create_autocmd({ 'TextChanged', 'InsertLeave', 'CursorHold', 'LspAttach' }, {
+--     pattern = { "*.md", "*.markdown" },
+--     buffer = bufnr,
+--     callback = vim.lsp.codelens.refresh,
+-- })
+--
+-- -- trigger codelens refresh
+-- vim.api.nvim_exec_autocmds('User', { pattern = 'LspAttached' })
 
 
 -- Setup lspconfig.

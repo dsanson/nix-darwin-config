@@ -48,5 +48,17 @@ function add_ms_comment()
   vim.api.nvim_feedkeys(keys, "i", true)
 end
 
-vim.keymap.set("v", "<leader>iw", function() add_ms_comment() end)
+vim.keymap.set("v", "<leader>iw", function() add_ms_comment() end, {desc = "add Word comment"})
+
+vim.keymap.set("n", "<leader>tx", require('toggle-checkbox').toggle, {desc = 'Toggle checkbox'})
+
+-- refresh codelens on TextChanged and InsertLeave as well
+vim.api.nvim_create_autocmd({ 'TextChanged', 'InsertLeave', 'CursorHold', 'LspAttach' }, {
+    buffer = bufnr,
+    callback = vim.lsp.codelens.refresh,
+})
+
+-- trigger codelens refresh
+vim.api.nvim_exec_autocmds('User', { pattern = 'LspAttached' })
+
 
