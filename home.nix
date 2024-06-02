@@ -111,6 +111,8 @@ in
     "next" = "nowplaying-cli next"; #mac specific
     "volume" = "m volume"; #mac specific
     "liar" = "cd ~/d/research/projects/Papers/with_ahmed/liar-book; nvim -c 'Telescope find_files'";
+    "sit" = "echo 1 >> /tmp/com.davidsanson.upliftdesk.in";
+    "stand" = "echo 2 >> /tmp/com.davidsanson.upliftdesk.in";
   };
 
   home.sessionVariables = {

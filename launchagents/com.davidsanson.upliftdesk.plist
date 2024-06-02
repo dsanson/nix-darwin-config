@@ -22,6 +22,8 @@
         <key>PATH</key>
         <string>$HOME//bin:/etc/profiles/per-user/$USER/bin:/run/current-system/sw/bin:/nix/var/nix/profiles/default/bin:/usr/local/bin:/usr/bin:/usr/sbin:/bin:/sbin</string>
     </dict>
+    <key>StandardInPath</key>
+    <string>/tmp/com.davidsanson.upliftdesk.in</string>
     <key>StandardOutPath</key>
     <string>/tmp/com.davidsanson.upliftdesk.out</string>
     <key>StandardErrorPath</key>
