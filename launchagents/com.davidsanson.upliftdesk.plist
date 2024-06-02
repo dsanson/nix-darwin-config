@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN"
+"http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+    <key>Label</key>
+    <string>com.davidsanson.upliftdesk</string>
+    <key>KeepAlive</key>
+    <true/>
+    <key>ProgramArguments</key>
+    <array>
+        <string>/Users/desanso/bin/upliftdesk</string>
+        <string>--device</string>
+        <string>ceb307ee-5bc4-459b-44b9-dd12e40b683b</string>
+        <string>--preset1</string>
+        <string>10m</string>
+        <string>--preset2</string>
+        <string>20m</string>
+    </array>
+    <key>EnvironmentVariables</key>
+    <dict>
+        <key>PATH</key>
+        <string>$HOME//bin:/etc/profiles/per-user/$USER/bin:/run/current-system/sw/bin:/nix/var/nix/profiles/default/bin:/usr/local/bin:/usr/bin:/usr/sbin:/bin:/sbin</string>
+    </dict>
+    <key>StandardOutPath</key>
+    <string>/tmp/com.davidsanson.upliftdesk.out</string>
+    <key>StandardErrorPath</key>
+    <string>/tmp/com.davidsanson.upliftdesk.err</string>
+</dict>
+</plist>
+
+
