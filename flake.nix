@@ -334,6 +334,7 @@
           "lua"
           "luarocks"
           "brightness" #used by upliftdesk to check if monitor is off
+          "displayplacer" #for rotating and managing displays"
         ];
         
         caskArgs.no_quarantine = true;
@@ -431,9 +432,9 @@
              #  firefox-wrapper fb-rotate 
              #  screenrecording webcam 
              # modes
-              :: default : /Users/desanso/bin/bar_colors background
-              :: m1 @ : /Users/desanso/bin/bar_colors 1 
-              :: m2 @ : /Users/desanso/bin/bar_colors 2
+              :: default : bar_colors background
+              :: m1 @ : bar_colors 1 
+              :: m2 @ : bar_colors 2
              # toggle between modes
              ctrl - s             ; m1 
              m1 < ctrl - s        ; m2
@@ -577,7 +578,7 @@
               fi
 
               yabai -m space "$idx" --label "$name"
-              /Users/desanso/bin/layouts -s "$idx" current
+              layouts -s "$idx" current
             }
 
             setup_space 1 BOOK
@@ -608,7 +609,7 @@
             yabai -m rule --add app="^TomatoFlex$" manage=off
             yabai -m rule --add app="^Firefox$" manage=on
             yabai -m rule --add app="sioyek" role="AXWindow" subrole="AXDialog" manage=on
-            yabai -m signal --add event=space_changed action='/Users/desanso/bin/set_theme wallpaper' active=yes
+            yabai -m signal --add event=space_changed action='set_theme wallpaper' active=yes
 
             yabai -m signal --add event=space_created action='sketchybar --reload'
             yabai -m signal --add event=space_destroyed action='sketchybar --reload'

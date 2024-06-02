@@ -25,23 +25,23 @@ TODO:
 - [x] get vdirsyncer working
 - [x] migrate texlive to nix
 - [ ] email
-- [ ] eliminate unused old brew packages
+- [x] eliminate unused old brew packages
 - [ ] prune pile up of old scripts in ~/bin, and migrate the ones worth keeping to nix
      - [ ] q
      - [ ] q-calibre-preview
      - [ ] q_preview
      - [ ] visor
-     - [ ] bib2path2
+     - [x] bib2path2
      - [ ] termpdf.py
-     - [ ] set_theme
-     - [ ] opacity
+     - [x] set_theme
+     - [x] opacity
      - [ ] clibre
      - [ ] close_notifications
-     - [ ] bar_colors
+     - [x] bar_colors
      - [ ] contacts
-     - [ ] noise
+     - [x] noise
      - [ ] dark-mode-react
-     - [ ] fb-rotate replace with: https://github.com/jakehilborn/displayplacer
+     - [x] fb-rotate replace with: https://github.com/jakehilborn/displayplacer
      - [ ] sioyek wrapper script
      - [ ] webcam (broken)
      - [ ] screenrecording

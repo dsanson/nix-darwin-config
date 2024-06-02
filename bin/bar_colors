@@ -1,0 +1,31 @@
+#!/usr/bin/env bash
+set -o errexit
+set -o nounset
+set -o pipefail
+
+# shellcheck source=/dev/null
+. ~/.cache/wal/colors.bash
+
+arg="${1:-}"
+
+c=""
+
+if [[ "$arg" == "background" ]]; then
+  c=0xdd"${BACKGROUND}"
+elif [[ "$arg" == "foreground" ]]; then
+  c=0xff"${FOREGROUND}"
+elif [[ "$arg" == "cursor" ]]; then
+  c=0xff"${CURSOR}"
+elif [[ "$arg" -gt 0 && "$arg" -lt 16 ]]; then
+  c=0xff"${COLOR[$arg]}"
+fi
+
+echo "$c"
+
+#sketchybar --bar color=$c
+sketchybar --set spaces background.color="$c"
+sketchybar --set right background.color="$c"
+
+
+# :: m1 @ : sketchybar -m --bar color=0xff266b12
+# :: m2 @ : sketchybar -m --bar color=0xff491133

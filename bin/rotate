@@ -1,0 +1,51 @@
+#!/usr/bin/env bash
+set -o errexit
+set -o nounset
+set -o pipefail
+
+declare -A displays
+displays["internal"]="s4251086178"
+displays["dell-up2414Q"]="s859125580"
+displays["external-home"]="${displays["dell-up2414Q"]}"
+
+function get_rotation() {
+  id="${1:-2}"
+  displayplacer list | sed -n "/id: $id/,/Rotation/p" | sed -n '$p' | awk '{print $2}'
+}
+
+function rotate_display() {
+  id="${1:-2}"
+  degree="${2:-90}"
+  displayplacer "id:$id degree:$degree"
+}
+
+function toggle_rotation() {
+  id="${1:-2}"
+  degree="$(get_rotation "$id")"
+  case "$degree" in
+    90)
+      degree=0
+      ;;
+    0)
+      degree=90
+      ;;
+    *)
+      degree=0
+      ;;
+  esac
+  rotate_display "$id" "$degree"
+}
+
+#get_rotation "${1:-2}"
+#rotate_display "${1:-2}" "${2:-0}"
+#toggle_rotation "${1:-2}"
+
+case "${1:-}" in
+  toggle)
+    shift
+    toggle_rotation "$@"
+    ;;
+  *)
+    rotate_display "$@"
+    ;;
+esac

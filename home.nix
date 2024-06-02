@@ -245,6 +245,47 @@ in
     #zerotier-one
     #zoom
     #zotero
+
+    (writeShellApplication {
+      name = "bib2path2";
+      runtimeInputs = [ coreutils gnused gnugrep pandoc jq ];
+      text = (builtins.readFile ./bin/bib2path2);
+    })
+    
+    (writeShellApplication {
+      name = "bar_colors";
+      runtimeInputs = [ sketchybar ];
+      text = (builtins.readFile ./bin/bar_colors);
+    })
+
+    (writeShellApplication {
+      name = "noise";
+      text = (builtins.readFile ./bin/noise); 
+    })
+
+    (writeShellApplication {
+      name = "opacity";
+      runtimeInputs = [ yabai bc ];
+      text = (builtins.readFile ./bin/opacity);
+    })
+
+    (writeShellApplication {
+      name = "layouts";
+      runtimeInputs = [ yabai ];
+      text = (builtins.readFile ./bin/layouts);
+    })
+
+    (writeShellApplication {
+      name = "set_theme";
+      runtimeInputs = [ yabai jq gnused kitty wallust ];
+      text = (builtins.readFile ./bin/set_theme);
+    })
+
+    (writeShellApplication {
+      name = "rotate";
+      text = (builtins.readFile ./bin/rotate);
+    })
+
   ];
 
   xdg.enable = true;
@@ -383,6 +424,7 @@ in
       functions = {
         retakes = "carnap hiddens $argv | sort";
         playlist = "osascript -e 'tell app \"Music\" to play the playlist named \"'$argv'\"'";
+        uplift = "echo $argv >> /tmp/com.davidsanson.upliftdesk.in";
       };
       interactiveShellInit = ''
         set -g fish_key_bindings fish_vi_key_bindings

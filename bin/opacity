@@ -1,0 +1,75 @@
+#!/usr/bin/env bash
+set -o errexit
+set -o nounset
+set -o pipefail
+
+a_opacity=$(yabai -m config active_window_opacity)
+n_opacity=$(yabai -m config normal_window_opacity)
+status=$(yabai -m config window_opacity)
+
+toggle() {
+   if [[ "$status" == "on" ]]; then
+       yabai -m config window_opacity off
+   else
+       yabai -m config window_opacity on
+   fi
+}
+
+new_opacity() {
+  if [[ ${1:-} =~ ^[0-9.]+$ ]]; then
+    old="$1"
+  else
+    old=1.0
+  fi
+  if [[ ${2:-} =~ ^[_0-9.]+$ ]]; then
+    inc="$2"
+  else
+    inc="0.05"
+  fi
+  if [[ ${3:-} =~ ^[_0-9.]+$ ]]; then
+    mult="$3"
+  else
+    mult=1
+  fi
+  dc <<MAXMIN
+    2k [0.2]sb [1.0]st $old $inc $mult * + d 0.2 >b d 1.0 <t p
+MAXMIN
+}
+
+up() {
+   if [[ "$status" == "off" ]]; then
+     yabai -m config window_opacity on
+   fi
+   a_opacity=$(new_opacity "$a_opacity" "0.05" "$1")
+   n_opacity=$(new_opacity "$n_opacity" "0.05" "$1")
+   yabai -m config active_window_opacity "$a_opacity"
+   yabai -m config normal_window_opacity "$n_opacity"
+
+}
+
+down() {
+   if [[ "$status" == "off" ]]; then
+     yabai -m config window_opacity on
+   fi
+   a_opacity=$(new_opacity "$a_opacity" "_0.05" "$1")
+   n_opacity=$(new_opacity "$n_opacity" "_0.05" "$1")
+   yabai -m config active_window_opacity "$a_opacity"
+   yabai -m config normal_window_opacity "$n_opacity"
+}
+
+case "${1:-}" in
+    toggle)
+        toggle
+        ;;
+    down)
+        down "${2-1}"
+        ;;
+    up)
+        up "${2:-1}"
+        ;;
+    set)
+      yabai -m config active_window_opacity "${2:-1.0}"
+      ;;
+esac
+
+yabai -m config active_window_opacity

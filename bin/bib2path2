@@ -1,0 +1,91 @@
+#!/usr/bin/env bash
+set -o errexit
+set -o nounset
+set -o pipefail
+
+# reqs: sed, pandoc, grep, head, coreutils , jq
+
+BIB=$HOME/d/research/zotero.json
+
+mode="path"
+
+while [[ "${1:-}" =~ ^-.* ]]; do
+  case "${1:-}" in
+    -p|--path)
+      mode="path"
+      shift
+      ;;
+    -z|--zotero)
+      mode="zotero"
+      shift
+      ;;
+    -b|--bibliography)
+      mode="bib"
+      shift
+      ;;
+    -j|--json)
+      mode="json"
+      shift
+      ;;
+    -y|--yaml)
+      mode="yaml"
+      shift
+      ;;
+    -r)
+      mode="id_from_path"
+      shift
+      ;;
+    *)
+      break
+      ;;
+  esac
+done
+
+# if no further cli arguments, look to stdin
+set -- "${@:-$(</dev/stdin)}"
+
+# should select the first citekey in the input marked by '@'
+# or, if there is no '@', then just the first word
+key=$(sed 's/[^@]*@//;s/[]";,./\\() ].*//' <<< "${1:-}" | sed "s/'//g") 
+
+# page=$(sed -E 's/.*@'"$key"',? ?\[?p?p?\.? ?([0-9]+).*/\1/' <<< "$1")
+#
+# opt=""
+#
+# if [[ $page =~ ^-?[0-9]+$ ]]; then
+#   opt="--page $page"
+# fi
+
+if [[ "$mode" == "bib" ]]; then
+  jq -r 'map(select(.id == "'"$key"'"))' "$BIB" \
+     | pandoc -f csljson --citeproc -t markdown-citations | grep -v ':::'
+fi
+
+if [[ "$mode" == "path" ]]; then
+  jq -r 'map(select(.id == "'"$key"'")) | .[].file' "$BIB" \
+    | sed 's/;/\n/g' | grep -e '.pdf$' | head -n1
+fi
+
+if [[ "$mode" == "zotero" ]]; then
+  jq -r 'map(select(.id == "'"$key"'")) | .[]."open-in-zotero"' "$BIB"
+fi
+
+if [[ "$mode" == "json" ]]; then
+  jq -r 'map(select(.id == "'"$key"'"))' "$BIB"
+fi
+
+if [[ "$mode" == "yaml" ]]; then
+  echo '---'
+  jq -r 'map(select(.id == "'"$key"'"))' "$BIB" | yq -y
+  echo '---'
+fi
+
+if [[ "$mode" == "id_from_path" ]]; then
+  link="${1:-}"
+  if [[ -f "$link" ]]; then
+    link="$(readlink -m "$link")"
+  fi
+  jq -r '.[] | select(.file | test("'"$link"'")) | .id' "$BIB"
+fi
+
+
