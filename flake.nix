@@ -219,6 +219,11 @@
           source = ./launchagents/com.davidsanson.vdirsyncer.plist;
           target = "com.davidsanson.vdirsyncer.plist";
         };
+        upliftdesk = {
+          enable = true;
+          source = ./launchagents/com.davidsanson.upliftdesk.plist;
+          target = "com.davidsanson.upliftdesk.plist";
+        };
       };
 
 
