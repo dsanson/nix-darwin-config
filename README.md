@@ -30,22 +30,22 @@ TODO:
      - [ ] q
      - [ ] q-calibre-preview
      - [ ] q_preview
+     - [ ] contacts
      - [ ] visor
      - [x] bib2path2
      - [ ] termpdf.py
      - [x] set_theme
      - [x] opacity
      - [ ] clibre
-     - [ ] close_notifications
+     - [ ] close_notifications #broken
      - [x] bar_colors
-     - [ ] contacts
      - [x] noise
-     - [ ] dark-mode-react
+     - [ ] dark-mode-react #broken
      - [x] fb-rotate replace with: https://github.com/jakehilborn/displayplacer
      - [ ] sioyek wrapper script
      - [ ] webcam (broken)
      - [ ] screenrecording
-     - [ ] scores
+     - [x] scores
 - [ ] migrate carnap.py
 - [ ] syncthing
 - [ ] ssh keys

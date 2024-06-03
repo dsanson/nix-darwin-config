@@ -1,0 +1,104 @@
+#!/usr/bin/env bash
+set -o errexit
+set -o nounset
+set -o pipefail
+
+declare height
+declare line
+declare status
+
+function print_help() {
+  cat <<EOF
+usage: uplift <[sit|stand|toggle|raise|lower|set_sit|set_stand|help]>
+EOF
+}
+
+
+function sit() {
+  echo "1" >> /tmp/com.davidsanson.upliftdesk.in
+}
+
+function stand() {
+  echo "2" >> /tmp/com.davidsanson.upliftdesk.in
+}
+
+function raise() {
+  echo "r" >> /tmp/com.davidsanson.upliftdesk.in
+}
+
+function lower() {
+  echo "l" >> /tmp/com.davidsanson.upliftdesk.in
+}
+
+function set_sitting_height() {
+  echo "s" >> /tmp/com.davidsanson.upliftdesk.in
+}
+
+function set_standing_height() {
+  echo "S" >> /tmp/com.davidsanson.upliftdesk.in
+}
+
+function getStatus() {
+  line=$(sed -n '$p' /tmp/com.davidsanson.upliftdesk.out)
+  case "$line" in
+    "Desk height:"*)
+      height="$(echo "$line" | awk '{print $3}')"
+      height="${height%.*}"
+      if [[ "$height" -gt 35 ]]; then
+        status="standing"
+      else 
+        status="sitting"
+      fi
+      ;;
+    "Going to preset 1"*)
+      status="sitting"
+      ;;
+    "Going to preset 2"*)
+      status="standing"
+      ;;
+    *)
+      status="unknown"
+      echo "Cannot determine the current state of the desk" >&2
+      exit 1
+      ;;
+  esac
+}
+
+function toggle() {
+  getStatus
+  if [[ "$status" == "standing" ]]; then
+    sit
+  else
+    stand
+  fi
+}
+
+case "${1:-}" in
+  sit)
+    sit
+    ;;
+  stand)
+    stand
+    ;;
+  toggle)
+    toggle
+    ;;
+  raise)
+    raise
+    ;;
+  lower)
+    lower
+    ;;
+  set_sit)
+    set_sitting_height
+    ;;
+  set_stand)
+    set_standing_height
+    ;;
+  help|-h|--help)
+    print_help
+    ;;
+  *)
+    toggle
+    ;;
+esac

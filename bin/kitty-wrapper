@@ -1,0 +1,40 @@
+#!/usr/bin/env bash
+set -o errexit
+set -o nounset
+set -o pipefail
+
+# dependencies: yabai jq kitty
+
+app=$(yabai -m query --windows --window | jq -r .app)
+
+case "$app" in
+  "kitty"|".kitty-wrapped")
+    path="$(yabai -m query --windows --window \
+      | jq -r .title \
+      | sed -e 's/:.*//')"
+    dir="${path/#\~/$HOME}"
+    ;;
+  "Finder")
+    path="$(osascript -e 'tell app "Finder" to get posix path of ((target of window 1) as alias)')"
+    dir="$path"
+    ;;
+  "Preview")
+    path="$(osascript -e 'tell app "Preview" to return path of front document')"
+    path="${path%/*}"
+    dir="$path"
+    ;;
+   *)
+    dir="/Users/desanso"
+    ;;
+esac
+
+if [[ ! -d "$dir" ]]; then
+  echo "$dir"
+  dir="$HOME"
+fi
+
+if pgrep -aq "kitty"; then
+  kitty --single-instance --instance-group=1 -d="$dir" "$@"
+else
+  open -a kitty --args --single-instance --instance-group=1 -d="$dir" "$@"
+fi

@@ -286,6 +286,29 @@ in
       text = (builtins.readFile ./bin/rotate);
     })
 
+    (writeShellApplication {
+      name = "scores";
+      runtimeInputs = [ pandoc gnused ack iconv curl ];
+      text = (builtins.readFile ./bin/scores);
+    })
+
+    (writeShellApplication {
+      name = "firefox-wrapper";
+      text = (builtins.readFile ./bin/firefox-wrapper);
+    })
+
+    (writeShellApplication {
+      name = "kitty-wrapper";
+      runtimeInputs = [ pandoc jq kitty yabai ];
+      text = (builtins.readFile ./bin/kitty-wrapper);
+    })
+
+    (writeShellApplication {
+      name = "uplift";
+      runtimeInputs = [ gnused gawk ];
+      text = (builtins.readFile ./bin/uplift);
+    })
+
   ];
 
   xdg.enable = true;

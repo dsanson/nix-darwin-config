@@ -511,8 +511,8 @@
              m1, m2 < cmd - space : skhd -k 'escape'; skhd -k 'cmd - space'
              m1, m2 < cmd + alt - space : skhd -k 'escape'; skhd -k 'cmd + alt - space'
              # open firefox windows
-             m1 < b   :  skhd -k "escape"; $HOME/.local/bin/firefox-wrapper &
-             m2 < b   :  skhd -k "escape"; $HOME/.local/bin/firefox-wrapper --private-window &
+             m1 < b   :  skhd -k "escape"; firefox-wrapper &
+             m2 < b   :  skhd -k "escape"; firefox-wrapper --private-window &
              # screen capture
              m1 < c      :  skhd -k "escape"; /usr/sbin/screencapture -iUgc -J "window"
              # screenrecording
@@ -521,12 +521,13 @@
              #m1 < f7 : skhd -k 'escape'; $HOME/bin/webcam doc
              # lock screen
              # rotate external monitor
-             m1 < r    :  skhd -k "escape"; fb-rotate -d 1 -r 1
+             m1 < r    :  skhd -k "escape"; rotate toggle
              # reload yabai
              m2 < r            : skhd -k 'escape'; launchctl stop org.nixos.yabai
              # q script to replace quicksilver
              default < ctrl -space : yabai -m window --toggle visor || open -a kitty.app -n --args --title "visor" /etc/profiles/per-user/desanso/bin/fish -C 'q -w'
              m1, m2 < ctrl -space : skhd -k "escape"; visor
+             m1 < u : skhd -k "escape"; bash -x uplift
           '';
         };
 
