@@ -5,6 +5,8 @@ set -o pipefail
 
 declare -a layouts
 layouts=(max full full_relaxed center left left_half right right_half zoom zoom_slides obs 720p 1080p 480p 360p 240p)
+declare -a cycles
+cycles=(full full_relaxed center left right)
 
 if [[ "${1:-}" == "list" ]]; then
   printf '%s\n' "${layouts[@]}"
@@ -194,12 +196,12 @@ zoom_slides() {
 
 if [[ -z "${1:-}" || "$1" == "cycle" || "$1" == "next" ]]; then
     c=0
-    for i in "${!layouts[@]}"; do
-        [[ "$current" == "${layouts[$i]}" ]] && c=$((i + 1)) 
+    for i in "${!cycles[@]}"; do
+        [[ "$current" == "${cycles[$i]}" ]] && c=$((i + 1)) 
     done
-    [[ $c -ge "${#layouts[@]}" ]] && c=0
-    ${layouts[$c]}
-    echo "${layouts[$c]}" > "$HOME/.cache/yabai/layout.${space}"
+    [[ $c -ge "${#cycles[@]}" ]] && c=0
+    ${cycles[$c]}
+    echo "${cycles[$c]}" > "$HOME/.cache/yabai/layout.${space}"
 elif [[ "$1" == "current" ]]; then
    ${current}
 else
