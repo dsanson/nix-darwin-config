@@ -1,11 +1,12 @@
 #!/usr/bin/env bash
+
 set -o errexit
 set -o nounset
 set -o pipefail
 
 # dependencies: yabai jq kitty
 
-app=$(yabai -m query --windows --window | jq -r .app)
+app=$(yabai -m query --windows --window | jq -r .app || echo) 
 
 case "$app" in
   "kitty"|".kitty-wrapped")
@@ -33,8 +34,8 @@ if [[ ! -d "$dir" ]]; then
   dir="$HOME"
 fi
 
-if pgrep -aq "kitty"; then
+#if pgrep -aq "kitty"; then
   kitty --single-instance --instance-group=1 -d="$dir" "$@"
-else
-  open -a kitty --args --single-instance --instance-group=1 -d="$dir" "$@"
-fi
+#else
+#  open -a kitty --args --single-instance --instance-group=1 -d="$dir" "$@"
+#fi
