@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
+
 set -o errexit
 set -o nounset
 set -o pipefail
@@ -73,6 +74,13 @@ function toggle() {
   fi
 }
 
+function reset_daemon() {
+  launchctl stop com.davidsanson.upliftdesk
+  rm /tmp/com.davidsanson.upliftdesk.in
+  touch /tmp/com.davidsanson.upliftdesk.in
+  launchctl start com.davidsanson.upliftdesk
+}
+
 case "${1:-}" in
   sit)
     sit
@@ -97,6 +105,9 @@ case "${1:-}" in
     ;;
   help|-h|--help)
     print_help
+    ;;
+  reset)
+    reset_daemon
     ;;
   *)
     toggle
