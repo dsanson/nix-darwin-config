@@ -168,7 +168,7 @@ in
     cairo
     djvu2pdf
     djvulibre
-    #ocrmypdf # build is broken
+    ocrmypdf 
     pdfcpu
     pdfgrep
     qpdf
@@ -447,7 +447,6 @@ in
       functions = {
         retakes = "carnap hiddens $argv | sort";
         playlist = "osascript -e 'tell app \"Music\" to play the playlist named \"'$argv'\"'";
-        uplift = "echo $argv >> /tmp/com.davidsanson.upliftdesk.in";
       };
       interactiveShellInit = ''
         set -g fish_key_bindings fish_vi_key_bindings
