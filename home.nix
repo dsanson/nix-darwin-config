@@ -309,6 +309,12 @@ in
       text = (builtins.readFile ./bin/uplift);
     })
 
+    (writeShellApplication {
+      name = "visor";
+      runtimeInputs = [ yabai ];
+      text = (builtins.readFile ./bin/visor);
+    })
+
   ];
 
   xdg.enable = true;
