@@ -1,4 +1,4 @@
-Work in progress.
+My nix config
 
 TODO:
 
@@ -32,25 +32,26 @@ TODO:
      - [ ] q_preview
      - [ ] contacts
      - [ ] visor
-     - [x] bib2path2
      - [ ] termpdf.py
-     - [x] set_theme
-     - [x] opacity
      - [ ] clibre
+     - [ ] sioyek wrapper script
+     - [ ] webcam #broken
      - [ ] close_notifications #broken
+     - [ ] dark-mode-react #broken
      - [x] bar_colors
      - [x] noise
-     - [ ] dark-mode-react #broken
-     - [x] fb-rotate replace with: https://github.com/jakehilborn/displayplacer
-     - [ ] sioyek wrapper script
-     - [ ] webcam (broken)
-     - [ ] screenrecording
+     - [x] bib2path2
+     - [x] set_theme
+     - [x] opacity
      - [x] scores
+     - [x] uplift
+     - [x] rotate
 - [ ] migrate carnap.py
-- [ ] syncthing
+- [ ] syncthing settings
 - [ ] ssh keys
-- [ ] zerotier authsecret -> Library/Application Support
+- [ ] zerotier authsecret in Library/Application Support
 - [ ] nixos/nix-darwin agnostic
+     - [ ] nixos for rpi4
 - [ ] migrate away from asdf---use nix for dependency management for carnap.py, the logic book, and my webpage
 - [x] add microsoft-office cask
 
