@@ -150,15 +150,28 @@ in
     cmake-language-server
     gopls
     dot-language-server
+    lemminx
     #lua
     #luarocks
-    # data
+    # pandoc filters
+    pandoc-eqnos
+    pandoc-secnos
+    pandoc-fignos
+    pandoc-tablenos
+    pandoc-include
+    pandoc-imagine
+    haskellPackages.pandoc-sidenote
+    haskellPackages.pandoc-crossref
+    python312Packages.pandoc-xnos
+    # data processing
     R
     visidata 
     xsv
     yq
     pup
-    #sc-im # build is broken
+    #csvkit #broken build
+    python312Packages.pyexcel
+    #sc-im #broken build
     # web browsing
     lynx
     w3m
@@ -177,6 +190,8 @@ in
     unpaper
     # media
     ffmpeg
+    whisper-ctranslate2
+    srt-to-vtt-cl
     # document generation
     biber
     bibtool
