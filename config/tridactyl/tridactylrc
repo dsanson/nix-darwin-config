@@ -15,8 +15,8 @@ command zotero exclaim_quiet skhd -k 'ctrl + cmd - z'
 bind ,z zotero
 
 " anylist recipe saver
-" command anylist_save_recipe composite get_current_url | composite echo 'https://www.anylist.com/web/recipes/import?url=' | fillcmdline
-" bind ,r anylist_save_recipe
+command anylist_save_recipe composite get_current_url | composite echo winopen https://www.anylist.com/web/recipes/import?url= | fillcmdline
+bind ,a anylist_save_recipe
 
 # reader mode
 bind ,r reader
