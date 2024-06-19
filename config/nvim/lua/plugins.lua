@@ -256,7 +256,6 @@ require("lazy").setup({
   },
   {
     "folke/trouble.nvim",
-    branch = "dev", -- IMPORTANT!
     keys = {
       {
         "<leader>xx",
