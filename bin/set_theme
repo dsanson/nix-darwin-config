@@ -34,7 +34,7 @@ function get_desktop_path_by_uuid() {
 # set current desktop image path
 function set_desktop_path() {
   display=$(yabai -m query --displays --display | jq '.index')
-  osascript -e 'tell app "system events" to set picture of desktop '"$display"' to '"${1:-}"
+  osascript -e 'tell app "system events" to set picture of desktop '"$display"' to "'"${1:-}"'"'
 }
 
 # utility for joining strings
@@ -45,6 +45,9 @@ function join_by {
     printf %s "$f" "${@/#/$d}"
   fi
 }
+
+# default mode
+mode="light"
 
 # when run with no arguments, set default theme based on os color mode
 if [[ "$#" -eq 0 ]]; then
