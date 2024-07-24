@@ -176,6 +176,7 @@ in
     lynx
     w3m
     # pdf and images
+    timg #terminal image viewer
     imagemagick
     ghostscript
     cairo
