@@ -14,7 +14,7 @@ vim.opt.rtp:prepend(lazypath)
 require("lazy").setup({
   'folke/which-key.nvim',
   'neovim/nvim-lspconfig',
-  'sprockmonty/wal.vim', -- colorschemes
+  -- 'sprockmonty/wal.vim', -- colorschemes
   'ludovicchabant/vim-gutentags',
   'folke/twilight.nvim', -- dim inactive paragraph
   'farmergreg/vim-lastplace', -- restore cursor position
@@ -29,6 +29,18 @@ require("lazy").setup({
   'chrisbra/csv.vim', -- replaced by treesitter? csv syntax and filetype plugin
   'lewis6991/gitsigns.nvim',
   'opdavies/toggle-checkbox.nvim',
+  {
+    "RedsXDD/neopywal.nvim",
+    name = "neopywal",
+    lazy = false,
+    priority = 1000,
+    opts = {},
+    config = function()
+      require("neopywal").setup({
+        transparent_background = true,
+      })
+    end,
+  },
   {
     "zeioth/garbage-day.nvim",
     dependencies = "neovim/nvim-lspconfig",
@@ -508,23 +520,22 @@ lsp.lemminx.setup{}
 --lsp.marksman.setup{}
 
 -- colorscheme
-vim.opt.termguicolors = true
--- vim.cmd('source ~/.vimrc_background')
-vim.cmd('colorscheme wal')
+local neopywal = require("neopywal")
+neopywal.setup()
+vim.cmd.colorscheme("neopywal")
 
 -- litecorrect
 vim.g.user_dict    = {
   maybe        = {'mabye'},
   homogeneous  = {'homogenous'},
   possibility  = {'possiblity'},
-  qaḍḍiya      = {'qaddiya'},
+  qaḍiyya      = {'qadiyya'},
   ḥikāya       = {'hikaya'},
   kalām        = {'kalam'},
   Kalām        = {'Kalam'},
   ḥadīth       = {'hadith'},
   inshāʾ       = {'insha'},
   faḥwā        = {'fahwa'},
-  qaḍiyya      = {'qadiyya'},
   maʿnā        = {'mana'},
   maʿānī       = {'maani'},
   maḍmūn       = {'madmun'},
@@ -540,7 +551,7 @@ vim.g.user_dict    = {
   Astarābādī   = {'Astarabadi'},
   Ṭūsī         = {'Tusi'},
   Abharī       = {'Abhari'},
-  Taftazānī    = {'Taftazani'},
+  Taftāzānī    = {'Taftazani'},
   Kātibī       = {'Katibi'},
   Samarqandī   = {'Samarqandi'},
   Jurjānī      = {'Jurjani'},
@@ -550,7 +561,7 @@ vim.g.user_dict    = {
   Sakākī       = {'Sakaki'},
   Muʿtazilah   = {'Mutazilah'},
   Qurʾān       = {'Quran'},
-  Yaḥyá        = {'Yahya'},
+  Yaḥyā        = {'Yahya'},
   ʿAdī         = {'Adi'},
   Sirāfī       = {'Sirafi'},
   Tawḥīdī      = {'Tawhidi'},
