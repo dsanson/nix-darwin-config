@@ -77,7 +77,7 @@
           grandperspective
           monitorcontrol 
           #xquartz 
-          #dark-mode-notify #broken; need to create launchagent service
+          dark-mode-notify # need to create launchagent service
           nowplaying-cli
 
           # mac apps to check out
@@ -220,9 +220,14 @@
           target = "com.davidsanson.vdirsyncer.plist";
         };
         upliftdesk = {
-          enable = true;
+          enable = false;
           source = ./launchagents/com.davidsanson.upliftdesk.plist;
           target = "com.davidsanson.upliftdesk.plist";
+        };
+        dark-mode-notify = {
+          enable = true;
+          source = ./launchagents/ke.bou.dark-mode-notify.plist;
+          target = "ke.bou.dark-mode-notify.plist";
         };
       };
 
@@ -410,7 +415,7 @@
 
       services = {
         ipfs = {
-          enable = true;
+          enable = false;
           # ipfsPath = "/Users/desanso/ipfs";
         };
         karabiner-elements = {

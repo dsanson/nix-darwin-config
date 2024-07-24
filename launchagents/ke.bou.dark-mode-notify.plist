@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN"
+"http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+    <key>Label</key>
+    <string>ke.bou.dark-mode-notify</string>
+    <key>KeepAlive</key>
+    <true/>
+    <key>ProgramArguments</key>
+    <array>
+      <string>/run/current-system/sw/bin/dark-mode-notify</string>
+       <string>set_theme</string>
+       <string>wallpaper</string>
+       <string>auto</string>
+    </array>
+    <key>EnvironmentVariables</key>
+    <dict>
+        <key>PATH</key>
+        <string>/Users/desanso/bin:/opt/homebrew/bin:/etc/profiles/per-user/desanso/bin:/run/current-system/sw/bin:/nix/var/nix/profiles/default/bin:/usr/local/bin:/usr/bin:/usr/sbin:/bin:/sbin</string>
+    </dict>
+    <key>StandardErrorPath</key>
+    <string>/tmp/ke.bou.dark-mode-notify.err</string>
+    <key>StandardOutPath</key>
+    <string>/tmp/ke.bou.dark-mode-notify.out</string>
+</dict>
+</plist>
