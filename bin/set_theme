@@ -7,14 +7,23 @@ set -o pipefail
 
 shopt -s nocasematch
 
-DARK_THEME="solarized-dark"
-LIGHT_THEME="base16-gruvbox-medium-light"
+DARK_THEME="$HOME/.cache/wal/default-dark.json"
+LIGHT_THEME="$HOME/.cache/wal/default-light.json"
 
 # get current os color mode ("light" or "dark")
 function get_current() {
   mode=$(defaults read -g AppleInterfaceStyle 2>/dev/null)
   [[ "$mode" != "dark" ]] && mode="light"
   echo "$mode"
+}
+
+# set os color mode
+function set_system_mode() {
+  if [[ "$1" == "dark" ]]; then
+    osascript -e 'tell application "System Events" to tell appearance preferences to set dark mode to true'
+  else
+    osascript -e 'tell application "System Events" to tell appearance preferences to set dark mode to false'
+  fi
 }
 
 # get current desktop image path
@@ -62,10 +71,12 @@ while [[ "$#" -gt 0 ]]; do
       ;;
     "dark")
       mode="dark"
+      set_system_mode dark
       shift
       ;;
     "light")
       mode="light"
+      set_system_mode light
       shift
       ;;
     "wallpaper")
@@ -99,10 +110,10 @@ mode="${wp:-}$mode"
 args=""
 case "$mode" in
   "dark")
-    args="theme $DARK_THEME"
+    args="cs $DARK_THEME"
     ;;
   "light")
-    args="theme $LIGHT_THEME"
+    args="cs $LIGHT_THEME"
     ;;
   "wp-dark")
     args="run $path -p darkcomp"
@@ -113,8 +124,9 @@ case "$mode" in
 esac
 
 # shellcheck disable=SC2086 # Intended splitting of args
-wallust $args "$@" -s
+wallust $args "$@" 
 
+# apply settings to kitty terminals
 if type kitty &> /dev/null; then
   if [[ "$mode" =~ wp-* ]]; then
     space_windows=$(yabai -m query --windows --space | jq '.[] | select(.app | contains("kitty")).id')
@@ -133,7 +145,11 @@ if type kitty &> /dev/null; then
   fi
 fi
 
+
 if type pywalfox &> /dev/null; then
+  pywalfox "${mode##wp-}"
   pywalfox update
 fi
 
+# restart sketchybar
+launchctl kickstart -k gui/503/org.nixos.sketchybar &
