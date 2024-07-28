@@ -191,7 +191,7 @@ in
     unpaper
     # media
     ffmpeg
-    whisper-ctranslate2
+    #whisper-ctranslate2 #broken pending update of botorch pkg
     srt-to-vtt-cl
     # document generation
     biber
