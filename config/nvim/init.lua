@@ -8,7 +8,7 @@ require('mappings')
 require('plugins')
 
 -- -- load additional settings
--- require('settings_add')
+require('settings_add')
 --
 -- -- load additional mappings
 require('mappings_add')

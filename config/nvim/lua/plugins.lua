@@ -522,7 +522,7 @@ lsp.lemminx.setup{}
 -- colorscheme
 local neopywal = require("neopywal")
 neopywal.setup()
-vim.cmd.colorscheme("neopywal")
+--vim.cmd.colorscheme("neopywal")
 
 -- litecorrect
 vim.g.user_dict    = {

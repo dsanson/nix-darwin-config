@@ -128,22 +128,22 @@ wallust $args "$@"
 
 # apply settings to kitty terminals
 if type kitty &> /dev/null; then
-  if [[ "$mode" =~ wp-* ]]; then
-    space_windows=$(yabai -m query --windows --space | jq '.[] | select(.app | contains("kitty")).id')
-    ids=()
-    for id in $space_windows; do
-      kitty_id=$(kitten @ ls | \
-        jq -r '.[] | 
-        select(.platform_window_id=='"$id"') | [.tabs[].windows[] | 
-          "id:" + (.id | tostring) ] | join(" or ")')
-      ids+=("$kitty_id")
-    done
-    id_exp=$(join_by " or " "${ids[@]}")
-    kitten @ --to unix:/tmp/mykitty set-colors --match "(${id_exp})" -c ~/.cache/wal/colors-kitty.conf
-  else
+  # if [[ "$mode" =~ wp-* ]]; then
+  #   space_windows=$(yabai -m query --windows --space | jq '.[] | select(.app | contains("kitty")).id')
+  #   ids=()
+  #   for id in $space_windows; do
+  #     kitty_id=$(kitten @ ls | \
+  #       jq -r '.[] | 
+  #       select(.platform_window_id=='"$id"') | [.tabs[].windows[] | 
+  #         "id:" + (.id | tostring) ] | join(" or ")')
+  #     ids+=("$kitty_id")
+  #   done
+  #   id_exp=$(join_by " or " "${ids[@]}")
+  #   kitten @ --to unix:/tmp/mykitty set-colors --match "(${id_exp})" -c ~/.cache/wal/colors-kitty.conf
+  # else
     kitten @ --to unix:/tmp/mykitty set-colors --all -c ~/.cache/wal/colors-kitty.conf
   fi
-fi
+#fi
 
 
 if type pywalfox &> /dev/null; then

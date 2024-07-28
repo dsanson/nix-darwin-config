@@ -2,7 +2,6 @@
 PLUGIN_DIR="$HOME/.config/sketchybar/plugins"
 
 source "$HOME/.cache/wal/colors.sketchybar"
-
 ICON_FONT="Hack Nerd Font:Bold:18.0" 
 LABEL_FONT="Helvetica Neue:Bold:14.0" 
 

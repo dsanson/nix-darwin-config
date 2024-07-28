@@ -77,16 +77,6 @@ opt.clipboard     = 'unnamed' --Use system clipboard
 -- neovim terminal 
 cmd('autocmd TermOpen * startinsert') -- Enter "terminal mode" automatically
 
--- set background on MacOS
-if vim.uv.os_uname().sysname == 'Darwin' then
-  local theme = vim.fn.system('defaults read -g AppleInterfaceStyle')
-  if theme == 'Dark' then
-    opt.background = 'dark'
-  else
-    opt.background = 'light'
-  end
-end
-
 -- return cursor to last location on open
 vim.api.nvim_create_autocmd({'BufWinEnter'}, {
   desc = 'return cursor to where it was last time closing the file',
