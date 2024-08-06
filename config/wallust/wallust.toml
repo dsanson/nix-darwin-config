@@ -83,17 +83,17 @@ palette = "dark"
 # target: Absolute path in which to place a file with generated templated values
 # NOTE: prefer '' over "" for paths, avoids escaping.
 #zathura = { template = 'zathura', target = '~/.config/zathura/zathurarc' }
-colors = { template = 'colors', target = '~/.cache/wal/colors' , pywal = true }
-sh = { template = 'colors.sh', target = '~/.cache/wal/colors.sh' , pywal = true }
-bash = { template = 'colors.bash', target = '~/.cache/wal/colors.bash' , pywal = true }
-kitty = { template = 'colors.kitty', target = '~/.cache/wal/colors-kitty.conf', pywal = false }
-vim = { template = 'colors.vim', target = '~/.cache/wal/colors-wal.vim' , pywal = true }
-css = { template = 'colors.css', target = '~/.cache/wal/colors.css' , pywal = true }
-scss = { template = 'colors.scss', target = '~/.cache/wal/colors.scss' , pywal = true }
-json = { template = 'colors.json', target = '~/.cache/wal/colors.json' , pywal = true }
-yml = { template = 'colors.yml', target = '~/.cache/wal/colors.yml' , pywal = true }
-sketchybar = { template = 'colors.sketchybar', target = '~/.cache/wal/colors.sketchybar', pywal = false }
-tridactyl = { template = 'tridactyl_blank.html', target = '~/.config/tridactyl/blank.html', pywal = false }
+colors = { template = 'colors', target = '~/.cache/wal/colors' }
+sh = { template = 'colors.sh', target = '~/.cache/wal/colors.sh' }
+bash = { template = 'colors.bash', target = '~/.cache/wal/colors.bash' }
+kitty = { template = 'colors.kitty', target = '~/.cache/wal/colors-kitty.conf'}
+vim = { template = 'colors.vim', target = '~/.cache/wal/colors-wal.vim' }
+css = { template = 'colors.css', target = '~/.cache/wal/colors.css' }
+scss = { template = 'colors.scss', target = '~/.cache/wal/colors.scss' }
+json = { template = 'colors.json', target = '~/.cache/wal/colors.json' }
+yml = { template = 'colors.yml', target = '~/.cache/wal/colors.yml' }
+sketchybar = { template = 'colors.sketchybar', target = '~/.cache/wal/colors.sketchybar'}
+tridactyl = { template = 'tridactyl_blank.html', target = '~/.config/tridactyl/blank.html'}
 # OPTIONALLY It can accept `new_engine = true`: This "new engine" difers by using  double brackets like `{{variable}}`
 # instead of one like usual, which helps with file formats that use brackets like json. With the `new_engine` enabled
 # you can escape and produce a literal `{{` by `{{{{}}`, and for `}}` you escape it with `{{}}}}`.
