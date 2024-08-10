@@ -166,6 +166,19 @@ require("lazy").setup({
     end
   },
   {
+    'nvim-telescope/telescope-ui-select.nvim',
+    config = function()
+      require("telescope").setup {
+        extensions = {
+          ["ui-select"] = {
+            require("telescope.themes").get_dropdown {
+            }
+          }
+        }
+      }
+    end,
+  },
+  {
     "nvim-telescope/telescope-symbols.nvim",
     dependencies = { "nvim-telescope/telescope.nvim", },
   },
@@ -250,7 +263,7 @@ require("lazy").setup({
 
   {
    'nat-418/boole.nvim',
-    config = function() 
+    config = function()
       require('boole').setup({
         mappings = {
           increment = '<C-a>',

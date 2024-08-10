@@ -34,6 +34,7 @@ keymap.set('v', '<Enter>', ':EasyAlign<CR>', {desc = "Easy align"} )
 
 -- Open main notes file
 keymap.set('n', 'gn', '<cmd>edit ~/d/zettel/Home.md<cr>', { desc = "open notes" } )
+keymap.set('n', '<leader>jn', '<cmd>edit ~/d/zettel/Home.md<cr>', { desc = "open notes" } )
 
 -- LSP mappings 
 api.nvim_create_autocmd('LspAttach', {
@@ -42,5 +43,10 @@ api.nvim_create_autocmd('LspAttach', {
     keymap.set('n', 'gd', lsp.buf.definition, { buffer = args.buf, desc = "goto definition" })
     keymap.set('n', 'gr', '<cmd>Telescope lsp_references<cr>', { buffer = args.buf, desc = "goto references" })
     keymap.set('n', 'cd', lsp.buf.code_action, { buffer = args.buf, desc = "code actions" })
+    keymap.set('n', '<leader>dd', lsp.buf.definition, { buffer = args.buf, desc = "goto definition" })
+    keymap.set('n', '<leader>dr', '<cmd>Telescope lsp_references<cr>', { buffer = args.buf, desc = "goto references" })
+    keymap.set('n', '<leader>da', lsp.buf.code_action, { buffer = args.buf, desc = "code actions" })
+    keymap.set('n', '<leader>jd', lsp.buf.definition, { buffer = args.buf, desc = "goto definition" })
+    keymap.set('n', '<leader>jr', '<cmd>Telescope lsp_references<cr>', { buffer = args.buf, desc = "goto references" })
   end
 })
