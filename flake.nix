@@ -623,7 +623,6 @@
             yabai -m signal --add event=space_created action='sketchybar --reload'
             yabai -m signal --add event=space_destroyed action='sketchybar --reload'
             yabai -m signal --add event=display_removed action='sketchybar --reload'
-            yabai -m signal --add event=front_app_switched="sketchybar 
 
             ${pkgs.sketchybar}/bin/sketchybar --reload
           '';
