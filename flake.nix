@@ -3,6 +3,7 @@
 
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
+    nixpkgs-stable.url = "github:NixOS/nixpkgs/nixos-24.05";
     nix-darwin = {
       url = "github:LnL7/nix-darwin";
       #url = "github:wegank/nix-darwin/mddoc-remove";
@@ -16,11 +17,12 @@
       url = "github:nix-community/NUR";
       #inputs.nixpkgs.follows = "nixpkgs";
     };
-    nixpkgs-firefox-darwin.url = "github:bandithedoge/nixpkgs-firefox-darwin";
+    #nixpkgs-firefox-darwin.url = "github:bandithedoge/nixpkgs-firefox-darwin";
   };
 
-  outputs = inputs@{ self, home-manager, nix-darwin, nixpkgs, nur, nixpkgs-firefox-darwin }:
+  outputs = inputs@{ self, home-manager, nix-darwin, nixpkgs, nixpkgs-stable, nur }:
   let
+    pkgs-stable = nixpkgs-stable.legacyPackages.aarch64-darwin;
     configuration = { pkgs, ... }: {
 
       nix.settings = {
@@ -29,6 +31,9 @@
       };
       
       nixpkgs.config.allowUnfree = true;
+      nixpkgs.config.permittedInsecurePackages = [
+        "olm-3.2.16"
+      ];
 
       users.users.desanso = {
         description = "David Sanson";
@@ -72,7 +77,8 @@
           #shortcat #keyboard selection of macos elements
           defaultbrowser #should move this to a dependency of the system setup
           mas
-          darwin.trash
+          #darwin.trash # darwin trash has not been working
+          #haskellPackages.macrm # marked as broken---install via homebrew instead
           iina
           grandperspective
           monitorcontrol 
@@ -167,7 +173,7 @@
           netpbm
           nmap
           opencv
-          openmpi
+          #openmpi no longer builds on darwin
           openssh
           optipng
           pango
@@ -340,6 +346,7 @@
           "luarocks"
           "brightness" #used by upliftdesk to check if monitor is off
           "displayplacer" #for rotating and managing displays"
+          "macrm" #a mac trash cli
         ];
         
         caskArgs.no_quarantine = true;
@@ -350,7 +357,7 @@
           "calibre"
           "karabiner-elements" # nix pkg has permissions problems
           "quicksilver"
-          "keepingyouawake"
+          "keepingyouawake" #caffeinate app
           "anylist"
           "itsycal" # nixpkg doesn't work complains needs to be installed in /Applications
           "marta" # trying
@@ -646,13 +653,16 @@
           # ];
           home-manager.useGlobalPkgs = true;
           home-manager.useUserPackages = true;
+          home-manager.extraSpecialArgs = {
+            inherit pkgs-stable;
+          };
           home-manager.users.desanso.imports = [
             nur.hmModules.nur ./home.nix 
           ];
         }
       ];
     };
-
+    
     # Expose the package set, including overlays, for convenience.
     darwinPackages = self.darwinConfigurations."halibut".pkgs;
   };

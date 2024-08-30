@@ -143,20 +143,29 @@ DATE_OPTS=(
   label.y_offset=1
 )
 
-# BATTERY_OPTS=(
-#   script="COLOR=$COLOR $PLUGIN_DIR/battery.sh" 
-#   click_script="open /System/Library/PreferencePanes/Battery.prefPane"
-#   update_freq=120 
-# )
-#
-# BATTERY_EVENTS=(
-#   system_woke 
-#   power_source_change
-#   #mouse.entered
-#   #mouse.exited
-#   #mouse.exited.global
-# )
-#
+BATTERY_OPTS=(
+  script="COLOR=$COLOR $PLUGIN_DIR/battery.sh" 
+  click_script="open /System/Library/PreferencePanes/Battery.prefPane"
+  update_freq=120 
+  label.color="$COLOR"
+  label.font="$LABEL_FONT" 
+  label.background.drawing=on 
+  label.background.height=20
+  label.background.border_color=0xff${RAW_COLOR[8]}
+  label.background.border_width=2
+  label.background.corner_radius=4 
+  label.background.color="$UNSELECTED_COLOR"
+  label.highlight_color="$SELECTED_COLOR"
+  label.padding_left=6
+  label.padding_right=6 
+  label.y_offset=1
+)
+
+BATTERY_EVENTS=(
+  system_woke 
+  power_source_change
+)
+
 # WIFI_OPTS=(
 #   script="$PLUGIN_DIR/wifi.sh"
 #   click_script="open /System/Library/PreferencePanes/Network.prefPane"
@@ -225,11 +234,10 @@ sketchybar \
   --set clock "${CLOCK_OPTS[@]}" \
   --add item date right \
   --set date "${DATE_OPTS[@]}" \
-  
-  # --add item battery right \
-  # --set battery "${BATTERY_OPTS[@]}" \
-  # --add item battery-info popup.battery \
-  # --subscribe battery "${BATTERY_EVENTS[@]}" \
+  --add item battery right \
+  --set battery "${BATTERY_OPTS[@]}" \
+  --subscribe battery "${BATTERY_EVENTS[@]}" 
+
   # \
   # --add item wifi right \
   # --set wifi "${WIFI_OPTS[@]}" \
@@ -261,7 +269,7 @@ sketchybar \
   # # --subscribe do-not-disturb "${DONOTDISTURB_EVENTS[@]}"
 
 sketchybar \
-  --add bracket right clock date \
+  --add bracket right clock date battery \
   --set right \
     background.height=33 \
     background.color="$COLOR"

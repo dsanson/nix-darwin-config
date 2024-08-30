@@ -18,6 +18,11 @@ bind ,z zotero
 command anylist_save_recipe composite get_current_url | composite echo winopen https://www.anylist.com/web/recipes/import?url= | fillcmdline
 bind ,a anylist_save_recipe
 
+" hypothesis command
+"javascript:(function(){window.hypothesisConfig=function(){return{showHighlights:true,appType:'bookmarklet'};};var d=document,s=d.createElement('script');s.setAttribute('src','https://hypothes.is/embed.js');d.body.appendChild(s)})();
+command hypothesis js (function(){window.hypothesisConfig=function(){return{showHighlights:true,appType:'bookmarklet'};};var d=document,s=d.createElement('script');s.setAttribute('src','https://hypothes.is/embed.js');d.body.appendChild(s)})();
+bind ,h hypothesis
+
 # reader mode
 bind ,r reader
 

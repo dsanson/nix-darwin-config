@@ -1,4 +1,4 @@
-{pkgs, config, ...}:
+{pkgs, pkgs-stable, config, ...}:
 let
   tex = (pkgs.texlive.combine {
     inherit (pkgs.texlive) scheme-medium
@@ -113,6 +113,7 @@ in
     "liar" = "cd ~/d/research/projects/Papers/with_ahmed/liar-book; nvim -c 'Telescope find_files'";
     "sit" = "echo 1 >> /tmp/com.davidsanson.upliftdesk.in";
     "stand" = "echo 2 >> /tmp/com.davidsanson.upliftdesk.in";
+    "trash" = "macrm -rf";
   };
 
   home.sessionVariables = {
@@ -126,7 +127,8 @@ in
     FFSEND_DOWNLOAD_LIMIT = "20";
   };
 
-  home.packages = with pkgs; [
+  home.packages = (with pkgs; [
+    coreutils-prefixed
     tex
     pywalfox
     # dev
@@ -160,6 +162,8 @@ in
     pandoc-tablenos
     pandoc-include
     pandoc-imagine
+    mermaid-cli
+    # mermaid-filter # not available on darwin
     haskellPackages.pandoc-sidenote
     haskellPackages.pandoc-crossref
     python312Packages.pandoc-xnos
@@ -226,7 +230,7 @@ in
 
     uni # unicode lookup
     ffsend
-    wallust #pywall replacement
+    #wallust #pywall replacement
 
     # gui apps
     #aegisub # nix build broken
@@ -291,11 +295,11 @@ in
       text = (builtins.readFile ./bin/layouts);
     })
 
-    (writeShellApplication {
-      name = "set_theme";
-      runtimeInputs = [ yabai jq gnused kitty wallust ];
-      text = (builtins.readFile ./bin/set_theme);
-    })
+    # (writeShellApplication {
+    #   name = "set_theme";
+    #   runtimeInputs = [ yabai jq gnused kitty wallust ];
+    #   text = (builtins.readFile ./bin/set_theme);
+    # })
 
     (writeShellApplication {
       name = "rotate";
@@ -315,7 +319,8 @@ in
 
     (writeShellApplication {
       name = "kitty-wrapper";
-      runtimeInputs = [ pandoc jq kitty yabai ];
+      #runtimeInputs = [ pandoc jq kitty yabai ]; # removing kitty to avoid building unstable:q
+      runtimeInputs = [ pandoc jq yabai ];
       text = (builtins.readFile ./bin/kitty-wrapper);
     })
 
@@ -331,7 +336,14 @@ in
       text = (builtins.readFile ./bin/visor);
     })
 
-  ];
+  ])
+
+  ++
+
+  (with pkgs-stable; [
+    hello
+    kitty
+  ]);
 
   xdg.enable = true;
   xdg.configFile = {
@@ -600,7 +612,7 @@ in
     btop.enable = true;
     jq.enable = true;
     lazygit.enable = true;
-    mpv.enable = true;
+    #mpv.enable = true; # disabling until swift builds are fixed https://github.com/NixOS/nixpkgs/issues/327836#issuecomment-2308417434
     mu.enable = false;
     ripgrep.enable = true;
     sioyek.enable = false;
@@ -611,7 +623,7 @@ in
       enableFishIntegration = true;
       enableBashIntegration = true;
     };
-    yt-dlp.enable = true;
+    #yt-dlp.enable = true; #disabling unit swift builds are fixed
     pandoc = {
       enable = true;
       citationStyles = [
@@ -715,7 +727,7 @@ in
     };
     kitty = {
       enable = true;
-      package = pkgs.kitty;
+      package = pkgs-stable.kitty;
       darwinLaunchOptions = [
         "--single-instance"
         "--instance-group=1"
