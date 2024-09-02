@@ -113,7 +113,6 @@ in
     "liar" = "cd ~/d/research/projects/Papers/with_ahmed/liar-book; nvim -c 'Telescope find_files'";
     "sit" = "echo 1 >> /tmp/com.davidsanson.upliftdesk.in";
     "stand" = "echo 2 >> /tmp/com.davidsanson.upliftdesk.in";
-    "trash" = "macrm -rf";
   };
 
   home.sessionVariables = {

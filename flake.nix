@@ -1,6 +1,18 @@
 {
   description = "David's Darwin system flake";
 
+  nixConfig = {
+    substituters = [
+      "https://cache.nixos.org"
+      "https://nix-community.cachix.org"
+    ];
+
+    trusted-public-keys = [
+      "cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY="
+      "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
+    ];
+  };
+
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
     nixpkgs-stable.url = "github:NixOS/nixpkgs/nixos-24.05";
@@ -88,7 +100,7 @@
           duti # set default app for file type on macos from cli
           monitorcontrol # control brightness of external monitors
           dark-mode-notify 
-          # darwin.trash # no longer working reliably for me: refuses to delete directories
+          darwin.trash # no longer working reliably for me: refuses to delete directories
           # haskellPackages.macrm # marked as broken---installed via homebrew instead
 
       ];
@@ -225,23 +237,22 @@
           "luarocks"
           "brightness" #used by upliftdesk to check if monitor is off
           "displayplacer" #for rotating and managing displays"
-          "macrm" #a mac trash cli #nixpkg broken on mac
         ];
         
         caskArgs.no_quarantine = true;
         casks = [
           # Important Apps
-          "microsoft-office" # not on nixpkgs
+          "anylist" # not on nixpkgs
+          "calibre" # nixpkgs broken on darwin
+          "discord" # available on nixpkgs but poorly behaved
           "firefox" # nixpkgs linux only
           "google-chrome" # nixpkgs has chromium but linux only
-          "zotero@beta" # nixpkgs linux only
-          "calibre" # nixpkgs broken on darwin
-          "quicksilver" # not on nixpkgs
-          "anylist" # not on nixpkgs
-          "obsidian" # nixpkgs linux only; am I still using this?
-          "yacreader" # nixpkgs fails to build
+          "microsoft-office" # not on nixpkgs
           "obs" # nixkpgs only builds for linux
-          "discord" # available on nixpkgs but poorly behaved
+          "obsidian" # nixpkgs linux only; am I still using this?
+          "quicksilver" # not on nixpkgs
+          "yacreader" # nixpkgs fails to build
+          "zotero@beta" # nixpkgs linux only
           
           # Utilities and Tweaks
           "karabiner-elements" # nixpkgs needs to be updated for 15.0
@@ -521,7 +532,6 @@
     # Build darwin flake using:
     # $ darwin-rebuild build --flake .#halibut
     darwinConfigurations."halibut" = nix-darwin.lib.darwinSystem {
-      #modules = [ configuration ];
       modules = [
         configuration
         home-manager.darwinModules.home-manager
