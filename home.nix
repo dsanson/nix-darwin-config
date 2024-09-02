@@ -128,33 +128,47 @@ in
   };
 
   home.packages = (with pkgs; [
+    
     coreutils-prefixed
-    tex
-    pywalfox
-    # dev
+
+    ffsend
+    devd # simple cli webserver 
+    qrencode 
+    uni # unicode lookup
+    aria # downloading tool
+    gdrive3 
+    samba 
+    shared-mime-info
+    socat # 
+    wcalc #used by bin/q-preview # 
+
+    # git
+    delta # git highlighting 
     lazygit
-    hub
+    hub # github cli tool
+    git-lfs # git extension for large files  #git
+
     # webdev
     dart-sass # move to dev specific flake
-    # document readers
-    epr
-    # editor
-    tree-sitter
-    universal-ctags
-    nil
-    # language servers
-    marksman #zettlekasten style lsp 
-    lua-language-server
-    nodePackages.bash-language-server
-    vscode-langservers-extracted
-    pyright
-    yaml-language-server
-    cmake-language-server
-    gopls
-    dot-language-server
-    lemminx
-    #lua
-    #luarocks
+    html-tidy # 
+    html-xml-utils # 
+    xmlto # 
+    httpie # 
+
+    # tui apps
+    epr # terminal epub reader
+    lynx
+    timg #terminal image viewer
+    w3m
+
+    # document generation
+    biber
+    bibtool
+    mermaid-cli
+    tectonic # modern tex wrapper 
+    tex
+    typst
+
     # pandoc filters
     pandoc-eqnos
     pandoc-secnos
@@ -162,109 +176,108 @@ in
     pandoc-tablenos
     pandoc-include
     pandoc-imagine
-    mermaid-cli
-    # mermaid-filter # not available on darwin
     haskellPackages.pandoc-sidenote
     haskellPackages.pandoc-crossref
     python312Packages.pandoc-xnos
+    # mermaid-filter # not available on darwin
+
     # data processing
     R
+    #csvkit #broken build
+    miller # awk for data formats #csv 
+    pup
+    python312Packages.pyexcel
+    #sc-im #broken build
+    tidy-viewer # csv pretty printer
     visidata 
     xsv
     yq
-    pup
-    #csvkit #broken build
-    python312Packages.pyexcel
-    #sc-im #broken build
-    # web browsing
-    lynx
-    w3m
+
     # pdf and images
-    timg #terminal image viewer
-    imagemagick
-    ghostscript
     cairo
     djvu2pdf
     djvulibre
+    ghostscript
+    imagemagick
     ocrmypdf 
+    pdf2svg 
     pdfcpu
     pdfgrep
+    poppler_utils # provides pdftocairo
     qpdf
     scantailor
     tesseract
     unpaper
+
     # media
     ffmpeg
     #whisper-ctranslate2 #broken pending update of botorch pkg
     srt-to-vtt-cl
-    # document generation
-    biber
-    bibtool
-    typst
+
     # games
     angband
     figlet
     nsnake
-    # flashcards
-    anki-bin 
+
+    # ricing and theming
+    # wallust # currently won't build
+    pywalfox
+
     # fonts
+    amiri #arabic font
+    andika # for for beginning readers
+    charis-sil #another multilingual font
     dejavu_fonts
-    victor-mono # has all arabic transliteration diacritics
+    doulos-sil #another multilingual font
     fira-code # fira-mono with coding ligatures
     fira-code-nerdfont
     fira-go #fira sans with multilingual support
     font-awesome
+    font-awesome
+    gentium # good for diacritics
     kawkab-mono-font # arabic monospace font
     monoid
     mononoki
+    nerdfonts
     open-dyslexic
     source-code-pro
+    victor-mono # has all arabic transliteration diacritics
     xits-math
-    gentium # good for diacritics
-    andika # for for beginning readers
-    charis-sil #another multilingual font
-    doulos-sil #another multilingual font
-    amiri #arabic font
-    nerdfonts
-    font-awesome
-
-    uni # unicode lookup
-    ffsend
-    #wallust #pywall replacement
 
     # gui apps
-    #aegisub # nix build broken
     android-file-transfer		
+    anki-bin # flashcards
     audacity                    
-    #rpi-imager # marked as broken
-    #calibre # marked as broken
-    #discord                   
-    #djview # marked as broken
-    #dupeguru                    
-    #firefox # no darwin pkgs                    
-    #fontforge # no gui pkg for darwin
-    #google-chrome               
-    #itsycal #mac only            
-    #keepingyouawake #mac only          
-    #keycastr #mac only                    
-    #logic-2010                  
-    #logitech-camera-settings
-    #marta # mac only
-    #obsidian
-    #oracle-jdk
-    #quicksilver # mac only
-    #rar
-    #satori # mac only
-    #sf-symbols 
-    #syntax-highlight #mac only
-    #the-unarchiver #mac only
-    #tor-browser
-    #transmission #mac only
-    #vlc
-    #yacreader
-    #zerotier-one
-    #zoom
-    #zotero
+    musescore 
+    vlc-bin 
+
+    # mac specific gui apps
+    grandperspective 
+    iina 
+    keycastr
+    terminal-notifier
+
+    # gui apps installed as brew casks
+    #aegisub # installed with brew
+    #calibre # installed with brew
+    #discord # installed with brew                   
+    #djview # installed with brew
+    #dupeguru # installed with brew                    
+    #firefox # installed with brew
+    #google-chrome # installed with brew               
+    #itsycal # installed with brew; nixpkgs refuses to run
+    #keepingyouawake # installed with brew
+    #obsidian # installed with brew
+    #quicksilver # installed with brew
+    #rpi-imager # installed with brew
+    #satori # installed with brew
+    #sf-symbols  # installed with brew
+    #syntax-highlight # installed with brew
+    #the-unarchiver # installed with brew
+    #yacreader # installed with brew
+    #zerotier-one # installed with brew
+    #zoom # installed via ISU
+    #zotero # installed with brew
 
     (writeShellApplication {
       name = "bib2path2";
@@ -319,7 +332,7 @@ in
 
     (writeShellApplication {
       name = "kitty-wrapper";
-      #runtimeInputs = [ pandoc jq kitty yabai ]; # removing kitty to avoid building unstable:q
+      #runtimeInputs = [ pandoc jq kitty yabai ]; # removing kitty to avoid building unstable
       runtimeInputs = [ pandoc jq yabai ];
       text = (builtins.readFile ./bin/kitty-wrapper);
     })
@@ -789,8 +802,25 @@ in
       withRuby = true;
       extraLuaPackages = ps: [ ps.magick ];
       extraPackages = [ 
+        pkgs.tree-sitter
         pkgs.imagemagick
         pkgs.markdown-oxide
+        pkgs.efm-langserver
+        pkgs.ltex-ls
+        pkgs.vale # prose linter
+        pkgs.marksman #zettlekasten style lsp 
+        pkgs.nil # nix language server
+        pkgs.lua-language-server
+        pkgs.nodePackages.bash-language-server
+        pkgs.vscode-langservers-extracted
+        pkgs.pyright
+        pkgs.yaml-language-server
+        pkgs.cmake-language-server
+        pkgs.gopls # go language server
+        pkgs.dot-language-server
+        pkgs.lemminx # xml language server
+        pkgs.universal-ctags
+        pkgs.shellcheck
       ];
     };
 

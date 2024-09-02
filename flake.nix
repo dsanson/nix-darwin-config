@@ -47,172 +47,51 @@
         pkgs.zsh
       ];
       
-      environment.systemPackages = with pkgs;
-        [ 
+      environment.systemPackages = with pkgs; [ 
+
           # shells
           fish
+          bashInteractive
           zsh
           
-          skhd
-          # basic system stuff
+          # editor
+          neovim
+
+          # basic stuff
+          less
+          findutils
           curl
-          ack
+          wget
           fd
           fdupes
+          ack
           gawk
-          gnupg
-          less
-          #mosh
-          wget
           zip
           unar #cli version of theunarchiver
           unrar-wrapper
-
-          # editing
-          neovim
-
-          
-          # mac specific stuff
-          m-cli # this is so out of date, not sure it is useful
-          #shortcat #keyboard selection of macos elements
-          defaultbrowser #should move this to a dependency of the system setup
-          mas
-          #darwin.trash # darwin trash has not been working
-          #haskellPackages.macrm # marked as broken---install via homebrew instead
-          iina
-          grandperspective
-          monitorcontrol 
-          #xquartz 
-          dark-mode-notify # need to create launchagent service
-          nowplaying-cli
-
-          # mac apps to check out
-          # swiftbar (add scripts to menubar)
-          # maccy (clipboard history)
-
-
-          # email
-          # mu
-          
-          # python
-          python311Packages.keyring
-
-          # do I even use these?
-          vlc-bin
-          a2ps
-          # ant
-          apr
-          aria
-          asciidoc
-          asdf-vm
-          aspell
-          atool
-          bison
-          #buf
-          c-ares
-          cachix
-          #cadaver
-          cargo
-          catimg
-          #ceres-solver
-          cjson
-          cmake
-          cmocka
-          #dante
-          #dav1d
-          delta
-          #desktop-file-utils
-          devd
-          docbook5
-          docbook-xsl-ns
-          dockutil
-          dos2unix
-          doxygen
-          duktape
-          duti
-          efm-langserver
-          exiftool
-          #faac
-          #faad
-          fftw
-          findutils
-          gdrive3
-          git-lfs
-          glyr
-          go
-          gradle
-          groff
-          #handbrake
-          highlight
-          html-tidy
-          html-xml-utils
-          httpie
-          hugo
-          hunspell
-          hwloc
-          intltool
-          ispell
-          jasper
-          lftp
-          libheif
-          librist
-          ltex-ls
-          mbedtls
-          mercurial
-          miller
-          mpg123
-          msgpack
-          msmtp
-          mujs
-          mupdf
-          nasm
-          ncdu_1
-          ncurses
-          neofetch
-          netcat
-          netpbm
-          nmap
-          opencv
-          #openmpi no longer builds on darwin
           openssh
-          optipng
-          pango
+          gnupg
+          python311Packages.keyring
+          ncdu_1
+          netcat
+          nmap
           parallel
-          pdf2svg
-          pngcrush
-          pngquant
-          poppler
-          pv
-          pyenv
-          qrencode
-          rclone
-          ripmime
+          dos2unix
           rlwrap
-          rmlint
-          #rnix-lsp unmaintained
-          rustc
-          samba
-          scons
-          shared-mime-info
-          shellcheck
-          socat
-          sourceHighlight
-          sphinx
-          subversion
-          tectonic
-          terminal-notifier
-          #texinfo
-          tidy-viewer
-          tig
-          todo-txt-cli
-          vala
-          vale
-          wcalc #used by bin/q-preview
-          xmlto
-          zk
-          musescore
+          cachix # nix binary cache tool
 
-        ];
+          # mac specific cli
+          skhd
+          mas
+          defaultbrowser #should move this to a dependency of the system setup
+          dockutil # manage macos dock items from cli
+          duti # set default app for file type on macos from cli
+          monitorcontrol # control brightness of external monitors
+          dark-mode-notify 
+          # darwin.trash # no longer working reliably for me: refuses to delete directories
+          # haskellPackages.macrm # marked as broken---installed via homebrew instead
+
+      ];
       
       environment.pathsToLink = [ 
         "/share/bash-completion" 
@@ -346,50 +225,39 @@
           "luarocks"
           "brightness" #used by upliftdesk to check if monitor is off
           "displayplacer" #for rotating and managing displays"
-          "macrm" #a mac trash cli
+          "macrm" #a mac trash cli #nixpkg broken on mac
         ];
         
         caskArgs.no_quarantine = true;
         casks = [
-          "microsoft-office"
-          "firefox"
-          "zotero@beta"
-          "calibre"
-          "karabiner-elements" # nix pkg has permissions problems
-          "quicksilver"
-          "keepingyouawake" #caffeinate app
-          "anylist"
-          "itsycal" # nixpkg doesn't work complains needs to be installed in /Applications
-          "marta" # trying
-          "obsidian" # am I still using this?
-          "satori"
-          "the-unarchiver"
-          "yacreader"
-          "zerotier-one"
-          "google-chrome"
-          "djview" #nixpkg is marked as broken
-          "obs" #nixkpg only builds for linux
-          "aerial@beta" #video screen savers
-
-          # occasional use (consider not keeping installed)
-          "adobe-digital-editions"
+          # Important Apps
+          "microsoft-office" # not on nixpkgs
+          "firefox" # nixpkgs linux only
+          "google-chrome" # nixpkgs has chromium but linux only
+          "zotero@beta" # nixpkgs linux only
+          "calibre" # nixpkgs broken on darwin
+          "quicksilver" # not on nixpkgs
+          "anylist" # not on nixpkgs
+          "obsidian" # nixpkgs linux only; am I still using this?
+          "yacreader" # nixpkgs fails to build
+          "obs" # nixkpgs only builds for linux
+          "discord" # available on nixpkgs but poorly behaved
+          
+          # Utilities and Tweaks
+          "karabiner-elements" # nixpkgs needs to be updated for 15.0
+          "keepingyouawake" # not on nixpkgs; caffeinate app
+          "itsycal" # nixpkgs installs, but doesn't work; complains needs to be installed in /Applications
+          "the-unarchiver" # nixpkgs has cli version
+          "zerotier-one" # nixpkgs linux only
+          "djview" # nixpkgs marked as broken
+          "satori" # the ancient screensaver
+          "aerial@beta" # video screen savers
+          "adobe-digital-editions" # for adobe drm pdfs
           "aegisub" # nix build broken
-          "keycastr"
-          "discord"
           "dupeguru" # marked as broken in nix
           "raspberry-pi-imager" # nixpkgs#rpi-imager marked as broken
           "sf-symbols"
           "steam"
-          
-          # install if needed
-          # "android-platform-tools" install if needed
-          #"fontforge" # install if needed
-          # "logic-2010" # install if needed
-          # "logitech-camera-settings" # install if needed
-          # "oracle-jdk" # install if needed
-          # "tor-browser" # install if needed
-          # "transmission" # install if needed
-          #"devcleaner" to clean out xcode caches and save disk space
 
           # quicklook plugins
           "qlcolorcode"
@@ -399,16 +267,22 @@
           "quicklook-csv"
           "syntax-highlight"
 
+          # not installed but possibly useful
+          # "android-platform-tools" 
+          # "fontforge" 
+          # "logic-2010"
+          # "logitech-camera-settings" 
+          # "oracle-jdk" 
+          # "tor-browser"
+          # "transmission"
+          # "devcleaner" # clean out xcode caches and save disk space
         ];
 
         masApps = {
-          #"OneDrive"               =  823766827;
           "Kindle Classic"         =  405399194;
           "AdGuard for Safari"     =  1440147259;
           "Keynote"                =  409183694;
           "iMovie"                 =  408981434;
-          #"DevCleaner"             =  1388020431;
-          #"Paprika Recipe Manager" =  451907568;
           "CamControl"             =  1503271162;
           "Pages"                  =  409201541;
           "Mpix"                   =  1282488470;
@@ -417,6 +291,9 @@
           "Numbers"                =  409203825;
           "Prime Video"            =  545519333;
           "TomatoFlex"             =  1500965952;
+          # "OneDrive"               =  823766827;
+          # "DevCleaner"             =  1388020431;
+          # "Paprika Recipe Manager" =  451907568;
         };
       };
 
@@ -532,6 +409,8 @@
              #m1 < f6 : skhd -k 'escape'; $HOME/bin/webcam corner
              #m1 < f7 : skhd -k 'escape'; $HOME/bin/webcam doc
              # lock screen
+             # caffeinate
+             m1 < shift - c : skhd -k 'escape'; open "keepingyouawake:///toggle"
              # rotate external monitor
              m1 < r    :  skhd -k "escape"; rotate toggle
              # reload yabai
