@@ -15,7 +15,7 @@ require("lazy").setup({
   'folke/which-key.nvim',
   'neovim/nvim-lspconfig',
   -- 'sprockmonty/wal.vim', -- colorschemes
-  'ludovicchabant/vim-gutentags',
+  -- 'ludovicchabant/vim-gutentags',
   'folke/twilight.nvim', -- dim inactive paragraph
   'farmergreg/vim-lastplace', -- restore cursor position
   'junegunn/vim-easy-align', -- align by character: 'v<enter>|'
@@ -331,7 +331,7 @@ require("lazy").setup({
       'nvim-lua/plenary.nvim',
       "camspiers/luarocks",
     },
-    config = function() 
+    config = function()
       require'cmp_pandoc'.setup({
         filetypes = { "pandoc", "markdown", "rmd", 'markdown.pandoc', 'markdown.pandoc.carnap' },
         bibliography = {

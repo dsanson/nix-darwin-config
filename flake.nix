@@ -29,12 +29,14 @@
       url = "github:nix-community/NUR";
       #inputs.nixpkgs.follows = "nixpkgs";
     };
+    nixvim.url = "github:dsanson/nixvim-flake";
     #nixpkgs-firefox-darwin.url = "github:bandithedoge/nixpkgs-firefox-darwin";
   };
 
-  outputs = inputs@{ self, home-manager, nix-darwin, nixpkgs, nixpkgs-stable, nur }:
+  outputs = inputs@{ self, home-manager, nix-darwin, nixpkgs, nixpkgs-stable, nixvim, nur }:
   let
     pkgs-stable = nixpkgs-stable.legacyPackages.aarch64-darwin;
+
     configuration = { pkgs, ... }: {
 
       nix.settings = {
@@ -338,7 +340,7 @@
              # toggle between modes
              ctrl - s             ; m1 
              m1 < ctrl - s        ; m2
-             m2 < ctrl - s        ; default
+             m2 < ctrl - s    ->  : skhd -k 'escape'
              m1, m2 < escape ; default
              m1, m2 < i      ; default
              # tiling mode
@@ -544,6 +546,7 @@
           home-manager.useUserPackages = true;
           home-manager.extraSpecialArgs = {
             inherit pkgs-stable;
+            inherit nixvim;
           };
           home-manager.users.desanso.imports = [
             nur.hmModules.nur ./home.nix 

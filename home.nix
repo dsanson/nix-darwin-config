@@ -1,4 +1,4 @@
-{pkgs, pkgs-stable, config, ...}:
+{pkgs, pkgs-stable, nixvim, ...}:
 let
   tex = (pkgs.texlive.combine {
     inherit (pkgs.texlive) scheme-medium
@@ -130,6 +130,7 @@ in
     
     coreutils-prefixed
 
+    nixvim.packages.${system}.default
     ffsend
     devd # simple cli webserver 
     qrencode 
@@ -146,6 +147,8 @@ in
     lazygit
     hub # github cli tool
     git-lfs # git extension for large files  #git
+    gh # github cli tool
+    gh-copilot
 
     # webdev
     dart-sass # move to dev specific flake
@@ -247,7 +250,7 @@ in
     android-file-transfer		
     anki-bin # flashcards
     audacity                    
-    musescore 
+    # musescore  # libdrm refusing to build
     vlc-bin 
 
     # mac specific gui apps
@@ -359,10 +362,10 @@ in
 
   xdg.enable = true;
   xdg.configFile = {
-    nvim = {
-      source = ./config/nvim;
-      recursive = true;
-    };
+    # nvim = {
+    #   source = ./config/nvim;
+    #   recursive = true;
+    # };
     mdnotes = {
       source = ./config/mdnotes;
       recursive = true;
@@ -590,36 +593,6 @@ in
       enableZshIntegration = true;
     };
     
-    # see https://github.com/bandithedoge/nixpkgs-firefox-darwin
-    # firefox = {
-    #   enable = true;
-    #   package = pkgs.firefox-bin; # Or pkgs.librewolf if you're using librewolf
-    # };
-
-    # firefox = {
-    #   enable = true;
-    #   package = null;
-    #   policies = {
-    #     DefaultDownloadDirectory = "\${home}/Downloads";
-    #     DisableBuiltinPDFViewer = true;
-    #     EnableTrackingProtection = true;
-    #   };
-    #   profiles.default = {
-    #     id = 0;
-    #     isDefault = true;
-    #     extensions = with config.nur.repos.rycee.firefox-addons; [
-    #       privacy-badger
-    #       tridactyl
-    #       facebook-container
-    #       #bypass-pwalls-clean
-    #       multi-account-containers
-    #       ublock-origin
-    #       darkreader
-    #       ipfs-companion
-    #     ];
-    #   };
-    # };
-
     aerc.enable = true;
     btop.enable = true;
     jq.enable = true;
@@ -706,7 +679,7 @@ in
       fileWidgetCommand = "fd . $HOME";
       defaultOptions = [
         "--cycle" 
-        "--layout=reverse" 
+        "--layut=reverse" 
         "--border" 
         "--height=90%" 
         "--preview-window=wrap" 
@@ -776,20 +749,21 @@ in
     };
 
     neovim = {
-      enable = true;
+      enable = false;
       defaultEditor = true;
       viAlias = true;
       vimAlias = true;
       vimdiffAlias = true;
       plugins = [ 
         pkgs.vimPlugins.nvim-treesitter.withAllGrammars
+        pkgs.vimPlugins.diffview-nvim
         #pkgs.vimPlugins.telescope-fzf-native-nvim
         #pkgs.vimPlugins.which-key-nvim
         #pkgs.vimPlugins.nvim-lspconfig
         #pkgs.vimPlugins.nvim-lastplace
         #pkgs.vimPlugins.twilight-nvim
         #pkgs.vimPlugins.tcomment_vim
-        #pkgs.vimPlugins.vim-gutentags
+        pkgs.vimPlugins.vim-gutentags
         #pkgs.vimPlugins.vim-easy-align
         #pkgs.vimPlugins.vim-speeddating
         #pkgs.vimPlugins.utl-vim
