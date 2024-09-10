@@ -16,9 +16,12 @@
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
     nixpkgs-stable.url = "github:NixOS/nixpkgs/nixos-24.05";
+    lix-module = {
+      url = "https://git.lix.systems/lix-project/nixos-module/archive/2.91.0.tar.gz";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     nix-darwin = {
       url = "github:LnL7/nix-darwin";
-      #url = "github:wegank/nix-darwin/mddoc-remove";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     home-manager = {
@@ -33,7 +36,7 @@
     #nixpkgs-firefox-darwin.url = "github:bandithedoge/nixpkgs-firefox-darwin";
   };
 
-  outputs = inputs@{ self, home-manager, nix-darwin, nixpkgs, nixpkgs-stable, nixvim, nur }:
+  outputs = inputs@{ self, home-manager, nix-darwin, lix-module, nixpkgs, nixpkgs-stable, nixvim, nur }:
   let
     pkgs-stable = nixpkgs-stable.legacyPackages.aarch64-darwin;
 
@@ -537,6 +540,7 @@
       modules = [
         configuration
         home-manager.darwinModules.home-manager
+        lix-module.nixosModules.default
         nur.nixosModules.nur
         {
           # nixpkgs.overlays = [
