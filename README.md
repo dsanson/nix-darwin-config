@@ -7,23 +7,19 @@ TODO:
     - [ ] use home manager for config
     - [ ] properly manage filters/csl
 - [ ] configs:
-    - [ ] neovim config
-         - [x] linking in existing config
-         - [ ] actually using nix to manage?
+    - [x] neovim config
     - [x] fish config
-         -   are there missing things in old fish config?
     - [x] skhd config
     - [x] sketchybar config 
-    - [x] wallust/set_theme/bar_colors
+    - [ ] wallust/set_theme/bar_colors
     - [x] visidata config
     - [x] tridactyl config
     - [x] sioyek config 
     - [ ] zotero config? 
-    - [ ] configs for other apps: firefox, yacreader, iina, marta, quicksilver...
+    - [ ] configs for other apps: firefox, yacreader, iina, quicksilver...
         - [ ] firefox: maybe better to just use firefox sync
-    - [x] .hammerspoon/ to load controlescape spoon
-- [x] get vdirsyncer working
-- [x] migrate texlive to nix
+- [x] vdirsyncer
+- [x] texlive
 - [ ] email
 - [x] eliminate unused old brew packages
 - [ ] prune pile up of old scripts in ~/bin, and migrate the ones worth keeping to nix
@@ -44,7 +40,7 @@ TODO:
      - [x] set_theme
      - [x] opacity
      - [x] scores
-     - [x] uplift
+     - [ ] uplift # was a problem
      - [x] rotate
 - [ ] migrate carnap.py
 - [ ] syncthing settings
@@ -52,7 +48,7 @@ TODO:
 - [ ] zerotier authsecret in Library/Application Support
 - [ ] nixos/nix-darwin agnostic
      - [ ] nixos for rpi4
-- [ ] migrate away from asdf---use nix for dependency management for carnap.py, the logic book, and my webpage
+- [x] migrate away from asdf---use nix for dependency management for carnap.py, the logic book, and my webpage
 - [x] add microsoft-office cask
 
 

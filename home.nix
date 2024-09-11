@@ -189,7 +189,7 @@ in
     miller # awk for data formats #csv 
     pup
     python312Packages.pyexcel
-    #sc-im #broken build
+    sc-im #broken build
     tidy-viewer # csv pretty printer
     visidata 
     xsv
@@ -247,15 +247,15 @@ in
     xits-math
 
     # gui apps
-    android-file-transfer		
+    # android-file-transfer # install if needed
     anki-bin # flashcards
-    audacity                    
+    # audacity # was building from source; use brew instead
     # musescore  # libdrm refusing to build
     vlc-bin 
 
     # mac specific gui apps
-    grandperspective 
-    iina 
+    grandperspective
+    iina
     keycastr
     terminal-notifier
 
@@ -597,10 +597,15 @@ in
     btop.enable = true;
     jq.enable = true;
     lazygit.enable = true;
-    #mpv.enable = true; # disabling until swift builds are fixed https://github.com/NixOS/nixpkgs/issues/327836#issuecomment-2308417434
+    mpv.enable = false; # disabling until swift builds are fixed https://github.com/NixOS/nixpkgs/issues/327837#issuecomment-2308417434
     mu.enable = false;
-    ripgrep.enable = true;
-    sioyek.enable = false;
+    ripgrep = {
+      enable = true;
+      package = pkgs-stable.ripgrep;
+    };
+    sioyek = {
+      enable = true;
+    };
     tealdeer.enable = true;
     translate-shell.enable = true;
     watson = {
