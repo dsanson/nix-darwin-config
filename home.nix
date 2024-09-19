@@ -92,6 +92,7 @@ in
 
   home.shellAliases = {
     "..." = "cd ../..";
+    "ls" = "gls --hyperlink=auto";
     "l" = "ls -lA";
     "z" = "cd";
     "rm" = "echo 'rm disabled; use trash or /bin/rm instead'";  #mac specific for now
@@ -357,7 +358,7 @@ in
 
   (with pkgs-stable; [
     hello
-    kitty
+    #kitty
   ]);
 
   xdg.enable = true;
@@ -601,7 +602,7 @@ in
     mu.enable = false;
     ripgrep = {
       enable = true;
-      package = pkgs-stable.ripgrep;
+      #package = pkgs-stable.ripgrep;
     };
     sioyek = {
       enable = true;
@@ -684,7 +685,7 @@ in
       fileWidgetCommand = "fd . $HOME";
       defaultOptions = [
         "--cycle" 
-        "--layut=reverse" 
+        "--layout=reverse" 
         "--border" 
         "--height=90%" 
         "--preview-window=wrap" 
@@ -717,7 +718,7 @@ in
     };
     kitty = {
       enable = true;
-      package = pkgs-stable.kitty;
+      #package = pkgs-stable.kitty;
       darwinLaunchOptions = [
         "--single-instance"
         "--instance-group=1"
@@ -730,6 +731,7 @@ in
         package = pkgs.fira-mono;
       };
       settings = {
+        editor = "nvim"; # this is a kludge until I get nixvim properly integrated into home manager
         bold_font = "auto";
         italic_font = "auto"; #"Source Code Pro Italic"
         #font_features = "FiraCode +zero +ss03 +cv30";
