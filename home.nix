@@ -190,7 +190,7 @@ in
     miller # awk for data formats #csv 
     pup
     python312Packages.pyexcel
-    sc-im #broken build
+    sc-im
     tidy-viewer # csv pretty printer
     visidata 
     xsv
@@ -357,7 +357,8 @@ in
   ++
 
   (with pkgs-stable; [
-    hello
+    #hello
+    wallust
     #kitty
   ]);
 
@@ -598,7 +599,7 @@ in
     btop.enable = true;
     jq.enable = true;
     lazygit.enable = true;
-    mpv.enable = false; # disabling until swift builds are fixed https://github.com/NixOS/nixpkgs/issues/327837#issuecomment-2308417434
+    mpv.enable = true; # disabling until swift builds are fixed https://github.com/NixOS/nixpkgs/issues/327837#issuecomment-2308417434
     mu.enable = false;
     ripgrep = {
       enable = true;
@@ -614,7 +615,7 @@ in
       enableFishIntegration = true;
       enableBashIntegration = true;
     };
-    #yt-dlp.enable = true; #disabling unit swift builds are fixed
+    yt-dlp.enable = true; #disabling unit swift builds are fixed
     pandoc = {
       enable = true;
       citationStyles = [

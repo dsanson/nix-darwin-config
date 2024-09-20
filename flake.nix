@@ -319,8 +319,8 @@
 
       services = {
         ipfs = {
-          enable = false;
-          # ipfsPath = "/Users/desanso/ipfs";
+          enable = true;
+          ipfsPath = "/Users/desanso/.ipfs";
         };
         karabiner-elements = {
           enable = false;

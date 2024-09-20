@@ -1,0 +1,155 @@
+#!/usr/bin/env bash
+set -o errexit
+set -o nounset
+set -o pipefail
+
+# reqs: yabai osascript jq plutil sed kitty pywalfox
+
+shopt -s nocasematch
+
+DARK_THEME="$HOME/.cache/wal/default-dark.json"
+LIGHT_THEME="$HOME/.cache/wal/default-light.json"
+
+# get current os color mode ("light" or "dark")
+function get_current() {
+  mode=$(defaults read -g AppleInterfaceStyle 2>/dev/null)
+  [[ "$mode" != "dark" ]] && mode="light"
+  echo "$mode"
+}
+
+# set os color mode
+function set_system_mode() {
+  if [[ "$1" == "dark" ]]; then
+    osascript -e 'tell application "System Events" to tell appearance preferences to set dark mode to true'
+  else
+    osascript -e 'tell application "System Events" to tell appearance preferences to set dark mode to false'
+  fi
+}
+
+# get current desktop image path
+function get_desktop_path() {
+  display=$(yabai -m query --displays --display | jq '.index')
+  path="$(osascript -e 'tell app "system events" to get picture of desktop '"$display")"
+  echo "$path"
+}
+
+# get desktop path by yabai index
+function get_desktop_path_by_uuid() {
+  index="$HOME/Library/Application Support/com.apple.wallpaper/Store/Index.plist"
+  path=$(plutil -extract  Spaces."${1:-}".Default.Desktop.Content.Choices.0.Files.0.relative raw -o - "$index" | sed 's|file://||')
+  echo "$path"
+}
+
+# set current desktop image path
+function set_desktop_path() {
+  display=$(yabai -m query --displays --display | jq '.index')
+  osascript -e 'tell app "system events" to set picture of desktop '"$display"' to "'"${1:-}"'"'
+}
+
+# utility for joining strings
+# join_by join_str e1 e2 e3 e4...
+function join_by {
+  local d=${1-} f=${2-}
+  if shift 2; then
+    printf %s "$f" "${@/#/$d}"
+  fi
+}
+
+# default mode
+mode="light"
+
+# when run with no arguments, set default theme based on os color mode
+if [[ "$#" -eq 0 ]]; then
+  mode=$(get_current)
+fi
+
+while [[ "$#" -gt 0 ]]; do
+  case "$1" in
+    "auto")
+      mode=$(get_current)
+      shift
+      ;;
+    "dark")
+      mode="dark"
+      set_system_mode dark
+      shift
+      ;;
+    "light")
+      mode="light"
+      set_system_mode light
+      shift
+      ;;
+    "wallpaper")
+      path="$(get_desktop_path)"
+      wp="wp-"
+      if [[ "${mode:-}" == "" ]]; then
+        mode=$(get_current)
+      fi
+      shift
+      ;;
+    "-f"|"--file")
+      [[ -f "${2:-}" ]] && path="$(realpath "${2:-}")"
+      wp="wp-"
+      if [[ "$mode" == "" ]]; then
+        mode=$(get_current)
+      fi
+      set_desktop_path "$path"
+      shift 2
+      ;;
+    "test")
+      get_desktop_path_by_uuid "$(yabai -m query --spaces --space | jq -r '.uuid')"
+      exit
+      ;;
+    *)
+      break
+      ;;
+  esac
+done
+mode="${wp:-}$mode"
+
+args=""
+case "$mode" in
+  "dark")
+    args="cs $DARK_THEME"
+    ;;
+  "light")
+    args="cs $LIGHT_THEME"
+    ;;
+  "wp-dark")
+    args="run $path -p darkcomp"
+    ;;
+  "wp-light")
+    args="run $path -p lightcomp"
+    ;;
+esac
+
+# shellcheck disable=SC2086 # Intended splitting of args
+wallust $args "$@" 
+
+# apply settings to kitty terminals
+if type kitty &> /dev/null; then
+  if [[ "$mode" =~ wp-* ]]; then
+    space_windows=$(yabai -m query --windows --space | jq '.[] | select(.app | contains("kitty")).id')
+    ids=()
+    for id in $space_windows; do
+      kitty_id=$(kitten @ ls | \
+        jq -r '.[] | 
+        select(.platform_window_id=='"$id"') | [.tabs[].windows[] | 
+          "id:" + (.id | tostring) ] | join(" or ")')
+      ids+=("$kitty_id")
+    done
+    id_exp=$(join_by " or " "${ids[@]}")
+    kitten @ --to unix:/tmp/mykitty set-colors --match "(${id_exp})" -c ~/.cache/wal/colors-kitty.conf
+  else
+    kitten @ --to unix:/tmp/mykitty set-colors --all -c ~/.cache/wal/colors-kitty.conf
+  fi
+fi
+
+
+if type pywalfox &> /dev/null; then
+  pywalfox "${mode##wp-}"
+  pywalfox update
+fi
+
+# restart sketchybar
+launchctl kickstart -k gui/503/org.nixos.sketchybar &
