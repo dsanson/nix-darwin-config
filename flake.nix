@@ -273,7 +273,7 @@
           "satori" # the ancient screensaver
           "aerial@beta" # video screen savers
           "adobe-digital-editions" # for adobe drm pdfs
-          "aegisub" # nix build broken
+          #"aegisub" # brew marked as deprecated
           "dupeguru" # marked as broken in nix
           "raspberry-pi-imager" # nixpkgs#rpi-imager marked as broken
           "sf-symbols"
@@ -319,7 +319,7 @@
 
       services = {
         ipfs = {
-          enable = true;
+          enable = false;
           ipfsPath = "/Users/desanso/.ipfs";
         };
         karabiner-elements = {
@@ -437,7 +437,7 @@
              m2 < r            : skhd -k 'escape'; launchctl stop org.nixos.yabai
              # q script to replace quicksilver
              default < ctrl -space : yabai -m window --toggle visor || open -a kitty.app -n --args --title "visor" /etc/profiles/per-user/desanso/bin/fish -C 'q -w'
-             m1, m2 < ctrl -space : skhd -k "escape"; visor
+             m1, m2 < ctrl -space : skhd -k "escape"; yabai -m window --toggle visor 
              #m1 < u : skhd -k "escape"; bash -x uplift sit
              #m1 < shift - u : skhd -k "escape"; bash -x uplift stand
              m1 < u : skhd -k "escape"; echo 1 >> /tmp/com.davidsanson.upliftdesk.in
@@ -519,7 +519,7 @@
             yabai -m rule --add app="^LogicProgram$" title="^Problems$" manage=off
             yabai -m rule --add app='^zoom\.us$' manage=off
             yabai -m rule --add app='^choose$' manage=off
-            yabai -m rule --add app='^kitty$' title='^visor$' grid="1:20:2:1:16:1" opacity=0.9 scratchpad="visor"
+            yabai -m rule --add app='^kitty$' title='^visor$' grid="20:20:2:1:16:16" opacity=0.9 scratchpad="visor"
             yabai -m rule --add app="^Visualizer$" manage=on
             yabai -m rule --add app="^TomatoFlex$" manage=off
             yabai -m rule --add app="^Firefox$" manage=on

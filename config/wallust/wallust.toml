@@ -82,28 +82,17 @@ palette = "dark"
 # template: A relative path that points to a file where wallust.toml is located, usually at `~/.config/wallust/`
 # target: Absolute path in which to place a file with generated templated values
 # NOTE: prefer '' over "" for paths, avoids escaping.
-#zathura = { template = 'zathura', target = '~/.config/zathura/zathurarc' }
-colors = { template = 'colors', target = '~/.cache/wal/colors' }
-sh = { template = 'colors.sh', target = '~/.cache/wal/colors.sh' }
-bash = { template = 'colors.bash', target = '~/.cache/wal/colors.bash' }
-kitty = { template = 'colors.kitty', target = '~/.cache/wal/colors-kitty.conf'}
-vim = { template = 'colors.vim', target = '~/.cache/wal/colors-wal.vim' }
-css = { template = 'colors.css', target = '~/.cache/wal/colors.css' }
-scss = { template = 'colors.scss', target = '~/.cache/wal/colors.scss' }
-json = { template = 'colors.json', target = '~/.cache/wal/colors.json' }
-yml = { template = 'colors.yml', target = '~/.cache/wal/colors.yml' }
-sketchybar = { template = 'colors.sketchybar', target = '~/.cache/wal/colors.sketchybar'}
-tridactyl = { template = 'tridactyl_blank.html', target = '~/.config/tridactyl/blank.html'}
-# OPTIONALLY It can accept `new_engine = true`: This "new engine" difers by using  double brackets like `{{variable}}`
-# instead of one like usual, which helps with file formats that use brackets like json. With the `new_engine` enabled
-# you can escape and produce a literal `{{` by `{{{{}}`, and for `}}` you escape it with `{{}}}}`.
-#dunst = { template = 'dunstconfig', target = '~/.config/dunst/dunstrc', new_engine = true }
-
-# template field can be express as `src` and target as `dst` for shorter naming:
-#alacritty = { src = 'alacrittycfg', dst = '~/.config/alacritty/alacritty.toml' }
-# As well as using dotted toml fields, both `alacritty` fields represent the same;
-#alacritty.src = 'alacrittycfg'
-#alacritty.dst = '~/.config/alacritty/alacritty.toml'
+colors = { template = 'colors', target = '~/.cache/wal/colors', new_engine = true }
+sh = { template = 'colors.sh', target = '~/.cache/wal/colors.sh', new_engine = true }
+bash = { template = 'colors.bash', target = '~/.cache/wal/colors.bash', new_engine = true }
+kitty = { template = 'colors.kitty', target = '~/.cache/wal/colors-kitty.conf', new_engine = true }
+vim = { template = 'colors.vim', target = '~/.cache/wal/colors-wal.vim', new_engine = true }
+css = { template = 'colors.css', target = '~/.cache/wal/colors.css', new_engine = true }
+scss = { template = 'colors.scss', target = '~/.cache/wal/colors.scss', new_engine = true }
+json = { template = 'colors.json', target = '~/.cache/wal/colors.json', new_engine = true }
+yml = { template = 'colors.yml', target = '~/.cache/wal/colors.yml', new_engine = true }
+sketchybar = { template = 'colors.sketchybar', target = '~/.cache/wal/colors.sketchybar', new_engine = true }
+tridactyl = { template = 'tridactyl_blank.html', target = '~/.config/tridactyl/blank.html', new_engine = true }
 
 # REMINDER Variables and methods that can be used with templating:
 #  wallpaper:  The full path to the current wallpaper, colorscheme file or the name of the theme in use.

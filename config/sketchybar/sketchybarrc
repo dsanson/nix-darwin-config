@@ -125,7 +125,7 @@ CLOCK_EVENTS=(
 
 
 DATE_OPTS=(
-  update_freq=10
+  update_freq=60
   script="$PLUGIN_DIR/date.sh"
   click_script="open -a Calendar"
   popup.align=right

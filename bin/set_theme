@@ -3,7 +3,7 @@ set -o errexit
 set -o nounset
 set -o pipefail
 
-# reqs: yabai osascript jq plutil sed kitty pywalfox
+# reqs: yabai osascript jq plutil sed kitty pywalfox wallust
 
 shopt -s nocasematch
 
@@ -116,35 +116,20 @@ case "$mode" in
     args="cs $LIGHT_THEME"
     ;;
   "wp-dark")
-    args="run $path -p darkcomp"
+    args="run $path -p darkcomp -s"
     ;;
   "wp-light")
-    args="run $path -p lightcomp"
+    args="run $path -p lightcomp -s"
     ;;
 esac
 
-# shellcheck disable=SC2086 # Intended splitting of args
-wallust $args "$@" 
+# shellcheck disable=SC2086 # Splitting args is intentional
+wallust $args "$@"
 
 # apply settings to kitty terminals
 if type kitty &> /dev/null; then
-  # if [[ "$mode" =~ wp-* ]]; then
-  #   space_windows=$(yabai -m query --windows --space | jq '.[] | select(.app | contains("kitty")).id')
-  #   ids=()
-  #   for id in $space_windows; do
-  #     kitty_id=$(kitten @ ls | \
-  #       jq -r '.[] | 
-  #       select(.platform_window_id=='"$id"') | [.tabs[].windows[] | 
-  #         "id:" + (.id | tostring) ] | join(" or ")')
-  #     ids+=("$kitty_id")
-  #   done
-  #   id_exp=$(join_by " or " "${ids[@]}")
-  #   kitten @ --to unix:/tmp/mykitty set-colors --match "(${id_exp})" -c ~/.cache/wal/colors-kitty.conf
-  # else
-    kitten @ --to unix:/tmp/mykitty set-colors --all -c ~/.cache/wal/colors-kitty.conf
-  fi
-#fi
-
+  kitten @ set-colors --all -c ~/.cache/wal/colors-kitty.conf
+fi
 
 if type pywalfox &> /dev/null; then
   pywalfox "${mode##wp-}"
@@ -152,4 +137,4 @@ if type pywalfox &> /dev/null; then
 fi
 
 # restart sketchybar
-launchctl kickstart -k gui/503/org.nixos.sketchybar &
+launchctl stop sketchybar &

@@ -1,4 +1,4 @@
-{pkgs, pkgs-stable, nixvim, ...}:
+{pkgs, pkgs-stable, nixvim, config, ...}:
 let
   tex = (pkgs.texlive.combine {
     inherit (pkgs.texlive) scheme-medium
@@ -163,6 +163,7 @@ in
     lynx
     timg #terminal image viewer
     w3m
+    newsraft
 
     # document generation
     biber
@@ -311,11 +312,11 @@ in
       text = (builtins.readFile ./bin/layouts);
     })
 
-    # (writeShellApplication {
-    #   name = "set_theme";
-    #   runtimeInputs = [ yabai jq gnused kitty wallust ];
-    #   text = (builtins.readFile ./bin/set_theme);
-    # })
+    (writeShellApplication {
+      name = "set_theme";
+      runtimeInputs = [ yabai jq gnused kitty ];
+      text = (builtins.readFile ./bin/set_theme);
+    })
 
     (writeShellApplication {
       name = "rotate";
@@ -417,6 +418,10 @@ in
     target = "Library/Application Support/wallust";
   };
 
+  home.file.newsraft = {
+    source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/.config/nix-darwin-config/config/newsraft";
+    target = ".config/newsraft";  
+  };
 
   accounts.calendar = {
     basePath = ".calendars";
@@ -599,7 +604,7 @@ in
     btop.enable = true;
     jq.enable = true;
     lazygit.enable = true;
-    mpv.enable = true; # disabling until swift builds are fixed https://github.com/NixOS/nixpkgs/issues/327837#issuecomment-2308417434
+    mpv.enable = false; # disabling until swift builds are fixed https://github.com/NixOS/nixpkgs/issues/327837#issuecomment-2308417434
     mu.enable = false;
     ripgrep = {
       enable = true;
@@ -635,7 +640,7 @@ in
       ];
     };
     newsboat = {
-      enable = true;
+      enable = false;
       urls = [
         { url = "https://www.logicmatters.net/feed/"; }
         { url = "https://diaryofdoctorlogic.wordpress.com/feed/"; }

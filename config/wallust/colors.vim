@@ -1,5 +1,4 @@
 " Special
-let wallpaper  = "{{wallpaper}}"
 let background = "{{background}}"
 let foreground = "{{foreground}}"
 let cursor     = "{{cursor}}"
