@@ -365,10 +365,6 @@ in
 
   xdg.enable = true;
   xdg.configFile = {
-    # nvim = {
-    #   source = ./config/nvim;
-    #   recursive = true;
-    # };
     mdnotes = {
       source = ./config/mdnotes;
       recursive = true;
@@ -381,22 +377,6 @@ in
       source = ./config/sioyek;
       recursive = true;
     };
-    tridactyl = {
-      source = ./config/tridactyl;
-      recursive = true;
-    };
-    visidata = {
-      source = ./config/visidata;
-      recursive = true;
-    };
-    sketchybar = {
-      source = ./config/sketchybar;
-      recursive = true;
-    };
-    # karabiner = {
-    #   source = ./config/karabiner;
-    #   recursive = true;
-    # };
     "fd/ignore".text = "**/*.app/**";
   };
 
@@ -421,6 +401,21 @@ in
   home.file.newsraft = {
     source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/.config/nix-darwin-config/config/newsraft";
     target = ".config/newsraft";  
+  };
+
+  home.file.visidata = {
+    source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/.config/nix-darwin-config/config/visidata";
+    target = ".config/visidata";
+  };
+
+  home.file.sketchybar = {
+    source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/.config/nix-darwin-config/config/sketchybar";
+    target = ".config/sketchybar";
+  };
+
+  home.file.tridactyl = {
+    source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/.config/nix-darwin-config/config/tridactyl";
+    target = ".config/tridactyl";
   };
 
   accounts.calendar = {
