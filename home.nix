@@ -521,7 +521,7 @@ in
         fish_add_path /opt/homebrew/bin
         defaultbrowser firefox >/dev/null
         if type -q kitty
-          #kitty @ set-colors -c ~/.cache/wal/colors-kitty.conf
+          kitty @ set-colors -c ~/.cache/wal/colors-kitty.conf
         end
       '';
       plugins = [

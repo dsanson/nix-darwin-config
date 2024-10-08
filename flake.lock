@@ -424,21 +424,6 @@
         "type": "github"
       }
     },
-    "nur": {
-      "locked": {
-        "lastModified": 1728084172,
-        "narHash": "sha256-fUv6SYSCyjgX3d+4ZY8iRfj4U9NSFlCtc0ue4kqzl00=",
-        "owner": "nix-community",
-        "repo": "NUR",
-        "rev": "116068830b5fdc6aef13d4b2dc2d4f1c6a826326",
-        "type": "github"
-      },
-      "original": {
-        "owner": "nix-community",
-        "repo": "NUR",
-        "type": "github"
-      }
-    },
     "nuschtosSearch": {
       "inputs": {
         "flake-utils": "flake-utils_2",
@@ -469,8 +454,7 @@
         "nix-darwin": "nix-darwin",
         "nixpkgs": "nixpkgs",
         "nixpkgs-stable": "nixpkgs-stable",
-        "nixvim": "nixvim",
-        "nur": "nur"
+        "nixvim": "nixvim"
       }
     },
     "systems": {

@@ -28,15 +28,10 @@
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    nur = {
-      url = "github:nix-community/NUR";
-      #inputs.nixpkgs.follows = "nixpkgs";
-    };
     nixvim.url = "github:dsanson/nixvim-flake";
-    #nixpkgs-firefox-darwin.url = "github:bandithedoge/nixpkgs-firefox-darwin";
   };
 
-  outputs = inputs@{ self, home-manager, nix-darwin, lix-module, nixpkgs, nixpkgs-stable, nixvim, nur }:
+  outputs = inputs@{ self, home-manager, nix-darwin, lix-module, nixpkgs, nixpkgs-stable, nixvim }:
   let
     pkgs-stable = nixpkgs-stable.legacyPackages.aarch64-darwin;
 
@@ -545,11 +540,7 @@
         configuration
         home-manager.darwinModules.home-manager
         lix-module.nixosModules.default
-        nur.nixosModules.nur
         {
-          # nixpkgs.overlays = [
-          # #   nixpkgs-firefox-darwin.overlay
-          # ];
           home-manager.useGlobalPkgs = true;
           home-manager.useUserPackages = true;
           home-manager.extraSpecialArgs = {
@@ -557,7 +548,7 @@
             inherit nixvim;
           };
           home-manager.users.desanso.imports = [
-            nur.hmModules.nur ./home.nix 
+            ./home.nix 
           ];
         }
       ];
