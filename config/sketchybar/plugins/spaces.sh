@@ -14,10 +14,7 @@ fi
 OPTIONS=(
   label.highlight=$HIGHLIGHT
   icon.background.color=$BG_COLOR
-  popup.align=left
 )
-
-STATUS=$(sketchybar --query "${NAME}" | jq -r '.popup.drawing')
 
 sketchybar --set $NAME "${OPTIONS[@]}"
 
