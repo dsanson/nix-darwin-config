@@ -1,2 +1,4 @@
-bind m exec iina "%l" 
+bind i exec iina "%l" 
+bind m exec mpv "%l" 
 bind w exec w3m "%l" 
+bind v exec clear && kitten icat "%l" && read -n1

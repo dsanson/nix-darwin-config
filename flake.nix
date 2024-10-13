@@ -251,7 +251,7 @@
           "discord" # available on nixpkgs but poorly behaved
           "firefox" # nixpkgs linux only
           "google-chrome" # nixpkgs has chromium but linux only
-          "microsoft-office" # not on nixpkgs
+          #"microsoft-office" # not on nixpkgs # this breaks because of microsoft defender
           "obs" # nixkpgs only builds for linux
           "obsidian" # nixpkgs linux only; am I still using this?
           "quicksilver" # not on nixpkgs
@@ -491,10 +491,12 @@
               layouts -s "$idx" current
             }
 
-            setup_space 1 BOOK
-            for s in 2 3 4 5; do
-              setup_space $s
-            done 
+            # setup_space 1 BOOK 
+            setup_space 1
+            setup_space 2
+            setup_space 3
+            setup_space 4
+            setup_space 5
 
             yabai -m rule --add app="^Zotero$" space=2
             yabai -m rule --add app="^Zotero$" title="^Zotero$" manage=on
