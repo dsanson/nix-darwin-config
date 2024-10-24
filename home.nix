@@ -606,7 +606,7 @@ in
       #package = pkgs-stable.ripgrep;
     };
     sioyek = {
-      enable = true;
+      enable = false;
     };
     tealdeer.enable = true;
     translate-shell.enable = true;
@@ -617,7 +617,7 @@ in
     };
     yt-dlp.enable = true; #disabling unit swift builds are fixed
     pandoc = {
-      enable = true;
+      enable = false;
       citationStyles = [
         ./share/csl/oxford-university-press-humsoc.csl
         ./share/csl/oxford-university-press-note.csl
