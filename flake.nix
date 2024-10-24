@@ -257,6 +257,7 @@
           "quicksilver" # not on nixpkgs
           "yacreader" # nixpkgs fails to build
           "zotero@beta" # nixpkgs linux only
+          "pandoc" # nixpkgs is chronically out of date
           
           # Utilities and Tweaks
           #"karabiner-elements" # nixpkgs needs to be updated for 15.0
