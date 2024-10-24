@@ -259,7 +259,7 @@
           "zotero@beta" # nixpkgs linux only
           
           # Utilities and Tweaks
-          "karabiner-elements" # nixpkgs needs to be updated for 15.0
+          #"karabiner-elements" # nixpkgs needs to be updated for 15.0
           "keepingyouawake" # not on nixpkgs; caffeinate app
           "itsycal" # nixpkgs installs, but doesn't work; complains needs to be installed in /Applications
           "the-unarchiver" # nixpkgs has cli version
