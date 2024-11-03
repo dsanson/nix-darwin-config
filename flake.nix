@@ -419,7 +419,7 @@
              m1 < b   :  skhd -k "escape"; firefox-wrapper &
              m2 < b   :  skhd -k "escape"; firefox-wrapper --private-window &
              # screen capture
-             m1 < c      :  skhd -k "escape"; /usr/sbin/screencapture -iUgc -J "window"
+             m1 < c      :  skhd -k "escape"; open -a Screenshot
              # screenrecording
              #m1 < f5 : skhd -k 'escape'; $HOME/bin/screenrecording -d $HOME/Movies/screen -o capture
              #m1 < f6 : skhd -k 'escape'; $HOME/bin/webcam corner
