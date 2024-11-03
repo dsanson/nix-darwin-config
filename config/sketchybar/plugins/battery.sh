@@ -3,10 +3,6 @@
 PERCENTAGE=$(pmset -g batt | grep -Eo "\d+%" | cut -d% -f1)
 CHARGING=$(pmset -g batt | grep 'AC Power')
 
-if [ "$PERCENTAGE" = "" ]; then
-  exit 0
-fi
-
 # no icon if charging
 if [ "$CHARGING" != "" ]; then
   ICON="⚡︎"
@@ -20,13 +16,10 @@ else
     ;;
     [1-2][0-9]) ICON=""
     ;;
-    *) ICON=""
+    *) ICON="?"
   esac
 fi
 
 sketchybar --set "$NAME" \
-    icon="$ICON" \
-    label="$LABEL" \
-    label.padding_left="-19" \
-    label.font.size="22.0" \
+    icon="$ICON" 
 

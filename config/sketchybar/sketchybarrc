@@ -72,9 +72,9 @@ yabai -m query --spaces | \
 
     EVENTS=(
       space_change
-      mouse.entered
-      mouse.exited
-      mouse.exited.global
+      # mouse.entered
+      # mouse.exited
+      # mouse.exited.global
     )
 
     sketchybar  \
@@ -94,7 +94,7 @@ sketchybar \
 
 CLOCK_OPTS=(
   update_freq=10
-  script="$PLUGIN_DIR/clock.sh"
+  script='sketchybar --set $NAME label="$(date '+%H:%M')"'
   click_script="open -a Calendar"
   label.color="$COLOR"
   label.font="$LABEL_FONT" 
@@ -110,8 +110,8 @@ CLOCK_OPTS=(
 )
 
 DATE_OPTS=(
-  update_freq=60
-  script="$PLUGIN_DIR/date.sh"
+  update_freq=600
+  script='sketchybar --set $NAME label="$(date '+%d')"'
   click_script="open -a Calendar"
   label.color="$COLOR"
   label.font="$LABEL_FONT" 
@@ -131,18 +131,8 @@ BATTERY_OPTS=(
   script="COLOR=$COLOR $PLUGIN_DIR/battery.sh" 
   click_script="open /System/Library/PreferencePanes/Battery.prefPane"
   update_freq=600
-  label.color="$COLOR"
-  label.font="$LABEL_FONT" 
-  label.background.drawing=on 
-  label.background.height=20
-  label.background.border_color=0xff${RAW_COLOR[8]}
-  label.background.border_width=2
-  label.background.corner_radius=4 
-  label.background.color="$UNSELECTED_COLOR"
-  label.highlight_color="$SELECTED_COLOR"
-  label.padding_left=6
-  label.padding_right=6 
-  label.y_offset=1
+  label=""
+  label.padding_left="-19" 
 )
 
 BATTERY_EVENTS=(
