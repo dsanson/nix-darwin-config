@@ -94,7 +94,7 @@ in
     "..." = "cd ../..";
     "ls" = "gls --hyperlink=auto";
     "l" = "ls -lA";
-    "z" = "cd";
+    #"z" = "cd";
     "rm" = "echo 'rm disabled; use trash or /bin/rm instead'";  #mac specific for now
     "addprinter" = "lpadmin -E -p stv412-phil-copier -E -v lpd://cas-papercut.ad.ilstu.edu/stv412-phil-copier -m '/Library/Printers/PPDs/Contents/Resources/Xerox WorkCentre 5325.gz'";
     "rmprinter" = "lpadmin -x stv412-phil-copier";
