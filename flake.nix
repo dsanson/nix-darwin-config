@@ -241,6 +241,7 @@
           "luarocks"
           "brightness" #used by upliftdesk to check if monitor is off
           "displayplacer" #for rotating and managing displays"
+          "pandoc" #nix pandoc is chronically out of date
         ];
         
         caskArgs.no_quarantine = true;
