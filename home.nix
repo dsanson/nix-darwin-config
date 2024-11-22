@@ -631,7 +631,7 @@ in
       enableFishIntegration = true;
       enableBashIntegration = true;
       options = [
-        "--cmd cd" #replace cd
+        #"--cmd cd" #replace cd
       ];
     };
     newsboat = {
