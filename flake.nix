@@ -101,7 +101,7 @@
           mas
           defaultbrowser #should move this to a dependency of the system setup
           dockutil # manage macos dock items from cli
-          duti # set default app for file type on macos from cli
+          #duti # set default app for file type on macos from cli
           monitorcontrol # control brightness of external monitors
           dark-mode-notify 
           darwin.trash # no longer working reliably for me: refuses to delete directories
