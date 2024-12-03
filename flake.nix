@@ -242,8 +242,11 @@
           "brightness" #used by upliftdesk to check if monitor is off
           "displayplacer" #for rotating and managing displays"
           "pandoc" #nix pandoc is chronically out of date
+          "choose-gui" # dmenu like chooser
+          "yt-dlp"
+          "toot"
         ];
-        
+
         caskArgs.no_quarantine = true;
         casks = [
           # Important Apps
