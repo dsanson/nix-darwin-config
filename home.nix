@@ -25,13 +25,15 @@ let
       lineno
       mathastext
       microtype
-      ms
+      count1to
+      multitoc
+      prelim2e
+      ragged2e 
       newunicodechar
       parskip
       pgf
       physics
       preview
-      ragged2e
       relsize
       rsfs
       selnolig
@@ -232,20 +234,23 @@ in
     andika # for for beginning readers
     charis-sil #another multilingual font
     dejavu_fonts
+    nerd-fonts.dejavu-sans-mono
     doulos-sil #another multilingual font
     fira-code # fira-mono with coding ligatures
-    fira-code-nerdfont
+    nerd-fonts.fira-code
     fira-go #fira sans with multilingual support
-    font-awesome
     font-awesome
     gentium # good for diacritics
     kawkab-mono-font # arabic monospace font
     monoid
+    nerd-fonts.monoid
     mononoki
-    nerdfonts
+    nerd-fonts.mononoki
     open-dyslexic
+    nerd-fonts.open-dyslexic
     source-code-pro
     victor-mono # has all arabic transliteration diacritics
+    nerd-fonts.victor-mono # has all arabic transliteration diacritics
     xits-math
 
     # gui apps
