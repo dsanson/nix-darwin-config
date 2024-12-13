@@ -399,7 +399,7 @@ in
   # };
 
   home.file.wallust = {
-    source = ./config/wallust;
+    source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/.config/nix-darwin-config/config/wallust";
     target = "Library/Application Support/wallust";
   };
 
