@@ -122,8 +122,9 @@ in
     LC_ALL = "en_US.UTF-8";
     LC_CTYPE = "en_US.UTF-8";
     PAGER = "less -r";
+    LESSOPEN = "|lesspipe.sh %s";
     BROWSER = "open"; #mac specific
-    FFSEND_HOST = "https://send.zcyph.cc";
+    #FFSEND_HOST = "https://send.zcyph.cc";
     FFSEND_COPY = "";
     FFSEND_EXPIRY_TIME = "7d";
     FFSEND_DOWNLOAD_LIMIT = "20";
@@ -132,6 +133,7 @@ in
   home.packages = (with pkgs; [
     
     coreutils-prefixed
+    ed
 
     nixvim.packages.${system}.default
     ffsend
@@ -144,6 +146,7 @@ in
     shared-mime-info
     socat # 
     wcalc #used by bin/q-preview # 
+    lesspipe
 
     # git
     delta # git highlighting 
@@ -219,6 +222,7 @@ in
     ffmpeg
     #whisper-ctranslate2 #broken pending update of botorch pkg
     srt-to-vtt-cl
+    nowplaying-cli #mac specific
 
     # games
     angband
@@ -382,6 +386,10 @@ in
       source = ./config/sioyek;
       recursive = true;
     };
+    visidata = {
+      source = ./config/visidata;
+      recursive = true;
+    };
     "fd/ignore".text = "**/*.app/**";
   };
 
@@ -408,10 +416,10 @@ in
     target = ".config/newsraft";  
   };
 
-  home.file.visidata = {
-    source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/.config/nix-darwin-config/config/visidata";
-    target = ".config/visidata";
-  };
+  # home.file.visidata = {
+  #   source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/.config/nix-darwin-config/config/visidata";
+  #   target = ".config/visidata";
+  # };
 
   home.file.sketchybar = {
     source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/.config/nix-darwin-config/config/sketchybar";
