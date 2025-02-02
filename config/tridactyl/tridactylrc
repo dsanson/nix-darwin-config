@@ -130,7 +130,7 @@ set videomaps.🕷🕷INHERITS🕷🕷 nmaps
 set videomaps.v exit_video
 set videomaps.z exit_video
 
-guiset_quiet gui none
+"guiset_quiet gui none
 
 " vim: set filetype=vim:
 
