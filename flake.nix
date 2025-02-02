@@ -17,7 +17,7 @@
     nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
     nixpkgs-stable.url = "github:NixOS/nixpkgs/nixos-24.11";
     lix-module = {
-      url = "https://git.lix.systems/lix-project/nixos-module/archive/2.91.1-1.tar.gz";
+      url = "https://git.lix.systems/lix-project/nixos-module/archive/2.92.0.tar.gz";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     nix-darwin = {
@@ -318,7 +318,7 @@
 
       services = {
         ipfs = {
-          enable = false;
+          enable = true;
           ipfsPath = "/Users/desanso/.ipfs";
         };
         karabiner-elements = {

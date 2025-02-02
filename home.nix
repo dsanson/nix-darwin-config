@@ -199,7 +199,7 @@ in
     sc-im
     tidy-viewer # csv pretty printer
     visidata 
-    xsv
+    #xsv # no longer available
     yq
 
     # pdf and images
