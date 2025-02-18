@@ -5,6 +5,9 @@ let
       amsmath
       babel-english
       bidi
+      bookmark
+      booktabs
+      caption
       cbfonts-fd
       changepage
       cm-super
@@ -12,17 +15,23 @@ let
       doublestroke
       dvisvgm
       enumitem
+      etoolbox
       everysel
+      float
+      fontawesome5
       fontspec
+      footnotehyper
       frcursive
       fundus-calligra
       gitinfo
       gnu-freefont
       graphbox
+      hyperref
       jknapltx
       latex-bin
       latexmk
       lineno
+      lwarp
       mathastext
       microtype
       count1to
@@ -31,6 +40,7 @@ let
       ragged2e 
       newunicodechar
       parskip
+      pdfcol
       pgf
       physics
       preview
@@ -41,15 +51,21 @@ let
       sidenotes
       soul
       standalone
+      tcolorbox
+      tikzfill
       tipa
       titlesec
       transparent
+      unicode-math
+      upquote
+      url
       wasy
       wasysym
       xcolor
       xetex
       xkeyval
       xpatch
+      xurl
       zref
       ;
   });
