@@ -635,7 +635,7 @@ in
       #package = pkgs-stable.ripgrep;
     };
     sioyek = {
-      enable = false;
+      enable = true;
     };
     tealdeer.enable = true;
     translate-shell.enable = true;
