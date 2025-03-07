@@ -166,6 +166,11 @@ in
     wcalc #used by bin/q-preview # 
     lesspipe
 
+    lua54Packages.lua
+    lua54Packages.luarocks
+    lua54Packages.penlight
+    lua54Packages.luafilesystem
+
     # git
     delta # git highlighting 
     lazygit

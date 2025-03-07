@@ -104,6 +104,7 @@
           #duti # set default app for file type on macos from cli
           monitorcontrol # control brightness of external monitors
           dark-mode-notify 
+          switchaudio-osx
       ];
       
       environment.pathsToLink = [ 
@@ -234,11 +235,11 @@
           "choose-gui" # dmenu like chooser
           "displayplacer" #for rotating and managing displays"
           "launch" #macos launcher that is better than open
-          "lua"
-          "luarocks"
+          #"lua"
+          #"luarocks"
           "pandoc" #nix pandoc is chronically out of date
           "rename" #consider alternatives
-          "switchaudio-osx"
+          #"switchaudio-osx"
           "tag" #macos file tagging
           "yt-dlp"
         ];
