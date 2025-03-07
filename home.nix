@@ -15,6 +15,7 @@ let
       doublestroke
       dvisvgm
       enumitem
+      eso-pic
       etoolbox
       everysel
       float
@@ -52,6 +53,7 @@ let
       soul
       standalone
       tcolorbox
+      textpos
       tikzfill
       tipa
       titlesec
@@ -185,6 +187,7 @@ in
     timg #terminal image viewer
     w3m
     newsraft
+    toot
 
     # document generation
     biber
@@ -310,7 +313,7 @@ in
 
     (writeShellApplication {
       name = "bib2path2";
-      runtimeInputs = [ coreutils gnused gnugrep pandoc jq ];
+      runtimeInputs = [ coreutils gnused gnugrep pandoc_3_6 jq ];
       text = (builtins.readFile ./bin/bib2path2);
     })
     
@@ -350,7 +353,7 @@ in
 
     (writeShellApplication {
       name = "scores";
-      runtimeInputs = [ pandoc gnused ack iconv curl ];
+      runtimeInputs = [ pandoc_3_6 gnused ack iconv curl ];
       text = (builtins.readFile ./bin/scores);
     })
 
@@ -362,7 +365,7 @@ in
     (writeShellApplication {
       name = "kitty-wrapper";
       #runtimeInputs = [ pandoc jq kitty yabai ]; # removing kitty to avoid building unstable
-      runtimeInputs = [ pandoc jq yabai ];
+      runtimeInputs = [ pandoc_3_6 jq yabai ];
       text = (builtins.readFile ./bin/kitty-wrapper);
     })
 
@@ -646,6 +649,7 @@ in
     };
     yt-dlp.enable = true; #disabling unit swift builds are fixed
     pandoc = {
+      package = pkgs.pandoc_3_6;
       enable = false;
       citationStyles = [
         ./share/csl/oxford-university-press-humsoc.csl

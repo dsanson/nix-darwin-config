@@ -160,7 +160,7 @@
         hostName = "halibut";
       };
 
-      security.pam.enableSudoTouchIdAuth  = true;
+      security.pam.services.sudo_local.touchIdAuth = true;
 
       system.defaults = {
 
@@ -233,18 +233,17 @@
         ];
 
         brews = [
+          "brightness" #used by upliftdesk to check if monitor is off
+          "choose-gui" # dmenu like chooser
+          "displayplacer" #for rotating and managing displays"
           "launch" #macos launcher that is better than open
+          "lua"
+          "luarocks"
+          "pandoc" #nix pandoc is chronically out of date
           "rename" #consider alternatives
           "switchaudio-osx"
           "tag" #macos file tagging
-          "lua"
-          "luarocks"
-          "brightness" #used by upliftdesk to check if monitor is off
-          "displayplacer" #for rotating and managing displays"
-          "pandoc" #nix pandoc is chronically out of date
-          "choose-gui" # dmenu like chooser
           "yt-dlp"
-          "toot"
         ];
 
         caskArgs.no_quarantine = true;
@@ -261,13 +260,16 @@
           "quicksilver" # not on nixpkgs
           "yacreader" # nixpkgs fails to build
           "zotero@beta" # nixpkgs linux only
+          "telegram-desktop"
+          "whatsapp"
           
           # Utilities and Tweaks
-          #"karabiner-elements" # nixpkgs needs to be updated for 15.0
+          "karabiner-elements" # nixpkgs needs to be updated for 15.0
           "keepingyouawake" # not on nixpkgs; caffeinate app
           "itsycal" # nixpkgs installs, but doesn't work; complains needs to be installed in /Applications
           "the-unarchiver" # nixpkgs has cli version
           "zerotier-one" # nixpkgs linux only
+          "maccy" # clipboard manager
           "djview" # nixpkgs marked as broken
           "satori" # the ancient screensaver
           "aerial@beta" # video screen savers
@@ -277,6 +279,8 @@
           "raspberry-pi-imager" # nixpkgs#rpi-imager marked as broken
           "sf-symbols"
           "steam"
+          "google-earth-pro"
+          "noscribe" # AI transcription
 
           # quicklook plugins
           "qlcolorcode"
