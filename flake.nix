@@ -104,9 +104,6 @@
           #duti # set default app for file type on macos from cli
           monitorcontrol # control brightness of external monitors
           dark-mode-notify 
-          darwin.trash # no longer working reliably for me: refuses to delete directories
-          # haskellPackages.macrm # marked as broken---installed via homebrew instead
-
       ];
       
       environment.pathsToLink = [ 
