@@ -11,7 +11,7 @@ TODO:
     - [x] fish config
     - [x] skhd config
     - [x] sketchybar config 
-    - [ ] wallust/set_theme/bar_colors
+    - [x] wallust/set_theme/bar_colors
     - [x] visidata config
     - [x] tridactyl config
     - [x] sioyek config 
@@ -23,11 +23,16 @@ TODO:
 - [ ] email
 - [x] eliminate unused old brew packages
 - [ ] prune pile up of old scripts in ~/bin, and migrate the ones worth keeping to nix
+     - [ ]  masterychecks
+     - [ ]  letter_shuffler.py
+     - [ ] note
+     - [ ] words
+     - [ ] sort_tagged_files
      - [ ] q
      - [ ] q-calibre-preview
      - [ ] q_preview
      - [ ] contacts
-     - [ ] visor
+     - [x] visor
      - [ ] termpdf.py
      - [ ] clibre
      - [ ] sioyek wrapper script
@@ -40,7 +45,7 @@ TODO:
      - [x] set_theme
      - [x] opacity
      - [x] scores
-     - [ ] uplift # was a problem
+     - [x] uplift # was a problem
      - [x] rotate
 - [ ] migrate carnap.py
 - [ ] syncthing settings
