@@ -258,7 +258,7 @@
           "quicksilver" # not on nixpkgs
           "yacreader" # nixpkgs fails to build
           "zotero@beta" # nixpkgs linux only
-          "telegram-desktop"
+          "signal"
           "whatsapp"
           
           # Utilities and Tweaks
