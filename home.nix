@@ -142,6 +142,8 @@ in
     PAGER = "less -r";
     LESSOPEN = "|lesspipe.sh %s";
     BROWSER = "open"; #mac specific
+    MANPAGER = "nvim +Man!";
+    MANWIDTH = 999;
     #FFSEND_HOST = "https://send.zcyph.cc";
     FFSEND_COPY = "";
     FFSEND_EXPIRY_TIME = "7d";
