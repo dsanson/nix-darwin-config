@@ -559,22 +559,17 @@ in
         end
       '';
       plugins = [
+        { name = "pure"; src = pkgs.fishPlugins.pure; }
+        { name = "bass"; src = pkgs.fishPlugins.bass; }
+        { name = "foreign-env"; src = pkgs.fishPlugins.foreign-env; }
+        { name = "fzf-fish"; src = pkgs.fishPlugins.fzf-fish; }
         {
-          name = "pure";
+          name = "fish-completion-pandoc";
           src = pkgs.fetchFromGitHub {
-            owner = "pure-fish";
-            repo = "pure";
-            rev = "28447d2e7a4edf3c954003eda929cde31d3621d2";
-            hash = "sha256-8zxqPU9N5XGbKc0b3bZYkQ3yH64qcbakMsHIpHZSne4=";
-          };
-        }
-        {
-          name = "bass";
-          src = pkgs.fetchFromGitHub {
-            owner = "edc";
-            repo = "bass";
-            rev = "79b62958ecf4e87334f24d6743e5766475bcf4d0";
-            hash = "sha256-3d/qL+hovNA4VMWZ0n1L+dSM1lcz7P5CQJyy+/8exTc=";
+            owner = "dsanson";
+            repo = "fish-completion-pandoc";
+            rev = "7195da6fc4bcbdd49ea63d47c27e4bfec2135660";
+            hash = "sha256-pVobe3JsJWCaVyn+c3Y6+ibxlGTCCD1fj2u9LjEmAPg=";
           };
         }
         {
@@ -586,43 +581,6 @@ in
             hash = "sha256-9hRFBmjrCgIUNHuOJZvOufyLsfreJfkeS6XDcCPesvw=";
           };
         }
-        {
-          name = "reljump";
-          src = pkgs.fetchFromGitHub {
-            owner = "anordal";
-            repo = "reljump.fish";
-            rev = "a91fbaf84f1c5c7c00561bdad818c06b5e820436";
-            hash = "sha256-/krwAOuaiZ7HsXdmVxqjg4G2NbtX3TVwOj/xAq/HDHA=";
-          };
-        }
-        {
-          name = "fish-completion-pandoc";
-          src = pkgs.fetchFromGitHub {
-            owner = "dsanson";
-            repo = "fish-completion-pandoc";
-            rev = "7195da6fc4bcbdd49ea63d47c27e4bfec2135660";
-            hash = "sha256-pVobe3JsJWCaVyn+c3Y6+ibxlGTCCD1fj2u9LjEmAPg=";
-          };
-        }
-        {
-          name = "foreign-env";
-          src = pkgs.fetchFromGitHub {
-            owner = "oh-my-fish";
-            repo = "plugin-foreign-env";
-            rev = "7f0cf099ae1e1e4ab38f46350ed6757d54471de7";
-            hash = "sha256-4+k5rSoxkTtYFh/lEjhRkVYa2S4KEzJ/IJbyJl+rJjQ=";
-          };
-        }
-        {
-          name = "fzf";
-          src = pkgs.fetchFromGitHub {
-            owner = "PatrickF1";
-            repo = "fzf.fish";
-            rev = "dfdf69369bd3a3c83654261f90363da2aa1db8c9";
-            hash = "sha256-x/q7tlMlyxZ1ow2saqjuYn05Z1lPOVc13DZ9exFDWoU=";
-          };
-        }
-
       ];
     };
 
