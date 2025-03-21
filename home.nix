@@ -647,10 +647,20 @@ in
       enable = true;
       prefix = "C-a";
       aggressiveResize = true;
+      baseIndex = 1;
       clock24 = true;
+      focusEvents = true;
       keyMode = "vi";
       mouse = true;
       newSession = true;
+      terminal = "screen-256color";
+      plugins = with pkgs.tmuxPlugins; [
+        mode-indicator
+      ];
+      extraConfig = ''
+        set -g allow-passthrough on
+        set -g status-right '#{tmux_mode_indicator}'
+      '';
     };
     vdirsyncer.enable = true;
     khal = {
