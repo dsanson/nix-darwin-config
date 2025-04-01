@@ -235,8 +235,6 @@
           "choose-gui" # dmenu like chooser
           "displayplacer" #for rotating and managing displays"
           "launch" #macos launcher that is better than open
-          #"lua"
-          #"luarocks"
           "pandoc" #nix pandoc is chronically out of date
           "rename" #consider alternatives
           #"switchaudio-osx"
