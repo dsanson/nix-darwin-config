@@ -248,7 +248,7 @@
           "anylist" # not on nixpkgs
           "calibre" # nixpkgs broken on darwin
           "discord" # available on nixpkgs but poorly behaved
-          "firefox" # nixpkgs linux only
+          "firefox" # looks like it may now work. But version lags.
           "google-chrome" # nixpkgs has chromium but linux only
           #"microsoft-office" # not on nixpkgs # this breaks because of microsoft defender
           "obs" # nixkpgs only builds for linux
