@@ -257,7 +257,7 @@
           "yacreader" # nixpkgs fails to build
           "zotero@beta" # nixpkgs linux only
           "signal"
-          "whatsapp"
+          "whatsapp" #replace with nixpkgs#whatsapp-for-mac?
           
           # Utilities and Tweaks
           "karabiner-elements" # nixpkgs needs to be updated for 15.0
