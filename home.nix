@@ -156,10 +156,10 @@ in
     ed
 
     nixvim.packages.${system}.default
-    ffsend
+    #ffsend
     devd # simple cli webserver 
     qrencode 
-    uni # unicode lookup
+    #uni # unicode lookup
     aria # downloading tool
     gdrive3 
     samba 
@@ -179,7 +179,6 @@ in
     hub # github cli tool
     git-lfs # git extension for large files  #git
     gh # github cli tool
-    gh-copilot
 
     # webdev
     dart-sass # move to dev specific flake
@@ -189,12 +188,12 @@ in
     httpie # 
 
     # tui apps
-    epr # terminal epub reader
     lynx
-    timg #terminal image viewer
     w3m
-    newsraft
-    toot
+    epr # terminal epub reader
+    timg #terminal image viewer
+    newsraft #rss reader
+    toot #tui mastodon client
 
     # document generation
     biber
@@ -246,7 +245,6 @@ in
 
     # media
     ffmpeg
-    #whisper-ctranslate2 #broken pending update of botorch pkg
     srt-to-vtt-cl
     nowplaying-cli #mac specific
 
@@ -256,7 +254,7 @@ in
     nsnake
 
     # ricing and theming
-    # wallust # currently won't build
+    wallust
     pywalfox
 
     # fonts
@@ -394,7 +392,7 @@ in
 
   (with pkgs-stable; [
     #hello
-    wallust
+    #wallust
     #kitty
   ]);
 
@@ -559,10 +557,17 @@ in
         end
       '';
       plugins = [
-        { name = "pure"; src = pkgs.fishPlugins.pure; }
         { name = "bass"; src = pkgs.fishPlugins.bass; }
         { name = "foreign-env"; src = pkgs.fishPlugins.foreign-env; }
-        { name = "fzf-fish"; src = pkgs.fishPlugins.fzf-fish; }
+        {
+          name = "pure";
+          src = pkgs.fetchFromGitHub {
+            owner = "pure-fish";
+            repo = "pure";
+            rev = "28447d2e7a4edf3c954003eda929cde31d3621d2";
+            hash = "sha256-8zxqPU9N5XGbKc0b3bZYkQ3yH64qcbakMsHIpHZSne4=";
+          };
+        }
         {
           name = "fish-completion-pandoc";
           src = pkgs.fetchFromGitHub {
@@ -570,6 +575,15 @@ in
             repo = "fish-completion-pandoc";
             rev = "7195da6fc4bcbdd49ea63d47c27e4bfec2135660";
             hash = "sha256-pVobe3JsJWCaVyn+c3Y6+ibxlGTCCD1fj2u9LjEmAPg=";
+          };
+        }
+        {
+          name = "fzf-fish";
+          src = pkgs.fetchFromGitHub {
+            owner = "PatrickF1";
+            repo = "fzf.fish";
+            rev = "8920367cf85eee5218cc25a11e209d46e2591e7a";
+            hash = "sha256-T8KYLA/r/gOKvAivKRoeqIwE2pINlxFQtZJHpOy9GMM=";
           };
         }
         {
@@ -592,12 +606,8 @@ in
       enableZshIntegration = true;
     };
     
-    aerc.enable = true;
-    btop.enable = true;
+    
     jq.enable = true;
-    lazygit.enable = true;
-    mpv.enable = false; # disabling until swift builds are fixed https://github.com/NixOS/nixpkgs/issues/327837#issuecomment-2308417434
-    mu.enable = false;
     ripgrep = {
       enable = true;
       #package = pkgs-stable.ripgrep;
@@ -606,13 +616,6 @@ in
       enable = true;
     };
     tealdeer.enable = true;
-    translate-shell.enable = true;
-    watson = {
-      enable = true;
-      enableFishIntegration = true;
-      enableBashIntegration = true;
-    };
-    yt-dlp.enable = true; #disabling unit swift builds are fixed
     pandoc = {
       package = pkgs.pandoc_3_6;
       enable = false;
@@ -621,26 +624,12 @@ in
         ./share/csl/oxford-university-press-note.csl
       ];
     };
-    texlive = {
-      enable = false;
-    };
     zoxide = {
       enable = true;
       enableFishIntegration = true;
       enableBashIntegration = true;
       options = [
         #"--cmd cd" #replace cd
-      ];
-    };
-    newsboat = {
-      enable = false;
-      urls = [
-        { url = "https://www.logicmatters.net/feed/"; }
-        { url = "https://diaryofdoctorlogic.wordpress.com/feed/"; }
-        { url = "https://richardzach.org/feed/"; }
-        { url = "https://robertpaulwolff.blogspot.com/feeds/posts/default?alt=rss"; }
-        { url = "https://objectionable.net/feed/"; }
-        { url = "https://aestheticsforbirds.com/feed/"; }
       ];
     };
     tmux = {
@@ -828,7 +817,23 @@ in
         nodejs.disabled = true;
       };
     };
-    
+   
+    # disabled stuff
+    aerc.enable = false;
+    mu.enable = false;
+    lazygit.enable = false;
+    btop.enable = false;
+    mpv.enable = false; # disabling until swift builds are fixed https://github.com/NixOS/nixpkgs/issues/327837#issuecomment-2308417434
+    translate-shell.enable = false;
+    watson = {
+      enable = false;
+      enableFishIntegration = true;
+      enableBashIntegration = true;
+    };
+    yt-dlp.enable = false; #using homebrew because more frequently updated
+    texlive = {
+      enable = false;
+    };
   };
   
   services = {
