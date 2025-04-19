@@ -295,7 +295,6 @@ in
     terminal-notifier
 
     # gui apps installed as brew casks
-    #aegisub # installed with brew
     #calibre # installed with brew
     #discord # installed with brew                   
     #djview # installed with brew
@@ -323,6 +322,7 @@ in
     })
     
     (writeShellApplication {
+      # don't think this is still in use
       name = "bar_colors";
       runtimeInputs = [ sketchybar ];
       text = (builtins.readFile ./bin/bar_colors);
@@ -423,12 +423,6 @@ in
       recursive = true;
     };
   };
-
-  # home.file.hammerspoon = {
-  #   source = ./config/hammerspoon;
-  #   recursive = true;
-  #   target = ".hammerspoon";
-  # };
 
   home.file.wallust = {
     source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/.config/nix-darwin-config/config/wallust";
