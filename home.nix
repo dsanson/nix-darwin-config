@@ -116,8 +116,8 @@ in
     "l" = "ls -lA";
     #"z" = "cd";
     "rm" = "echo 'rm disabled; use trash or /bin/rm instead'";  #mac specific for now
-    "addprinter" = "lpadmin -E -p stv412-phil-copier -E -v lpd://cas-papercut.ad.ilstu.edu/stv412-phil-copier -m '/Library/Printers/PPDs/Contents/Resources/Xerox WorkCentre 5325.gz'";
-    "rmprinter" = "lpadmin -x stv412-phil-copier";
+    #"addprinter" = "lpadmin -E -p stv412-phil-copier -E -v lpd://cas-papercut.ad.ilstu.edu/stv412-phil-copier -m '/Library/Printers/PPDs/Contents/Resources/Xerox WorkCentre 5325.gz'";
+    #"rmprinter" = "lpadmin -x stv412-phil-copier";
     "wanip" = "dig +short myip.opendns.com @resolver1.opendns.com";
     "latest_download" = "ls -tU $HOME/Downloads | head -n 1";
     "preview" = "open -a Preview"; #mac specific
@@ -131,7 +131,7 @@ in
     "pause" = "nowplaying-cli pause"; #mac specific
     "next" = "nowplaying-cli next"; #mac specific
     "volume" = "m volume"; #mac specific
-    "liar" = "cd ~/d/research/projects/Papers/with_ahmed/liar-book; nvim -c 'Telescope find_files'";
+    #"liar" = "cd ~/d/research/projects/Papers/with_ahmed/liar-book; nvim -c 'Telescope find_files'";
     "sit" = "echo 1 >> /tmp/com.davidsanson.upliftdesk.in";
     "stand" = "echo 2 >> /tmp/com.davidsanson.upliftdesk.in";
   };
