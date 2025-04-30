@@ -800,6 +800,11 @@ in
           ignore_branches = ["master" "main"];
         };
         nodejs.disabled = true;
+        shell.disabled = false;
+        shell.fish_indicator = "";
+        shell.bash_indicator = "\\$";
+        shell.zsh_indicator = "%";
+        shell.format = "[$indicator]($style)";
       };
     };
    
