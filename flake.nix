@@ -226,9 +226,9 @@
         enable = true; 
         onActivation.autoUpdate = false;
         
-        taps = [
-          "dsanson/tap" #for logic2010
-        ];
+        # taps = [
+        #   "dsanson/tap" #for logic2010
+        # ];
 
         brews = [
           "brightness" #used by upliftdesk to check if monitor is off
