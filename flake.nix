@@ -240,6 +240,7 @@
           #"switchaudio-osx"
           "tag" #macos file tagging
           "yt-dlp"
+          "keith/formulae/reminders-cli" #not sure this will work
         ];
 
         caskArgs.no_quarantine = true;
