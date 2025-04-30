@@ -519,7 +519,7 @@ in
       autosuggestion.enable = true;
       history.ignoreAllDups = true;
       syntaxHighlighting.enable = true;
-      initExtra = ''
+      initContent = ''
         export PATH="$HOME/bin:$HOME/.local/bin:/etc/profiles/per-user/desanso/bin:/run/current-system/sw/bin:$PATH"
         bindkey -v
       '';
