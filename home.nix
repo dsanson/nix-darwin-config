@@ -112,9 +112,9 @@ in
 
   home.shellAliases = {
     "..." = "cd ../..";
-    "ls" = "gls --hyperlink=auto";
+    #"ls" = "gls --hyperlink=auto";
+    "ls" = "eza --hyperlink";
     "l" = "ls -lA";
-    #"z" = "cd";
     "rm" = "echo 'rm disabled; use trash or /bin/rm instead'";  #mac specific for now
     #"addprinter" = "lpadmin -E -p stv412-phil-copier -E -v lpd://cas-papercut.ad.ilstu.edu/stv412-phil-copier -m '/Library/Printers/PPDs/Contents/Resources/Xerox WorkCentre 5325.gz'";
     #"rmprinter" = "lpadmin -x stv412-phil-copier";
@@ -190,6 +190,7 @@ in
     # tui apps
     lynx
     w3m
+    chawan # a modern tui browser?
     epr # terminal epub reader
     timg #terminal image viewer
     newsraft #rss reader
@@ -252,6 +253,7 @@ in
     angband
     figlet
     nsnake
+    maelstrom
 
     # ricing and theming
     wallust
@@ -807,7 +809,7 @@ in
         shell.format = "[$indicator]($style)";
       };
     };
-   
+
     # disabled stuff
     aerc.enable = false;
     mu.enable = false;
