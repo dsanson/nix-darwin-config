@@ -663,6 +663,9 @@ in
     khard.enable = true;
     eza = { # ls replacement
       enable = true; 
+      enableFishIntegration = true;
+      enableBashIntegration = true;
+      enableZshIntegration = true;
     };
     fzf = {
       enable = true;
