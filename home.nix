@@ -295,6 +295,7 @@ in
     iina
     keycastr
     terminal-notifier
+    choose-gui
 
     # gui apps installed as brew casks
     #calibre # installed with brew

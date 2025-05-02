@@ -232,7 +232,6 @@
 
         brews = [
           "brightness" #used by upliftdesk to check if monitor is off
-          "choose-gui" # dmenu like chooser
           "displayplacer" #for rotating and managing displays"
           "launch" #macos launcher that is better than open
           "pandoc" #nix pandoc is chronically out of date
