@@ -1,4 +1,4 @@
-bind i exec iina "%l" 
-bind m exec mpv "%l" 
+bind m exec mpv --audio-display=no --terminal=no "%l" &
 bind w exec w3m "%l" 
 bind v exec clear && kitten icat "%l" && read -n1
+bind ? exec man newsraft
