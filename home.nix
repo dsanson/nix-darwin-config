@@ -814,12 +814,14 @@ in
       };
     };
 
+    mpv.enable = true; 
+    mpv.scripts = [ pkgs.mpvScripts.videoclip ];
+
     # disabled stuff
     aerc.enable = false;
     mu.enable = false;
     lazygit.enable = false;
     btop.enable = false;
-    mpv.enable = false; # disabling until swift builds are fixed https://github.com/NixOS/nixpkgs/issues/327837#issuecomment-2308417434
     translate-shell.enable = false;
     watson = {
       enable = false;
