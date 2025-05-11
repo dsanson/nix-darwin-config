@@ -7,25 +7,51 @@ declare -A displays
 displays["internal"]="s4251086178"
 displays["dell-up2414Q"]="s859125580"
 displays["external-home"]="${displays["dell-up2414Q"]}"
+displays["external-office"]="s810571340"
 
 function get_rotation() {
   id="${1:-2}"
   displayplacer list | sed -n "/id: $id/,/Rotation/p" | sed -n '$p' | awk '{print $2}'
 }
 
-function rotate_display() {
+function check_id() {
   id="${1:-2}"
-  degree="${2:-90}"
+  for key in "${!displays[@]}"
+  do
+    [[ "$id" == "$key" ]] && id="${displays[$key]}"
+  done
+  echo "$id"
+}
+
+function set_rotation() {
+  id="$1"
+  degree="${2:-0}"
   displayplacer "id:$id degree:$degree"
 }
 
-function toggle_rotation() {
-  id="${1:-2}"
+function counterclockwise() {
+  degree="$(get_rotation "$id")"
+  if [[ "$degree" -lt 270 ]]; then
+    degree=$((degree + 90))
+  else
+    degree=0
+  fi
+  echo "$degree"
+}
+
+function clockwise() {
+  degree="$(get_rotation "$id")"
+  if [[ "$degree" -gt 0 ]]; then
+    degree=$((degree - 90))
+  else
+    degree=270
+  fi
+  echo "$degree"
+}
+
+function toggle() {
   degree="$(get_rotation "$id")"
   case "$degree" in
-    90)
-      degree=0
-      ;;
     0)
       degree=90
       ;;
@@ -33,19 +59,31 @@ function toggle_rotation() {
       degree=0
       ;;
   esac
-  rotate_display "$id" "$degree"
+  echo "$degree"
 }
 
-#get_rotation "${1:-2}"
-#rotate_display "${1:-2}" "${2:-0}"
-#toggle_rotation "${1:-2}"
+id="$(check_id "${1:-2}")"
+shift
 
-case "${1:-}" in
-  toggle)
-    shift
-    toggle_rotation "$@"
-    ;;
-  *)
-    rotate_display "$@"
-    ;;
-esac
+degree=""
+
+if [[ $# -eq 0 ]]; then
+  degree="$(counterclockwise)" 
+else
+  case "$1" in
+    toggle)
+      degree="$(toggle)"
+      ;;
+    clock*)
+      degree="$(clockwise)"
+      ;;
+    counter*)
+      degree="$(counterclockwise)"
+      ;;
+    *)
+      degree="$1"
+      ;;
+  esac
+fi
+
+set_rotation "$id" "$degree"

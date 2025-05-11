@@ -431,7 +431,8 @@
              # caffeinate
              m1 < shift - c : skhd -k 'escape'; open "keepingyouawake:///toggle"
              # rotate external monitor
-             m1 < r    :  skhd -k "escape"; rotate toggle
+             m1 < r    :  rotate external-home; rotate external-office
+             m1 < shift - r    :  rotate external-home clockwise; rotate external-office clockwise
              # reload yabai
              m2 < r            : skhd -k 'escape'; launchctl stop org.nixos.yabai
              # q script to replace quicksilver
