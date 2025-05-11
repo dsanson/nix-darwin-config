@@ -320,7 +320,7 @@ in
 
     (writeShellApplication {
       name = "bib2path2";
-      runtimeInputs = [ coreutils gnused gnugrep pandoc_3_6 jq ];
+      runtimeInputs = [ coreutils gnused gnugrep pandoc jq ];
       text = (builtins.readFile ./bin/bib2path2);
     })
     
@@ -361,7 +361,7 @@ in
 
     (writeShellApplication {
       name = "scores";
-      runtimeInputs = [ pandoc_3_6 gnused ack iconv curl ];
+      runtimeInputs = [ pandoc gnused ack iconv curl ];
       text = (builtins.readFile ./bin/scores);
     })
 
@@ -373,7 +373,7 @@ in
     (writeShellApplication {
       name = "kitty-wrapper";
       #runtimeInputs = [ pandoc jq kitty yabai ]; # removing kitty to avoid building unstable
-      runtimeInputs = [ pandoc_3_6 jq yabai ];
+      runtimeInputs = [ pandoc jq yabai ];
       text = (builtins.readFile ./bin/kitty-wrapper);
     })
 
@@ -605,7 +605,7 @@ in
     };
     tealdeer.enable = true;
     pandoc = {
-      package = pkgs.pandoc_3_6;
+      package = pkgs.pandoc;
       enable = false;
       citationStyles = [
         ./share/csl/oxford-university-press-humsoc.csl
