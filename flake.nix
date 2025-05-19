@@ -274,9 +274,10 @@
           "dupeguru" # marked as broken in nix
           "raspberry-pi-imager" # nixpkgs#rpi-imager marked as broken
           "sf-symbols"
-          "steam"
           "google-earth-pro"
           "noscribe" # AI transcription
+          "atv-remote"
+          "homerow" # control MacOS buttons with keyboard
 
           # quicklook plugins
           "qlcolorcode"
