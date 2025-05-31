@@ -4,7 +4,7 @@ set -o nounset
 set -o pipefail
 
 declare -a layouts
-layouts=(max full full_relaxed center left left_half right right_half zoom zoom_slides obs 720p 1080p 480p 360p 240p)
+layouts=(max full full_relaxed center left left_half right right_half zoom zoom_slides obs portrait_relaxed 720p 1080p 480p 360p 240p)
 declare -a cycles
 cycles=(full full_relaxed center left right)
 
@@ -50,6 +50,14 @@ full() {
 full_relaxed() {
    tp=20
    bp=20
+   lp=50
+   rp=50
+   wg=20
+}
+
+portrait_relaxed() {
+   tp=200
+   bp=200
    lp=50
    rp=50
    wg=20
