@@ -372,8 +372,7 @@ in
 
     (writeShellApplication {
       name = "kitty-wrapper";
-      #runtimeInputs = [ pandoc jq kitty yabai ]; # removing kitty to avoid building unstable
-      runtimeInputs = [ pandoc jq yabai ];
+      runtimeInputs = [ jq kitty yabai ]; 
       text = (builtins.readFile ./bin/kitty-wrapper);
     })
 
@@ -409,10 +408,6 @@ in
       source = ./config/markdownlint;
       recursive = true;
     };
-    sioyek = {
-      source = ./config/sioyek;
-      recursive = true;
-    };
     visidata = {
       source = ./config/visidata;
       recursive = true;
@@ -425,6 +420,11 @@ in
       source = ./share/pandoc;
       recursive = true;
     };
+  };
+ 
+  home.file.sioyek = {
+    source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/.config/nix-darwin-config/config/sioyek";
+    target = ".config/sioyek";
   };
 
   home.file.wallust = {
