@@ -15,7 +15,7 @@
 
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
-    nixpkgs-stable.url = "github:NixOS/nixpkgs/nixos-24.11";
+    nixpkgs-stable.url = "github:NixOS/nixpkgs/nixos-25.05";
     lix-module = {
       url = "https://git.lix.systems/lix-project/nixos-module/archive/2.93.0.tar.gz";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -159,7 +159,11 @@
       };
 
       security.pam.services.sudo_local.touchIdAuth = true;
+      security.pam.services.sudo_local.watchIdAuth = true;
 
+      system.primaryUser = "desanso"; # https://mynixos.com/nix-darwin/option/system.primaryUser
+
+      # migrate to targets.darwin.defaults in home manager
       system.defaults = {
 
         NSGlobalDomain = {
