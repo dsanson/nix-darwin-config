@@ -12,10 +12,9 @@ case "$app" in
   "kitty"|".kitty-wrapped")
     path="$(yabai -m query --windows --window \
       | jq -r .title \
-      | sed -e 's/:.*//')"
+      | sed -e 's/.*: //')"
     dir="${path/#\~/$HOME}"
-    ;;
-  "Finder")
+    ;; "Finder")
     path="$(osascript -e 'tell app "Finder" to get posix path of ((target of window 1) as alias)')"
     dir="$path"
     ;;
@@ -24,13 +23,16 @@ case "$app" in
     path="${path%/*}"
     dir="$path"
     ;;
+  "Microsoft Word")
+    path="$(osascript -e 'tell application "Microsoft Word"' -e 'set thePath to (path of front document)' -e 'return POSIX path of thePath' -e 'end tell')"
+    dir="$path"
+    ;;
    *)
-    dir="/Users/desanso"
+    dir="$HOME"
     ;;
 esac
 
 if [[ ! -d "$dir" ]]; then
-  echo "$dir"
   dir="$HOME"
 fi
 
