@@ -83,6 +83,7 @@ let
       hash = "sha256-i1DgdYmNVvG+mZiFiBmVHsQnFvfDFOFTGf0GEy81lpE=";
     };
   };
+
 in
 {
   home.username = "desanso";
@@ -139,6 +140,7 @@ in
   home.sessionVariables = {
     LC_ALL = "en_US.UTF-8";
     LC_CTYPE = "en_US.UTF-8";
+    EDITOR = "nvim";
     PAGER = "less -r";
     LESSOPEN = "|lesspipe.sh %s";
     BROWSER = "open"; #mac specific
@@ -258,7 +260,7 @@ in
     # ricing and theming
     wallust
     pywalfox
-
+    
     # fonts
     amiri #arabic font
     andika # for for beginning readers
@@ -393,9 +395,9 @@ in
   ++
 
   (with pkgs-stable; [
-    #hello
-    #wallust
-    #kitty
+  #  #hello
+  #  #wallust
+  #  #kitty
   ]);
 
   xdg.enable = true;
@@ -532,6 +534,26 @@ in
       functions = {
         retakes = "carnap hiddens $argv | sort";
         playlist = "osascript -e 'tell app \"Music\" to play the playlist named \"'$argv'\"'";
+        fish_title = ''
+          function fish_title
+              # If we're connected via ssh, we print the hostname.
+              set -l ssh
+              set -q SSH_TTY
+              and set ssh "["(prompt_hostname | string sub -l 10 | string collect)"]"
+              # An override for the current command is passed as the first parameter.
+              # This is used by `fg` to show the true process name, among others.
+              if set -q argv[1]
+                  echo -- $ssh (string sub -l 20 -- $argv[1]): (prompt_pwd -d 0 -D 0)
+              else
+                  # Don't print "fish" because it's redundant
+                  set -l command (status current-command)
+                  if test "$command" = fish
+                      set command
+                  end
+                  echo -- $ssh (string sub -l 20 -- $command): (prompt_pwd -d 1 -D 1)
+              end
+          end
+          '';
       };
       interactiveShellInit = ''
         set -g fish_key_bindings fish_vi_key_bindings
