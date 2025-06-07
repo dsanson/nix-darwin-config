@@ -43,9 +43,10 @@
       };
       
       nixpkgs.config.allowUnfree = true;
-      nixpkgs.config.permittedInsecurePackages = [
-        "olm-3.2.16"
-      ];
+
+      # nixpkgs.config.permittedInsecurePackages = [
+      #   "olm-3.2.16" # this is (was?) needed for installing some matrix clients
+      # ];
 
       users.users.desanso = {
         description = "David Sanson";

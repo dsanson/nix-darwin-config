@@ -14,7 +14,8 @@ case "$app" in
       | jq -r .title \
       | sed -e 's/.*: //')"
     dir="${path/#\~/$HOME}"
-    ;; "Finder")
+    ;; 
+  "Finder")
     path="$(osascript -e 'tell app "Finder" to get posix path of ((target of window 1) as alias)')"
     dir="$path"
     ;;
