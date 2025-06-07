@@ -60,9 +60,10 @@
         pkgs.zsh
       ];
 
-      environment.variables = {
-        EDITOR = "nvim";
-      };
+      # moved to home.sessionVariables
+      # environment.variables = {
+      #   EDITOR = "nvim";
+      # };
      
       environment.systemPackages = with pkgs; [ 
 
@@ -84,18 +85,19 @@
           ack
           gawk
           zip
-          unar #cli version of theunarchiver
-          unrar-wrapper
           openssh
           gnupg
           python311Packages.keyring
-          ncdu_1
           netcat
           nmap
           parallel
           dos2unix
-          rlwrap
           cachix # nix binary cache tool
+
+          ncdu # move to home
+          rlwrap # move to home
+          unar #move to home; cli version of theunarchiver
+          unrar-wrapper #move to home
 
           # mac specific cli
           skhd
