@@ -446,7 +446,7 @@
              # reload sketchybar
              m2 < s            : skhd -k 'escape'; launchctl stop org.nixos.sketchybar
              # q script to replace quicksilver
-             default < ctrl -space : yabai -m window --toggle visor || open -a kitty.app -n --args --title "visor" /etc/profiles/per-user/desanso/bin/fish -C 'q -w'
+             default < ctrl -space : yabai -m window --toggle visor || kitty @ launch --type os-window --os-window-title visor --to unix:/tmp/mykitty q -w
              m1, m2 < ctrl -space : skhd -k "escape"; yabai -m window --toggle visor 
              #m1 < u : skhd -k "escape"; bash -x uplift sit
              #m1 < shift - u : skhd -k "escape"; bash -x uplift stand
