@@ -760,6 +760,8 @@ in
         macos_option_as_alt = "yes";
         kitty_mod = "super";
         allow_remote_control = "socket-only";
+        cursor_trail = 10;
+        scrollback_fill_enlarged_window = "yes";
       };
       extraConfig = ''
         include ~/.cache/wal/colors-kitty.conf
