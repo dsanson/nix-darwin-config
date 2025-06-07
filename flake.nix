@@ -101,7 +101,7 @@
 
           # mac specific cli
           skhd
-          # mas # temporarily disabled until updated past 1.9.0 to work on Sequoia 15.4
+          mas
           defaultbrowser #should move this to a dependency of the system setup
           #dockutil # manage macos dock items from cli
           #duti # set default app for file type on macos from cli
