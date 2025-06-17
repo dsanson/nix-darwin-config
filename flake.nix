@@ -441,7 +441,7 @@
   in
   {
     # Build darwin flake using:
-    # $ darwin-rebuild build --flake .#halibut
+    # $ sudo darwin-rebuild build --flake .#halibut
     darwinConfigurations."halibut" = nix-darwin.lib.darwinSystem {
       modules = [
         configuration
