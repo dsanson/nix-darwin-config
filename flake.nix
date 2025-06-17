@@ -305,23 +305,24 @@
           # "devcleaner" # clean out xcode caches and save disk space
         ];
 
-        # masApps = {
-        #   "Kindle Classic"         =  405399194;
-        #   "AdGuard for Safari"     =  1440147259;
-        #   "Keynote"                =  409183694;
-        #   "iMovie"                 =  408981434;
-        #   "CamControl"             =  1503271162;
-        #   "Pages"                  =  409201541;
-        #   "Mpix"                   =  1282488470;
-        #   "GarageBand"             =  682658836;
-        #   "Visualizer"             =  1296177026;
-        #   "Numbers"                =  409203825;
-        #   "Prime Video"            =  545519333;
-        #   "TomatoFlex"             =  1500965952;
-        #   # "OneDrive"               =  823766827;
-        #   # "DevCleaner"             =  1388020431;
-        #   # "Paprika Recipe Manager" =  451907568;
-        # };
+        masApps = {
+          "Kindle Classic"         =  405399194;
+          "AdGuard for Safari"     =  1440147259;
+          "Keynote"                =  409183694;
+          "iMovie"                 =  408981434;
+          "CamControl"             =  1503271162;
+          "Pages"                  =  409201541;
+          "Mpix"                   =  1282488470;
+          "GarageBand"             =  682658836;
+          "Visualizer"             =  1296177026;
+          "Numbers"                =  409203825;
+          "Prime Video"            =  545519333;
+          "TomatoFlex"             =  1500965952;
+          "Xcode"                  =  497799835;
+          # "OneDrive"               =  823766827;
+          # "DevCleaner"             =  1388020431;
+          # "Paprika Recipe Manager" =  451907568;
+        };
       };
 
       services = {
