@@ -743,23 +743,13 @@ in
       };
     };
 
-    mpv.enable = true; 
-    mpv.scripts = [ pkgs.mpvScripts.videoclip ];
-
-    # disabled stuff
-    aerc.enable = false;
-    mu.enable = false;
-    lazygit.enable = false;
-    btop.enable = false;
-    translate-shell.enable = false;
-    watson = {
-      enable = false;
-      enableFishIntegration = true;
-      enableBashIntegration = true;
-    };
-    yt-dlp.enable = false; #using homebrew because more frequently updated
-    texlive = {
-      enable = false;
+    mpv = {
+      enable = true; 
+      scripts = [ 
+        pkgs.mpvScripts.videoclip
+        pkgs.mpvScripts.sponsorblock-minimal 
+        pkgs.mpvScripts.autosub
+      ];
     };
   };
   
