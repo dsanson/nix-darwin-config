@@ -158,10 +158,13 @@ in
     ed
 
     nixvim.packages.${system}.default
-    #ffsend
-    devd # simple cli webserver 
-    qrencode 
-    #uni # unicode lookup
+
+    ncdu
+    rlwrap 
+    unar # mac specific cli version of theunarchiver
+    unrar-wrapper
+    devd # simple cli webserver; consider just using nix shell
+    qrencode
     aria # downloading tool
     gdrive3 
     samba 

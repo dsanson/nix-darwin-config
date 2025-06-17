@@ -94,10 +94,10 @@
           dos2unix
           cachix # nix binary cache tool
 
-          ncdu # move to home
-          rlwrap # move to home
-          unar #move to home; cli version of theunarchiver
-          unrar-wrapper #move to home
+          # ncdu # move to home
+          # rlwrap # move to home
+          # unar #move to home; cli version of theunarchiver
+          # unrar-wrapper #move to home
 
           # mac specific cli
           skhd
