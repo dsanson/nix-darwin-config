@@ -115,6 +115,7 @@
         "/share/zsh" 
       ];
 
+      # migrate to home.nix
       environment.userLaunchAgents = {
         vdirsyncer = {
           enable = true;
@@ -141,9 +142,7 @@
 
       # Create /etc/zshrc that loads the nix-darwin environment.
       programs.zsh.enable = true;  # default shell on catalina
-      programs.fish = {
-        enable = true;
-      };
+      programs.fish.enable = true;
 
       # Set Git commit hash for darwin-version.
       system.configurationRevision = self.rev or self.dirtyRev or null;
