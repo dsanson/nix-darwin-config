@@ -10,6 +10,16 @@ set incsearch true
 set theme auto
 set newtab file:///Users/desanso/.config/tridactyl/blank.html
 
+bind yy clipboard yankshort " yank shortened or canonical url
+bind ,r reader " reader mode
+bind gd tabdetach " detach tab
+
+command mpv composite get_current_url | shellescape | !s mpv --ytdl  
+bind ,v mpv " open in mpv
+
+bind ,s composite get_current_url | shellescape | fillcmdline !s open -a Safari " open in Safari
+"bind ,chr composite get_current_url | shellescape | fillcmdline !s open -a Google Chrome
+
 " save to Zotero
 command zotero exclaim_quiet skhd -k 'ctrl + cmd - z'
 bind ,z zotero
@@ -22,23 +32,6 @@ bind ,a anylist_save_recipe
 "javascript:(function(){window.hypothesisConfig=function(){return{showHighlights:true,appType:'bookmarklet'};};var d=document,s=d.createElement('script');s.setAttribute('src','https://hypothes.is/embed.js');d.body.appendChild(s)})();
 command hypothesis js (function(){window.hypothesisConfig=function(){return{showHighlights:true,appType:'bookmarklet'};};var d=document,s=d.createElement('script');s.setAttribute('src','https://hypothes.is/embed.js');d.body.appendChild(s)})();
 bind ,h hypothesis
-
-# reader mode
-bind ,r reader
-
-" open in mpv
-command mpv composite get_current_url | !s $PATH mpv  
-bind x mpv
-
-" open in other browsers
-bind ,s composite get_current_url | fillcmdline !s open -a Safari
-"bind ,chr composite get_current_url | fillcmdline !s open -a Google Chrome
-
-" yank shortened or canonical url if available
-bind yy clipboard yankshort
-
-" detach tab
-bind gd tabdetach
 
 " Only hint search results on Google and DDG
 bindurl www.google.com f hint -Jc .rc > .r > a
@@ -114,18 +107,6 @@ set videomaps.i fillcmdline video_goto
 set videomaps.q fullscreen
 set videomaps.w jsep $ex('video_with').then(video => {const count = Number(JS_ARG) || 1; const tic = Number(get('video_seek')); video.currentTime += tic * count }); 1;
 set videomaps.🕷🕷INHERITS🕷🕷 nmaps
-
-"alias video_keys jse $('video').each(function() { $(this).keypress(function(e) { if ( e.which == 70 ) { $(this)[0].requestFullscreen() } }) })
-
-
-
-" $('video').each(function() {
-"   $(this).keypress(function(e) {
-"     if ( e.which == 70 ) {
-"       $(this)[0].requestFullscreen()
-"     }
-"   })
-" })
 
 set videomaps.v exit_video
 set videomaps.z exit_video
