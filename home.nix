@@ -572,8 +572,6 @@ in
       enableZshIntegration = true;
     };
     
-    
-    jq.enable = true;
     ripgrep = {
       enable = true;
       #package = pkgs-stable.ripgrep;
@@ -722,55 +720,6 @@ in
       extraConfig = ''
         include ~/.cache/wal/colors-kitty.conf
       '';
-    };
-
-    neovim = {
-      enable = false;
-      defaultEditor = true;
-      viAlias = true;
-      vimAlias = true;
-      vimdiffAlias = true;
-      plugins = [ 
-        pkgs.vimPlugins.nvim-treesitter.withAllGrammars
-        pkgs.vimPlugins.diffview-nvim
-        #pkgs.vimPlugins.telescope-fzf-native-nvim
-        #pkgs.vimPlugins.which-key-nvim
-        #pkgs.vimPlugins.nvim-lspconfig
-        #pkgs.vimPlugins.nvim-lastplace
-        #pkgs.vimPlugins.twilight-nvim
-        #pkgs.vimPlugins.tcomment_vim
-        pkgs.vimPlugins.vim-gutentags
-        #pkgs.vimPlugins.vim-easy-align
-        #pkgs.vimPlugins.vim-speeddating
-        #pkgs.vimPlugins.utl-vim
-        #pkgs.vimPlugins.conflict-marker-vim
-        #pkgs.vimPlugins.csv-vim
-      ];
-      withPython3 = true;
-      extraPython3Packages = ps: with ps; [ pynvim ];
-      withRuby = true;
-      extraLuaPackages = ps: [ ps.magick ];
-      extraPackages = [ 
-        pkgs.tree-sitter
-        pkgs.imagemagick
-        pkgs.markdown-oxide
-        pkgs.efm-langserver
-        pkgs.ltex-ls
-        pkgs.vale # prose linter
-        pkgs.marksman #zettlekasten style lsp 
-        pkgs.nil # nix language server
-        pkgs.lua-language-server
-        pkgs.nodePackages.bash-language-server
-        pkgs.vscode-langservers-extracted
-        pkgs.pyright
-        pkgs.yaml-language-server
-        pkgs.cmake-language-server
-        pkgs.gopls # go language server
-        pkgs.dot-language-server
-        pkgs.lemminx # xml language server
-        pkgs.universal-ctags
-        pkgs.shellcheck
-      ];
     };
 
     starship = {
