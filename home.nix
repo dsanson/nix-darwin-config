@@ -172,6 +172,10 @@ in
     socat # 
     wcalc #used by bin/q-preview # 
     lesspipe
+    manix # search nix documentation
+
+    # ffsend # use nix shell nixpkgs#ffsend instead
+    # uni # unicode lookup use nix shell nixpkgs#uni instead
 
     lua54Packages.lua
     lua54Packages.luarocks
@@ -218,7 +222,7 @@ in
     pandoc-imagine
     haskellPackages.pandoc-sidenote
     haskellPackages.pandoc-crossref
-    python312Packages.pandoc-xnos
+    python313Packages.pandoc-xnos
     # mermaid-filter # not available on darwin
 
     # data processing
@@ -226,12 +230,14 @@ in
     #csvkit #broken build
     miller # awk for data formats #csv 
     pup
-    python312Packages.pyexcel
+    python313Packages.pyexcel
     sc-im
     tidy-viewer # csv pretty printer
     visidata 
     #xsv # no longer available
     yq
+    jq
+    jqp
 
     # pdf and images
     cairo
