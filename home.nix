@@ -308,38 +308,10 @@ in
     terminal-notifier
     choose-gui
 
-    # gui apps installed as brew casks
-    #calibre # installed with brew
-    #discord # installed with brew                   
-    #djview # installed with brew
-    #dupeguru # installed with brew                    
-    #firefox # installed with brew
-    #google-chrome # installed with brew               
-    #itsycal # installed with brew; nixpkgs refuses to run
-    #keepingyouawake # installed with brew
-    #obsidian # installed with brew
-    #quicksilver # installed with brew
-    #rpi-imager # installed with brew
-    #satori # installed with brew
-    #sf-symbols  # installed with brew
-    #syntax-highlight # installed with brew
-    #the-unarchiver # installed with brew
-    #yacreader # installed with brew
-    #zerotier-one # installed with brew
-    #zoom # installed via ISU
-    #zotero # installed with brew
-
     (writeShellApplication {
       name = "bib2path2";
       runtimeInputs = [ coreutils gnused gnugrep pandoc jq ];
       text = (builtins.readFile ./bin/bib2path2);
-    })
-    
-    (writeShellApplication {
-      # don't think this is still in use
-      name = "bar_colors";
-      runtimeInputs = [ sketchybar ];
-      text = (builtins.readFile ./bin/bar_colors);
     })
 
     (writeShellApplication {
@@ -405,8 +377,6 @@ in
 
   (with pkgs-stable; [
   #  #hello
-  #  #wallust
-  #  #kitty
   ]);
 
   xdg.enable = true;
@@ -447,11 +417,6 @@ in
     source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/.config/nix-darwin-config/config/newsraft";
     target = ".config/newsraft";  
   };
-
-  # home.file.visidata = {
-  #   source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/.config/nix-darwin-config/config/visidata";
-  #   target = ".config/visidata";
-  # };
 
   home.file.sketchybar = {
     source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/.config/nix-darwin-config/config/sketchybar";
@@ -596,24 +561,6 @@ in
             hash = "sha256-pVobe3JsJWCaVyn+c3Y6+ibxlGTCCD1fj2u9LjEmAPg=";
           };
         }
-        {
-          name = "fzf-fish";
-          src = pkgs.fetchFromGitHub {
-            owner = "PatrickF1";
-            repo = "fzf.fish";
-            rev = "8920367cf85eee5218cc25a11e209d46e2591e7a";
-            hash = "sha256-T8KYLA/r/gOKvAivKRoeqIwE2pINlxFQtZJHpOy9GMM=";
-          };
-        }
-        # {
-        #   name = "fishopts";
-        #   src = pkgs.fetchFromGitHub {
-        #     owner = "jorgebucaran";
-        #     repo = "fishopts";
-        #     rev = "4b74206725c3e11d739675dc2bb84c77d893e901";
-        #     hash = "sha256-9hRFBmjrCgIUNHuOJZvOufyLsfreJfkeS6XDcCPesvw=";
-        #   };
-        # }
       ];
     };
 
