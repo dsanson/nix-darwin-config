@@ -35,6 +35,10 @@ while [[ "${1:-}" =~ ^-.* ]]; do
       mode="id_from_path"
       shift
       ;;
+    -i)
+      mode="image"
+      shift
+      ;;
     *)
       break
       ;;
@@ -65,6 +69,11 @@ if [[ "$mode" == "path" ]]; then
   jq -r 'map(select(.id == "'"$key"'")) | .[].file' "$BIB" \
     | sed 's/;/\n/g' | grep -e '.pdf$' | head -n1
 fi
+
+if [[ "$mode" == "image" ]]; then
+  jq -r 'map(select(.id == "'"$key"'")) | ("![" + .[].title +"](" + .[].file + ")")' "$BIB"
+fi
+
 
 if [[ "$mode" == "zotero" ]]; then
   jq -r 'map(select(.id == "'"$key"'")) | .[]."open-in-zotero"' "$BIB"
