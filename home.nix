@@ -295,6 +295,9 @@ in
     victor-mono # has all arabic transliteration diacritics
     nerd-fonts.victor-mono # has all arabic transliteration diacritics
     xits-math
+    cardo # font specifically designed for the needs of classicists, Biblical scholars, medievalists, and linguists
+    libertinus # recommended math font to pair with cardo
+    crimson-pro
 
     # gui apps
     # android-file-transfer # install if needed
