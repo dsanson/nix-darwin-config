@@ -338,7 +338,7 @@ in
 
     (writeShellApplication {
       name = "set_theme";
-      runtimeInputs = [ yabai jq gnused kitty ];
+      runtimeInputs = [ yabai jq gnused kitty wallust ];
       text = (builtins.readFile ./bin/set_theme);
     })
 
