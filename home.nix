@@ -434,6 +434,11 @@ in
     target = ".config/tridactyl";
   };
 
+  home.file.presenterm = {
+    source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/.config/nix-darwin-config/config/presenterm";
+    target = ".config/presenterm";
+  };
+
   accounts.calendar = {
     basePath = ".calendars";
     accounts.icloud = {
