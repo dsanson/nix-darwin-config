@@ -174,6 +174,7 @@ in
     wcalc #used by bin/q-preview # 
     lesspipe
     manix # search nix documentation
+    fontconfig
 
     # ffsend # use nix shell nixpkgs#ffsend instead
     # uni # unicode lookup use nix shell nixpkgs#uni instead
@@ -754,6 +755,8 @@ in
     };
   };
   
+  fonts.fontconfig.enable = true;
+
   services = {
     syncthing.enable = true;
   };
