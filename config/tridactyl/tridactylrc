@@ -8,16 +8,21 @@ set hintnames numeric
 set hintfiltermode vimperator-reflow
 set incsearch true
 set theme auto
-set newtab file:///Users/desanso/.config/tridactyl/blank.html
+"set newtab file:///Users/desanso/.config/tridactyl/blank.html
 
-bind yy clipboard yankshort " yank shortened or canonical url
-bind ,r reader " reader mode
-bind gd tabdetach " detach tab
+" yank shortened or canonical url
+bind yy clipboard yankshort
+" reader mode
+bind ,r reader 
+" detach tab
+bind gd tabdetach 
 
 command mpv composite get_current_url | shellescape | !s mpv --ytdl  
-bind ,v mpv " open in mpv
+" open in mpv
+bind ,v mpv 
 
-bind ,s composite get_current_url | shellescape | fillcmdline !s open -a Safari " open in Safari
+" open in Safari
+bind ,s composite get_current_url | shellescape | fillcmdline !s open -a Safari
 "bind ,chr composite get_current_url | shellescape | fillcmdline !s open -a Google Chrome
 
 " save to Zotero
@@ -62,7 +67,8 @@ quickmark G https://carnap.io/review/ISU_112_SPRING_2024/GradeBook
 
 blacklistadd https://www.nytimes.com/crosswords
 blacklistadd https://www.nytimes.com/games/wordle/index.html
-blacklistadd http://localhost:8000 " revealjs
+" revealjs
+blacklistadd http://localhost:8000 
 
 " delete some of the default searchurls
 setnull searchurls.github
