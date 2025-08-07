@@ -16,10 +16,10 @@
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
     nixpkgs-stable.url = "github:NixOS/nixpkgs/nixos-25.05";
-    lix-module = {
-      url = "https://git.lix.systems/lix-project/nixos-module/archive/2.93.0.tar.gz";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
+    # lix-module = {
+    #   url = "https://git.lix.systems/lix-project/nixos-module/archive/2.93.3-1.tar.gz";
+    #   inputs.nixpkgs.follows = "nixpkgs";
+    # };
     nix-darwin = {
       url = "github:LnL7/nix-darwin";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -31,7 +31,8 @@
     nixvim.url = "github:dsanson/nixvim-flake";
   };
 
-  outputs = inputs@{ self, home-manager, nix-darwin, lix-module, nixpkgs, nixpkgs-stable, nixvim }:
+  #outputs = inputs@{ self, home-manager, nix-darwin, lix-module, nixpkgs, nixpkgs-stable, nixvim }:
+  outputs = inputs@{ self, home-manager, nix-darwin, nixpkgs, nixpkgs-stable, nixvim }:
   let
     pkgs-stable = nixpkgs-stable.legacyPackages.aarch64-darwin;
 
@@ -445,7 +446,7 @@
       modules = [
         configuration
         home-manager.darwinModules.home-manager
-        lix-module.nixosModules.default
+        #lix-module.nixosModules.default
         {
           home-manager.useGlobalPkgs = true;
           home-manager.useUserPackages = true;
