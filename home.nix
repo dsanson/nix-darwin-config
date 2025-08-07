@@ -187,7 +187,7 @@ in
     # git
     delta # git highlighting 
     lazygit
-    hub # github cli tool
+    #hub # github cli tool
     git-lfs # git extension for large files  #git
     gh # github cli tool
 
@@ -340,6 +340,12 @@ in
       name = "set_theme";
       runtimeInputs = [ yabai jq gnused kitty wallust ];
       text = (builtins.readFile ./bin/set_theme);
+    })
+
+    (writeShellApplication {
+      name = "bar_colors";
+      runtimeInputs = [ sketchybar ];
+      text = (builtins.readFile ./bin/bar_colors);
     })
 
     (writeShellApplication {
