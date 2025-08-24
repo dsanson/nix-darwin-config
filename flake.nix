@@ -282,7 +282,7 @@
           "maccy" # clipboard manager
           "djview" # nixpkgs marked as broken
           "satori" # the ancient screensaver
-          "aerial@beta" # video screen savers
+          "aerial" # video screen savers
           "adobe-digital-editions" # for adobe drm pdfs
           #"aegisub" # brew marked as deprecated
           "dupeguru" # marked as broken in nix
