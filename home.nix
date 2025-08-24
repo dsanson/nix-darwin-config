@@ -247,7 +247,7 @@ in
     djvulibre
     ghostscript
     imagemagick
-    #ocrmypdf 
+    ocrmypdf 
     pdf2svg 
     pdfcpu
     pdfgrep
@@ -387,8 +387,7 @@ in
   ++
 
   (with pkgs-stable; [
-  #  #hello
-      ocrmypdf
+    #hello
   ]);
 
   xdg.enable = true;
