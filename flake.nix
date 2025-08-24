@@ -65,7 +65,14 @@
       # environment.variables = {
       #   EDITOR = "nvim";
       # };
-     
+
+      nixpkgs.overlays = [
+          (final: prev: {
+            mermaid-cli = prev.mermaid-cli.overrideAttrs (oldAttrs: {
+              makeWrapperArgs = "--set PUPPETEER_EXECUTABLE_PATH '/Applications/Google Chrome.app/Contents/MacOS/Google Chrome'";
+            });
+          })
+        ];
       environment.systemPackages = with pkgs; [ 
 
           # shells
