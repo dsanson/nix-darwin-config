@@ -1,8 +1,13 @@
 # in ~/.chawan/config.toml (or ~/.config/chawan/config.toml)
 [buffer]
 images = true
+autofocus = true
 
 [external]
-copy-cmd = pbcopy
-paste-cmd = pbpaste
+copy-cmd = "pbcopy"
+paste-cmd = "pbpaste"
 
+[page]
+'gg' = 'cmd.buffer.gotoLineOrStart'
+'s' = '() => pager.load("ddg:")'
+'yy' = 'cmd.pager.copyURL'

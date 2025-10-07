@@ -429,6 +429,11 @@ in
     target = "Library/Application Support/wallust";
   };
 
+  home.file.chawan = {
+    source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/.config/nix-darwin-config/config/chawan";
+    target = ".config/chawan";
+  };
+
   home.file.newsraft = {
     source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/.config/nix-darwin-config/config/newsraft";
     target = ".config/newsraft";  
