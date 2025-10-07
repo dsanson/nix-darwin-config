@@ -205,7 +205,8 @@ in
     epr # terminal epub reader
     timg #terminal image viewer
     newsraft #rss reader
-    toot #tui mastodon client
+    #toot #tui mastodon client
+    jrnl
 
     # document generation
     biber
@@ -376,12 +377,6 @@ in
       text = (builtins.readFile ./bin/uplift);
     })
 
-    (writeShellApplication {
-      name = "visor";
-      runtimeInputs = [ yabai ];
-      text = (builtins.readFile ./bin/visor);
-    })
-
   ])
 
   ++
@@ -413,7 +408,17 @@ in
       recursive = true;
     };
   };
- 
+
+  home.file.kitty-launch-actions = {
+    source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/.config/nix-darwin-config/config/kitty/launch-actions.conf";
+    target = ".config/kitty/launch-actions.conf";
+  };
+
+  home.file.skhdrc = {
+    source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/.config/nix-darwin-config/config/skhd/skhdrc";
+    target = ".config/skhd/skhdrc";
+  };
+
   home.file.sioyek = {
     source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/.config/nix-darwin-config/config/sioyek";
     target = ".config/sioyek";
@@ -458,7 +463,10 @@ in
       remote.userName = "dsanson@gmail.com";
 
       vdirsyncer.enable = true;
-      vdirsyncer.collections = [["home" "home" "home"] ["work" "work" "work"]];
+      vdirsyncer.collections = [
+        ["home" "home" "home"] 
+        ["work" "work" "work"]
+      ];
       vdirsyncer.itemTypes = ["VEVENT"];
       vdirsyncer.metadata = ["displayname" "color"];
 
@@ -666,11 +674,12 @@ in
       fileWidgetCommand = "fd . $HOME";
       defaultOptions = [
         "--cycle" 
-        "--layout=reverse" 
-        "--border" 
-        "--height=90%" 
+        "--layout=default" 
+        "--border=none" 
+        "--height=~100%" 
+        "--preview-border=none"
         "--preview-window=wrap" 
-        "--marker='*'" 
+        "--marker='»'" 
         "--ansi"
       ];
       enableFishIntegration = true;
@@ -703,6 +712,7 @@ in
       darwinLaunchOptions = [
         "--single-instance"
         "--instance-group=1"
+        "--allow-remote-control=socket-only"
         "--listen-on=unix:/tmp/mykitty"
       ];
       font = {
