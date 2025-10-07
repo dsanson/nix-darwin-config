@@ -667,6 +667,7 @@ in
       enableBashIntegration = true;
       enableZshIntegration = true;
     };
+    todoman.enable = true;
     fzf = {
       enable = true;
       changeDirWidgetCommand = "fd -t d . $HOME";

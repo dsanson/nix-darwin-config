@@ -3,18 +3,24 @@
 https://www.logicmatters.net/feed/ "Peter Smith"
 https://diaryofdoctorlogic.wordpress.com/feed/ "Sara Uckelman"
 https://richardzach.org/feed/ "Richard Zach"
-https://robertpaulwolff.blogspot.com/feeds/posts/default?alt=rss "Robert Paul Wolff"
 https://objectionable.net/feed/ "Thi Nguyen"
-https://helendecruz.substack.com/feed "Helen de Cruz"
 
 @ Philosophy Blogs
 
+https://blog.apaonline.org/feed/ "Blog of the APA"
 https://aestheticsforbirds.com/feed/ "Aesthetics for Birds"
 https://dailynous.com/feed/ "Daily Nous"
 https://indianphilosophyblog.org/feed/ "Indian Philosophy Blog"
+https://www.philosophybits.com/rss "Philosophy Bits"
+https://hiphilangsci.net/feed/ "History and Philosophy of the Language Sciences"
+https://warpweftandway.com/ "Warp Weft and Way"
+http://philosophyandsports.blogspot.com/ "Philosophy of Sport"
+https://philosophymodsquad.wordpress.com/feed/ "The Mod Squad"
 
 @ General
 
+https://www.aldaily.com/feed "Arts and Letters Daily"
+https://aeon.co/feed.rss "Aeon"
 https://rss.metafilter.com/metafilter.rss
 http://feeds.kottke.org/main
 http://feeds.feedburner.com/OpenCulture
@@ -27,7 +33,35 @@ https://feeds-api.dotdashmeredith.com/v1/rss/google/169a0a31-1a9a-4881-9828-90e5
 @ News
 
 https://rss.nytimes.com/services/xml/rss/nyt/HomePage.xml "NYTimes Headlines"
+https://www.theguardian.com/us/rss "The Guardian"
+https://www.wglt.org/index.rss "WGLT"
+https://www.wcbu.org/index.rss "WCBU"
 http://www.pantagraph.com/search/?f=rss&t=article&c=news/local&l=25&s=start_time&sd=desc "Pantagraph Local"
+
+@ Non-profit Newsrooms
+
+https://chicagoreader.com/feed/?partner-feed=chicago-reader "Chicago Reader"
+https://blockclubchicago.org/feed/ "Block Club Chicago"
+https://www.injusticewatch.org/feed/ "Injustice Watch"
+https://capitolnewsillinois.com/feed/fullcustomfeed "Capitol News Illinois"
+https://investigatemidwest.org/feed "Investigate Midwest"
+https://www.ciceroindependiente.com/categories-english?format=rss "Cicero Independiente English"
+https://www.ciceroindependiente.com/categorias-espn?format=rss "Cicero Independiente Espanol"
+https://growingcommunitymedia.org/feed/ "Austin Weekly News"
+https://www.citybureau.org/home?format=rss "City Bureau NFP"
+https://southsideweekly.com/feed/ "South Side Weekly"
+https://thelansingjournal.org/feed/ "Lansing Journal"
+https://www.bettergov.org/feed/ "Illinois Answers"
+https://borderlessmag.org/feed/ "Borderless Magazine"
+https://barnraisingmedia.com/feed/ "Barn Raiser"
+https://www.coastalaska.org/feed/
+https://www.circleofblue.org/feed/
+https://ictnews.org/feed/ "Indian Country Today"
+https://columbiainsight.org/feed/ "Columbia Insight"
+https://www.hcn.org/feed/ "High Country News"
+https://www.underscore.news/feed/ "Underscore Native News"
+https://www.opencampus.org/feed/ "Open Campus"
+http://www.videtteonline.com/search/?f=rss&t=article&l=50&s=start_time&sd=desc&k%5B%5D=%23topstory "The Vidette"
 
 @ Sports
 
@@ -39,24 +73,31 @@ https://www.elevenwarriors.com/taxonomy/term/9/feed "Eleven Warriors"
 
 @ Food and Cooking
 
-http://feeds.feedburner.com/smittenkitchen
-https://bittmanproject.substack.com/feed
+http://feeds.feedburner.com/smittenkitchen "Smitten Kitchen"
+https://www.beetsandbones.com/feed/ "Beets and Bones"
+https://easygayoven.com/feed/ "Easy Gay Oven"
+https://easyindiancookbook.com/web-stories/feed/ "Easy Indian Cookbook"
+https://www.justonecookbook.com/feed/ "Just One Cookbook"
+https://ministryofcurry.com/feed/ "Ministry of Curry"
+https://omnivorescookbook.com/feed/ "Omnivore's Cookbook"
+https://sallysbakingaddiction.com/feed/ "Sally's Baking Addiction"
 
 @ Art
 
-https://journalofartcriticism.substack.com/feed
+https://journalofartcriticism.substack.com/feed "Journal of Art Criticism"
 https://rss.nytimes.com/services/xml/rss/nyt/Arts.xml "NYTimes Arts"
 
 @ Tech
 
-https://lix.systems/blog/index.xml
-https://mischavandenburg.com/index.xml
+https://lix.systems/blog/index.xml "Lix Blog"
+https://mischavandenburg.com/index.xml 
 https://alanpearce.eu/atom.xml
 https://rubenerd.com/feed/
 https://jvns.ca/atom.xml
 https://jade.fyi/rss.xml
 
 @ Podcasts
+
 https://feeds.buzzsprout.com/1197560.rss "Canadian Canoe Podcast"
 https://feeds.buzzsprout.com/2363501.rss "Thinking Bodies"
 https://feed.podbean.com/hopwag/feed.xml

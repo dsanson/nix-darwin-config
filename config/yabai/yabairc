@@ -1,0 +1,54 @@
+yabai -m window_origin_display focus
+
+function setup_space {
+  local idx="$1"
+  local name="$2"
+  local space=
+  echo "setup space $idx : $name"
+
+  space=$(yabai -m query --spaces --space "$idx")
+  if [ -z "$space" ]; then
+    yabai -m space --create
+  fi
+
+  yabai -m space "$idx" --label "$name"
+  layouts -s "$idx" current
+}
+
+# setup_space 1 BOOK 
+setup_space 1
+setup_space 2
+setup_space 3
+setup_space 4
+setup_space 5
+
+yabai -m rule --add app="^Zotero$" space=2
+yabai -m rule --add app="^Zotero$" title="^Zotero$" manage=on
+yabai -m rule --add app="^Music$" space=4
+yabai -m rule --add app="^iTunes$" title="^MiniPlayer$" manage=off
+yabai -m rule --add app="^TV$" space=4
+yabai -m rule --add app="^Finder$" title="^Trash$" manage=off
+yabai -m rule --add app="^Finder$" title="^Copy$" manage=off
+yabai -m rule --add app="^Brother MFC-J875DW$" manage=off
+yabai -m rule --add app="^stv412-phil-copier$" manage=off
+yabai -m rule --add app="^Tor Browser$" manage=off
+yabai -m rule --add app="^App Store$" manage=off
+yabai -m rule --add app="^LogicProgram$" title="^Logic 2010: Menu$" manage=off
+yabai -m rule --add app="^LogicProgram$" title="^Not.*$" manage=off
+yabai -m rule --add app="^LogicProgram$" title="^Submit Problems$" manage=off
+yabai -m rule --add app="^LogicProgram$" title="^Problems$" manage=off
+yabai -m rule --add app='^zoom\.us$' manage=off
+yabai -m rule --add app='^choose$' manage=off
+yabai -m rule --add app='^kitty$' title='^visor$' grid="20:20:2:1:16:16" opacity=0.9 scratchpad="visor"
+yabai -m rule --add app="^Visualizer$" manage=on
+yabai -m rule --add app="^TomatoFlex$" manage=off
+yabai -m rule --add app="^Firefox$" manage=on
+yabai -m rule --add app="^Firefox$" title-"Picture-in-Picture" manage=on
+yabai -m rule --add app="sioyek" role="AXWindow" subrole="AXDialog" manage=on
+yabai -m signal --add event=space_changed action='set_theme wallpaper' active=yes
+
+yabai -m signal --add event=space_created action='sketchybar --reload'
+yabai -m signal --add event=space_destroyed action='sketchybar --reload'
+yabai -m signal --add event=display_removed action='sketchybar --reload'
+
+sketchybar --reload

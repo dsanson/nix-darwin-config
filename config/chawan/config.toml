@@ -1,0 +1,8 @@
+# in ~/.chawan/config.toml (or ~/.config/chawan/config.toml)
+[buffer]
+images = true
+
+[external]
+copy-cmd = pbcopy
+paste-cmd = pbpaste
+

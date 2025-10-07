@@ -2,3 +2,4 @@ bind m exec mpv --audio-display=no --terminal=no "%l" &
 bind w exec w3m "%l" 
 bind v exec clear && kitten icat "%l" && read -n1
 bind ? exec man newsraft
+bind s exec pandoc "%l" -f html -t markdown-fenced_divs-bracketed_spans-native_divs-raw_html-native_spans | note quick

@@ -16,10 +16,6 @@
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
     nixpkgs-stable.url = "github:NixOS/nixpkgs/nixos-25.05";
-    # lix-module = {
-    #   url = "https://git.lix.systems/lix-project/nixos-module/archive/2.93.3-1.tar.gz";
-    #   inputs.nixpkgs.follows = "nixpkgs";
-    # };
     nix-darwin = {
       url = "github:LnL7/nix-darwin";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -31,8 +27,7 @@
     nixvim.url = "github:dsanson/nixvim-flake";
   };
 
-  #outputs = inputs@{ self, home-manager, nix-darwin, lix-module, nixpkgs, nixpkgs-stable, nixvim }:
-  outputs = inputs@{ self, home-manager, nix-darwin, nixpkgs, nixpkgs-stable, nixvim }:
+  outputs = inputs@{ self, home-manager, nix-darwin, nixpkgs, nixpkgs-stable, nixvim}:
   let
     pkgs-stable = nixpkgs-stable.legacyPackages.aarch64-darwin;
 
@@ -44,10 +39,6 @@
       };
       
       nixpkgs.config.allowUnfree = true;
-
-      # nixpkgs.config.permittedInsecurePackages = [
-      #   "olm-3.2.16" # this is (was?) needed for installing some matrix clients
-      # ];
 
       users.users.desanso = {
         description = "David Sanson";
@@ -61,18 +52,24 @@
         pkgs.zsh
       ];
 
-      # moved to home.sessionVariables
-      # environment.variables = {
-      #   EDITOR = "nvim";
-      # };
+      nixpkgs.overlays = [ 
+        (final: prev: {
+          inherit (prev.lixPackageSets.stable)
+            nixpkgs-review
+            nix-eval-jobs
+            nix-fast-build
+            colmena;
+        })
 
-      nixpkgs.overlays = [
-          (final: prev: {
-            mermaid-cli = prev.mermaid-cli.overrideAttrs (oldAttrs: {
-              makeWrapperArgs = "--set PUPPETEER_EXECUTABLE_PATH '/Applications/Google Chrome.app/Contents/MacOS/Google Chrome'";
-            });
-          })
-        ];
+        (final: prev: {
+          mermaid-cli = prev.mermaid-cli.overrideAttrs (oldAttrs: {
+            makeWrapperArgs = "--set PUPPETEER_EXECUTABLE_PATH '/Applications/Google Chrome.app/Contents/MacOS/Google Chrome'";
+          });
+        })
+      ];
+
+      nix.package = pkgs.lixPackageSets.stable.lix;
+
       environment.systemPackages = with pkgs; [ 
 
           # shells
@@ -191,7 +188,10 @@
           NSNavPanelExpandedStateForSaveMode = true;
           NSNavPanelExpandedStateForSaveMode2 = true;
           NSTableViewDefaultSizeMode = 1; #1 = small; 2 = medium; 3 = large
+          PMPrintingExpandedStateForPrint = true;
+          PMPrintingExpandedStateForPrint2 = true;
           _HIHideMenuBar = true;
+          "com.apple.sound.beep.feedback" = 0;
           "com.apple.sound.beep.volume" = 0.4;
         };
         
@@ -214,15 +214,28 @@
           ShowPathbar = true;
         };
         
+        iCal = {
+            "TimeZone support enabled" = true;
+        };
+
         loginwindow = {
           GuestEnabled = true;
+        };
+
+        magicmouse = {
+          MouseButtonMode = "TwoButton";
         };
 
         screensaver = {
           askForPassword = true;
         };
 
+        spaces = {
+          spans-displays = false;
+        };
+
         trackpad = {
+          ActuationStrength  = 0;
           Clicking = true;
           Dragging = true;
           TrackpadRightClick = true;
@@ -254,6 +267,7 @@
           "tag" #macos file tagging
           "yt-dlp"
           "keith/formulae/reminders-cli" #not sure this will work
+          "doxx" # cli docx viewer
         ];
 
         caskArgs.no_quarantine = true;
@@ -349,7 +363,7 @@
         skhd = {
           enable = true;
           package = pkgs.skhd;
-          skhdConfig = builtins.readFile ./config/skhd/skhdrc;
+          #skhdConfig = builtins.readFile ./config/skhd/skhdrc;
         };
 
         yabai = {
@@ -428,7 +442,6 @@
             yabai -m rule --add app="^LogicProgram$" title="^Problems$" manage=off
             yabai -m rule --add app='^zoom\.us$' manage=off
             yabai -m rule --add app='^choose$' manage=off
-            yabai -m rule --add app='^kitty$' title='^visor$' grid="20:20:2:1:16:16" opacity=0.9 scratchpad="visor"
             yabai -m rule --add app="^Visualizer$" manage=on
             yabai -m rule --add app="^TomatoFlex$" manage=off
             yabai -m rule --add app="^Firefox$" manage=on
@@ -453,7 +466,6 @@
       modules = [
         configuration
         home-manager.darwinModules.home-manager
-        #lix-module.nixosModules.default
         {
           home-manager.useGlobalPkgs = true;
           home-manager.useUserPackages = true;
