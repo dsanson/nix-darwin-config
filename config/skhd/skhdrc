@@ -28,17 +28,18 @@ m1 < p    : yabai -m window --toggle zoom-parent
 # float window
 m1 < f    : yabai -m window --toggle float 
 # pip window
-m2 < p : yabai -m window --toggle pip; yabai -m window --toggle sticky; yabai -m window --toggle topmost
+m2 < p : yabai -m window --toggle topmost --toggle sticky --toggle float --grid 3:3:3:0:0:0 --opacity (yabai -m query --windows --window | jq -r '(.opacity - 0.5) * 10 | tostring | "0." + .')
 # cycle layouts
 m2 < c : layouts cycle
 # adjust opacity
 m2 < o : opacity toggle
+m2 < shift - o : yabai -m window --opacity (yabai -m query --windows --window | jq -r '(.opacity - 0.5) * 10 | tostring | "0." + .')
 # window focus
 m1 < h   : yabai -m window --focus west  
 m1 < l   : yabai -m window --focus east   
 m1 < j   : yabai -m window --focus south   
 m1 < k   : yabai -m window --focus north   
-m1 < n   : yabai -m window --focus next 
+#m1 < n   : yabai -m window --focus next 
 # window swap
 m2 < h   : yabai -m window --swap west   
 m2 < l   : yabai -m window --swap east   
@@ -97,13 +98,15 @@ m1 < shift - c : skhd -k 'escape'; open "keepingyouawake:///toggle"
 # rotate external monitor
 m1 < r    :  rotate external-home; rotate external-office
 m1 < shift - r    :  rotate external-home clockwise; rotate external-office clockwise
-# reload yabai
-m2 < r            : skhd -k 'escape'; launchctl stop org.nixos.yabai
-# reload sketchybar
+# reload all services
+m2 < r            : skhd -k 'escape'; launchctl stop org.nixos.yabai; launchctl stop org.nixos.sketchybar; launchctl stop org.nixos.skhd
+# reload just sketchybar
 m2 < s            : skhd -k 'escape'; launchctl stop org.nixos.sketchybar
 # q script to replace quicksilver
-default < ctrl -space : yabai -m window --toggle visor || kitty @ launch --type os-window --os-window-title visor --to unix:/tmp/mykitty q -w
-m1, m2 < ctrl -space : skhd -k "escape"; yabai -m window --toggle visor 
+#default < ctrl -space : yabai -m window --toggle visor || kitty @ launch --type os-window --os-window-title visor --to unix:/tmp/mykitty q -w
+default < ctrl - space : kitten @ --to=unix:/tmp/panel resize-os-window --action=toggle-visibility || kitten panel -o allow_remote_control=socket-only --listen-on=unix:/tmp/panel --detach --layer top --hide-on-focus-loss --edge center-sized --lines 30 --columns 100 --config /Users/desanso/.config/q/kitty.conf fish -c "q -w"
+m1, m2 < ctrl -space : skhd- k 'escape'; kitten @ --to=unix:/tmp/panel resize-os-window --action=toggle-visibility || kitten panel -o allow_remote_control=socket-only --listen-on=unix:/tmp/panel --detach --layer top --hide-on-focus-loss --edge center-sized --lines 30 --columns 100 --config /Users/desanso/.config/q/kitty.conf fish -c "q -w"
+m1 < n : skhd -k 'escape'; kitten @ --to=unix:/tmp/visor resize-os-window --action=toggle-visibility || kitten panel -o allow_remote_control=socket-only --listen-on=unix:/tmp/visor --layer top --hide-on-focus-loss --edge center-sized --lines 30 --columns 90 fish -c "note"
 #m1 < u : skhd -k "escape"; bash -x uplift sit
 #m1 < shift - u : skhd -k "escape"; bash -x uplift stand
 m1 < u : skhd -k "escape"; echo 1 >> /tmp/com.davidsanson.upliftdesk.in
