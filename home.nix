@@ -102,10 +102,6 @@ in
   # home.sessionPath = [
   #   "$HOME/bin "
   #   "$HOME/.local/bin"
-  #   "$HOME/.cargo/bin"
-  #   "$HOME/.go/bin"
-  #   "$HOME/.pub-cache/bin"
-  #   "$HOME/.luarocks/bin "
   #   "/opt/homebrew/bin"
   #   "/etc/profiles/per-user/desanso/bin"
   #   "/run/current-system/sw/bin"
@@ -132,9 +128,8 @@ in
     "pause" = "nowplaying-cli pause"; #mac specific
     "next" = "nowplaying-cli next"; #mac specific
     "volume" = "m volume"; #mac specific
-    #"liar" = "cd ~/d/research/projects/Papers/with_ahmed/liar-book; nvim -c 'Telescope find_files'";
-    "sit" = "echo 1 >> /tmp/com.davidsanson.upliftdesk.in";
-    "stand" = "echo 2 >> /tmp/com.davidsanson.upliftdesk.in";
+    #"sit" = "echo 1 >> /tmp/com.davidsanson.upliftdesk.in";
+    #"stand" = "echo 2 >> /tmp/com.davidsanson.upliftdesk.in";
     "safari" = "open -a Safari";
   };
 
@@ -202,7 +197,8 @@ in
     lynx
     w3m
     chawan # a modern tui browser?
-    epr # terminal epub reader
+    #epr # terminal epub reader
+    bk # terminal epub reader
     timg #terminal image viewer
     newsraft #rss reader
     #toot #tui mastodon client
@@ -271,7 +267,7 @@ in
 
     # ricing and theming
     wallust
-    pywalfox
+    pywalfox-native
     
     # fonts
     amiri #arabic font
@@ -566,10 +562,6 @@ in
         end
         fish_add_path /run/current-system/sw/bin
         fish_add_path /etc/profiles/per-user/desanso/bin
-        fish_add_path $HOME/.cargo/bin
-        fish_add_path $HOME/.go/bin
-        fish_add_path $HOME/.pub-cache/bin
-        fish_add_path $HOME/.luarocks/bin 
         fish_add_path $HOME/.local/bin
         fish_add_path $HOME/bin 
         fish_add_path /opt/homebrew/bin
