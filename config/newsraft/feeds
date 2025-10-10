@@ -11,24 +11,25 @@ https://blog.apaonline.org/feed/ "Blog of the APA"
 https://aestheticsforbirds.com/feed/ "Aesthetics for Birds"
 https://dailynous.com/feed/ "Daily Nous"
 https://indianphilosophyblog.org/feed/ "Indian Philosophy Blog"
-https://www.philosophybits.com/rss "Philosophy Bits"
 https://hiphilangsci.net/feed/ "History and Philosophy of the Language Sciences"
-https://warpweftandway.com/ "Warp Weft and Way"
-http://philosophyandsports.blogspot.com/ "Philosophy of Sport"
+https://warpweftandway.com/feed/ "Warp Weft and Way"
+https://philosophyandsports.blogspot.com/feeds/posts/default?alt=rss "Philosophy of Sport"
 https://philosophymodsquad.wordpress.com/feed/ "The Mod Squad"
+
+@ Higher Ed
+
+https://www.chronicle.com/index.atom "Chronicle of Higher Education"
 
 @ General
 
 https://www.aldaily.com/feed "Arts and Letters Daily"
 https://aeon.co/feed.rss "Aeon"
-https://rss.metafilter.com/metafilter.rss
-http://feeds.kottke.org/main
-http://feeds.feedburner.com/OpenCulture
-http://atlasobscura.com/rss.xml
-https://www.livescience.com/feeds/all
-https://www.smithsonianmag.com/rss/latest_articles/
-https://feeds-api.dotdashmeredith.com/v1/rss/google/897be986-3713-4fb3-904f-8dfc4cdba23d
-https://feeds-api.dotdashmeredith.com/v1/rss/google/169a0a31-1a9a-4881-9828-90e544c8e459
+https://rss.metafilter.com/metafilter.rss 
+http://feeds.kottke.org/main "Kottke"
+http://feeds.feedburner.com/OpenCulture "Open Culture"
+https://www.smithsonianmag.com/rss/latest_articles/ "Smithsonian Magazine"
+https://feeds-api.dotdashmeredith.com/v1/rss/google/897be986-3713-4fb3-904f-8dfc4cdba23d "Midwest Living"
+https://feeds-api.dotdashmeredith.com/v1/rss/google/169a0a31-1a9a-4881-9828-90e544c8e459 "Southern Living"
 
 @ News
 
@@ -37,6 +38,13 @@ https://www.theguardian.com/us/rss "The Guardian"
 https://www.wglt.org/index.rss "WGLT"
 https://www.wcbu.org/index.rss "WCBU"
 http://www.pantagraph.com/search/?f=rss&t=article&c=news/local&l=25&s=start_time&sd=desc "Pantagraph Local"
+https://www.commondreams.org/feeds/feed.rss "Common Dreams"
+https://www.cbc.ca/cmlink/rss-topstories
+
+@ Products
+
+https://feeds.feedburner.com/TheWirecutter "Wirecutter"
+http://toolsandtoys.net/feed/
 
 @ Non-profit Newsrooms
 
@@ -62,14 +70,28 @@ https://www.hcn.org/feed/ "High Country News"
 https://www.underscore.news/feed/ "Underscore Native News"
 https://www.opencampus.org/feed/ "Open Campus"
 http://www.videtteonline.com/search/?f=rss&t=article&l=50&s=start_time&sd=desc&k%5B%5D=%23topstory "The Vidette"
+http://greatlakesecho.org/feed/
 
 @ Sports
 
+https://www.espn.com/espn/rss/news
 https://www.theplayerstribune.com/posts.rss "Player Tribune"
 http://theundefeated.com/feed/ "Andscape"
 https://www.goldenstateofmind.com/rss/index.xml "Golden State of Mind"
 https://www.elevenwarriors.com/taxonomy/term/9/feed "Eleven Warriors"
 
+@ Travel
+
+https://www.theguardian.com/uk/travel/rss
+http://atlasobscura.com/rss.xml
+
+@ Science
+
+http://www.quantamagazine.org/feed/
+http://www.nature.com/nature/current_issue/rss
+https://news.mit.edu/rss/topic/science-technology-and-society
+https://www.sciencealert.com/rss
+https://www.livescience.com/feeds/all
 
 @ Food and Cooking
 
@@ -103,3 +125,19 @@ https://feeds.buzzsprout.com/2363501.rss "Thinking Bodies"
 https://feed.podbean.com/hopwag/feed.xml
 https://feed.podbean.com/hopwag2/feed.xml
 https://www.cbc.ca/podcasting/includes/nakedemperor.xml
+
+@ Youtube
+
+https://www.youtube.com/feeds/videos.xml?channel_id=UCwmZiChSryoWQCZMIQezgTg "BBC Earth"
+https://www.youtube.com/feeds/videos.xml?channel_id=UC6SNxiLzSlh8e0yjndE9o_A "Cruising the Cut"
+https://www.youtube.com/feeds/videos.xml?channel_id=UCEYBGqFXZS6Sn37n1mVcY1g "UIUC Extension Horticulture"
+https://www.youtube.com/feeds/videos.xml?channel_id=UCeiXOmhaac9gwYH57kfqo2w "The Mindful Narrowboat"
+https://www.youtube.com/feeds/videos.xml?channel_id=UC6SNxiLzSlh8e0yjndE9o_A "Country House Gent"
+https://www.youtube.com/feeds/videos.xml?channel_id=UCsaGKqPZnGp_7N80hcHySGQ "Tasting History"
+https://www.youtube.com/feeds/videos.xml?channel_id=UCqqJQ_cXSat0KIAVfIfKkVA "Kenji Lopez-Alt"
+
+
+@ Reddit
+
+https://www.reddit.com/r/cfb.rss
+https://www.reddit.com/r/warriors.rss
