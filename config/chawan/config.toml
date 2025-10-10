@@ -6,6 +6,7 @@ autofocus = true
 [external]
 copy-cmd = "pbcopy"
 paste-cmd = "pbpaste"
+download-dir = "~/Downloads"
 
 [page]
 'gg' = 'cmd.buffer.gotoLineOrStart'
