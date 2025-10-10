@@ -271,7 +271,7 @@ in
 
     # ricing and theming
     wallust
-    #pywalfox
+    pywalfox
     
     # fonts
     amiri #arabic font
