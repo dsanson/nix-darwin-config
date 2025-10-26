@@ -276,16 +276,14 @@
           "anylist" # not on nixpkgs
           "calibre" # nixpkgs broken on darwin
           "discord" # available on nixpkgs but poorly behaved
-          "firefox" # looks like it may now work. But version lags.
+            #"firefox" # looks like it may now work. But version lags.
           "google-chrome" # nixpkgs has chromium but linux only
           #"microsoft-office" # not on nixpkgs # this breaks because of microsoft defender
           "obs" # nixkpgs only builds for linux
           "obsidian" # nixpkgs linux only; am I still using this?
           "quicksilver" # not on nixpkgs
-          "yacreader" # nixpkgs fails to build
           "zotero@beta" # nixpkgs linux only
           "signal"
-          "whatsapp" #replace with nixpkgs#whatsapp-for-mac?
           
           # Utilities and Tweaks
           "karabiner-elements" # nixpkgs needs to be updated for 15.0
@@ -294,7 +292,6 @@
           "the-unarchiver" # nixpkgs has cli version
           "zerotier-one" # nixpkgs linux only
           "maccy" # clipboard manager
-          "djview" # nixpkgs marked as broken
           "satori" # the ancient screensaver
           "aerial" # video screen savers
           "adobe-digital-editions" # for adobe drm pdfs
@@ -305,7 +302,6 @@
           "google-earth-pro"
           "noscribe" # AI transcription
           "atv-remote"
-          "homerow" # control MacOS buttons with keyboard
 
           # quicklook plugins
           "qlcolorcode"
