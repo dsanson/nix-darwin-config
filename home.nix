@@ -226,14 +226,14 @@ in
 
     # data processing
     R
-    #csvkit #broken build
+    csvkit #broken build
     miller # awk for data formats #csv 
     pup
     python313Packages.pyexcel
     sc-im
     tidy-viewer # csv pretty printer
     visidata 
-    #xsv # no longer available
+    xan
     yq
     jq
     jqp
@@ -242,6 +242,7 @@ in
     cairo
     djvu2pdf
     djvulibre
+    djview
     ghostscript
     imagemagick
     ocrmypdf 
@@ -253,6 +254,8 @@ in
     scantailor
     tesseract
     unpaper
+    yacreader
+    tdf #terminal pdf viewer
 
     # media
     ffmpeg
@@ -297,10 +300,11 @@ in
     crimson-pro
 
     # gui apps
+    #firefox #works but syncing was irritating.
     # android-file-transfer # install if needed
     anki-bin # flashcards
     # audacity # was building from source; use brew instead
-    # musescore  # libdrm refusing to build
+    musescore
     vlc-bin 
 
     # mac specific gui apps
@@ -309,6 +313,7 @@ in
     keycastr
     terminal-notifier
     choose-gui
+    whatsapp-for-mac
 
     (writeShellApplication {
       name = "bib2path2";
@@ -352,7 +357,7 @@ in
 
     (writeShellApplication {
       name = "scores";
-      runtimeInputs = [ pandoc gnused ack iconv curl ];
+      runtimeInputs = [ pandoc gnused ack iconv curl coreutils-prefixed];
       text = (builtins.readFile ./bin/scores);
     })
 
@@ -504,7 +509,7 @@ in
     bash = {
       enable = true;
       enableCompletion = true;
-      enableVteIntegration = true;
+      enableVteIntegration = false;
       historyControl = [ "erasedups" ];
       historyIgnore = [ "ls" "cd" "exit" "z" ];
       bashrcExtra = ''
@@ -519,7 +524,7 @@ in
       enable = true;
       autocd = true;
       enableCompletion = true;
-      enableVteIntegration = true;
+      enableVteIntegration = false;
       autosuggestion.enable = true;
       history.ignoreAllDups = true;
       syntaxHighlighting.enable = true;
@@ -599,6 +604,7 @@ in
     };
     sioyek = {
       enable = true;
+      package = pkgs-stable.sioyek;
     };
     tealdeer.enable = true;
     pandoc = {
@@ -686,13 +692,20 @@ in
     git = {
       enable = true;
       userEmail = "dsanson@gmail.com";
-      userName = "David Sanson";
+      userName = "David Sanson"; 
+      # settings = {
+      #   user.email = "dsanson@gmail.com";
+      #   user.name = "David Sanson";
+      # };
       ignores = [
         "**/.DS_Store"
         "tags"
       ];
-      delta.enable = true;
     };
+    # delta = {
+    #   enable = true;
+    #   enableGitIntegration = true;
+    # };
     gh = {
       enable = true;
       settings = {
