@@ -131,6 +131,7 @@ in
     #"sit" = "echo 1 >> /tmp/com.davidsanson.upliftdesk.in";
     #"stand" = "echo 2 >> /tmp/com.davidsanson.upliftdesk.in";
     "safari" = "open -a Safari";
+    "kdf" = "tdf -w (kitten @ get-colors | grep \"^background \" | awk '{print $2}') -b (kitten @ get-colors | grep \"^foreground \" | awk '{print $2}')";
   };
 
   home.sessionVariables = {

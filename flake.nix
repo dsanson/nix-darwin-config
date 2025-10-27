@@ -66,6 +66,12 @@
             makeWrapperArgs = "--set PUPPETEER_EXECUTABLE_PATH '/Applications/Google Chrome.app/Contents/MacOS/Google Chrome'";
           });
         })
+        (final: prev: {
+          tdf = prev.tdf.overrideAttrs (oldAttrs: {
+            cargoBuildFlags = ["--features cbz"];
+          });
+        })
+
       ];
 
       nix.package = pkgs.lixPackageSets.stable.lix;
