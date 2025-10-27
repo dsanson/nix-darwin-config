@@ -432,7 +432,7 @@ in
   };
 
   home.file.chawan = {
-    source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/.config/nix-darwin-config/config/chawan";
+    source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/.config/nix-darwin-config/config/chawan/config.toml";
     target = ".config/chawan";
   };
 
