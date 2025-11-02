@@ -181,7 +181,6 @@ in
     lua54Packages.luafilesystem
 
     # git
-    delta # git highlighting 
     lazygit
     #hub # github cli tool
     git-lfs # git extension for large files  #git
@@ -692,21 +691,19 @@ in
     };
     git = {
       enable = true;
-      userEmail = "dsanson@gmail.com";
-      userName = "David Sanson"; 
-      # settings = {
-      #   user.email = "dsanson@gmail.com";
-      #   user.name = "David Sanson";
-      # };
+      settings = {
+        user.email = "dsanson@gmail.com";
+        user.name = "David Sanson";
+      };
       ignores = [
         "**/.DS_Store"
         "tags"
       ];
     };
-    # delta = {
-    #   enable = true;
-    #   enableGitIntegration = true;
-    # };
+    delta = {
+      enable = true;
+      enableGitIntegration = true;
+    };
     gh = {
       enable = true;
       settings = {
