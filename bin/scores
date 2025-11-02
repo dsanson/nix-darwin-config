@@ -23,12 +23,21 @@ case "${1:-}" in
         ;;
     h|-h*)
         echo 
-        echo "Usage: $(basename "${0:-scores}") nfl|nba|mlb|nhl|ncb|ncf|wnba [top]"
+        echo "Usage: $(basename "${0:-scores}") nfl|nba|mlb|nhl|ncb|ncf|wnba"
         exit
         ;;
     *)
         league="${1:-nba}"
         ;;
+esac
+
+case "${2:-}" in
+  fav*)
+    filter="/.*($favorites).*/p"
+    ;;
+  *)
+    filter='/.*/p'
+    ;;
 esac
 
 url="https://www.espn.com/$league/bottomline/scores"
@@ -70,5 +79,6 @@ curl --silent "$url" | \
        ack --passthru --color --color-match=green '\^.*?  ' | \
        ack --passthru --color --color-match=yellow "$favorites" | \
        sed 's/^\( *\)\([^A-Z^]*\)\^/ \1\2/' | \
-       sed 's/\^\([A-z ]*\)/\1 /'
+       sed 's/\^\([A-z ]*\)/\1 /' | \
+       sed -n -E "$filter"
 
