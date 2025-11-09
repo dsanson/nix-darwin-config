@@ -154,15 +154,15 @@ in
     coreutils-prefixed
     ed
 
-    nixvim.packages.${system}.default
+    #nixvim.packages.${system}.default
+    nixvim.packages.${stdenv.hostPlatform.system}.default
 
-    ncdu
     rlwrap 
     unar # mac specific cli version of theunarchiver
     unrar-wrapper
     devd # simple cli webserver; consider just using nix shell
     qrencode
-    aria # downloading tool
+    aria2 # downloading tool
     gdrive3 
     samba 
     shared-mime-info
@@ -249,9 +249,9 @@ in
     pdf2svg 
     pdfcpu
     pdfgrep
-    poppler_utils # provides pdftocairo
+    poppler-utils # provides pdftocairo
     qpdf
-    scantailor
+    scantailor-advanced
     tesseract
     unpaper
     yacreader
