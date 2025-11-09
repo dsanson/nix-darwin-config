@@ -3,6 +3,16 @@ set -o errexit
 set -o nounset
 set -o pipefail
 
+# TODO: rewrite this, probably not in bash, and separate out query options from output options.
+#
+# -   Should be possible to search by key or by title or by author or year or by all fields
+# -   And then return a list of keys, paths, zotero links, a formatted bibliography, or json or yaml
+# -   Probably also separate option to specify preferred filetype for paths and links: 
+#     -   documents: pdf, epub, djvu
+#     -   notes
+#     -   images: jpg, png, etc.
+#     -   all or first or most recent or...
+
 # reqs: sed, pandoc, grep, head, coreutils , jq
 
 BIB=$HOME/d/research/zotero.json
@@ -12,35 +22,39 @@ mode="path"
 while [[ "${1:-}" =~ ^-.* ]]; do
   case "${1:-}" in
     -p|--path)
-      mode="path"
+      mode="path" #return file path
       shift
       ;;
     -z|--zotero)
-      mode="zotero"
+      mode="zotero" #return zotero:// link
       shift
       ;;
     -b|--bibliography)
-      mode="bib"
+      mode="bib" #return formatted bibliographic entry
       shift
       ;;
     -j|--json)
-      mode="json"
+      mode="json" #return json entry
       shift
       ;;
     -y|--yaml)
-      mode="yaml"
+      mode="yaml" #return yaml entry
       shift
       ;;
     -r)
-      mode="id_from_path"
+      mode="id_from_path" #return key given path
+      shift
+      ;;
+    -s)
+      mode="id_from_search" #return key given path
       shift
       ;;
     -ip)
-      mode="imagepath"
+      mode="imagepath" #return path to attached image
       shift
       ;;
     -i)
-      mode="image"
+      mode="image" #return markdown formatted local link to image
       shift
       ;;
     *)
@@ -75,6 +89,7 @@ if [[ "$mode" == "path" ]]; then
 fi
 
 if [[ "$mode" == "image" ]]; then
+  # This doesn't really work. Should probably copy the image to a local folder and rewrite the path.
   jq -r 'map(select(.id == "'"$key"'")) | ("![" + .[].title +"](" + .[].file + ")")' "$BIB"
 fi
 
@@ -103,6 +118,11 @@ if [[ "$mode" == "id_from_path" ]]; then
     link="$(readlink -m "$link")"
   fi
   jq -r '.[] | select(.file | test("'"$link"'")) | .id' "$BIB"
+fi
+
+if [[ "$mode" == "id_from_search" ]]; then
+  query="$*"
+  jq -r '.[] | select(. | tostring | test("'"$query"'"; "i")) | ( "@" + .id )' "$BIB"
 fi
 
 
