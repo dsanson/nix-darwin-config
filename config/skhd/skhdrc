@@ -104,7 +104,8 @@ m2 < r            : skhd -k 'escape'; launchctl stop org.nixos.yabai; launchctl 
 m2 < s            : skhd -k 'escape'; launchctl stop org.nixos.sketchybar
 # q script to replace quicksilver
 #default < ctrl -space : yabai -m window --toggle visor || kitty @ launch --type os-window --os-window-title visor --to unix:/tmp/mykitty q -w
-default < ctrl - space : kitten @ --to=unix:/tmp/panel resize-os-window --action=toggle-visibility || kitten panel -o allow_remote_control=socket-only --listen-on=unix:/tmp/panel --detach --layer top --hide-on-focus-loss --edge center-sized --lines 30 --columns 100 --config /Users/desanso/.config/q/kitty.conf fish -c "q -w"
+#default < ctrl - space : kitten @ --to=unix:/tmp/panel resize-os-window --action=toggle-visibility || kitten panel -o allow_remote_control=socket-only --listen-on=unix:/tmp/panel --detach --layer top --hide-on-focus-loss --edge center-sized --lines 30 --columns 100 --config /Users/desanso/.config/q/kitty.conf fish -c "q -w"
+default < ctrl - space : kitten quick-access-terminal -o hide_on_focus_loss=yes -o edge=center-sized -o lines=30 -o columns=100 q -w
 m1, m2 < ctrl -space : skhd- k 'escape'; kitten @ --to=unix:/tmp/panel resize-os-window --action=toggle-visibility || kitten panel -o allow_remote_control=socket-only --listen-on=unix:/tmp/panel --detach --layer top --hide-on-focus-loss --edge center-sized --lines 30 --columns 100 --config /Users/desanso/.config/q/kitty.conf fish -c "q -w"
 m1 < n : skhd -k 'escape'; kitten @ --to=unix:/tmp/visor resize-os-window --action=toggle-visibility || kitten panel -o allow_remote_control=socket-only --listen-on=unix:/tmp/visor --layer top --hide-on-focus-loss --edge center-sized --lines 30 --columns 90 fish -c "note"
 #m1 < u : skhd -k "escape"; bash -x uplift sit
