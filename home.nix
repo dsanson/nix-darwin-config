@@ -211,6 +211,7 @@ in
     tectonic # modern tex wrapper 
     tex
     typst
+    presenterm
 
     # pandoc filters
     pandoc-eqnos
@@ -256,6 +257,10 @@ in
     unpaper
     yacreader
     tdf #terminal pdf viewer
+
+    # document viewers
+    # doxx # using brew for more up-to-date version
+    antiword
 
     # media
     ffmpeg
