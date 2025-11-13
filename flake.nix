@@ -290,6 +290,7 @@
           "quicksilver" # not on nixpkgs
           "zotero@beta" # nixpkgs linux only
           "signal"
+          "libreoffice"
           
           # Utilities and Tweaks
           "karabiner-elements" # nixpkgs needs to be updated for 15.0
