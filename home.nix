@@ -181,9 +181,9 @@ in
     lua54Packages.luafilesystem
 
     # git
-    lazygit
+    # lazygit using programs.lazygit instead
     #hub # github cli tool
-    git-lfs # git extension for large files  #git
+    #git-lfs # git extension for large files  #git setting programs.git.lfs instead
     gh # github cli tool
 
     # webdev
@@ -196,13 +196,13 @@ in
     # tui apps
     lynx
     w3m
-    chawan # a modern tui browser?
+    # chawan # using programs.chawan instead
     #epr # terminal epub reader
     bk # terminal epub reader
     timg #terminal image viewer
     newsraft #rss reader
     #toot #tui mastodon client
-    jrnl
+    #jrnl using programs.jrnl instead
 
     # document generation
     biber
@@ -233,7 +233,7 @@ in
     python313Packages.pyexcel
     sc-im
     tidy-viewer # csv pretty printer
-    visidata 
+    #visidata  # using stable
     xan
     yq
     jq
@@ -290,8 +290,8 @@ in
     font-awesome
     gentium # good for diacritics
     kawkab-mono-font # arabic monospace font
-    monoid
-    nerd-fonts.monoid
+    # monoid
+    # nerd-fonts.monoid
     mononoki
     nerd-fonts.mononoki
     open-dyslexic
@@ -318,7 +318,7 @@ in
     keycastr
     terminal-notifier
     choose-gui
-    whatsapp-for-mac
+    #whatsapp-for-mac
 
     (writeShellApplication {
       name = "bib2path2";
@@ -388,6 +388,7 @@ in
   ++
 
   (with pkgs-stable; [
+    visidata
     #hello
   ]);
 
@@ -435,10 +436,10 @@ in
     target = "Library/Application Support/wallust";
   };
 
-  home.file.chawan = {
-    source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/.config/nix-darwin-config/config/chawan/config.toml";
-    target = ".config/chawan";
-  };
+  # home.file.chawan = {
+  #   source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/.config/nix-darwin-config/config/chawan/config.toml";
+  #   target = ".config/chawan";
+  # };
 
   home.file.newsraft = {
     source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/.config/nix-darwin-config/config/newsraft";
@@ -704,7 +705,9 @@ in
         "**/.DS_Store"
         "tags"
       ];
+      lfs.enable = true;
     };
+
     delta = {
       enable = true;
       enableGitIntegration = true;
@@ -791,6 +794,47 @@ in
         pkgs.mpvScripts.autosub
       ];
     };
+
+    lazygit = {
+      enable = true;
+      enableFishIntegration = true;
+    };
+    
+    chawan = {
+      enable = true;
+      settings = {
+        buffer = {
+          images = true;
+          autofocus = true;
+        };
+        external = {
+          copy-cmd = "pbcopy";
+          paste-cmd = "pbpaste";
+          download-dir = "$HOME/Downloads";
+        };
+        page = {
+          "gg" = "cmd.buffer.gotoLineOrStart";
+          "s" = "() => pager.load('ddg:')";
+          "yy" = "cmd.pager.copyURL";
+        };
+      };
+    };
+    
+    jrnl = {
+      enable = true;
+      settings = {
+        default_hour = 9;
+        default_minute = 0;
+        editor = "nvim";
+        encrypt = false;
+        highlight = true;
+        indent_character = "|";
+        journals.default.journal = "$HOME/notes/journal.txt";
+        linewrap = 79;
+        tagsymbols = "#@";
+      };
+    };
+    
   };
   
   fonts.fontconfig.enable = true;
