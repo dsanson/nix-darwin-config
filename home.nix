@@ -71,18 +71,6 @@ let
       zref
       ;
   });
-  # didn't fetchPypi because the nixOS patched version (2.8.0) is only on PyPI-testing
-  # pywalfox = pkgs.python3.pkgs.buildPythonPackage {
-  #   pname = "pywalfox";
-  #   version = "2.8.0rc1";
-
-  #   src = pkgs.fetchFromGitHub {
-  #     owner = "Frewacom";
-  #     repo = "pywalfox-native";
-  #     rev = "7ecbbb193e6a7dab424bf3128adfa7e2d0fa6ff9";
-  #     hash = "sha256-i1DgdYmNVvG+mZiFiBmVHsQnFvfDFOFTGf0GEy81lpE=";
-  #   };
-  # };
 
 in
 {
@@ -181,7 +169,6 @@ in
     lua54Packages.luafilesystem
 
     # git
-    # lazygit using programs.lazygit instead
     #hub # github cli tool
     #git-lfs # git extension for large files  #git setting programs.git.lfs instead
     gh # github cli tool
@@ -196,13 +183,11 @@ in
     # tui apps
     lynx
     w3m
-    # chawan # using programs.chawan instead
-    #epr # terminal epub reader
+    #epr # terminal epub reader using bk instead
     bk # terminal epub reader
     timg #terminal image viewer
     newsraft #rss reader
     #toot #tui mastodon client
-    #jrnl using programs.jrnl instead
 
     # document generation
     biber
@@ -233,7 +218,7 @@ in
     python313Packages.pyexcel
     sc-im
     tidy-viewer # csv pretty printer
-    #visidata  # using stable
+    visidata  # using stable
     xan
     yq
     jq
@@ -259,7 +244,7 @@ in
     tdf #terminal pdf viewer
 
     # document viewers
-    # doxx # using brew for more up-to-date version
+    doxx
     antiword
 
     # media
@@ -388,7 +373,6 @@ in
   ++
 
   (with pkgs-stable; [
-    visidata
     #hello
   ]);
 

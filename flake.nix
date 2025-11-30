@@ -106,9 +106,6 @@
           cachix # nix binary cache tool
 
           # ncdu # move to home
-          # rlwrap # move to home
-          # unar #move to home; cli version of theunarchiver
-          # unrar-wrapper #move to home
 
           # mac specific cli
           skhd
@@ -273,7 +270,6 @@
           "tag" #macos file tagging
           "yt-dlp"
           "keith/formulae/reminders-cli" #not sure this will work
-          "doxx" # cli docx viewer
         ];
 
         caskArgs.no_quarantine = true;
@@ -281,7 +277,7 @@
           # Important Apps
           "anylist" # not on nixpkgs
           "calibre" # nixpkgs broken on darwin
-          "discord" # available on nixpkgs but poorly behaved
+            #"discord" # available on nixpkgs but poorly behaved
             #"firefox" # looks like it may now work. But version lags.
           "google-chrome" # nixpkgs has chromium but linux only
           #"microsoft-office" # not on nixpkgs # this breaks because of microsoft defender
@@ -351,7 +347,7 @@
 
       services = {
         ipfs = {
-          enable = true;
+          enable = false;
           ipfsPath = "/Users/desanso/.ipfs";
         };
         karabiner-elements = {
@@ -435,8 +431,6 @@
             yabai -m rule --add app="^Finder$" title="^Trash$" manage=off
             yabai -m rule --add app="^Finder$" title="^Copy$" manage=off
             yabai -m rule --add app="^System Preferences$" manage=off
-            yabai -m rule --add app="^Brother MFC-J875DW$" manage=off
-            yabai -m rule --add app="^stv412-phil-copier$" manage=off
             yabai -m rule --add app="^Tor Browser$" manage=off
             yabai -m rule --add app="^App Store$" manage=off
             yabai -m rule --add app="^LogicProgram$" title="^Logic 2010: Menu$" manage=off
