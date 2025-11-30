@@ -7,7 +7,7 @@ set -o pipefail
 # depends on:
 #  ack, curl, gnsed, pandoc iconv, gdate
 
-favorites="UCLA|Golden State|Ohio State|Illinois State"
+favorites="UCLA|Golden State|Ohio State|Illinois State|Chicago"
 tweaks=""
 
 case "${1:-}" in
