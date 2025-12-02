@@ -15,7 +15,7 @@
 
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
-    nixpkgs-stable.url = "github:NixOS/nixpkgs/nixos-25.05";
+    nixpkgs-stable.url = "github:NixOS/nixpkgs/nixos-25.11";
     nix-darwin = {
       url = "github:LnL7/nix-darwin";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -141,12 +141,6 @@
           target = "ke.bou.dark-mode-notify.plist";
         };
       };
-
-
-      # Auto upgrade nix package and the daemon service.
-      # services.nix-daemon.enable = true;
-      # nix.package = pkgs.nix;
-
 
       # Create /etc/zshrc that loads the nix-darwin environment.
       programs.zsh.enable = true;  # default shell on catalina
