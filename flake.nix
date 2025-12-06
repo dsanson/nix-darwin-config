@@ -98,14 +98,12 @@
           zip
           openssh
           gnupg
-          python311Packages.keyring
+          python313Packages.keyring
           netcat
           nmap
           parallel
           dos2unix
           cachix # nix binary cache tool
-
-          # ncdu # move to home
 
           # mac specific cli
           skhd
