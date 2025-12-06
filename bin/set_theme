@@ -127,7 +127,7 @@ esac
 wallust $args "$@"
 
 # apply settings to kitty terminals
-if type kitty &> /dev/null; then
+if [[ "$TERM" == "xterm-kitty" ]]; then
   kitten @ set-colors --all -c ~/.cache/wal/colors-kitty.conf
 fi
 
