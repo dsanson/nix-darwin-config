@@ -1,34 +1,11 @@
-# wallust 2.9.0-d.*
-# -- global space -- #
-# values below can be overwritten by command line flags
-
-# How the image is parse, in order to get the colors:
-#  * full       - Read and return the whole image pixels more precision slower
-#  * resized    - Resizes the image before parsing mantaining it s aspect ratio
-#  * wal        - Uses image magick convert to generate the colors like pywal
-#  * thumb      - Faster algo hardcoded to x no ratio respected
-#  * fastresize - A much faster resize algo that uses SIMD For some reason it fails on
-#                  some images where resized doesn t for this reason it doesn t replace
-#                  but rather it s a new option
-#  * kmeans     - Kmeans is an algo that divides and picks pixels all around the image
-#                  Requires more tweaking and more in depth testing but for the most part
-#                  it just werks
 backend = "kmeans"
 
-# What color space to use to produce and select the most prominent colors:
-#  * lab      - Uses Cie L a b color space
-#  * labmixed - Variant of lab that mixes the colors gathered if not enough colors it
-#                fallbacks to usual lab not recommended in small images
-#  * labfast  - Variant of lab that avoids floating arithmetic thus faster operations but
-#                not that much precise result Images that work on lab labmixed could not
-#                have enough colors for labfast
 color_space = "lch"
+#color_space = "lab"
 
-fallback_generator = "complementary"
+#fallback_generator = "complementary"
+fallback_generator = "interpolate"
 
-# NOTE: All palettes will fill 16 colors (from color0 to color15), 16 color
-#       variations are the 'ilusion' of more colors by opaquing color1 to color5.
-# Use the most prominent colors in a way that makes sense, a scheme:
 #  * dark            - dark colors dark background and light contrast
 #  * dark16          - Same as dark but uses the colors trick
 #  * darkcomp        - This is a dark variant that changes all colors to it s
@@ -52,22 +29,14 @@ fallback_generator = "complementary"
 #  * softlight16     - softlight with color variation
 #  * softlightcomp   - softlight with complementary colors
 #  * softlightcomp16 - softlight with complementary colors with colors
-palette = "dark16"
+#palette = "dark16"
+palette = "softdarkcomp16"
 
-# Ensures a "readable contrast" (OPTIONAL, disabled by default)
-# Should only be enabled when you notice an unreadable contrast frequently happening
-# with your images. The reference color for the contrast is the background color.
 check_contrast = true
 
-# Color saturation, between [1% and 100%] (OPTIONAL, disabled by default)
-# usually something higher than 50 increases the saturation and below
-# decreases it (on a scheme with strong and vivid colors)
 #saturation = 35
 
 [templates]
-# template: A relative path that points to a file where wallust.toml is located, usually at `~/.config/wallust/`
-# target: Absolute path in which to place a file with generated templated values
-# NOTE: prefer '' over "" for paths, avoids escaping.
 colors = { template = 'colors', target = '~/.cache/wal/colors', new_engine = true }
 sh = { template = 'colors.sh', target = '~/.cache/wal/colors.sh', new_engine = true }
 bash = { template = 'colors.bash', target = '~/.cache/wal/colors.bash', new_engine = true }
@@ -80,20 +49,3 @@ yml = { template = 'colors.yml', target = '~/.cache/wal/colors.yml', new_engine 
 sketchybar = { template = 'colors.sketchybar', target = '~/.cache/wal/colors.sketchybar', new_engine = true }
 tridactyl = { template = 'tridactyl_blank.html', target = '~/.config/tridactyl/blank.html', new_engine = true }
 
-# REMINDER Variables and methods that can be used with templating:
-#  wallpaper:  The full path to the current wallpaper, colorscheme file or the name of the theme in use.
-#  backend:    Current **backend** being used.
-#  colorspace: Current **colorspace** being used.
-#  palette:     Current **palette** being used.
-#  alpha:      Default to 100, can be modified in the config file or with `--alpha`/`-a`.
-#  alpha_dec:  Instead of [0..=100], displays it from 0.00 to 1.00.
-#  var:        Output the color in `hex`.
-#  var.rgb:    Output the color in `rgb`.
-#  var.rgba:   Output the color in `rgba`.
-#  var.xrgba:  Output the color in `xrgb`.
-#  var.strip:  Output the color in `hex` (without a `#`).
-#  var.red:    Output the red value.
-#  var.green:  Output the green value.
-#  var.blue:   Output the blue value.
-#
-# Where `var` can be colors from `color0` to `color15`, `background`, `foreground` and `cursor`.
