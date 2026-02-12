@@ -366,17 +366,11 @@
             mouse_follows_focus = "on";
             focus_follows_mouse = "off";
             window_placement = "second_child";
-            window_topmost = "off";
             window_shadow = "float";
             window_opacity = "off ";
-            window_opacity_duration = "0";
+            window_opacity_duration = "0.3";
             active_window_opacity = "0.95";
             normal_window_opacity = "0.80";
-            window_border = "off";
-            window_border_width = "2";
-            window_border_radius = "0";
-            active_window_border_color = "0xff775759 ";
-            normal_window_border_color = "0xff505050";
             split_ratio = "0.50";
             auto_balance = "off";
             mouse_modifier = "fn";
@@ -391,7 +385,7 @@
             window_gap = "5";
           };
           extraConfig = ''
-            yabai -m window_origin_display               focus
+            yabai -m config window_origin_display focus
 
             function setup_space {
               local idx="$1"
@@ -405,7 +399,7 @@
               fi
 
               yabai -m space "$idx" --label "$name"
-              layouts -s "$idx" current
+              /etc/profiles/per-user/desanso/bin/layouts -s "$idx" current
             }
 
             # setup_space 1 BOOK 
@@ -435,11 +429,11 @@
             yabai -m rule --add app="^TomatoFlex$" manage=off
             yabai -m rule --add app="^Firefox$" manage=on
             yabai -m rule --add app="sioyek" role="AXWindow" subrole="AXDialog" manage=on
-            yabai -m signal --add event=space_changed action='set_theme wallpaper' active=yes
 
-            yabai -m signal --add event=space_created action='sketchybar --reload'
-            yabai -m signal --add event=space_destroyed action='sketchybar --reload'
-            yabai -m signal --add event=display_removed action='sketchybar --reload'
+            yabai -m signal --add event=space_changed action='/etc/profiles/per-user/desanso/bin/set_theme wallpaper auto' active=yes
+            yabai -m signal --add event=space_created action='${pkgs.sketchybar}/bin/sketchybar --reload'
+            yabai -m signal --add event=space_destroyed action='${pkgs.sketchybar}/bin/sketchybar --reload'
+            yabai -m signal --add event=display_removed action='${pkgs.sketchybar}/bin/sketchybar --reload'
 
             ${pkgs.sketchybar}/bin/sketchybar --reload
           '';
