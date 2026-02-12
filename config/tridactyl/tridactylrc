@@ -3,6 +3,8 @@ sanitise tridactyllocal tridactylsync
 
 set storageloc sync
 
+set newtab https://online.bonjourr.fr/
+
 set editorcmd /etc/profiles/per-user/desanso/bin/kitty --single-instance --instance-group=1 --wait-for-single-instance-window-close nvim -c "set ft=pandoc"
 set hintnames numeric
 set hintfiltermode vimperator-reflow
