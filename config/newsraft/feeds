@@ -1,12 +1,24 @@
-@ Philosophers
+@ Local News
+
+https://www.wglt.org/local-news.rss "WGLT Local News"
+https://www.wglt.org/illinois.rss "WGLT State News"
+http://www.pantagraph.com/search/?f=rss&t=article&c=news/local&l=25&s=start_time&sd=desc "Pantagraph Local"
+https://chicagoreader.com/feed/?partner-feed=chicago-reader "Chicago Reader"
+https://blockclubchicago.org/feed/ "Block Club Chicago"
+https://www.injusticewatch.org/feed/ "Injustice Watch"
+https://capitolnewsillinois.com/feed/fullcustomfeed "Capitol News Illinois"
+https://investigatemidwest.org/feed "Investigate Midwest"
+https://www.ciceroindependiente.com/categories-english?format=rss "Cicero Independiente English"
+https://www.ciceroindependiente.com/categorias-espn?format=rss "Cicero Independiente Espanol"
+https://southsideweekly.com/feed/ "South Side Weekly"
+https://www.bettergov.org/feed/ "Illinois Answers"
+
+@ Philosophy
 
 https://www.logicmatters.net/feed/ "Peter Smith"
 https://diaryofdoctorlogic.wordpress.com/feed/ "Sara Uckelman"
 https://richardzach.org/feed/ "Richard Zach"
 https://objectionable.net/feed/ "Thi Nguyen"
-
-@ Philosophy Blogs
-
 https://blog.apaonline.org/feed/ "Blog of the APA"
 https://aestheticsforbirds.com/feed/ "Aesthetics for Birds"
 https://dailynous.com/feed/ "Daily Nous"
@@ -16,12 +28,50 @@ https://warpweftandway.com/feed/ "Warp Weft and Way"
 https://philosophyandsports.blogspot.com/feeds/posts/default?alt=rss "Philosophy of Sport"
 https://philosophymodsquad.wordpress.com/feed/ "The Mod Squad"
 
-@ Higher Ed
+@ Products
+
+https://www.nytimes.com/wirecutter/feed
+https://feeds.feedburner.com/nymag/strategist
+https://kk.org/cooltools/feed/
+https://www.aldireviewer.com/feed/
+https://www.aisleofshame.com/feed/
+http://toolsandtoys.net/feed/
+
+@ Food and Cooking
+
+https://www.justonecookbook.com/feed/ "Just One Cookbook"
+https://omnivorescookbook.com/feed/ "Omnivore's Cookbook"
+https://thewoksoflife.com/feed/ "Woks of Life"
+http://feeds.feedburner.com/smittenkitchen "Smitten Kitchen"
+https://ministryofcurry.com/feed/ "Ministry of Curry"
+https://sallysbakingaddiction.com/feed/ "Sally's Baking Addiction"
+https://www.beetsandbones.com/feed/ "Beets and Bones"
+https://easygayoven.com/feed/ "Easy Gay Oven"
+https://www.chinasichuanfood.com/feed/
+https://redhousespice.com/feed/
+https://theplantbasedwok.com/feed/
+https://chejorge.com/feed/
+https://thefoodietakesflight.com/feed/
+https://www.maangchi.com/feed
+https://norecipes.com/feed/
+https://www.spoonforkbacon.com/feed/
+https://www.themediterraneandish.com/feed/
+https://rainbowplantlife.com/feed/
+https://manjulaskitchen.com/feed/
+https://hot-thai-kitchen.com/feed/
+https://cookieandkate.com/feed/
+https://www.recipetineats.com/feed/
+https://www.teaforturmeric.com/feed/
+
+
+@ Higher Ed News
 
 https://www.chronicle.com/index.atom "Chronicle of Higher Education"
 
-@ General
+@ Magazines and Blogs
 
+https://boingboing.net/feed
+http://atlasobscura.com/rss.xml
 https://www.aldaily.com/feed "Arts and Letters Daily"
 https://aeon.co/feed.rss "Aeon"
 https://rss.metafilter.com/metafilter.rss 
@@ -29,37 +79,18 @@ http://feeds.kottke.org/main "Kottke"
 http://feeds.feedburner.com/OpenCulture "Open Culture"
 https://www.smithsonianmag.com/rss/latest_articles/ "Smithsonian Magazine"
 https://feeds-api.dotdashmeredith.com/v1/rss/google/897be986-3713-4fb3-904f-8dfc4cdba23d "Midwest Living"
+https://www.sunset.com/feed "Sunset"
 https://feeds-api.dotdashmeredith.com/v1/rss/google/169a0a31-1a9a-4881-9828-90e544c8e459 "Southern Living"
 
-@ News
+@ World News
 
 https://rss.nytimes.com/services/xml/rss/nyt/HomePage.xml "NYTimes Headlines"
 https://www.theguardian.com/us/rss "The Guardian"
-https://www.wglt.org/index.rss "WGLT"
-https://www.wcbu.org/index.rss "WCBU"
-http://www.pantagraph.com/search/?f=rss&t=article&c=news/local&l=25&s=start_time&sd=desc "Pantagraph Local"
 https://www.commondreams.org/feeds/feed.rss "Common Dreams"
 https://www.cbc.ca/cmlink/rss-topstories
-
-@ Products
-
-https://feeds.feedburner.com/TheWirecutter "Wirecutter"
-http://toolsandtoys.net/feed/
-
-@ Non-profit Newsrooms
-
-https://chicagoreader.com/feed/?partner-feed=chicago-reader "Chicago Reader"
-https://blockclubchicago.org/feed/ "Block Club Chicago"
-https://www.injusticewatch.org/feed/ "Injustice Watch"
-https://capitolnewsillinois.com/feed/fullcustomfeed "Capitol News Illinois"
-https://investigatemidwest.org/feed "Investigate Midwest"
-https://www.ciceroindependiente.com/categories-english?format=rss "Cicero Independiente English"
-https://www.ciceroindependiente.com/categorias-espn?format=rss "Cicero Independiente Espanol"
 https://growingcommunitymedia.org/feed/ "Austin Weekly News"
 https://www.citybureau.org/home?format=rss "City Bureau NFP"
-https://southsideweekly.com/feed/ "South Side Weekly"
 https://thelansingjournal.org/feed/ "Lansing Journal"
-https://www.bettergov.org/feed/ "Illinois Answers"
 https://borderlessmag.org/feed/ "Borderless Magazine"
 https://barnraisingmedia.com/feed/ "Barn Raiser"
 https://www.coastalaska.org/feed/
@@ -74,16 +105,9 @@ http://greatlakesecho.org/feed/
 
 @ Sports
 
-https://www.espn.com/espn/rss/news
 https://www.theplayerstribune.com/posts.rss "Player Tribune"
 http://theundefeated.com/feed/ "Andscape"
 https://www.goldenstateofmind.com/rss/index.xml "Golden State of Mind"
-https://www.elevenwarriors.com/taxonomy/term/9/feed "Eleven Warriors"
-
-@ Travel
-
-https://www.theguardian.com/uk/travel/rss
-http://atlasobscura.com/rss.xml
 
 @ Science
 
@@ -93,16 +117,6 @@ https://news.mit.edu/rss/topic/science-technology-and-society
 https://www.sciencealert.com/rss
 https://www.livescience.com/feeds/all
 
-@ Food and Cooking
-
-http://feeds.feedburner.com/smittenkitchen "Smitten Kitchen"
-https://www.beetsandbones.com/feed/ "Beets and Bones"
-https://easygayoven.com/feed/ "Easy Gay Oven"
-https://easyindiancookbook.com/web-stories/feed/ "Easy Indian Cookbook"
-https://www.justonecookbook.com/feed/ "Just One Cookbook"
-https://ministryofcurry.com/feed/ "Ministry of Curry"
-https://omnivorescookbook.com/feed/ "Omnivore's Cookbook"
-https://sallysbakingaddiction.com/feed/ "Sally's Baking Addiction"
 
 @ Art
 
@@ -136,8 +150,3 @@ https://www.youtube.com/feeds/videos.xml?channel_id=UC6SNxiLzSlh8e0yjndE9o_A "Co
 https://www.youtube.com/feeds/videos.xml?channel_id=UCsaGKqPZnGp_7N80hcHySGQ "Tasting History"
 https://www.youtube.com/feeds/videos.xml?channel_id=UCqqJQ_cXSat0KIAVfIfKkVA "Kenji Lopez-Alt"
 
-
-@ Reddit
-
-https://www.reddit.com/r/cfb.rss
-https://www.reddit.com/r/warriors.rss
