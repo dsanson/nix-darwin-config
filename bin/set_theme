@@ -3,12 +3,12 @@ set -o errexit
 set -o nounset
 set -o pipefail
 
-# reqs: yabai osascript jq plutil sed kitty pywalfox wallust
+# reqs: yabai osascript jq plutil sed kitty pywalfox hellwal
 
 shopt -s nocasematch
 
-DARK_THEME="$HOME/.cache/wal/default-dark.json"
-LIGHT_THEME="$HOME/.cache/wal/default-light.json"
+LIGHT_THEME="zenbones-light.hellwal"
+DARK_THEME="zenbones.hellwal"
 
 # get current os color mode ("light" or "dark")
 function get_current() {
@@ -110,25 +110,25 @@ mode="${wp:-}$mode"
 args=""
 case "$mode" in
   "dark")
-    args="cs $DARK_THEME"
+    args="--theme $DARK_THEME"
     ;;
   "light")
-    args="cs $LIGHT_THEME"
+    args="--theme $LIGHT_THEME"
     ;;
   "wp-dark")
-    args="run $path -p darkcomp -s"
+    args="-i $path --dark"
     ;;
   "wp-light")
-    args="run $path -p lightcomp -s"
+    args="-i $path --light"
     ;;
 esac
 
 # shellcheck disable=SC2086 # Splitting args is intentional
-wallust $args "$@"
+hellwal --check-contrast $args "$@"
 
 # apply settings to kitty terminals
 if [[ -v "KITTY_PID" ]]; then
-  kitten @ set-colors --all -c ~/.cache/wal/colors-kitty.conf
+  kitten @ set-colors --all -c ~/.cache/wal/kitty-colors.conf
 fi
 
 if type pywalfox &> /dev/null; then
