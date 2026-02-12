@@ -112,7 +112,7 @@
           #dockutil # manage macos dock items from cli
           #duti # set default app for file type on macos from cli
           monitorcontrol # control brightness of external monitors
-          dark-mode-notify 
+          #dark-mode-notify  #disabled because triggering a swift build
           switchaudio-osx
       ];
       
@@ -161,7 +161,7 @@
       };
 
       security.pam.services.sudo_local.touchIdAuth = true;
-      security.pam.services.sudo_local.watchIdAuth = true;
+      #security.pam.services.sudo_local.watchIdAuth = true; #disabled because was triggering a swift build
 
       system.primaryUser = "desanso"; # https://mynixos.com/nix-darwin/option/system.primaryUser
 
