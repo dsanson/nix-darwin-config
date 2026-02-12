@@ -2,6 +2,13 @@
 let
   tex = (pkgs.texlive.combine {
     inherit (pkgs.texlive) scheme-medium
+      # for accessibility compliance
+      unicode-math
+      float
+      hyperref
+      enumitem
+      tagpdf
+
       amsmath
       babel-english
       bidi
@@ -11,14 +18,13 @@ let
       cbfonts-fd
       changepage
       cm-super
+      cm-unicode
       ctex
       doublestroke
       dvisvgm
-      enumitem
       eso-pic
       etoolbox
       everysel
-      float
       fontawesome5
       fontspec
       footnotehyper
@@ -27,7 +33,6 @@ let
       gitinfo
       gnu-freefont
       graphbox
-      hyperref
       jknapltx
       latex-bin
       latexmk
@@ -58,7 +63,6 @@ let
       tipa
       titlesec
       transparent
-      unicode-math
       upquote
       url
       wasy
@@ -69,6 +73,7 @@ let
       xpatch
       xurl
       zref
+      wallpaper
       ;
   });
 
