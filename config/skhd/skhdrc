@@ -94,7 +94,8 @@ m1 < c      :  skhd -k "escape"; open -a Screenshot
 #m1 < f7 : skhd -k 'escape'; $HOME/bin/webcam doc
 # lock screen
 # caffeinate
-m1 < shift - c : skhd -k 'escape'; open "keepingyouawake:///toggle"
+m1 < shift - c : open "keepingyouawake:///activate"
+m1 < shift - d : skhd -k 'ctrl+shift+alt+cmd - d'
 # rotate external monitor
 m1 < r    :  rotate external-home; rotate external-office
 m1 < shift - r    :  rotate external-home clockwise; rotate external-office clockwise
@@ -112,3 +113,4 @@ m1 < n : skhd -k 'escape'; kitten @ --to=unix:/tmp/visor resize-os-window --acti
 #m1 < shift - u : skhd -k "escape"; bash -x uplift stand
 m1 < u : skhd -k "escape"; echo 1 >> /tmp/com.davidsanson.upliftdesk.in
 m1 < shift - u : skhd -k "escape"; echo 2 >> /tmp/com.davidsanson.upliftdesk.in
+
