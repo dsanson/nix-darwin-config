@@ -111,6 +111,8 @@ in
     "wanip" = "dig +short myip.opendns.com @resolver1.opendns.com";
     "latest_download" = "ls -tU $HOME/Downloads | head -n 1";
     "preview" = "open -a Preview"; #mac specific
+    "acrobat" = "open -a 'Adobe Acrobat'"; #mac specific
+    "lp2"     = "lp -o sides=two-sided-long-edge";
     "reveal" = "open -R"; #mac specific
     "firefox" = "firefox-wrapper";
     "wttr" = "curl -s \"wttr.in/{$(dig +short myip.opendns.com @resolver1.opendns.com),Carmel%20CA,Paso%20Robles,Tenakee%20AK,Rimrock%20AZ,Libby%20MT}?format=4&u\" | sed 's/, Illinois, United States//'";
@@ -124,7 +126,7 @@ in
     #"sit" = "echo 1 >> /tmp/com.davidsanson.upliftdesk.in";
     #"stand" = "echo 2 >> /tmp/com.davidsanson.upliftdesk.in";
     "safari" = "open -a Safari";
-    "kdf" = "tdf -w (kitten @ get-colors | grep \"^background \" | awk '{print $2}') -b (kitten @ get-colors | grep \"^foreground \" | awk '{print $2}')";
+    "kdf" = "tdf -p 20 -w (kitten @ get-colors | grep \"^background \" | awk '{print $2}') -b (kitten @ get-colors | grep \"^foreground \" | awk '{print $2}')";
   };
 
   home.sessionVariables = {
