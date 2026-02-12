@@ -1,8 +1,8 @@
 #import vdplus
 
 options.null_value = ""
-
 options.theme = "asciimono"
+options.quitguard = true
 
 TableSheet.unbindkey('i')
 TableSheet.unbindkey('gi')
