@@ -7,6 +7,8 @@
 function HorizontalRule()
     if FORMAT == "latex" then
         return pandoc.RawBlock("latex", "\\newpage\\null")
+    elseif FORMAT == "context" then
+        return pandoc.RawBlock("context", "\\pagebreak\\null")
     elseif string.find(FORMAT,"^html[45]?$") then
         return pandoc.RawBlock(FORMAT, '<span style="page-break-after: always" />')
     elseif string.find(FORMAT,"^epub[23]?$") then
