@@ -159,7 +159,7 @@ in
     qrencode
     aria2 # downloading tool
     gdrive3 
-    samba 
+    #samba  # was triggering swift build
     shared-mime-info
     socat # 
     wcalc #used by bin/q-preview # 
@@ -219,19 +219,20 @@ in
 
     # data processing
     R
-    csvkit #broken build
+    csvkit
     miller # awk for data formats #csv 
     pup
     python313Packages.pyexcel
     sc-im
     tidy-viewer # csv pretty printer
-    visidata  # using stable
+    visidata
     xan
     yq
     jq
     jqp
 
     # pdf and images
+    verapdf
     cairo
     djvu2pdf
     djvulibre
@@ -247,7 +248,7 @@ in
     scantailor-advanced
     tesseract
     unpaper
-    yacreader
+    #yacreader
     tdf #terminal pdf viewer
 
     # document viewers
@@ -262,11 +263,10 @@ in
     # games
     angband
     figlet
-    nsnake
     maelstrom
 
     # ricing and theming
-    wallust
+    hellwal
     pywalfox-native
     
     # fonts
@@ -278,7 +278,7 @@ in
     doulos-sil #another multilingual font
     fira-code # fira-mono with coding ligatures
     nerd-fonts.fira-code
-    fira-go #fira sans with multilingual support
+    #fira-go #fira sans with multilingual support
     font-awesome
     gentium # good for diacritics
     kawkab-mono-font # arabic monospace font
@@ -337,7 +337,7 @@ in
 
     (writeShellApplication {
       name = "set_theme";
-      runtimeInputs = [ yabai jq gnused kitty wallust ];
+      runtimeInputs = [ yabai jq gnused kitty hellwal ];
       text = (builtins.readFile ./bin/set_theme);
     })
 
@@ -381,6 +381,7 @@ in
 
   (with pkgs-stable; [
     #hello
+    samba
   ]);
 
   xdg.enable = true;
@@ -400,11 +401,16 @@ in
     "fd/ignore".text = "**/*.app/**";
   };
 
-  xdg.dataFile = {
-    pandoc = {
-      source = ./share/pandoc;
-      recursive = true;
-    };
+  # xdg.dataFile = {
+  #   pandoc = {
+  #     source = ./share/pandoc;
+  #     recursive = true;
+  #   };
+  # };
+
+  home.file.pandoc = {
+    source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/.config/nix-darwin-config/share/pandoc";
+    target = ".local/share/pandoc";
   };
 
   home.file.kitty-launch-actions = {
@@ -422,9 +428,9 @@ in
     target = ".config/sioyek";
   };
 
-  home.file.wallust = {
-    source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/.config/nix-darwin-config/config/wallust";
-    target = "Library/Application Support/wallust";
+  home.file.hellwal = {
+    source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/.config/nix-darwin-config/config/hellwal";
+    target = ".config/hellwal";
   };
 
   # home.file.chawan = {
@@ -519,6 +525,7 @@ in
 
     zsh = {
       enable = true;
+      dotDir = "${config.xdg.configHome}/zsh";
       autocd = true;
       enableCompletion = true;
       enableVteIntegration = false;
@@ -569,7 +576,7 @@ in
         fish_add_path /opt/homebrew/bin
         defaultbrowser firefox >/dev/null
         if type -q kitty
-          kitty @ set-colors -c ~/.cache/wal/colors-kitty.conf
+          kitty @ set-colors -c ~/.cache/wal/kitty-colors.conf
         end
       '';
       plugins = [
@@ -601,7 +608,7 @@ in
     };
     sioyek = {
       enable = true;
-      package = pkgs-stable.sioyek;
+      #package = pkgs-stable.sioyek;
     };
     tealdeer.enable = true;
     pandoc = {
@@ -667,7 +674,7 @@ in
       enableBashIntegration = true;
       enableZshIntegration = true;
     };
-    todoman.enable = true;
+    todoman.enable = false;
     fzf = {
       enable = true;
       changeDirWidgetCommand = "fd -t d . $HOME";
@@ -779,11 +786,12 @@ in
 
     mpv = {
       enable = true; 
-      scripts = [ 
-        pkgs.mpvScripts.videoclip
-        pkgs.mpvScripts.sponsorblock-minimal 
-        pkgs.mpvScripts.autosub
-      ];
+      package = pkgs-stable.mpv; #triggering swift build
+      # scripts = [ 
+      #   pkgs.mpvScripts.videoclip
+      #   pkgs.mpvScripts.sponsorblock-minimal 
+      #   pkgs.mpvScripts.autosub
+      # ];
     };
 
     lazygit = {
@@ -812,7 +820,7 @@ in
     };
     
     jrnl = {
-      enable = true;
+      enable = false;
       settings = {
         default_hour = 9;
         default_minute = 0;
