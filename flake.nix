@@ -276,9 +276,10 @@
           "obs" # nixkpgs only builds for linux
           "obsidian" # nixpkgs linux only; am I still using this?
           "quicksilver" # not on nixpkgs
-          "zotero@beta" # nixpkgs linux only
           "signal"
           "libreoffice"
+          "adobe-acrobat-pro"
+          "zotero"
           
           # Utilities and Tweaks
           "karabiner-elements" # nixpkgs needs to be updated for 15.0
@@ -297,6 +298,7 @@
           "google-earth-pro"
           "noscribe" # AI transcription
           "atv-remote"
+          "boring-notch"
 
           # quicklook plugins
           "qlcolorcode"
