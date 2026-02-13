@@ -258,6 +258,7 @@
           "launch" #macos launcher that is better than open
           "pandoc" #nix pandoc is chronically out of date
           "rename" #consider alternatives
+          "repeater" #cli anki-style flashcards
           #"switchaudio-osx"
           "tag" #macos file tagging
           "yt-dlp"
