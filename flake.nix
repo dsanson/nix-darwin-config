@@ -112,7 +112,7 @@
           #dockutil # manage macos dock items from cli
           #duti # set default app for file type on macos from cli
           monitorcontrol # control brightness of external monitors
-          #dark-mode-notify  #disabled because triggering a swift build
+          dark-mode-notify
           switchaudio-osx
       ];
       
