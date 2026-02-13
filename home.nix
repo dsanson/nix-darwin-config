@@ -272,7 +272,7 @@ in
     # fonts
     amiri #arabic font
     andika # for for beginning readers
-    charis-sil #another multilingual font
+    charis #another multilingual font
     dejavu_fonts
     nerd-fonts.dejavu-sans-mono
     doulos-sil #another multilingual font
