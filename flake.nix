@@ -161,7 +161,7 @@
       };
 
       security.pam.services.sudo_local.touchIdAuth = true;
-      #security.pam.services.sudo_local.watchIdAuth = true; #disabled because was triggering a swift build
+      security.pam.services.sudo_local.watchIdAuth = true;
 
       system.primaryUser = "desanso"; # https://mynixos.com/nix-darwin/option/system.primaryUser
 
