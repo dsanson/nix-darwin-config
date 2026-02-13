@@ -102,18 +102,11 @@ in
 
   home.shellAliases = {
     "..." = "cd ../..";
-    #"ls" = "gls --hyperlink=auto";
     "ls" = "eza --hyperlink";
     "l" = "ls -lA";
     "rm" = "echo 'rm disabled; use trash or /bin/rm instead'";  #mac specific for now
-    #"addprinter" = "lpadmin -E -p stv412-phil-copier -E -v lpd://cas-papercut.ad.ilstu.edu/stv412-phil-copier -m '/Library/Printers/PPDs/Contents/Resources/Xerox WorkCentre 5325.gz'";
-    #"rmprinter" = "lpadmin -x stv412-phil-copier";
     "wanip" = "dig +short myip.opendns.com @resolver1.opendns.com";
-    "latest_download" = "ls -tU $HOME/Downloads | head -n 1";
-    "preview" = "open -a Preview"; #mac specific
-    "acrobat" = "open -a 'Adobe Acrobat'"; #mac specific
     "lp2"     = "lp -o sides=two-sided-long-edge";
-    "reveal" = "open -R"; #mac specific
     "firefox" = "firefox-wrapper";
     "wttr" = "curl -s \"wttr.in/{$(dig +short myip.opendns.com @resolver1.opendns.com),Carmel%20CA,Paso%20Robles,Tenakee%20AK,Rimrock%20AZ,Libby%20MT}?format=4&u\" | sed 's/, Illinois, United States//'";
     "serve" = "devd -l";
@@ -125,8 +118,12 @@ in
     "volume" = "m volume"; #mac specific
     #"sit" = "echo 1 >> /tmp/com.davidsanson.upliftdesk.in";
     #"stand" = "echo 2 >> /tmp/com.davidsanson.upliftdesk.in";
-    "safari" = "open -a Safari";
     "kdf" = "tdf -p 20 -w (kitten @ get-colors | grep \"^background \" | awk '{print $2}') -b (kitten @ get-colors | grep \"^foreground \" | awk '{print $2}')";
+    "preview" = "open -a Preview"; #mac specific
+    "acrobat" = "open -a 'Adobe Acrobat'"; #mac specific
+    "safari" = "open -a Safari"; #mac specific
+    "reveal" = "open -R"; #mac specific
+
   };
 
   home.sessionVariables = {
