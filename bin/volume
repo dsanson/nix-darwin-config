@@ -1,0 +1,52 @@
+#!/usr/bin/env bash
+set -o errexit
+set -o nounset
+set -o pipefail
+
+VOL=$(osascript -e "output volume of (get volume settings)")
+MUTED=$(osascript -e "output muted of (get volume settings)")
+
+function set_vol() {
+  VOL=$1
+  if [[ $1 -gt 100 ]]; then 
+    VOL=100
+  elif [[ $1 -lt 0 ]]; then
+    VOL=0
+  else
+    VOL=$1
+  fi
+  osascript -e "set Volume $VOL"
+}
+
+case "${1:-}" in
+  [0-9]*)
+    set_vol "$1"
+    ;;
+  [+-][0-9]*)
+    set_vol $((VOL + $1))
+    ;;
+  [xm]*)
+    osascript -e "set volume with output muted"
+    MUTED=true
+    ;;
+  [u]*)
+    osascript -e "set volume without output muted"
+    MUTED=false
+    ;;
+  [t]*)
+    if [[ "$MUTED" == "true" ]]; then
+      osascript -e "set volume without output muted"
+      MUTED=false
+    else
+      osascript -e "set volume with output muted"
+      MUTED=true
+    fi
+    ;;
+esac
+
+if [[ "$MUTED" == "true" ]]; then
+  echo "${VOL}% (muted)"
+else
+  echo "${VOL}%"
+fi
+
