@@ -115,7 +115,6 @@ in
     "play" = "nowplaying-cli play"; #mac specific
     "pause" = "nowplaying-cli pause"; #mac specific
     "next" = "nowplaying-cli next"; #mac specific
-    "volume" = "m volume"; #mac specific
     #"sit" = "echo 1 >> /tmp/com.davidsanson.upliftdesk.in";
     #"stand" = "echo 2 >> /tmp/com.davidsanson.upliftdesk.in";
     "kdf" = "tdf -p 20 -w (kitten @ get-colors | grep \"^background \" | awk '{print $2}') -b (kitten @ get-colors | grep \"^foreground \" | awk '{print $2}')";
@@ -298,7 +297,7 @@ in
     # android-file-transfer # install if needed
     anki-bin # flashcards
     # audacity # was building from source; use brew instead
-    musescore
+    # musescore
     vlc-bin 
 
     # mac specific gui apps
@@ -318,6 +317,11 @@ in
     (writeShellApplication {
       name = "noise";
       text = (builtins.readFile ./bin/noise); 
+    })
+
+    (writeShellApplication {
+      name = "volume";
+      text = (builtins.readFile ./bin/volume); 
     })
 
     (writeShellApplication {
@@ -571,7 +575,6 @@ in
         fish_add_path $HOME/.local/bin
         fish_add_path $HOME/bin 
         fish_add_path /opt/homebrew/bin
-        defaultbrowser firefox >/dev/null
         if type -q kitty
           kitty @ set-colors -c ~/.cache/wal/kitty-colors.conf
         end
@@ -644,6 +647,7 @@ in
     vdirsyncer.enable = true;
     khal = {
       enable = true;
+      package = pkgs-stable.khal;
       settings = {
         default = {
           default_calendar = "work";
