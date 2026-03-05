@@ -576,19 +576,17 @@ in
           kitty @ set-colors -c ~/.cache/wal/kitty-colors.conf
         end
       '';
-      plugins = [
-        # { name = "bass"; src = pkgs.fishPlugins.bass; }
-        # { name = "foreign-env"; src = pkgs.fishPlugins.foreign-env; }
-        {
-          name = "fish-completion-pandoc";
-          src = pkgs.fetchFromGitHub {
-            owner = "dsanson";
-            repo = "fish-completion-pandoc";
-            rev = "7195da6fc4bcbdd49ea63d47c27e4bfec2135660";
-            hash = "sha256-pVobe3JsJWCaVyn+c3Y6+ibxlGTCCD1fj2u9LjEmAPg=";
-          };
-        }
-      ];
+      # plugins = [
+      #   {
+      #     name = "fish-completion-pandoc";
+      #     src = pkgs.fetchFromGitHub {
+      #       owner = "dsanson";
+      #       repo = "fish-completion-pandoc";
+      #       rev = "7195da6fc4bcbdd49ea63d47c27e4bfec2135660";
+      #       hash = "sha256-pVobe3JsJWCaVyn+c3Y6+ibxlGTCCD1fj2u9LjEmAPg=";
+      #     };
+      #   }
+      # ];
     };
 
     direnv = {
