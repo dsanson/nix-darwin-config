@@ -23,6 +23,12 @@ ${if(descriptionlist)}
 \setlist[description]{${descriptionlist}}
 ${endif}
 
+%%%% Letterhead
+
+${if(letterhead)}
+\usepackage{wallpaper}
+\ULCornerWallPaper{1}{/Users/desanso/.local/share/pandoc/letterhead.pdf}
+${endif}
 
 %%%% CV
 

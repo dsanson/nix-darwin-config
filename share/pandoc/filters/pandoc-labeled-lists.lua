@@ -42,7 +42,7 @@ Para = function(element)
       end
     end
     if FORMAT == "latex" then
-      return pandoc.RawInline("latex","\\begin{itemize}\\tightlist " .. content_string .. "\\end{itemize}")
+      return pandoc.RawInline("latex","\\begin{itemize} " .. content_string .. "\\end{itemize}")
     elseif FORMAT == "context" then
       return pandoc.RawInline("context","\\startitemize[packed] " .. content_string .. "\\stopitemize")
     elseif FORMAT:match("html.*") or FORMAT:match("revealjs") then
