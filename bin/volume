@@ -25,11 +25,17 @@ case "${1:-}" in
   [+-][0-9]*)
     set_vol $((VOL + $1))
     ;;
+  up)
+    set_vol $((VOL + 10))
+    ;;
+  down)
+    set_vol $((VOL - 10))
+    ;;
   [xm]*)
     osascript -e "set volume with output muted"
     MUTED=true
     ;;
-  [u]*)
+  un*)
     osascript -e "set volume without output muted"
     MUTED=false
     ;;
