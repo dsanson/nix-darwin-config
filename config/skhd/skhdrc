@@ -114,3 +114,4 @@ m1 < n : skhd -k 'escape'; kitten @ --to=unix:/tmp/visor resize-os-window --acti
 m1 < u : skhd -k "escape"; echo 1 >> /tmp/com.davidsanson.upliftdesk.in
 m1 < shift - u : skhd -k "escape"; echo 2 >> /tmp/com.davidsanson.upliftdesk.in
 
+
