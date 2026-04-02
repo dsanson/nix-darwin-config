@@ -8,7 +8,7 @@ let
       hyperref
       enumitem
       tagpdf
-
+      qrcode
       amsmath
       babel-english
       bidi
