@@ -75,6 +75,7 @@
       ];
 
       nix.package = pkgs.lixPackageSets.stable.lix;
+      nix.gc.automatic = true;
 
       environment.systemPackages = with pkgs; [ 
 
@@ -303,9 +304,8 @@
 
           # quicklook plugins
           "qlcolorcode"
-          "qlmarkdown"
           "qlstephen"
-          "qlvideo"
+          "quicklook-video"
           "quicklook-csv"
           "syntax-highlight"
 
@@ -334,6 +334,7 @@
           "Prime Video"            =  545519333;
           "TomatoFlex"             =  1500965952;
           "Xcode"                  =  497799835;
+          "Markdown Peek"          =  6753810611;
           # "OneDrive"               =  823766827;
           # "DevCleaner"             =  1388020431;
           # "Paprika Recipe Manager" =  451907568;
