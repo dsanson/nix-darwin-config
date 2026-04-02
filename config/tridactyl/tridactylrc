@@ -3,8 +3,9 @@ sanitise tridactyllocal tridactylsync
 
 set storageloc sync
 
-set newtab https://online.bonjourr.fr/
+set newtab https://www.davidsanson.com/Bonjourr
 
+set modeindicatormodes.normal false
 set editorcmd /etc/profiles/per-user/desanso/bin/kitty --single-instance --instance-group=1 --wait-for-single-instance-window-close nvim -c "set ft=pandoc"
 set hintnames numeric
 set hintfiltermode vimperator-reflow
@@ -28,8 +29,8 @@ bind ,s composite get_current_url | shellescape | fillcmdline !s open -a Safari
 "bind ,chr composite get_current_url | shellescape | fillcmdline !s open -a Google Chrome
 
 " save to Zotero
-command zotero exclaim_quiet skhd -k 'ctrl + cmd - z'
-bind ,z zotero
+"command zotero exclaim_quiet /run/current-system/sw/bin/skhd -k 'ctrl + alt - z'
+"bind ,z zotero
 
 " anylist recipe saver
 command anylist_save_recipe composite get_current_url | composite echo winopen https://www.anylist.com/web/recipes/import?url= | fillcmdline
@@ -50,25 +51,21 @@ reseturl ^https://duckduckgo.com F hint -Jbc [class=result__a]
 " go up to subreddit from comments
 bindurl reddit.com gu urlparent 3
 
-quickmark f www.facebook.com
-quickmark r www.reddit.com
-quickmark e www.espn.com
-quickmark x https://www.nytimes.com/crosswords
-quickmark d www.davidsanson.com
-quickmark g www.github.com
-quickmark w https://www.reddit.com/r/warriors
-quickmark l https://carnap.io
-quickmark i https://carnap.io/instructor/dsanson@gmail.com#course-1
-quickmark n https://www.netflix.com/browse
-quickmark b https://annas-archive.org/
+quickmark a https://annas-archive.gl/
+quickmark b https://bsky.app/
 quickmark B https://library.illinoisstate.edu/
 quickmark c https://cs.illinoisstate.edu/
+quickmark d www.davidsanson.com
+quickmark e www.espn.com
+quickmark f www.facebook.com
+quickmark g www.github.com
+quickmark l https://carnap.io
 quickmark m https://my.illinoisstate.edu/
+quickmark r www.reddit.com
+quickmark w https://www.reddit.com/r/warriors
 quickmark z https://zirk.us/home
-quickmark G https://carnap.io/review/ISU_112_SPRING_2024/GradeBook
+quickmark p https://philpeople.org/news
 
-blacklistadd https://www.nytimes.com/crosswords
-blacklistadd https://www.nytimes.com/games/wordle/index.html
 " revealjs
 blacklistadd http://localhost:8000 
 
