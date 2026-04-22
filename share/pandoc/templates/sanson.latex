@@ -17,11 +17,36 @@ ${if(handout)}
 \usepackage{enumitem}
 ${endif}
 
-${if(descriptionlist)}
-\usepackage{enumitem}
-%\setlist[description]{style=multiline,leftmargin=3cm,font=\normalfont}
-\setlist[description]{${descriptionlist}}
-${endif}
+% ${if(descriptionlist)}
+% \usepackage{enumitem}
+% %\setlist[description]{style=multiline,leftmargin=3cm,font=\normalfont}
+% \setlist[description]{${descriptionlist}}
+% ${endif}
+
+% ${if(descriptionlist)}
+% \setlist[description]{%
+%   style=multiline,       % allow multi-line label area
+%   labelwidth=\linewidth, % let label occupy full line so definition follows on next line
+%   labelsep=0pt,          % no gap between label and body
+%   leftmargin=1em,        % indent entire item
+%   font=\bfseries,        % bold label
+%   itemsep=0.5\baselineskip% optional spacing between items
+% }
+% ${endif}
+
+% % Redefine \item for description to automatically put a line break after the label
+% \makeatletter
+% \renewcommand{\item}{%
+%   \@ifnextchar[{\@desc@optitem}{\@desc@stditem}%
+% }
+% \newcommand{\@desc@optitem}[1]{%
+%   \origitem[#1]\par\nobreak
+% }
+% \newcommand{\@desc@stditem}{%
+%   \origitem\par\nobreak
+% }
+\makeatother
+
 
 %%%% Letterhead
 
