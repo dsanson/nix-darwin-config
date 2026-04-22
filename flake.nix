@@ -92,6 +92,7 @@
           findutils
           curl
           wget
+          wget2
           fd
           fdupes
           ack
@@ -460,6 +461,7 @@
             inherit pkgs-stable;
             inherit nixvim;
           };
+          home-manager.backupFileExtension = "backup";
           home-manager.users.desanso.imports = [
             ./home.nix 
           ];
