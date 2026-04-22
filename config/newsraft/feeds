@@ -1,7 +1,22 @@
-@ Local News
+@ Worth Reading
 
 https://www.wglt.org/local-news.rss "WGLT Local News"
+https://www.logicmatters.net/feed/ "Peter Smith"
+https://diaryofdoctorlogic.wordpress.com/feed/ "Sara Uckelman"
+https://dailynous.com/feed/ "Daily Nous"
+https://www.nytimes.com/wirecutter/feed
+https://feeds.feedburner.com/nymag/strategist
+https://kk.org/cooltools/feed/
+https://www.chronicle.com/index.atom "Chronicle of Higher Education"
+https://boingboing.net/feed
+https://feeds-api.dotdashmeredith.com/v1/rss/google/897be986-3713-4fb3-904f-8dfc4cdba23d "Midwest Living"
+https://www.sunset.com/feed "Sunset"
+https://journalofartcriticism.substack.com/feed "Journal of Art Criticism"
+
+@ Local News
+
 https://www.wglt.org/illinois.rss "WGLT State News"
+http://www.videtteonline.com/search/?f=rss "Vidette"
 http://www.pantagraph.com/search/?f=rss&t=article&c=news/local&l=25&s=start_time&sd=desc "Pantagraph Local"
 https://chicagoreader.com/feed/?partner-feed=chicago-reader "Chicago Reader"
 https://blockclubchicago.org/feed/ "Block Club Chicago"
@@ -15,13 +30,10 @@ https://www.bettergov.org/feed/ "Illinois Answers"
 
 @ Philosophy
 
-https://www.logicmatters.net/feed/ "Peter Smith"
-https://diaryofdoctorlogic.wordpress.com/feed/ "Sara Uckelman"
 https://richardzach.org/feed/ "Richard Zach"
 https://objectionable.net/feed/ "Thi Nguyen"
 https://blog.apaonline.org/feed/ "Blog of the APA"
 https://aestheticsforbirds.com/feed/ "Aesthetics for Birds"
-https://dailynous.com/feed/ "Daily Nous"
 https://indianphilosophyblog.org/feed/ "Indian Philosophy Blog"
 https://hiphilangsci.net/feed/ "History and Philosophy of the Language Sciences"
 https://warpweftandway.com/feed/ "Warp Weft and Way"
@@ -30,9 +42,8 @@ https://philosophymodsquad.wordpress.com/feed/ "The Mod Squad"
 
 @ Products
 
-https://www.nytimes.com/wirecutter/feed
-https://feeds.feedburner.com/nymag/strategist
-https://kk.org/cooltools/feed/
+https://recommendo.substack.com/feed
+https://stratabites.substack.com/feed
 https://www.aldireviewer.com/feed/
 https://www.aisleofshame.com/feed/
 http://toolsandtoys.net/feed/
@@ -64,13 +75,9 @@ https://www.recipetineats.com/feed/
 https://www.teaforturmeric.com/feed/
 
 
-@ Higher Ed News
-
-https://www.chronicle.com/index.atom "Chronicle of Higher Education"
-
 @ Magazines and Blogs
 
-https://boingboing.net/feed
+
 http://atlasobscura.com/rss.xml
 https://www.aldaily.com/feed "Arts and Letters Daily"
 https://aeon.co/feed.rss "Aeon"
@@ -78,9 +85,9 @@ https://rss.metafilter.com/metafilter.rss
 http://feeds.kottke.org/main "Kottke"
 http://feeds.feedburner.com/OpenCulture "Open Culture"
 https://www.smithsonianmag.com/rss/latest_articles/ "Smithsonian Magazine"
-https://feeds-api.dotdashmeredith.com/v1/rss/google/897be986-3713-4fb3-904f-8dfc4cdba23d "Midwest Living"
-https://www.sunset.com/feed "Sunset"
 https://feeds-api.dotdashmeredith.com/v1/rss/google/169a0a31-1a9a-4881-9828-90e544c8e459 "Southern Living"
+https://snyder.substack.com/feed
+https://www.wired.com/feed
 
 @ World News
 
@@ -100,7 +107,6 @@ https://columbiainsight.org/feed/ "Columbia Insight"
 https://www.hcn.org/feed/ "High Country News"
 https://www.underscore.news/feed/ "Underscore Native News"
 https://www.opencampus.org/feed/ "Open Campus"
-http://www.videtteonline.com/search/?f=rss&t=article&l=50&s=start_time&sd=desc&k%5B%5D=%23topstory "The Vidette"
 http://greatlakesecho.org/feed/
 
 @ Sports
@@ -120,7 +126,6 @@ https://www.livescience.com/feeds/all
 
 @ Art
 
-https://journalofartcriticism.substack.com/feed "Journal of Art Criticism"
 https://rss.nytimes.com/services/xml/rss/nyt/Arts.xml "NYTimes Arts"
 
 @ Tech
@@ -150,3 +155,184 @@ https://www.youtube.com/feeds/videos.xml?channel_id=UC6SNxiLzSlh8e0yjndE9o_A "Co
 https://www.youtube.com/feeds/videos.xml?channel_id=UCsaGKqPZnGp_7N80hcHySGQ "Tasting History"
 https://www.youtube.com/feeds/videos.xml?channel_id=UCqqJQ_cXSat0KIAVfIfKkVA "Kenji Lopez-Alt"
 
+@ Random Feeds
+
+https://www.biodiversity.aq//feed.xml
+https://www.cbc.ca/webfeed/rss/rss-arts
+https://gardentherapy.ca/feed/
+https://northernexplorers.ca/feed/
+https://museumsnl.ca/feed/
+https://www.bluewateradventures.ca/feed/
+https://www.outdoorcanada.ca/feed/
+https://www.bcmag.ca/feed/
+https://canoo.ca/feed/
+https://revue.leslibraires.ca/feed/
+https://vancouversun.com/feed/atom
+https://montrealgazette.com/feed/atom
+https://theshoreline.ca/feed/
+https://artdaily.cc/rss.asp
+https://www.bvihsa.vg/feed/
+https://walesonline.co.uk/rss.xml
+https://elle.com/rss/all.xml
+https://variety.com/feed/rss/
+https://cosmopolitan.com/rss/all.xml
+https://www.newyorker.com/feed/rss
+https://www.marieclaire.com/feeds.xml
+https://dailyillini.com/feed/
+https://www.chicagomag.com/feed/
+
+@ NPR Shows
+
+https://feeds.npr.org/2/rss.xml
+https://feeds.npr.org/3/rss.xml
+https://feeds.npr.org/4/rss.xml
+https://feeds.npr.org/5/rss.xml
+https://feeds.npr.org/7/rss.xml
+https://feeds.npr.org/10/rss.xml
+https://feeds.npr.org/11/rss.xml
+https://feeds.npr.org/13/rss.xml
+https://feeds.npr.org/14/rss.xml
+https://feeds.npr.org/15/rss.xml
+https://feeds.npr.org/16/rss.xml
+https://feeds.npr.org/17/rss.xml
+https://feeds.npr.org/35/rss.xml
+https://feeds.npr.org/38/rss.xml
+https://feeds.npr.org/46/rss.xml
+https://feeds.npr.org/47/rss.xml
+https://feeds.npr.org/57/rss.xml
+https://feeds.npr.org/58/rss.xml
+https://feeds.npr.org/60/rss.xml
+https://feeds.npr.org/61/rss.xml
+https://feeds.npr.org/62/rss.xml
+https://feeds.npr.org/64/rss.xml
+https://feeds.npr.org/65/rss.xml
+
+@ NPR Feeds
+
+https://feeds.npr.org/1001/rss.xml  
+https://feeds.npr.org/1002/rss.xml  
+https://feeds.npr.org/1003/rss.xml  
+https://feeds.npr.org/1004/rss.xml  
+https://feeds.npr.org/1006/rss.xml  
+https://feeds.npr.org/1007/rss.xml  
+https://feeds.npr.org/1008/rss.xml  
+https://feeds.npr.org/1009/rss.xml  
+https://feeds.npr.org/1010/rss.xml  
+https://feeds.npr.org/1013/rss.xml  
+https://feeds.npr.org/1014/rss.xml  
+https://feeds.npr.org/1015/rss.xml  
+https://feeds.npr.org/1016/rss.xml  
+https://feeds.npr.org/1017/rss.xml  
+https://feeds.npr.org/1018/rss.xml  
+https://feeds.npr.org/1019/rss.xml  
+https://feeds.npr.org/1020/rss.xml  
+https://feeds.npr.org/1023/rss.xml  
+https://feeds.npr.org/1024/rss.xml  
+https://feeds.npr.org/1025/rss.xml  
+https://feeds.npr.org/1026/rss.xml  
+https://feeds.npr.org/1027/rss.xml  
+https://feeds.npr.org/1028/rss.xml  
+https://feeds.npr.org/1029/rss.xml  
+https://feeds.npr.org/1030/rss.xml  
+https://feeds.npr.org/1031/rss.xml  
+https://feeds.npr.org/1032/rss.xml  
+https://feeds.npr.org/1033/rss.xml  
+https://feeds.npr.org/1034/rss.xml  
+https://feeds.npr.org/1039/rss.xml  
+https://feeds.npr.org/1040/rss.xml  
+https://feeds.npr.org/1045/rss.xml  
+https://feeds.npr.org/1046/rss.xml  
+https://feeds.npr.org/1047/rss.xml  
+https://feeds.npr.org/1048/rss.xml  
+https://feeds.npr.org/1051/rss.xml  
+https://feeds.npr.org/1052/rss.xml  
+https://feeds.npr.org/1053/rss.xml  
+https://feeds.npr.org/1054/rss.xml  
+https://feeds.npr.org/1055/rss.xml  
+https://feeds.npr.org/1056/rss.xml  
+https://feeds.npr.org/1057/rss.xml  
+https://feeds.npr.org/1059/rss.xml  
+https://feeds.npr.org/1061/rss.xml  
+https://feeds.npr.org/1062/rss.xml  
+https://feeds.npr.org/1064/rss.xml  
+https://feeds.npr.org/1065/rss.xml  
+https://feeds.npr.org/1066/rss.xml  
+https://feeds.npr.org/1067/rss.xml  
+https://feeds.npr.org/1068/rss.xml  
+https://feeds.npr.org/1070/rss.xml  
+https://feeds.npr.org/1071/rss.xml  
+https://feeds.npr.org/1072/rss.xml  
+https://feeds.npr.org/1073/rss.xml  
+https://feeds.npr.org/1074/rss.xml  
+https://feeds.npr.org/1076/rss.xml  
+https://feeds.npr.org/1077/rss.xml  
+https://feeds.npr.org/1078/rss.xml  
+https://feeds.npr.org/1081/rss.xml  
+https://feeds.npr.org/1083/rss.xml  
+https://feeds.npr.org/1084/rss.xml  
+https://feeds.npr.org/1085/rss.xml  
+https://feeds.npr.org/1086/rss.xml  
+https://feeds.npr.org/1087/rss.xml  
+https://feeds.npr.org/1088/rss.xml  
+https://feeds.npr.org/1089/rss.xml  
+https://feeds.npr.org/1090/rss.xml  
+https://feeds.npr.org/1092/rss.xml  
+https://feeds.npr.org/1093/rss.xml  
+https://feeds.npr.org/1095/rss.xml  
+https://feeds.npr.org/1096/rss.xml  
+https://feeds.npr.org/1097/rss.xml  
+https://feeds.npr.org/1098/rss.xml  
+https://feeds.npr.org/1099/rss.xml  
+https://feeds.npr.org/1100/rss.xml  
+https://feeds.npr.org/1101/rss.xml  
+https://feeds.npr.org/1102/rss.xml  
+https://feeds.npr.org/1103/rss.xml  
+https://feeds.npr.org/1104/rss.xml  
+https://feeds.npr.org/1105/rss.xml  
+https://feeds.npr.org/1106/rss.xml  
+https://feeds.npr.org/1107/rss.xml  
+https://feeds.npr.org/1108/rss.xml  
+https://feeds.npr.org/1109/rss.xml  
+https://feeds.npr.org/1110/rss.xml  
+https://feeds.npr.org/1111/rss.xml  
+https://feeds.npr.org/1112/rss.xml  
+https://feeds.npr.org/1113/rss.xml  
+https://feeds.npr.org/1114/rss.xml  
+https://feeds.npr.org/1115/rss.xml  
+https://feeds.npr.org/1116/rss.xml  
+https://feeds.npr.org/1117/rss.xml  
+https://feeds.npr.org/1118/rss.xml  
+https://feeds.npr.org/1119/rss.xml  
+https://feeds.npr.org/1120/rss.xml  
+https://feeds.npr.org/1121/rss.xml  
+https://feeds.npr.org/1122/rss.xml  
+https://feeds.npr.org/1124/rss.xml  
+https://feeds.npr.org/1125/rss.xml  
+https://feeds.npr.org/1126/rss.xml  
+https://feeds.npr.org/1127/rss.xml  
+https://feeds.npr.org/1128/rss.xml  
+https://feeds.npr.org/1131/rss.xml  
+https://feeds.npr.org/1132/rss.xml  
+https://feeds.npr.org/1133/rss.xml  
+https://feeds.npr.org/1134/rss.xml  
+https://feeds.npr.org/1135/rss.xml  
+https://feeds.npr.org/1136/rss.xml  
+https://feeds.npr.org/1137/rss.xml  
+https://feeds.npr.org/1138/rss.xml  
+https://feeds.npr.org/1139/rss.xml  
+https://feeds.npr.org/1141/rss.xml  
+https://feeds.npr.org/1142/rss.xml  
+https://feeds.npr.org/1143/rss.xml  
+https://feeds.npr.org/1144/rss.xml  
+https://feeds.npr.org/1145/rss.xml  
+https://feeds.npr.org/1146/rss.xml  
+https://feeds.npr.org/1149/rss.xml  
+https://feeds.npr.org/1150/rss.xml  
+https://feeds.npr.org/1151/rss.xml  
+https://feeds.npr.org/1161/rss.xml  
+https://feeds.npr.org/1162/rss.xml  
+https://feeds.npr.org/1163/rss.xml  
+https://feeds.npr.org/1164/rss.xml  
+https://feeds.npr.org/1165/rss.xml  
+https://feeds.npr.org/1166/rss.xml  
+https://feeds.npr.org/1167/rss.xml  
