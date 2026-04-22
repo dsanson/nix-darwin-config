@@ -376,6 +376,12 @@ in
       text = (builtins.readFile ./bin/uplift);
     })
 
+    (writeShellApplication {
+      name = "generate_references";
+      runtimeInputs = [ pandoc jq ];
+      text = (builtins.readFile ./bin/generate_references);
+    })
+
   ])
 
   ++
@@ -735,6 +741,17 @@ in
         size = 18.0;
         package = pkgs.fira-mono;
       };
+      keybindings = {
+        "kitty_mod+c" = "copy_selection_or_last_command_output";
+        "kitty_mod+k>k" = "command_palette";
+        "kitty_mod+k>s" = "goto_session $HOME/.local/share/kitty/sessions";
+        "kitty_mod+k>n" = "goto_session $HOME/.local/share/kitty/sessions/notes.kitty-session";
+        "kitty_mod+k>shift+s" = "save_as_session --base-dir $HOME/.local/share/kitty/sessions";
+        # "ctrl+b>p" = "scroll_to_prompt -1 3"; #scroll to previous prompt
+        # "ctrl+b>n" = "scroll_to_prompt 1"; #scroll to next prompt
+        # "ctrl+b>o" = "show_last_visited_command_output";
+      };
+      shellIntegration.enableFishIntegration = true;
       settings = {
         editor = "nvim"; # this is a kludge until I get nixvim properly integrated into home manager
         bold_font = "auto";
