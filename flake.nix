@@ -414,11 +414,8 @@
             setup_space 4
             setup_space 5
 
-            yabai -m rule --add app="^Zotero$" space=2
             yabai -m rule --add app="^Zotero$" title="^Zotero$" manage=on
-            yabai -m rule --add app="^Music$" space=4
             yabai -m rule --add app="^iTunes$" title="^MiniPlayer$" manage=off
-            yabai -m rule --add app="^TV$" space=4
             yabai -m rule --add app="^Finder$" title="^Trash$" manage=off
             yabai -m rule --add app="^Finder$" title="^Copy$" manage=off
             yabai -m rule --add app="^System Preferences$" manage=off

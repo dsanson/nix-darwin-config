@@ -134,7 +134,7 @@ in
     BROWSER = "open"; #mac specific
     MANPAGER = "nvim +Man!";
     MANWIDTH = 999;
-    #FFSEND_HOST = "https://send.zcyph.cc";
+    FFSEND_HOST = "https://send.mni.li";
     FFSEND_COPY = "";
     FFSEND_EXPIRY_TIME = "7d";
     FFSEND_DOWNLOAD_LIMIT = "20";
@@ -163,7 +163,7 @@ in
     manix # search nix documentation
     fontconfig
 
-    # ffsend # use nix shell nixpkgs#ffsend instead
+    ffsend 
     # uni # unicode lookup use nix shell nixpkgs#uni instead
 
     lua54Packages.lua
@@ -547,7 +547,7 @@ in
     fish = {
       enable = true;
       functions = {
-        retakes = "carnap hiddens $argv | sort";
+        #retakes = "carnap hiddens $argv | sort";
         playlist = "osascript -e 'tell app \"Music\" to play the playlist named \"'$argv'\"'";
         fish_title = ''
           function fish_title
@@ -581,8 +581,10 @@ in
         fish_add_path $HOME/.local/bin
         fish_add_path $HOME/bin 
         fish_add_path /opt/homebrew/bin
-        if type -q kitty
+        if test "$TERM_PROGRAM" = "kitty"
           kitty @ set-colors -c ~/.cache/wal/kitty-colors.conf
+        else if test "$TERM_PROGRAM" = "Apple_Terminal"
+          set -gx FZF_DEFAULT_OPTS "$FZF_DEFAULT_OPTS --marker='>'"
         end
       '';
       # plugins = [

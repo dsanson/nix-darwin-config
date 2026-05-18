@@ -23,6 +23,47 @@ function Split_at_Labels(table)
   return new_table, len
 end
 
+Div = function(element)
+  if element.attributes.lprefix or element.attributes.lsuffix then
+    local prefix = element.attributes.lprefix
+    if not prefix then 
+      prefix = ""
+    end
+    local suffix = element.attributes.lsuffix
+    if not suffix then 
+      suffix = ". "
+    end
+    if FORMAT == "typst" then
+      return {
+        pandoc.RawBlock('typst','#block[ #set enum(numbering: "' .. prefix .. '1' .. suffix .. '")'),
+        element,
+        pandoc.RawBlock('typst',']')
+      }
+    elseif FORMAT == "latex" then
+      return {
+         pandoc.RawBlock('latex','{ \\renewcommand{\\labelenumi}{' .. prefix .. '\\arabic{enumi}' .. suffix .. '}'),
+         element,
+         pandoc.RawBlock('latex','}')
+
+      }
+    elseif FORMAT:match("html.*") then
+      local style = "<style> @counter-style " .. prefix .. "-arabic { system: extends arabic; prefix: '" .. prefix .. "'; suffix: '" .. suffix .. "'; } @scope{ :scope ol { list-style-type: " .. prefix .. "-arabic; }}</style>"
+      return { pandoc.RawBlock("html","<div>" .. style), 
+               element,
+               pandoc.RawBlock("html","</div>")
+             }
+    end
+  end
+end
+
+-- Div = function(element)
+--   if element.classes:includes("labeled-list") then
+--     if FORMAT:match("html.*") then
+--       return pandoc.RawInline("html","") 
+--     end
+--   end
+-- end
+
 Para = function(element)
   first = element.content[1]
   if first.t == "Str" and first.text:match("@=.*") then
