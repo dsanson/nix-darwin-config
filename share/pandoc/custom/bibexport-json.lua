@@ -21,7 +21,7 @@ function Doc(body, meta, vars)
     '" | jq \'map(select(.id == (' .. 
     cites .. '))) ' ..
     '| map(del(.abstract, .accessed, .file, ."open-in-zotero", .tags)) ' ..
-    '| map(select((.URL // "") | test("^zotero://") | not))' ..
+    --'| map(select((.URL // "") | test("^zotero://") | not))' ..
     '\'' ..
     ' > ' .. bibout)
   return 'Output written to ' .. bibout
