@@ -255,16 +255,17 @@
         # ];
 
         brews = [
+          "bookokrat"
           "brightness" #used by upliftdesk to check if monitor is off
           "displayplacer" #for rotating and managing displays"
           "launch" #macos launcher that is better than open
+          "mas"
           "pandoc" #nix pandoc is chronically out of date
           "rename" #consider alternatives
           "repeater" #cli anki-style flashcards
           #"switchaudio-osx"
           "tag" #macos file tagging
           "yt-dlp"
-          "keith/formulae/reminders-cli" #not sure this will work
         ];
 
         caskArgs.no_quarantine = true;

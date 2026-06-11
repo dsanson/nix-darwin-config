@@ -65,6 +65,7 @@ quickmark r www.reddit.com
 quickmark w https://www.reddit.com/r/warriors
 quickmark z https://zirk.us/home
 quickmark p https://philpeople.org/news
+quickmark j https://www.jewelosco.com/loyalty/coupons-deals
 
 " revealjs
 blacklistadd http://localhost:8000 
