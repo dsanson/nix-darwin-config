@@ -79,9 +79,9 @@ let
 
 in
 {
-  home.username = "desanso";
+  home.username = "david";
   home.stateVersion = "24.11";
-  home.homeDirectory = "/Users/desanso"; #mac specific
+  home.homeDirectory = "/Users/david"; #mac specific
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
 
@@ -96,7 +96,7 @@ in
   #   "$HOME/bin "
   #   "$HOME/.local/bin"
   #   "/opt/homebrew/bin"
-  #   "/etc/profiles/per-user/desanso/bin"
+  #   "/etc/profiles/per-user/david/bin"
   #   "/run/current-system/sw/bin"
   # ];
 
@@ -278,6 +278,7 @@ in
     font-awesome
     gentium # good for diacritics
     kawkab-mono-font # arabic monospace font
+    # nerd-fonts.monofur
     # monoid
     # nerd-fonts.monoid
     mononoki
@@ -288,6 +289,7 @@ in
     victor-mono # has all arabic transliteration diacritics
     nerd-fonts.victor-mono # has all arabic transliteration diacritics
     xits-math
+    xkcd-font
     cardo # font specifically designed for the needs of classicists, Biblical scholars, medievalists, and linguists
     libertinus # recommended math font to pair with cardo
     crimson-pro
@@ -415,55 +417,55 @@ in
   #   };
   # };
 
-  home.file.pandoc = {
-    source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/.config/nix-darwin-config/share/pandoc";
-    target = ".local/share/pandoc";
-  };
+  # home.file.pandoc = {
+  #   source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/.config/nix-darwin-config/share/pandoc";
+  #   target = ".local/share/pandoc";
+  # };
 
-  home.file.kitty-launch-actions = {
-    source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/.config/nix-darwin-config/config/kitty/launch-actions.conf";
-    target = ".config/kitty/launch-actions.conf";
-  };
+  # home.file.kitty-launch-actions = {
+  #   source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/.config/nix-darwin-config/config/kitty/launch-actions.conf";
+  #   target = ".config/kitty/launch-actions.conf";
+  # };
 
-  home.file.skhdrc = {
-    source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/.config/nix-darwin-config/config/skhd/skhdrc";
-    target = ".config/skhd/skhdrc";
-  };
+  # home.file.skhdrc = {
+  #   source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/.config/nix-darwin-config/config/skhd/skhdrc";
+  #   target = ".config/skhd/skhdrc";
+  # };
 
-  home.file.sioyek = {
-    source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/.config/nix-darwin-config/config/sioyek";
-    target = ".config/sioyek";
-  };
+#  home.file.sioyek = {
+#    source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/.config/nix-darwin-config/config/sioyek";
+#    target = ".config/sioyek";
+#  };
 
-  home.file.hellwal = {
-    source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/.config/nix-darwin-config/config/hellwal";
-    target = ".config/hellwal";
-  };
+  # home.file.hellwal = {
+  #   source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/.config/nix-darwin-config/config/hellwal";
+  #   target = ".config/hellwal";
+  # };
 
   # home.file.chawan = {
   #   source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/.config/nix-darwin-config/config/chawan/config.toml";
   #   target = ".config/chawan";
   # };
 
-  home.file.newsraft = {
-    source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/.config/nix-darwin-config/config/newsraft";
-    target = ".config/newsraft";  
-  };
+  # home.file.newsraft = {
+  #   source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/.config/nix-darwin-config/config/newsraft";
+  #   target = ".config/newsraft";  
+  # };
 
-  home.file.sketchybar = {
-    source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/.config/nix-darwin-config/config/sketchybar";
-    target = ".config/sketchybar";
-  };
+  # home.file.sketchybar = {
+  #   source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/.config/nix-darwin-config/config/sketchybar";
+  #   target = ".config/sketchybar";
+  # };
 
-  home.file.tridactyl = {
-    source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/.config/nix-darwin-config/config/tridactyl";
-    target = ".config/tridactyl";
-  };
+  # home.file.tridactyl = {
+  #   source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/.config/nix-darwin-config/config/tridactyl";
+  #   target = ".config/tridactyl";
+  # };
 
-  home.file.presenterm = {
-    source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/.config/nix-darwin-config/config/presenterm";
-    target = ".config/presenterm";
-  };
+  # home.file.presenterm = {
+  #   source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/.config/nix-darwin-config/config/presenterm";
+  #   target = ".config/presenterm";
+  # };
 
   accounts.calendar = {
     basePath = ".calendars";
@@ -523,7 +525,7 @@ in
       historyControl = [ "erasedups" ];
       historyIgnore = [ "ls" "cd" "exit" "z" ];
       bashrcExtra = ''
-        export PATH="$HOME/bin:$HOME/.local/bin:/etc/profiles/per-user/desanso/bin:/run/current-system/sw/bin:$PATH"
+        export PATH="$HOME/bin:$HOME/.local/bin:/etc/profiles/per-user/david/bin:/run/current-system/sw/bin:$PATH"
       '';
       initExtra = ''
         set -o vi
@@ -540,7 +542,7 @@ in
       history.ignoreAllDups = true;
       syntaxHighlighting.enable = true;
       initContent = ''
-        export PATH="$HOME/bin:$HOME/.local/bin:/etc/profiles/per-user/desanso/bin:/run/current-system/sw/bin:$PATH"
+        export PATH="$HOME/bin:$HOME/.local/bin:/etc/profiles/per-user/david/bin:/run/current-system/sw/bin:$PATH"
         bindkey -v
       '';
     };
@@ -577,7 +579,7 @@ in
           eval (luarocks path)
         end
         fish_add_path /run/current-system/sw/bin
-        fish_add_path /etc/profiles/per-user/desanso/bin
+        fish_add_path /etc/profiles/per-user/david/bin
         fish_add_path $HOME/.local/bin
         fish_add_path $HOME/bin 
         fish_add_path /opt/homebrew/bin

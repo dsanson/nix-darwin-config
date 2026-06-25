@@ -9,7 +9,7 @@
     <true/>
     <key>ProgramArguments</key>
     <array>
-        <string>/Users/desanso/bin/upliftdesk</string>
+        <string>/Users/david/bin/upliftdesk</string>
         <string>--device</string>
         <string>ceb307ee-5bc4-459b-44b9-dd12e40b683b</string>
         <string>--preset1</string>

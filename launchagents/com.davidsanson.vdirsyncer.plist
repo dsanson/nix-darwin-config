@@ -6,7 +6,7 @@
   <string>com.davidsanson.vdirsyncer</string>
   <key>ProgramArguments</key>
   <array>
-      <string>/etc/profiles/per-user/desanso/bin/vdirsyncer</string>
+      <string>/etc/profiles/per-user/david/bin/vdirsyncer</string>
       <string>sync</string>
   </array>
   <key>EnvironmentVariables</key>

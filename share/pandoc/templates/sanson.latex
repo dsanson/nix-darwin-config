@@ -52,7 +52,7 @@ ${endif}
 
 ${if(letterhead)}
 \usepackage{wallpaper}
-\ULCornerWallPaper{1}{/Users/desanso/.local/share/pandoc/letterhead.pdf}
+\ULCornerWallPaper{1}{/Users/david/.local/share/pandoc/letterhead.pdf}
 ${endif}
 
 %%%% CV

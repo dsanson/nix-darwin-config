@@ -17,7 +17,7 @@
     <key>EnvironmentVariables</key>
     <dict>
         <key>PATH</key>
-        <string>/Users/desanso/bin:/opt/homebrew/bin:/etc/profiles/per-user/desanso/bin:/run/current-system/sw/bin:/nix/var/nix/profiles/default/bin:/usr/local/bin:/usr/bin:/usr/sbin:/bin:/sbin</string>
+        <string>/Users/david/bin:/opt/homebrew/bin:/etc/profiles/per-user/david/bin:/run/current-system/sw/bin:/nix/var/nix/profiles/default/bin:/usr/local/bin:/usr/bin:/usr/sbin:/bin:/sbin</string>
     </dict>
     <key>StandardErrorPath</key>
     <string>/tmp/ke.bou.dark-mode-notify.err</string>

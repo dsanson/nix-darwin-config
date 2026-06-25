@@ -6,12 +6,11 @@ set storageloc sync
 set newtab https://www.davidsanson.com/Bonjourr
 
 set modeindicatormodes.normal false
-set editorcmd /etc/profiles/per-user/desanso/bin/kitty --single-instance --instance-group=1 --wait-for-single-instance-window-close nvim -c "set ft=pandoc"
+set editorcmd /etc/profiles/per-user/david/bin/kitty --single-instance --instance-group=1 --wait-for-single-instance-window-close nvim -c "set ft=pandoc"
 set hintnames numeric
 set hintfiltermode vimperator-reflow
 set incsearch true
 set theme auto
-"set newtab file:///Users/desanso/.config/tridactyl/blank.html
 
 " yank shortened or canonical url
 bind yy clipboard yankshort

@@ -9,14 +9,14 @@ id=$(yabai -m query --windows | jq '.[]|select(.scratchpad=="visor")|.id')
 case "${1:-}" in
   init)
     if [[ "$id" == "" ]]; then
-      open -a kitty.app -n --args --title "visor" /etc/profiles/per-user/desanso/bin/fish -c 'q -w'
+      open -a kitty.app -n --args --title "visor" /etc/profiles/per-user/david/bin/fish -c 'q -w'
     fi
     ;;
   toggle|*)
     if [[ $id -gt 0 ]]; then
       yabai -m window --toggle visor  
     else
-      open -a kitty.app -n --args --title "visor" /etc/profiles/per-user/desanso/bin/fish -c 'q -w'
+      open -a kitty.app -n --args --title "visor" /etc/profiles/per-user/david/bin/fish -c 'q -w'
     fi
     ;;
 esac
