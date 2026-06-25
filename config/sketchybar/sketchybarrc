@@ -1,8 +1,8 @@
-#PATH="/etc/profiles/per-user/desanso/bin/:$PATH"
+#PATH="/etc/profiles/per-user/david/bin/:$PATH"
 PLUGIN_DIR="$HOME/.config/sketchybar/plugins"
 
 source "$HOME/.cache/wal/sketchybar-colors.conf"
-ICON_FONT="Hack Nerd Font:Bold:18.0" 
+ICON_FONT="FiraCode Nerd Font:Bold:18.0" 
 LABEL_FONT="Helvetica Neue:Bold:14.0" 
 
 ############## BAR ############## 
@@ -94,45 +94,18 @@ sketchybar \
 
 CLOCK_OPTS=(
   update_freq=10
-  script='sketchybar --set $NAME label="$(date '+%H:%M')"'
+  script='sketchybar --set $NAME label="$(date "+%-m/%d   %H:%M")"'
   click_script="open -a Calendar"
-  label.color="$COLOR"
   label.font="$LABEL_FONT" 
-  background.padding_right=8
-  label.background.drawing=on 
-  label.background.height=15 
-  label.background.corner_radius=4 
-  label.background.color="$UNSELECTED_COLOR"
-  label.highlight_color="$SELECTED_COLOR"
-  label.padding_left=8
+  label.padding_left=0
   label.padding_right=8 
   label.y_offset=1
 )
 
-DATE_OPTS=(
-  update_freq=600
-  script='sketchybar --set $NAME label="$(date '+%d')"'
-  click_script="open -a Calendar"
-  label.color="$COLOR"
-  label.font="$LABEL_FONT" 
-  label.background.drawing=on 
-  label.background.height=20
-  label.background.border_color=0xff${RAW_COLOR[8]}
-  label.background.border_width=2
-  label.background.corner_radius=4 
-  label.background.color="$UNSELECTED_COLOR"
-  label.highlight_color="$SELECTED_COLOR"
-  label.padding_left=6
-  label.padding_right=6 
-  label.y_offset=1
-)
-
 BATTERY_OPTS=(
-  script="COLOR=$COLOR $PLUGIN_DIR/battery.sh" 
+  script="$PLUGIN_DIR/battery.sh" 
   click_script="open /System/Library/PreferencePanes/Battery.prefPane"
   update_freq=600
-  label=""
-  label.padding_left="-19" 
 )
 
 BATTERY_EVENTS=(
@@ -143,12 +116,10 @@ BATTERY_EVENTS=(
 sketchybar \
   --add item clock right \
   --set clock "${CLOCK_OPTS[@]}" \
-  --add item date right \
-  --set date "${DATE_OPTS[@]}" \
   --add item battery right \
   --set battery "${BATTERY_OPTS[@]}" \
   --subscribe battery "${BATTERY_EVENTS[@]}" \
-  --add bracket right clock date battery \
+  --add bracket right clock battery \
   --set right \
     background.height=33 \
     background.color="$COLOR"
