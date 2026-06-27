@@ -2,8 +2,9 @@
 PLUGIN_DIR="$HOME/.config/sketchybar/plugins"
 
 source "$HOME/.cache/wal/sketchybar-colors.conf"
-ICON_FONT="FiraCode Nerd Font:Bold:18.0" 
-LABEL_FONT="Helvetica Neue:Bold:14.0" 
+ICON_FONT="FiraCode Nerd Font:Bold:22.0" 
+LABEL_FONT="Helvetica Neue:Regular:14.0" 
+SPACE_FONT="Helvetica Neue:Regular:12.0" 
 
 ############## BAR ############## 
 bar=(
@@ -54,10 +55,10 @@ yabai -m query --spaces | \
       associated_display=$DISPLAY 
       icon="$ICON" 
       icon.color="$COLOR"
-      icon.font="$LABEL_FONT" 
+      icon.font="$SPACE_FONT" 
       background.padding_left=8
       icon.background.drawing=on 
-      icon.background.height=15 
+      icon.background.height=16 
       icon.background.corner_radius=4 
       icon.background.color="$UNSELECTED_COLOR"
       icon.highlight_color="$SELECTED_COLOR"
@@ -94,7 +95,7 @@ sketchybar \
 
 CLOCK_OPTS=(
   update_freq=10
-  script='sketchybar --set $NAME label="$(date "+%-m/%d   %H:%M")"'
+  script='sketchybar --set $NAME label="$(date "+%a %b %d   %H:%M")"'
   click_script="open -a Calendar"
   label.font="$LABEL_FONT" 
   label.padding_left=0
