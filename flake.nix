@@ -15,7 +15,7 @@
 
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
-    nixpkgs-stable.url = "github:NixOS/nixpkgs/nixos-25.11";
+    nixpkgs-stable.url = "github:NixOS/nixpkgs/nixos-26.05";
     nix-darwin = {
       url = "github:LnL7/nix-darwin";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -37,12 +37,14 @@
         experimental-features = "nix-command flakes";
         trusted-users = ["@admin"];
       };
+
+      ids.gids.nixbld = 350;
       
       nixpkgs.config.allowUnfree = true;
 
-      users.users.desanso = {
+      users.users.david = {
         description = "David Sanson";
-        home = "/Users/desanso";
+        home = "/Users/david";
         shell = pkgs.fish;
       };
 
@@ -158,14 +160,14 @@
       nixpkgs.hostPlatform = "aarch64-darwin";
  
       networking = {
-        computerName = "halibut";
-        hostName = "halibut";
+        computerName = "sockeye";
+        hostName = "sockeye";
       };
 
       security.pam.services.sudo_local.touchIdAuth = true;
       security.pam.services.sudo_local.watchIdAuth = true;
 
-      system.primaryUser = "desanso"; # https://mynixos.com/nix-darwin/option/system.primaryUser
+      system.primaryUser = "david"; # https://mynixos.com/nix-darwin/option/system.primaryUser
 
       # migrate to targets.darwin.defaults in home manager
       system.defaults = {
@@ -192,9 +194,9 @@
           "com.apple.sound.beep.volume" = 0.4;
         };
         
-        universalaccess = {
-         reduceMotion = true;
-        };
+        #universalaccess = {
+        # reduceMotion = true;
+        #};
 
         dock = {
           appswitcher-all-displays = true;
@@ -256,7 +258,6 @@
 
         brews = [
           "bookokrat"
-          "brightness" #used by upliftdesk to check if monitor is off
           "displayplacer" #for rotating and managing displays"
           "launch" #macos launcher that is better than open
           "mas"
@@ -268,41 +269,38 @@
           "yt-dlp"
         ];
 
-        caskArgs.no_quarantine = true;
         casks = [
-          # Important Apps
-          "anylist" # not on nixpkgs
+          # Core Apps
+          "firefox" # looks like nixpkg may now work. But version lags.
           "calibre" # nixpkgs broken on darwin
-            #"discord" # available on nixpkgs but poorly behaved
-            #"firefox" # looks like it may now work. But version lags.
-          "google-chrome" # nixpkgs has chromium but linux only
-          #"microsoft-office" # not on nixpkgs # this breaks because of microsoft defender
-          "obs" # nixkpgs only builds for linux
-          "obsidian" # nixpkgs linux only; am I still using this?
-          "quicksilver" # not on nixpkgs
-          "signal"
-          "libreoffice"
-          "adobe-acrobat-pro"
           "zotero"
-          
-          # Utilities and Tweaks
-          "karabiner-elements" # nixpkgs needs to be updated for 15.0
+          "quicksilver" # not on nixpkgs
+          "anylist" # not on nixpkgs
+          "adobe-acrobat-pro"
+          # "google-chrome" # nixpkgs has chromium but linux only
+          "ungoogled-chromium"
+          "microsoft-word"
+          "microsoft-excel"
+          "obsidian" # nixpkgs linux only; am I still using this?
+          #"boring-notch"
+          "atoll"
           "keepingyouawake" # not on nixpkgs; caffeinate app
-          "itsycal" # nixpkgs installs, but doesn't work; complains needs to be installed in /Applications
-          "the-unarchiver" # nixpkgs has cli version
-          "zerotier-one" # nixpkgs linux only
-          "maccy" # clipboard manager
-          "satori" # the ancient screensaver
-          "aerial" # video screen savers
-          "adobe-digital-editions" # for adobe drm pdfs
-          #"aegisub" # brew marked as deprecated
+
+          # Tools worth keeping around
+          "obs" # nixkpgs only builds for linux
+          "libreoffice"
           "dupeguru" # marked as broken in nix
           "raspberry-pi-imager" # nixpkgs#rpi-imager marked as broken
+          "zerotier-one" # nixpkgs linux only
+          "the-unarchiver" # nixpkgs has cli version
+          "gimp"
+          "inkscape"
+
+          # Utilities and Tweaks
+          "aerial" # video screen savers
           "sf-symbols"
-          "google-earth-pro"
-          "noscribe" # AI transcription
           "atv-remote"
-          "boring-notch"
+
 
           # quicklook plugins
           "qlcolorcode"
@@ -311,25 +309,25 @@
           "quicklook-csv"
           "syntax-highlight"
 
-          # not installed but possibly useful
+          # not for now
+          # "karabiner-elements" # nixpkgs needs to be updated for 15.0
+          # "itsycal" # nixpkgs installs, but doesn't work; complains needs to be installed in /Applications
+          # "maccy" # clipboard manager
+          # "satori" # the ancient screensaver
           # "android-platform-tools" 
           # "fontforge" 
           # "logic-2010"
           # "logitech-camera-settings" 
           # "oracle-jdk" 
-          # "tor-browser"
-          # "transmission"
           # "devcleaner" # clean out xcode caches and save disk space
         ];
 
         masApps = {
-          "Kindle Classic"         =  405399194;
           "AdGuard for Safari"     =  1440147259;
           "Keynote"                =  409183694;
           "iMovie"                 =  408981434;
           "CamControl"             =  1503271162;
           "Pages"                  =  409201541;
-          "Mpix"                   =  1282488470;
           "GarageBand"             =  682658836;
           "Visualizer"             =  1296177026;
           "Numbers"                =  409203825;
@@ -338,7 +336,6 @@
           "Xcode"                  =  497799835;
           "Markdown Peek"          =  6753810611;
           # "OneDrive"               =  823766827;
-          # "DevCleaner"             =  1388020431;
           # "Paprika Recipe Manager" =  451907568;
         };
       };
@@ -346,10 +343,7 @@
       services = {
         ipfs = {
           enable = false;
-          ipfsPath = "/Users/desanso/.ipfs";
-        };
-        karabiner-elements = {
-          enable = false;
+          ipfsPath = "/Users/david/.ipfs";
         };
         sketchybar = {
           enable = true;
@@ -405,7 +399,7 @@
               fi
 
               yabai -m space "$idx" --label "$name"
-              /etc/profiles/per-user/desanso/bin/layouts -s "$idx" current
+              /etc/profiles/per-user/david/bin/layouts -s "$idx" current
             }
 
             # setup_space 1 BOOK 
@@ -433,7 +427,7 @@
             yabai -m rule --add app="^Firefox$" manage=on
             yabai -m rule --add app="sioyek" role="AXWindow" subrole="AXDialog" manage=on
 
-            yabai -m signal --add event=space_changed action='/etc/profiles/per-user/desanso/bin/set_theme wallpaper auto' active=yes
+            yabai -m signal --add event=space_changed action='/etc/profiles/per-user/david/bin/set_theme wallpaper auto' active=yes
             yabai -m signal --add event=space_created action='${pkgs.sketchybar}/bin/sketchybar --reload'
             yabai -m signal --add event=space_destroyed action='${pkgs.sketchybar}/bin/sketchybar --reload'
             yabai -m signal --add event=display_removed action='${pkgs.sketchybar}/bin/sketchybar --reload'
@@ -447,12 +441,13 @@
   in
   {
     # Build darwin flake using:
-    # $ sudo darwin-rebuild build --flake .#halibut
-    darwinConfigurations."halibut" = nix-darwin.lib.darwinSystem {
+    # $ sudo darwin-rebuild build --flake .#sockeye
+    darwinConfigurations."sockeye" = nix-darwin.lib.darwinSystem {
       modules = [
         configuration
         home-manager.darwinModules.home-manager
         {
+          home-manager.verbose = true;
           home-manager.useGlobalPkgs = true;
           home-manager.useUserPackages = true;
           home-manager.extraSpecialArgs = {
@@ -460,7 +455,7 @@
             inherit nixvim;
           };
           home-manager.backupFileExtension = "backup";
-          home-manager.users.desanso.imports = [
+          home-manager.users.david.imports = [
             ./home.nix 
           ];
         }
@@ -468,6 +463,6 @@
     };
     
     # Expose the package set, including overlays, for convenience.
-    darwinPackages = self.darwinConfigurations."halibut".pkgs;
+    darwinPackages = self.darwinConfigurations."sockeye".pkgs;
   };
 }
