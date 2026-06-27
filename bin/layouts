@@ -75,7 +75,7 @@ center() {
 }
 
 left() {
-   pct=${1:-60}
+   pct=${1:-75}
    pct=$((pct>100 ? 100 : pct))
    pct=$((pct<20 ? 20 : pct))
    ppct=$((100 - pct))
@@ -103,7 +103,7 @@ obs() {
 }
 
 right() {
-   pct=${1:-60}
+   pct=${1:-75}
    pct=$((pct>100 ? 100 : pct))
    pct=$((pct<20 ? 20 : pct))
    ppct=$((100 - pct))
