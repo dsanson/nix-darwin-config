@@ -707,6 +707,9 @@ in
       settings = {
         user.email = "dsanson@gmail.com";
         user.name = "David Sanson";
+        init = {
+          defaultBranch = "main";
+        };
       };
       ignores = [
         "**/.DS_Store"
