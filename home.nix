@@ -80,7 +80,7 @@ let
 in
 {
   home.username = "david";
-  home.stateVersion = "24.11";
+  home.stateVersion = "26.05";
   home.homeDirectory = "/Users/david"; #mac specific
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
@@ -843,7 +843,7 @@ in
     };
     
     jrnl = {
-      enable = false;
+      enable = true;
       settings = {
         default_hour = 9;
         default_minute = 0;
