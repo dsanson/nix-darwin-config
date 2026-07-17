@@ -149,8 +149,8 @@ in
     nixvim.packages.${stdenv.hostPlatform.system}.default
 
     rlwrap 
-    unar # mac specific cli version of theunarchiver
-    unrar-wrapper
+    #unar # mac specific cli version of theunarchiver
+    #unrar-wrapper
     devd # simple cli webserver; consider just using nix shell
     qrencode
     aria2 # downloading tool
@@ -307,7 +307,7 @@ in
     iina
     keycastr
     terminal-notifier
-    choose-gui
+    #choose-gui
     #whatsapp-for-mac
 
     (writeShellApplication {
@@ -616,7 +616,7 @@ in
     };
     sioyek = {
       enable = true;
-      #package = pkgs-stable.sioyek;
+      package = pkgs-stable.sioyek;
     };
     tealdeer.enable = true;
     pandoc = {
@@ -686,9 +686,9 @@ in
     todoman.enable = false;
     fzf = {
       enable = true;
-      changeDirWidgetCommand = "fd -t d . $HOME";
+      changeDirWidget.command = "fd -t d . $HOME";
       defaultCommand = "fd . $HOME";
-      fileWidgetCommand = "fd . $HOME";
+      fileWidget.command = "fd . $HOME";
       defaultOptions = [
         "--cycle" 
         "--layout=default" 
