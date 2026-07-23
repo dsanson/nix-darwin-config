@@ -1,4 +1,5 @@
 notification-command ":"
+reload-period 30
 bind m exec mpv --audio-display=no --terminal=no "%l" &
 bind w exec cha "%l" 
 bind v exec clear && kitten icat "%l" && read -n1
