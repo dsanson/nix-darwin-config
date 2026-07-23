@@ -102,7 +102,7 @@ in
 
   home.shellAliases = {
     "..." = "cd ../..";
-    "ls" = "eza --hyperlink";
+    "ls" = "eza --hyperlink auto";
     "l" = "ls -lA";
     "rm" = "echo 'rm disabled; use trash or /bin/rm instead'";  #mac specific for now
     "wanip" = "dig +short myip.opendns.com @resolver1.opendns.com";
