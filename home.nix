@@ -1,8 +1,7 @@
 {pkgs, pkgs-stable, nixvim, config, ...}:
 let
-  tex = (pkgs.texlive.combine {
-    inherit (pkgs.texlive) scheme-medium
-      # for accessibility compliance
+  tex = pkgs.texliveMedium.withPackages (
+    ps: with ps; [
       unicode-math
       float
       hyperref
@@ -74,8 +73,8 @@ let
       xurl
       zref
       wallpaper
-      ;
-  });
+    ]
+  );
 
 in
 {
