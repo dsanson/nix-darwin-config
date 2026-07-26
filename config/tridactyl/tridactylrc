@@ -3,7 +3,7 @@ sanitise tridactyllocal tridactylsync
 
 set storageloc sync
 
-set newtab https://www.davidsanson.com/Bonjourr
+set newtab https://online.bonjourr.fr/
 
 set modeindicatormodes.normal false
 set editorcmd /etc/profiles/per-user/david/bin/kitty --single-instance --instance-group=1 --wait-for-single-instance-window-close nvim -c "set ft=pandoc"
