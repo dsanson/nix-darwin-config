@@ -73,6 +73,8 @@ let
       xurl
       zref
       wallpaper
+      garamond-math
+      ebgaramond
     ]
   );
 
@@ -146,6 +148,7 @@ in
 
     #nixvim.packages.${system}.default
     nixvim.packages.${stdenv.hostPlatform.system}.default
+    
 
     rlwrap 
     #unar # mac specific cli version of theunarchiver
@@ -245,6 +248,7 @@ in
     unpaper
     #yacreader
     tdf #terminal pdf viewer
+    sioyek #not using package because it seems to conflict with using mkOutOfStoreSymlink
 
     # document viewers
     doxx
@@ -269,6 +273,7 @@ in
     andika # for for beginning readers
     charis #another multilingual font
     dejavu_fonts
+    eb-garamond
     nerd-fonts.dejavu-sans-mono
     doulos-sil #another multilingual font
     fira-code # fira-mono with coding ligatures
@@ -416,55 +421,55 @@ in
   #   };
   # };
 
-  # home.file.pandoc = {
-  #   source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/.config/nix-darwin-config/share/pandoc";
-  #   target = ".local/share/pandoc";
-  # };
+  home.file.pandoc = {
+    source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/nix/nix-darwin-config/share/pandoc";
+    target = ".local/share/pandoc";
+  };
 
-  # home.file.kitty-launch-actions = {
-  #   source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/.config/nix-darwin-config/config/kitty/launch-actions.conf";
-  #   target = ".config/kitty/launch-actions.conf";
-  # };
+  home.file.kitty-launch-actions = {
+    source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/nix/nix-darwin-config/config/kitty/launch-actions.conf";
+    target = ".config/kitty/launch-actions.conf";
+  };
 
-  # home.file.skhdrc = {
-  #   source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/.config/nix-darwin-config/config/skhd/skhdrc";
-  #   target = ".config/skhd/skhdrc";
-  # };
+  home.file.skhdrc = {
+    source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/nix/nix-darwin-config/config/skhd/skhdrc";
+    target = ".config/skhd/skhdrc";
+  };
 
-#  home.file.sioyek = {
-#    source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/.config/nix-darwin-config/config/sioyek";
-#    target = ".config/sioyek";
-#  };
+ home.file.".config/sioyek" = {
+   source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/nix/nix-darwin-config/config/sioyek";
+    #target = ".config/sioyek";
+ };
 
-  # home.file.hellwal = {
-  #   source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/.config/nix-darwin-config/config/hellwal";
-  #   target = ".config/hellwal";
-  # };
+  home.file.hellwal = {
+    source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/nix/nix-darwin-config/config/hellwal";
+    target = ".config/hellwal";
+  };
 
   # home.file.chawan = {
-  #   source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/.config/nix-darwin-config/config/chawan/config.toml";
+  #   source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/nix/nix-darwin-config/config/chawan/config.toml";
   #   target = ".config/chawan";
   # };
 
-  # home.file.newsraft = {
-  #   source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/.config/nix-darwin-config/config/newsraft";
-  #   target = ".config/newsraft";  
-  # };
+  home.file.newsraft = {
+    source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/nix/nix-darwin-config/config/newsraft";
+    target = ".config/newsraft";  
+  };
 
-  # home.file.sketchybar = {
-  #   source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/.config/nix-darwin-config/config/sketchybar";
-  #   target = ".config/sketchybar";
-  # };
+  home.file.sketchybar = {
+    source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/nix/nix-darwin-config/config/sketchybar";
+    target = ".config/sketchybar";
+  };
 
-  # home.file.tridactyl = {
-  #   source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/.config/nix-darwin-config/config/tridactyl";
-  #   target = ".config/tridactyl";
-  # };
+  home.file.tridactyl = {
+    source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/nix/nix-darwin-config/config/tridactyl";
+    target = ".config/tridactyl";
+  };
 
-  # home.file.presenterm = {
-  #   source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/.config/nix-darwin-config/config/presenterm";
-  #   target = ".config/presenterm";
-  # };
+  home.file.presenterm = {
+    source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/nix/nix-darwin-config/config/presenterm";
+    target = ".config/presenterm";
+  };
 
   accounts.calendar = {
     basePath = ".calendars";
@@ -613,10 +618,10 @@ in
       enable = true;
       #package = pkgs-stable.ripgrep;
     };
-    sioyek = {
-      enable = true;
-      package = pkgs-stable.sioyek;
-    };
+    # sioyek = {
+    #   enable = true;
+    #   #package = pkgs-stable.sioyek;
+    # };
     tealdeer.enable = true;
     pandoc = {
       package = pkgs.pandoc;
