@@ -14,6 +14,10 @@ set theme auto
 
 " yank shortened or canonical url
 bind yy clipboard yankshort
+
+command yankmarkdown composite js "[" + document.title + "](" + document.location.href + ")" | yank
+bind ym yankmarkdown
+
 " reader mode
 bind ,r reader 
 " detach tab
@@ -54,21 +58,22 @@ reseturl ^https://duckduckgo.com F hint -Jbc [class=result__a]
 " go up to subreddit from comments
 bindurl reddit.com gu urlparent 3
 
-quickmark a https://annas-archive.gl/
+quickmark a https://annas-archive.pk/
 quickmark b https://bsky.app/
-quickmark B https://library.illinoisstate.edu/
+quickmark l https://library.illinoisstate.edu/
 quickmark c https://cs.illinoisstate.edu/
 quickmark d www.davidsanson.com
 quickmark e www.espn.com
 quickmark f www.facebook.com
 quickmark g www.github.com
-quickmark l https://carnap.io
-quickmark m https://my.illinoisstate.edu/
+quickmark C https://carnap.io
+quickmark i https://my.illinoisstate.edu/
 quickmark r www.reddit.com
 quickmark w https://www.reddit.com/r/warriors
 quickmark z https://zirk.us/home
 quickmark p https://philpeople.org/news
 quickmark j https://www.jewelosco.com/loyalty/coupons-deals
+quickmark y https://poets.org/poem-a-day https://yourdailypoem.com/ https://rattle.com/ https://thedailybard.net/ https://www.everyday-shakespeare.com/ https://poems.com/ https://www.poetryfoundation.org/poems/poem-of-the-day
 
 " revealjs
 blacklistadd http://localhost:8000 
