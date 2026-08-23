@@ -661,7 +661,7 @@ in
     vdirsyncer.enable = true;
     khal = {
       enable = true;
-      package = pkgs-stable.khal;
+      #package = pkgs-stable.khal;
       settings = {
         default = {
           default_calendar = "work";
