@@ -289,7 +289,7 @@
           # Core Apps
           "firefox" # looks like nixpkg may now work. But version lags.
           "calibre" # nixpkgs broken on darwin
-          "zotero"
+          #"zotero" # trying out nixpkgs zotero
           "quicksilver" # not on nixpkgs
           "anylist" # not on nixpkgs
           "adobe-acrobat-pro"
