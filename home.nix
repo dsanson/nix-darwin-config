@@ -249,6 +249,7 @@ in
     #yacreader
     tdf #terminal pdf viewer
     sioyek #not using package because it seems to conflict with using mkOutOfStoreSymlink
+    zotero #trying this out
 
     # document viewers
     doxx
