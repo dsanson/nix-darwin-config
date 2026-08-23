@@ -1,18 +1,6 @@
 {
   description = "David's Darwin system flake";
 
-  nixConfig = {
-    substituters = [
-      "https://cache.nixos.org"
-      "https://nix-community.cachix.org"
-    ];
-
-    trusted-public-keys = [
-      "cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY="
-      "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
-    ];
-  };
-
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
     nixpkgs-stable.url = "github:NixOS/nixpkgs/nixos-26.05";
@@ -292,7 +280,6 @@
           #"zotero" # trying out nixpkgs zotero
           "quicksilver" # not on nixpkgs
           "anylist" # not on nixpkgs
-          "adobe-acrobat-pro"
           # "google-chrome" # nixpkgs has chromium but linux only
           "ungoogled-chromium"
           "microsoft-word"
@@ -301,6 +288,8 @@
           #"boring-notch"
           "atoll"
           "keepingyouawake" # not on nixpkgs; caffeinate app
+          "foxit-pdf-reader"
+          "readest"
 
           # Tools worth keeping around
           "obs" # nixkpgs only builds for linux
@@ -310,7 +299,7 @@
           "zerotier-one" # nixpkgs linux only
           "the-unarchiver" # nixpkgs has cli version
           "gimp"
-          "inkscape"
+          "inkscape" #why not nixpkgs?
 
           # Utilities and Tweaks
           "aerial" # video screen savers
