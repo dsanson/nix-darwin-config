@@ -157,7 +157,7 @@ in
     qrencode
     aria2 # downloading tool
     gdrive3 
-    #samba  # was triggering swift build
+    samba  # was triggering swift build
     shared-mime-info
     socat # 
     wcalc #used by bin/q-preview # 
@@ -212,7 +212,7 @@ in
     pandoc-imagine
     haskellPackages.pandoc-sidenote
     haskellPackages.pandoc-crossref
-    python313Packages.pandoc-xnos
+    python314Packages.pandoc-xnos
     # mermaid-filter # not available on darwin
 
     # data processing
@@ -220,7 +220,7 @@ in
     csvkit
     miller # awk for data formats #csv 
     pup
-    python313Packages.pyexcel
+    python314Packages.pyexcel
     sc-im
     tidy-viewer # csv pretty printer
     visidata
@@ -395,7 +395,7 @@ in
 
   (with pkgs-stable; [
     #hello
-    samba
+    #samba
   ]);
 
   xdg.enable = true;

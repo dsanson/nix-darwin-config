@@ -288,7 +288,6 @@
           #"boring-notch"
           "atoll"
           "keepingyouawake" # not on nixpkgs; caffeinate app
-          "foxit-pdf-editor"
           "readest"
 
           # Tools worth keeping around
