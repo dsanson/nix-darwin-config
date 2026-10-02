@@ -67,11 +67,11 @@
             colmena;
         })
 
-        (final: prev: {
-          mermaid-cli = prev.mermaid-cli.overrideAttrs (oldAttrs: {
-            makeWrapperArgs = "--set PUPPETEER_EXECUTABLE_PATH '/Applications/Chromium.app/Contents/MacOS/Chromium";
-          });
-        })
+        # (final: prev: {
+        #   mermaid-cli = prev.mermaid-cli.overrideAttrs (oldAttrs: {
+        #     makeWrapperArgs = "--set PUPPETEER_EXECUTABLE_PATH '/Applications/Chromium.app/Contents/MacOS/Chromium";
+        #   });
+        # })
         (final: prev: {
           tdf = prev.tdf.overrideAttrs (oldAttrs: {
             cargoBuildFlags = ["--features cbz"];
