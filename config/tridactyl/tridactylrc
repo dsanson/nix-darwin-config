@@ -74,6 +74,9 @@ quickmark z https://zirk.us/home
 quickmark p https://philpeople.org/news
 quickmark j https://www.jewelosco.com/loyalty/coupons-deals
 quickmark y https://poets.org/poem-a-day https://rattle.com/ https://www.everyday-shakespeare.com/ https://poems.com/ https://www.poetryfoundation.org/poems/poem-of-the-day
+quickmark 1 https://www.davidsanson.com/101f2026/
+quickmark h https://www.davidsanson.com/101f2026H/
+quickmark 2 https://www.davidsanson.com/205f2026/
 
 " revealjs
 blacklistadd http://localhost:8000 

@@ -69,7 +69,7 @@
 
         (final: prev: {
           mermaid-cli = prev.mermaid-cli.overrideAttrs (oldAttrs: {
-            makeWrapperArgs = "--set PUPPETEER_EXECUTABLE_PATH '/Applications/Google Chrome.app/Contents/MacOS/Google Chrome'";
+            makeWrapperArgs = "--set PUPPETEER_EXECUTABLE_PATH '/Applications/Chromium.app/Contents/MacOS/Chromium";
           });
         })
         (final: prev: {

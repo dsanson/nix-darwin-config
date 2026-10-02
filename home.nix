@@ -232,7 +232,7 @@ in
     # pdf and images
     verapdf
     cairo
-    djvu2pdf
+    #djvu2pdf
     djvulibre
     djview
     ghostscript
@@ -249,7 +249,7 @@ in
     #yacreader
     tdf #terminal pdf viewer
     sioyek #not using package because it seems to conflict with using mkOutOfStoreSymlink
-    zotero #trying this out
+    #zotero #broken, switching to homebrew
 
     # document viewers
     doxx
@@ -321,10 +321,11 @@ in
       text = (builtins.readFile ./bin/bib2path2);
     })
 
-    (writeShellApplication {
-      name = "noise";
-      text = (builtins.readFile ./bin/noise); 
-    })
+    # No longer works on latest MacOS
+    # (writeShellApplication {
+    #   name = "noise";
+    #   text = (builtins.readFile ./bin/noise); 
+    # })
 
     (writeShellApplication {
       name = "volume";

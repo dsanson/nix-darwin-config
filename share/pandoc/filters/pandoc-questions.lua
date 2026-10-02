@@ -8,8 +8,6 @@
 -- <version> can be set using metadata or inferred from the name of the
 -- the output file (metadata overrides output file).
 
-local pl = require'pl.import_into'()
-
 local format = FORMAT or "markdown"
 local vars = {}
 local version = nil
@@ -57,19 +55,19 @@ function get_meta(meta)
       shufflelists = true
     end
     if version == "1" then
-      meta["versionmark"] = pandoc.MetaString('ا')
-    elseif version == "2" then
       meta["versionmark"] = pandoc.MetaString('ب')
-    elseif version == "3" then
+    elseif version == "2" then
       meta["versionmark"] = pandoc.MetaString('ت')
-    elseif version == "4" then
+    elseif version == "3" then
       meta["versionmark"] = pandoc.MetaString('ث')
-    elseif version == "5" then
+    elseif version == "4" then
       meta["versionmark"] = pandoc.MetaString('ج')
-    elseif version == "6" then
+    elseif version == "5" then
       meta["versionmark"] = pandoc.MetaString('ح')
-    elseif version == "7" then
+    elseif version == "6" then
       meta["versionmark"] = pandoc.MetaString('خ')
+    elseif version == "7" then
+      meta["versionmark"] = pandoc.MetaString('ط')
     elseif version == "8" then
       meta["versionmark"] = pandoc.MetaString('ظ')
     end
