@@ -284,8 +284,8 @@
           "ungoogled-chromium"
           "microsoft-word"
           "microsoft-excel"
+          "zotero"
           "obsidian" # nixpkgs linux only; am I still using this?
-          #"boring-notch"
           "atoll"
           "keepingyouawake" # not on nixpkgs; caffeinate app
           "readest"
@@ -293,7 +293,7 @@
           # Tools worth keeping around
           "obs" # nixkpgs only builds for linux
           "libreoffice"
-          "dupeguru" # marked as broken in nix
+          #"dupeguru" # deprecated because unsigned; marked as broken in nix
           "raspberry-pi-imager" # nixpkgs#rpi-imager marked as broken
           "zerotier-one" # nixpkgs linux only
           "the-unarchiver" # nixpkgs has cli version

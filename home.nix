@@ -232,7 +232,7 @@ in
     # pdf and images
     verapdf
     cairo
-    #djvu2pdf
+    #djvu2pdf #removed from nixpkgs
     djvulibre
     djview
     ghostscript
