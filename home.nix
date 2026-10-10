@@ -298,6 +298,7 @@ in
     cardo # font specifically designed for the needs of classicists, Biblical scholars, medievalists, and linguists
     libertinus # recommended math font to pair with cardo
     crimson-pro
+    noto-fonts
 
     # gui apps
     #firefox #works but syncing was irritating.
