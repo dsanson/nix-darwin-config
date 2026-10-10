@@ -49,6 +49,10 @@ while [[ "${1:-}" =~ ^-.* ]]; do
       mode="id_from_search" #return key given path
       shift
       ;;
+    -S)
+      mode="id_from_search_loose" #return key given path
+      shift
+      ;;
     -ip)
       mode="imagepath" #return path to attached image
       shift
@@ -125,4 +129,23 @@ if [[ "$mode" == "id_from_search" ]]; then
   jq -r '.[] | select(. | tostring | test("'"$query"'"; "i")) | ( "@" + .id )' "$BIB"
 fi
 
+if [[ "$mode" == "id_from_search_loose" ]]; then
+  query="$*"
 
+  jq -r --arg q "$query" '
+    ($q
+      | ascii_downcase
+      | split(" ")
+      | map(select(length > 0))) as $terms
+      | .[]
+      | ([.. | scalars | tostring] | join(" ") | ascii_downcase) as $text
+      | select(
+          all(
+            $terms[];
+            . as $term
+            | ($text | contains($term))
+          )
+        )
+      | "@" + .id
+  ' "$BIB"
+fi
