@@ -307,10 +307,8 @@
 
 
           # quicklook plugins
-          "qlcolorcode"
-          "qlstephen"
+          "j-256/tap/qlomni"
           "quicklook-video"
-          "quicklook-csv"
           "syntax-highlight"
 
           # not for now
