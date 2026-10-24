@@ -1,0 +1,24 @@
+#!/usr/bin/env bash
+
+case "$1" in
+  oed)
+    dict="--use-dict=oed"
+    shift
+    ;;
+  fable)
+    dict="--use-dict=fable"
+    shift
+    ;;
+  *)
+    dict=""
+    ;;
+esac
+
+if [[ $# -eq 0 ]]; then
+  exit 
+fi
+
+sdcv -n $dict "$@" | \
+  sed -e 's/^Found [0-9]* items.*//' \
+      -e 's/^-->\(.*\)/\<h2\>\1<\/h2>/' | \
+  cha -T "text/html" #; charset=UTF-8"
