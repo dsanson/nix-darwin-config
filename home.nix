@@ -254,6 +254,9 @@ in
     # document viewers
     doxx
     antiword
+    
+    # stardict dictionary viewer
+    sdcv 
 
     # media
     ffmpeg
@@ -271,7 +274,8 @@ in
     
     # fonts
     amiri #arabic font
-    andika # for for beginning readers
+    scheherazade-new #arabic-font
+    andika # for beginning readers
     charis #another multilingual font
     dejavu_fonts
     eb-garamond
