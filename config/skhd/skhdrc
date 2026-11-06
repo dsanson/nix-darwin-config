@@ -84,8 +84,8 @@ m1, m2 < cmd - return : skhd -k 'escape'; kitty-wrapper
 m1, m2 < cmd - space : skhd -k 'escape'; skhd -k 'cmd - space'
 m1, m2 < cmd + alt - space : skhd -k 'escape'; skhd -k 'cmd + alt - space'
 # open firefox windows
-m1 < b   :  skhd -k "escape"; firefox &
-m2 < b   :  skhd -k "escape"; firefox --private-window &
+m1 < b   :  skhd -k "escape"; firefox-wrapper &
+m2 < b   :  skhd -k "escape"; firefox-wrapper --private-window &
 # screen capture
 m1 < c      :  skhd -k "escape"; open -a Screenshot
 # screenrecording
