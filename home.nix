@@ -253,7 +253,7 @@ in
 
     # document viewers
     doxx
-    antiword
+    # antiword
     
     # stardict dictionary viewer
     sdcv 
@@ -414,10 +414,10 @@ in
       source = ./config/markdownlint;
       recursive = true;
     };
-    visidata = {
-      source = ./config/visidata;
-      recursive = true;
-    };
+    # visidata = {
+    #   source = ./config/visidata;
+    #   recursive = true;
+    # };
     "fd/ignore".text = "**/*.app/**";
   };
 
@@ -427,6 +427,12 @@ in
   #     recursive = true;
   #   };
   # };
+
+
+  home.file.visidata = {
+    source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/nix/nix-darwin-config/config/visidata";
+    target = ".config/visidata";
+  };
 
   home.file.pandoc = {
     source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/nix/nix-darwin-config/share/pandoc";
