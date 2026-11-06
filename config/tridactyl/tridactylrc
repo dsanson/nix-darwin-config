@@ -29,7 +29,7 @@ bind ,v mpv
 
 " open in Safari
 bind ,s composite get_current_url | shellescape | fillcmdline !s open -a Safari
-"bind ,chr composite get_current_url | shellescape | fillcmdline !s open -a Google Chrome
+bind ,chr composite get_current_url | shellescape | fillcmdline !s open -a Chromium
 
 " save to Zotero
 "command zotero exclaim_quiet /run/current-system/sw/bin/skhd -k 'ctrl + alt - z'
@@ -47,6 +47,10 @@ bind ,c cook_convert_recipe
 "javascript:(function(){window.hypothesisConfig=function(){return{showHighlights:true,appType:'bookmarklet'};};var d=document,s=d.createElement('script');s.setAttribute('src','https://hypothes.is/embed.js');d.body.appendChild(s)})();
 command hypothesis js (function(){window.hypothesisConfig=function(){return{showHighlights:true,appType:'bookmarklet'};};var d=document,s=d.createElement('script');s.setAttribute('src','https://hypothes.is/embed.js');d.body.appendChild(s)})();
 bind ,h hypothesis
+
+" pantagraph articles for current date
+command pantagraph jsb const d=new Date(), y=d.getFullYear(), m=d.getMonth()+1, day=d.getDate(), month=d.toLocaleString("en-US",{month:"long"}); browser.tabs.create({url:`https://infoweb-newsbank-com.bpl.idm.oclc.org/explore/issue-browse?p=AWNB&t=pubname%3ABLPB%21Pantagraph%252C%2BThe%2B%28Bloomington%252C%2BIL%29%2Fyear%3A${y}%21${y}%2Fmody%3A${String(m).padStart(2,"0")}${String(day).padStart(2,"0")}%21${month}%2B${day}%252C%2B${y}&action=browse&format=text`})
+bind ,p pantagraph
 
 " Only hint search results on Google and DDG
 bindurl www.google.com f hint -Jc .rc > .r > a
@@ -74,6 +78,7 @@ quickmark z https://zirk.us/home
 quickmark p https://philpeople.org/news
 quickmark j https://www.jewelosco.com/loyalty/coupons-deals
 quickmark y https://poets.org/poem-a-day https://rattle.com/ https://www.everyday-shakespeare.com/ https://poems.com/ https://www.poetryfoundation.org/poems/poem-of-the-day
+quickmark n https://infoweb-newsbank-com.bpl.idm.oclc.org/explore/browse-pub#local-articles-heading?p=AWNB&t=pubname%3ABLPB%21Pantagraph%252C%2BThe%2B%28Bloomington%252C%2BIL%29&action=browse
 quickmark 1 https://www.davidsanson.com/101f2026/
 quickmark h https://www.davidsanson.com/101f2026H/
 quickmark 2 https://www.davidsanson.com/205f2026/
