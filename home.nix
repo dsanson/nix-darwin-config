@@ -108,6 +108,7 @@ in
     "rm" = "echo 'rm disabled; use trash or /bin/rm instead'";  #mac specific for now
     "wanip" = "dig +short myip.opendns.com @resolver1.opendns.com";
     "lp2"     = "lp -o sides=two-sided-long-edge";
+    "lp2s"    = "lp -o sides=two-sided-long-edge -o 'ARStaple=Staple1'";
     "firefox" = "firefox-wrapper";
     "wttr" = "curl -s \"wttr.in/{$(dig +short myip.opendns.com @resolver1.opendns.com),Carmel%20CA,Paso%20Robles,Tenakee%20AK,Rimrock%20AZ,Libby%20MT}?format=4&u\" | sed 's/, Illinois, United States//'";
     "serve" = "devd -l";
@@ -202,6 +203,7 @@ in
     tex
     typst
     presenterm
+    papis
 
     # pandoc filters
     pandoc-eqnos
@@ -482,6 +484,11 @@ in
   home.file.presenterm = {
     source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/nix/nix-darwin-config/config/presenterm";
     target = ".config/presenterm";
+  };
+
+  home.file.papis = {
+    source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/nix/nix-darwin-config/config/papis";
+    target = ".config/papis";
   };
 
   accounts.calendar = {
@@ -873,7 +880,7 @@ in
         tagsymbols = "#@";
       };
     };
-    
+
   };
   
   fonts.fontconfig.enable = true;
